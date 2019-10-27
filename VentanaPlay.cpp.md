@@ -1,6 +1,7 @@
 # Master-Mind
 
 //VentanaPlay.cpp
+//CONFIGURACION DEFAULT
 
 #include "pch.h"
 #include "VentanaPlay.h"
