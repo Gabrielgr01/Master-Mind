@@ -1,5 +1,6 @@
 # Master-Mind
-#VentanaPrincipal.h
+
+//VentanaPrincipal.h
 
 #pragma once
 
