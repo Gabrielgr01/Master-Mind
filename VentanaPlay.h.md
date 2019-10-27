@@ -1,6 +1,7 @@
 # Master-Mind
 
 //VentanaPlay.h
+//CONFIGURACION DEFAULT
 
 #pragma once
 
