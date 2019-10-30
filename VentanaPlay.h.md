@@ -424,6 +424,8 @@ private: System::Void TimeKeeper_Tick(System::Object^ sender, System::EventArgs^
 			seconds = 0;
 			minutes = 0;
 			hours = 0;
+			
+			//Game Over: codigo para terminar la partida
 		}
 		sec = Convert::ToString(seconds);
 		min = Convert::ToString(minutes);
