@@ -39,14 +39,7 @@ namespace MasterMindProyectoFinal {
 			//TODO: agregar código de constructor aquí
 			//
 		}
-		/*
-		GameSettings(ConfigurationClass* objSettings)
-		{
-			InitializeComponent();
-
-			this->objSettings = objSettings;
-		}
-		*/
+		
 	protected:
 		/// <summary>
 		/// Limpiar los recursos que se estén usando.
