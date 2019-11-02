@@ -5,7 +5,11 @@
 #pragma once
 
 #include <Windows.h>
-#include "VentanaPlay.h"
+
+#include "GameSettings.h"
+#include "Highscores.h"
+#include "HowToPlay.h"
+#include "Style.h"
 
 namespace MasterMindProyectoFinal {
 
@@ -21,17 +25,17 @@ namespace MasterMindProyectoFinal {
 	/// </summary>
 	public ref class VentanaPrincipal : public System::Windows::Forms::Form
 	{
+
 	public:
+		
 		VentanaPrincipal(void)
 		{
 			InitializeComponent();
-
 			//
 			//TODO: codigo del constructor
 			//
-
 		}
-
+		
 	protected:
 		/// <summary>
 		/// Limpiar los recursos que se estén usando.
@@ -43,7 +47,11 @@ namespace MasterMindProyectoFinal {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::TextBox^ textBox1;
+	private: System::Windows::Forms::TextBox^ textBox_titulo;
+	protected:
+
+	protected:
+
 	private: System::Windows::Forms::Button^ button_play;
 	private: System::Windows::Forms::TextBox^ textBox_enter_username;
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
@@ -54,7 +62,9 @@ namespace MasterMindProyectoFinal {
 	private: System::Windows::Forms::ToolStripMenuItem^ helpToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ howToPlayToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ quitMasterMindToolStripMenuItem;
-	private: System::Windows::Forms::TextBox^ textBox2;
+	private: System::Windows::Forms::TextBox^ textBox_developers;
+	private: System::Windows::Forms::ToolStripMenuItem^ changeStyleToolStripMenuItem;
+
 
 
 
@@ -76,35 +86,38 @@ namespace MasterMindProyectoFinal {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox_titulo = (gcnew System::Windows::Forms::TextBox());
 			this->button_play = (gcnew System::Windows::Forms::Button());
 			this->textBox_enter_username = (gcnew System::Windows::Forms::TextBox());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->ayudaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->highscoresToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->quitMasterMindToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->settingsToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->changeGameSettingsToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->changeStyleToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->helpToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->howToPlayToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->quitMasterMindToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->textBox_developers = (gcnew System::Windows::Forms::TextBox());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
-			// textBox1
+			// textBox_titulo
 			// 
-			this->textBox1->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox1->Location = System::Drawing::Point(117, 47);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->ReadOnly = true;
-			this->textBox1->Size = System::Drawing::Size(111, 13);
-			this->textBox1->TabIndex = 0;
-			this->textBox1->Text = L"MASTER MIND";
-			this->textBox1->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->textBox_titulo->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->textBox_titulo->Cursor = System::Windows::Forms::Cursors::Default;
+			this->textBox_titulo->Location = System::Drawing::Point(117, 74);
+			this->textBox_titulo->Name = L"textBox_titulo";
+			this->textBox_titulo->ReadOnly = true;
+			this->textBox_titulo->Size = System::Drawing::Size(111, 13);
+			this->textBox_titulo->TabIndex = 0;
+			this->textBox_titulo->Text = L"MASTER MIND";
+			this->textBox_titulo->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->textBox_titulo->TextChanged += gcnew System::EventHandler(this, &VentanaPrincipal::textBox1_TextChanged);
 			// 
 			// button_play
 			// 
-			this->button_play->Location = System::Drawing::Point(126, 170);
+			this->button_play->Location = System::Drawing::Point(126, 184);
 			this->button_play->Name = L"button_play";
 			this->button_play->Size = System::Drawing::Size(92, 23);
 			this->button_play->TabIndex = 1;
@@ -114,7 +127,7 @@ namespace MasterMindProyectoFinal {
 			// 
 			// textBox_enter_username
 			// 
-			this->textBox_enter_username->Location = System::Drawing::Point(126, 101);
+			this->textBox_enter_username->Location = System::Drawing::Point(126, 124);
 			this->textBox_enter_username->Name = L"textBox_enter_username";
 			this->textBox_enter_username->Size = System::Drawing::Size(92, 20);
 			this->textBox_enter_username->TabIndex = 2;
@@ -145,16 +158,14 @@ namespace MasterMindProyectoFinal {
 			this->highscoresToolStripMenuItem->Name = L"highscoresToolStripMenuItem";
 			this->highscoresToolStripMenuItem->Size = System::Drawing::Size(78, 20);
 			this->highscoresToolStripMenuItem->Text = L"Highscores";
-			// 
-			// quitMasterMindToolStripMenuItem
-			// 
-			this->quitMasterMindToolStripMenuItem->Name = L"quitMasterMindToolStripMenuItem";
-			this->quitMasterMindToolStripMenuItem->Size = System::Drawing::Size(76, 20);
-			this->quitMasterMindToolStripMenuItem->Text = L"Quit Game";
+			this->highscoresToolStripMenuItem->Click += gcnew System::EventHandler(this, &VentanaPrincipal::highscoresToolStripMenuItem_Click);
 			// 
 			// settingsToolStripMenuItem
 			// 
-			this->settingsToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->changeGameSettingsToolStripMenuItem });
+			this->settingsToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+				this->changeGameSettingsToolStripMenuItem,
+					this->changeStyleToolStripMenuItem
+			});
 			this->settingsToolStripMenuItem->Name = L"settingsToolStripMenuItem";
 			this->settingsToolStripMenuItem->Size = System::Drawing::Size(61, 20);
 			this->settingsToolStripMenuItem->Text = L"Settings";
@@ -164,6 +175,14 @@ namespace MasterMindProyectoFinal {
 			this->changeGameSettingsToolStripMenuItem->Name = L"changeGameSettingsToolStripMenuItem";
 			this->changeGameSettingsToolStripMenuItem->Size = System::Drawing::Size(194, 22);
 			this->changeGameSettingsToolStripMenuItem->Text = L"Change Game Settings";
+			this->changeGameSettingsToolStripMenuItem->Click += gcnew System::EventHandler(this, &VentanaPrincipal::changeGameSettingsToolStripMenuItem_Click);
+			// 
+			// changeStyleToolStripMenuItem
+			// 
+			this->changeStyleToolStripMenuItem->Name = L"changeStyleToolStripMenuItem";
+			this->changeStyleToolStripMenuItem->Size = System::Drawing::Size(194, 22);
+			this->changeStyleToolStripMenuItem->Text = L"Change Style";
+			this->changeStyleToolStripMenuItem->Click += gcnew System::EventHandler(this, &VentanaPrincipal::changeStyleToolStripMenuItem_Click);
 			// 
 			// helpToolStripMenuItem
 			// 
@@ -175,31 +194,40 @@ namespace MasterMindProyectoFinal {
 			// howToPlayToolStripMenuItem
 			// 
 			this->howToPlayToolStripMenuItem->Name = L"howToPlayToolStripMenuItem";
-			this->howToPlayToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->howToPlayToolStripMenuItem->Size = System::Drawing::Size(138, 22);
 			this->howToPlayToolStripMenuItem->Text = L"How to Play";
+			this->howToPlayToolStripMenuItem->Click += gcnew System::EventHandler(this, &VentanaPrincipal::howToPlayToolStripMenuItem_Click);
 			// 
-			// textBox2
+			// quitMasterMindToolStripMenuItem
 			// 
-			this->textBox2->BackColor = System::Drawing::SystemColors::Control;
-			this->textBox2->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox2->Location = System::Drawing::Point(242, 219);
-			this->textBox2->Multiline = true;
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->ReadOnly = true;
-			this->textBox2->Size = System::Drawing::Size(96, 51);
-			this->textBox2->TabIndex = 4;
-			this->textBox2->Text = L"Developers:\r\nGabriel González\r\nAdrián Dittel";
-			this->textBox2->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->quitMasterMindToolStripMenuItem->Name = L"quitMasterMindToolStripMenuItem";
+			this->quitMasterMindToolStripMenuItem->Size = System::Drawing::Size(76, 20);
+			this->quitMasterMindToolStripMenuItem->Text = L"Quit Game";
+			this->quitMasterMindToolStripMenuItem->Click += gcnew System::EventHandler(this, &VentanaPrincipal::quitMasterMindToolStripMenuItem_Click);
+			// 
+			// textBox_developers
+			// 
+			this->textBox_developers->BackColor = System::Drawing::SystemColors::Control;
+			this->textBox_developers->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->textBox_developers->Location = System::Drawing::Point(242, 219);
+			this->textBox_developers->Multiline = true;
+			this->textBox_developers->Name = L"textBox_developers";
+			this->textBox_developers->ReadOnly = true;
+			this->textBox_developers->Size = System::Drawing::Size(96, 51);
+			this->textBox_developers->TabIndex = 4;
+			this->textBox_developers->Text = L"Developers:\r\nGabriel González\r\nAdrián Dittel";
+			this->textBox_developers->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->textBox_developers->TextChanged += gcnew System::EventHandler(this, &VentanaPrincipal::textBox2_TextChanged_1);
 			// 
 			// VentanaPrincipal
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(350, 282);
-			this->Controls->Add(this->textBox2);
+			this->Controls->Add(this->textBox_developers);
 			this->Controls->Add(this->textBox_enter_username);
 			this->Controls->Add(this->button_play);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->textBox_titulo);
 			this->Controls->Add(this->menuStrip1);
 			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"VentanaPrincipal";
@@ -213,23 +241,54 @@ namespace MasterMindProyectoFinal {
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		VentanaPlay juego;
-		//Application::Run(% juego);
-		juego.ShowDialog();
+		//VentanaPlay
+		GameSettings configuration;
+		configuration.ShowDialog();
 	}
-	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) 
-	{
-
-	}
-	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) 
-	{
-
-	}
-
 
 	private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) 
 	{
 		//codigo para guardar en una variable el nombre de usuario ingresado
 	}
-};
+	/*
+	private: System::Void changeGameSettingsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		//Game settings
+		//ELIMINAR ESTE STRIP MENU ITEM
+	}
+	*/
+	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) 
+	{
+		//Titulo (Master Mind)
+	}
+	private: System::Void textBox2_TextChanged_1(System::Object^ sender, System::EventArgs^ e) 
+	{
+		//Texto Developers
+	}
+	private: System::Void quitMasterMindToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		//Quit Game
+		VentanaPrincipal::Close();
+	}
+	private: System::Void highscoresToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		//Highscores
+		Highscores records;
+		records.ShowDialog();
+	}
+	private: System::Void changeStyleToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		//Style
+		Style diseño_juego;
+		diseño_juego.ShowDialog();
+	}
+	private: System::Void howToPlayToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		//How to Play
+		HowToPlay instrucciones;
+		instrucciones.ShowDialog();
+	}
+
+
+	};
 }
