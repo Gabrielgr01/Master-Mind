@@ -408,27 +408,90 @@ private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e)
 }
 private: System::Void TimeKeeper_Tick(System::Object^ sender, System::EventArgs^ e) { 
 
-	    seconds++;
-		if (seconds == 60)
+		if (objSettings->getClock() == true)
 		{
-			seconds = 0;
-			minutes++;
+			seconds++;
+			if (seconds == 60)
+			{
+				seconds = 0;
+				minutes++;
+			}
+			if (minutes == 60)
+			{
+				minutes = 0;
+				hours++;
+			}
+			if (hours == 2)
+			{
+				seconds = 0;
+				minutes = 0;
+				hours = 0;
+			}
+			sec = Convert::ToString(seconds);
+			min = Convert::ToString(minutes);
+			hour = Convert::ToString(hours);
+
+			if (hours < 10)
+			{
+				if (minutes < 10)
+				{
+					if (seconds < 10)
+					{
+						Time->Text = "0" + hour + ":0" + min + ":0" + sec;
+					}
+					else if (seconds >= 10)
+					{
+						Time->Text = "0" + hour + ":0" + min + ":" + sec;
+					}
+				}
+				else if (minutes >= 10)
+				{
+					if (seconds < 10)
+					{
+						Time->Text = "0" + hour + ":" + min + ":0" + sec;
+					}
+					else if (seconds >= 10)
+					{
+						Time->Text = "0" + hour + ":" + min + ":" + sec;
+					}
+				}
+			}
+			else if (hours >= 10)
+			{
+				if (minutes < 10)
+				{
+					if (seconds < 10)
+					{
+						Time->Text = hour + ":0" + min + ":0" + sec;
+					}
+					else if (seconds >= 10)
+					{
+						Time->Text = hour + ":0" + min + ":" + sec;
+					}
+				}
+				else if (minutes >= 10)
+				{
+					if (seconds < 10)
+					{
+						Time->Text = hour + ":" + min + ":0" + sec;
+					}
+					else if (seconds >= 10)
+					{
+						Time->Text = hour + ":" + min + ":" + sec;
+					}
+				}
+			}
+
+			else if (objSettings->getTimekeeperPlay() == true)
+			{
+				//CODIGO TIMEKEEPER POR JUGADA
+			}
+
+			else if (objSettings->getTimekeeperGame() == true)
+			{
+				//CODIGO TIMEKEEPER POR JUEGO
+			}
 		}
-		if (minutes == 60)
-		{
-			minutes = 0;
-			hours++;
-		}
-		if (hours == 2)
-		{
-			seconds = 0;
-			minutes = 0;
-			hours = 0;
-		}
-		sec = Convert::ToString(seconds);
-		min = Convert::ToString(minutes);
-		hour = Convert::ToString(hours);
-		Time->Text = hour + ":" + min + ":" + sec;
 
 }
 };
