@@ -35,7 +35,18 @@ namespace MasterMindProyectoFinal {
 			//TODO: codigo del constructor
 			//
 		}
-		
+		/*
+		VentanaPrincipal(ConfigurationClass *objSettings)
+		{
+			InitializeComponent();
+
+			this->objSettings = objSettings;
+			//
+			//TODO: codigo del constructor
+			//
+
+		}
+		*/
 	protected:
 		/// <summary>
 		/// Limpiar los recursos que se estén usando.
@@ -57,13 +68,13 @@ namespace MasterMindProyectoFinal {
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 	private: System::Windows::Forms::ToolStripMenuItem^ ayudaToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ highscoresToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ settingsToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ changeGameSettingsToolStripMenuItem;
+
+
 	private: System::Windows::Forms::ToolStripMenuItem^ helpToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ howToPlayToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ quitMasterMindToolStripMenuItem;
 	private: System::Windows::Forms::TextBox^ textBox_developers;
-	private: System::Windows::Forms::ToolStripMenuItem^ changeStyleToolStripMenuItem;
+
 
 
 
@@ -92,9 +103,6 @@ namespace MasterMindProyectoFinal {
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->ayudaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->highscoresToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->settingsToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->changeGameSettingsToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->changeStyleToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->helpToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->howToPlayToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->quitMasterMindToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -137,9 +145,9 @@ namespace MasterMindProyectoFinal {
 			// 
 			// menuStrip1
 			// 
-			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {
+			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
 				this->ayudaToolStripMenuItem,
-					this->highscoresToolStripMenuItem, this->settingsToolStripMenuItem, this->helpToolStripMenuItem, this->quitMasterMindToolStripMenuItem
+					this->highscoresToolStripMenuItem, this->helpToolStripMenuItem, this->quitMasterMindToolStripMenuItem
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
@@ -159,30 +167,6 @@ namespace MasterMindProyectoFinal {
 			this->highscoresToolStripMenuItem->Size = System::Drawing::Size(78, 20);
 			this->highscoresToolStripMenuItem->Text = L"Highscores";
 			this->highscoresToolStripMenuItem->Click += gcnew System::EventHandler(this, &VentanaPrincipal::highscoresToolStripMenuItem_Click);
-			// 
-			// settingsToolStripMenuItem
-			// 
-			this->settingsToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
-				this->changeGameSettingsToolStripMenuItem,
-					this->changeStyleToolStripMenuItem
-			});
-			this->settingsToolStripMenuItem->Name = L"settingsToolStripMenuItem";
-			this->settingsToolStripMenuItem->Size = System::Drawing::Size(61, 20);
-			this->settingsToolStripMenuItem->Text = L"Settings";
-			// 
-			// changeGameSettingsToolStripMenuItem
-			// 
-			this->changeGameSettingsToolStripMenuItem->Name = L"changeGameSettingsToolStripMenuItem";
-			this->changeGameSettingsToolStripMenuItem->Size = System::Drawing::Size(194, 22);
-			this->changeGameSettingsToolStripMenuItem->Text = L"Change Game Settings";
-			this->changeGameSettingsToolStripMenuItem->Click += gcnew System::EventHandler(this, &VentanaPrincipal::changeGameSettingsToolStripMenuItem_Click);
-			// 
-			// changeStyleToolStripMenuItem
-			// 
-			this->changeStyleToolStripMenuItem->Name = L"changeStyleToolStripMenuItem";
-			this->changeStyleToolStripMenuItem->Size = System::Drawing::Size(194, 22);
-			this->changeStyleToolStripMenuItem->Text = L"Change Style";
-			this->changeStyleToolStripMenuItem->Click += gcnew System::EventHandler(this, &VentanaPrincipal::changeStyleToolStripMenuItem_Click);
 			// 
 			// helpToolStripMenuItem
 			// 
@@ -251,10 +235,9 @@ namespace MasterMindProyectoFinal {
 		//codigo para guardar en una variable el nombre de usuario ingresado
 	}
 	/*
-	private: System::Void changeGameSettingsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void changeGameSettingsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		//Game settings
-		//ELIMINAR ESTE STRIP MENU ITEM
 	}
 	*/
 	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) 
