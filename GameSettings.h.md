@@ -29,6 +29,7 @@ namespace MasterMindProyectoFinal {
 		bool timekeeper_play;
 		bool timekeeper_game;
 		bool element_rep;
+		int element_type;
 
 	public:
 
@@ -39,7 +40,7 @@ namespace MasterMindProyectoFinal {
 			//TODO: agregar código de constructor aquí
 			//
 		}
-		
+	
 	protected:
 		/// <summary>
 		/// Limpiar los recursos que se estén usando.
@@ -76,9 +77,12 @@ namespace MasterMindProyectoFinal {
 
 	private: System::Windows::Forms::GroupBox^ groupBox4;
 	private: System::Windows::Forms::RadioButton^ radioButton13;
-	private: System::Windows::Forms::RadioButton^ radioButton12;
-	private: System::Windows::Forms::RadioButton^ radioButton11;
-	private: System::Windows::Forms::RadioButton^ radioButton10;
+	private: System::Windows::Forms::RadioButton^ elem_type_numbers_rbtn;
+
+	private: System::Windows::Forms::RadioButton^ elem_type_letters_rbtn;
+	private: System::Windows::Forms::RadioButton^ elem_type_colors_rbtn;
+
+
 	private: System::Windows::Forms::Button^ Save_Settings;
 	private: System::Windows::Forms::Button^ button_back;
 
@@ -115,9 +119,9 @@ namespace MasterMindProyectoFinal {
 			this->Element_rep_Enabled = (gcnew System::Windows::Forms::RadioButton());
 			this->groupBox4 = (gcnew System::Windows::Forms::GroupBox());
 			this->radioButton13 = (gcnew System::Windows::Forms::RadioButton());
-			this->radioButton12 = (gcnew System::Windows::Forms::RadioButton());
-			this->radioButton11 = (gcnew System::Windows::Forms::RadioButton());
-			this->radioButton10 = (gcnew System::Windows::Forms::RadioButton());
+			this->elem_type_numbers_rbtn = (gcnew System::Windows::Forms::RadioButton());
+			this->elem_type_letters_rbtn = (gcnew System::Windows::Forms::RadioButton());
+			this->elem_type_colors_rbtn = (gcnew System::Windows::Forms::RadioButton());
 			this->Save_Settings = (gcnew System::Windows::Forms::Button());
 			this->button_back = (gcnew System::Windows::Forms::Button());
 			this->groupBox1->SuspendLayout();
@@ -143,9 +147,9 @@ namespace MasterMindProyectoFinal {
 			this->Difficulty_Hard->AutoSize = true;
 			this->Difficulty_Hard->Location = System::Drawing::Point(6, 65);
 			this->Difficulty_Hard->Name = L"Difficulty_Hard";
-			this->Difficulty_Hard->Size = System::Drawing::Size(240, 17);
+			this->Difficulty_Hard->Size = System::Drawing::Size(251, 17);
 			this->Difficulty_Hard->TabIndex = 2;
-			this->Difficulty_Hard->Text = L"Hard (6 plays, combination of 4 to 6 elements)";
+			this->Difficulty_Hard->Text = L"Hard (6 plays, combination of 4 from 6 elements)";
 			this->Difficulty_Hard->UseVisualStyleBackColor = true;
 			this->Difficulty_Hard->CheckedChanged += gcnew System::EventHandler(this, &GameSettings::Difficulty_Hard_CheckedChanged);
 			// 
@@ -154,9 +158,9 @@ namespace MasterMindProyectoFinal {
 			this->Difficulty_Medium->AutoSize = true;
 			this->Difficulty_Medium->Location = System::Drawing::Point(6, 42);
 			this->Difficulty_Medium->Name = L"Difficulty_Medium";
-			this->Difficulty_Medium->Size = System::Drawing::Size(254, 17);
+			this->Difficulty_Medium->Size = System::Drawing::Size(265, 17);
 			this->Difficulty_Medium->TabIndex = 1;
-			this->Difficulty_Medium->Text = L"Medium (7 plays, combination of 4 to 6 elements)";
+			this->Difficulty_Medium->Text = L"Medium (7 plays, combination of 4 from 6 elements)";
 			this->Difficulty_Medium->UseVisualStyleBackColor = true;
 			this->Difficulty_Medium->CheckedChanged += gcnew System::EventHandler(this, &GameSettings::Difficulty_Medium_CheckedChanged);
 			// 
@@ -166,10 +170,10 @@ namespace MasterMindProyectoFinal {
 			this->Difficulty_Easy->Checked = true;
 			this->Difficulty_Easy->Location = System::Drawing::Point(6, 19);
 			this->Difficulty_Easy->Name = L"Difficulty_Easy";
-			this->Difficulty_Easy->Size = System::Drawing::Size(240, 17);
+			this->Difficulty_Easy->Size = System::Drawing::Size(251, 17);
 			this->Difficulty_Easy->TabIndex = 0;
 			this->Difficulty_Easy->TabStop = true;
-			this->Difficulty_Easy->Text = L"Easy (8 plays, combination of 4 to 6 elements)";
+			this->Difficulty_Easy->Text = L"Easy (8 plays, combination of 4 from 6 elements)";
 			this->Difficulty_Easy->UseVisualStyleBackColor = true;
 			this->Difficulty_Easy->CheckedChanged += gcnew System::EventHandler(this, &GameSettings::Difficulty_Easy_CheckedChanged);
 			// 
@@ -270,9 +274,9 @@ namespace MasterMindProyectoFinal {
 			// groupBox4
 			// 
 			this->groupBox4->Controls->Add(this->radioButton13);
-			this->groupBox4->Controls->Add(this->radioButton12);
-			this->groupBox4->Controls->Add(this->radioButton11);
-			this->groupBox4->Controls->Add(this->radioButton10);
+			this->groupBox4->Controls->Add(this->elem_type_numbers_rbtn);
+			this->groupBox4->Controls->Add(this->elem_type_letters_rbtn);
+			this->groupBox4->Controls->Add(this->elem_type_colors_rbtn);
 			this->groupBox4->Location = System::Drawing::Point(295, 12);
 			this->groupBox4->Name = L"groupBox4";
 			this->groupBox4->Size = System::Drawing::Size(307, 306);
@@ -291,47 +295,48 @@ namespace MasterMindProyectoFinal {
 			this->radioButton13->Text = L"(Undefined yet)";
 			this->radioButton13->UseVisualStyleBackColor = true;
 			// 
-			// radioButton12
+			// elem_type_numbers_rbtn
 			// 
-			this->radioButton12->AutoSize = true;
-			this->radioButton12->Location = System::Drawing::Point(129, 19);
-			this->radioButton12->Name = L"radioButton12";
-			this->radioButton12->Size = System::Drawing::Size(67, 17);
-			this->radioButton12->TabIndex = 2;
-			this->radioButton12->Text = L"Numbers";
-			this->radioButton12->UseVisualStyleBackColor = true;
+			this->elem_type_numbers_rbtn->AutoSize = true;
+			this->elem_type_numbers_rbtn->Location = System::Drawing::Point(129, 19);
+			this->elem_type_numbers_rbtn->Name = L"elem_type_numbers_rbtn";
+			this->elem_type_numbers_rbtn->Size = System::Drawing::Size(67, 17);
+			this->elem_type_numbers_rbtn->TabIndex = 2;
+			this->elem_type_numbers_rbtn->Text = L"Numbers";
+			this->elem_type_numbers_rbtn->UseVisualStyleBackColor = true;
+			this->elem_type_numbers_rbtn->CheckedChanged += gcnew System::EventHandler(this, &GameSettings::elem_type_numbers_rbtn_CheckedChanged);
 			// 
-			// radioButton11
+			// elem_type_letters_rbtn
 			// 
-			this->radioButton11->AutoSize = true;
-			this->radioButton11->Location = System::Drawing::Point(66, 19);
-			this->radioButton11->Name = L"radioButton11";
-			this->radioButton11->Size = System::Drawing::Size(57, 17);
-			this->radioButton11->TabIndex = 1;
-			this->radioButton11->Text = L"Letters";
-			this->radioButton11->UseVisualStyleBackColor = true;
-			this->radioButton11->CheckedChanged += gcnew System::EventHandler(this, &GameSettings::radioButton11_CheckedChanged);
+			this->elem_type_letters_rbtn->AutoSize = true;
+			this->elem_type_letters_rbtn->Location = System::Drawing::Point(66, 19);
+			this->elem_type_letters_rbtn->Name = L"elem_type_letters_rbtn";
+			this->elem_type_letters_rbtn->Size = System::Drawing::Size(57, 17);
+			this->elem_type_letters_rbtn->TabIndex = 1;
+			this->elem_type_letters_rbtn->Text = L"Letters";
+			this->elem_type_letters_rbtn->UseVisualStyleBackColor = true;
+			this->elem_type_letters_rbtn->CheckedChanged += gcnew System::EventHandler(this, &GameSettings::radioButton11_CheckedChanged);
 			// 
-			// radioButton10
+			// elem_type_colors_rbtn
 			// 
-			this->radioButton10->AutoSize = true;
-			this->radioButton10->Checked = true;
-			this->radioButton10->Location = System::Drawing::Point(6, 19);
-			this->radioButton10->Name = L"radioButton10";
-			this->radioButton10->Size = System::Drawing::Size(54, 17);
-			this->radioButton10->TabIndex = 0;
-			this->radioButton10->TabStop = true;
-			this->radioButton10->Text = L"Colors";
-			this->radioButton10->UseVisualStyleBackColor = true;
-			this->radioButton10->CheckedChanged += gcnew System::EventHandler(this, &GameSettings::radioButton10_CheckedChanged);
+			this->elem_type_colors_rbtn->AutoSize = true;
+			this->elem_type_colors_rbtn->Checked = true;
+			this->elem_type_colors_rbtn->Location = System::Drawing::Point(6, 19);
+			this->elem_type_colors_rbtn->Name = L"elem_type_colors_rbtn";
+			this->elem_type_colors_rbtn->Size = System::Drawing::Size(54, 17);
+			this->elem_type_colors_rbtn->TabIndex = 0;
+			this->elem_type_colors_rbtn->TabStop = true;
+			this->elem_type_colors_rbtn->Text = L"Colors";
+			this->elem_type_colors_rbtn->UseVisualStyleBackColor = true;
+			this->elem_type_colors_rbtn->CheckedChanged += gcnew System::EventHandler(this, &GameSettings::radioButton10_CheckedChanged);
 			// 
 			// Save_Settings
 			// 
 			this->Save_Settings->Location = System::Drawing::Point(12, 330);
 			this->Save_Settings->Name = L"Save_Settings";
-			this->Save_Settings->Size = System::Drawing::Size(75, 23);
+			this->Save_Settings->Size = System::Drawing::Size(96, 23);
 			this->Save_Settings->TabIndex = 5;
-			this->Save_Settings->Text = L"Save";
+			this->Save_Settings->Text = L"Save and Play!";
 			this->Save_Settings->UseVisualStyleBackColor = true;
 			this->Save_Settings->Click += gcnew System::EventHandler(this, &GameSettings::Save_Settings_Click);
 			// 
@@ -370,12 +375,6 @@ namespace MasterMindProyectoFinal {
 
 		}
 #pragma endregion
-	private: System::Void radioButton10_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
-	{
-
-	}
-	private: System::Void radioButton11_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-	}
 
 	private: System::Void button_back_Click(System::Object^ sender, System::EventArgs^ e)
 	{
@@ -393,7 +392,6 @@ namespace MasterMindProyectoFinal {
 		difficulty = 2;
 		objSettings->setDifficulty(difficulty);
 	}
-
 	private: System::Void Difficulty_Hard_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 	{
 		difficulty = 3;
@@ -430,6 +428,7 @@ namespace MasterMindProyectoFinal {
 		timekeeper_game = true;
 		objSettings->setTimekeeperGame(timekeeper_game);
 	}
+
 	private: System::Void Element_rep_Enabled_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 	{
 		element_rep = true;
@@ -440,6 +439,23 @@ namespace MasterMindProyectoFinal {
 		element_rep = false;
 		objSettings->setElementRep(element_rep);
 	}
+
+	private: System::Void radioButton10_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
+	{
+		element_type = 1;
+		objSettings->setElementType(element_type);
+	}
+	private: System::Void radioButton11_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
+	{
+		element_type = 2;
+		objSettings->setElementType(element_type);
+	}
+	private: System::Void elem_type_numbers_rbtn_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
+	{
+		element_type = 3;
+		objSettings->setElementType(element_type);
+	}
+
 	private: System::Void Save_Settings_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		//GameSettings::Close();
@@ -453,5 +469,6 @@ namespace MasterMindProyectoFinal {
 	private: System::Void groupBox4_Enter(System::Object^ sender, System::EventArgs^ e) 
 	{
 	}
+
 };
 }
