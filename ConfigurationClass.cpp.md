@@ -12,6 +12,7 @@ ConfigurationClass::ConfigurationClass()
 	TimekeeperPlay_conf = false;
 	TimekeeperGame_conf = false;
 	ElementRep_conf = true;
+	ElementType_conf = 1;
 
 };
 
@@ -38,6 +39,10 @@ void ConfigurationClass::setElementRep(bool elem)
 {
 	this->ElementRep_conf = elem;
 };
+void ConfigurationClass::setElementType(int elem_type)
+{
+	this->ElementType_conf = elem_type;
+};
 
 
 int ConfigurationClass::getDifficulty()
@@ -59,4 +64,8 @@ bool ConfigurationClass::getTimekeeperGame()
 bool ConfigurationClass::getElementRep()
 {
 	return ElementRep_conf;
+};
+int ConfigurationClass::getElementType()
+{
+	return ElementType_conf;
 };
