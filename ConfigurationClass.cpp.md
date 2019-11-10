@@ -4,6 +4,9 @@
 
 #include "pch.h"
 #include "ConfigurationClass.h"
+#include <cstdlib>
+#include <ctime>
+
 
 ConfigurationClass::ConfigurationClass()
 {
@@ -14,6 +17,7 @@ ConfigurationClass::ConfigurationClass()
 	ElementRep_conf = true;
 	ElementType_conf = 1;
 
+	srand(time(0));
 };
 
 ConfigurationClass::~ConfigurationClass() {};
@@ -44,6 +48,32 @@ void ConfigurationClass::setElementType(int elem_type)
 	this->ElementType_conf = elem_type;
 };
 
+void ConfigurationClass::setRandomNum1()
+{
+	int num = rand() % 6 + 1;
+	random_num1 = num;
+};
+void ConfigurationClass::setRandomNum2()
+{
+	int num = rand() % 6 + 1;
+	random_num2 = num;
+};
+void ConfigurationClass::setRandomNum3()
+{
+	int num = rand() % 6 + 1;
+	random_num3 = num;
+};
+void ConfigurationClass::setRandomNum4()
+{
+	int num = rand() % 6 + 1;
+	random_num4 = num;
+};
+void ConfigurationClass::setRandomNUM()
+{
+	int num = rand() % 4 + 1;
+	randomNUM = num;
+};
+
 
 int ConfigurationClass::getDifficulty()
 {
@@ -69,3 +99,25 @@ int ConfigurationClass::getElementType()
 {
 	return ElementType_conf;
 };
+
+int ConfigurationClass::getRandomNum1()
+{
+	return random_num1;
+};
+int ConfigurationClass::getRandomNum2()
+{
+	return random_num2;
+};
+int ConfigurationClass::getRandomNum3()
+{
+	return random_num3;
+};
+int ConfigurationClass::getRandomNum4()
+{
+	return random_num4;
+};
+int ConfigurationClass::getRandomNUM()
+{
+	return randomNUM;
+};
+
