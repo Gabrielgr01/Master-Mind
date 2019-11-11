@@ -67,15 +67,15 @@ namespace MasterMindProyectoFinal {
 		int num3;
 		int num4;
 		int actual_play = 1;
-
+		bool win = false;
 		int num_rand1 = 0;
 		int num_rand2 = 0;
 		int num_rand3 = 0;
 		int num_rand4 = 0;
+		bool quit_game = false;
 
 
 	private: System::Windows::Forms::Button^ rand_comb4_button;
-	public:
 	private: System::Windows::Forms::Button^ rand_comb3_button;
 	private: System::Windows::Forms::Button^ rand_comb2_button;
 	private: System::Windows::Forms::Button^ rand_comb1_button;
@@ -88,7 +88,146 @@ namespace MasterMindProyectoFinal {
 	private: System::Windows::Forms::GroupBox^ lose_groupBox;
 	private: System::Windows::Forms::Label^ you_lose_label;
 	private: System::Windows::Forms::Button^ ok_lose_button;
-		   bool quit_game = false;
+	private: System::Windows::Forms::PictureBox^ play1_pictureBox1;
+	private: System::Windows::Forms::PictureBox^ play1_pictureBox2;
+	private: System::Windows::Forms::PictureBox^ play1_pictureBox3;
+	private: System::Windows::Forms::PictureBox^ play1_pictureBox4;
+	private: System::Windows::Forms::GroupBox^ score_groupBox1;
+
+	private: System::Windows::Forms::PictureBox^ play1_score_picBox4;
+	private: System::Windows::Forms::PictureBox^ play1_score_picBox3;
+	private: System::Windows::Forms::PictureBox^ play1_score_picBox2;
+	private: System::Windows::Forms::PictureBox^ play1_score_picBox1;
+	private: System::Windows::Forms::GroupBox^ play1_pic_groupBox;
+	private: System::Windows::Forms::Button^ blank_button;
+	private: System::Windows::Forms::GroupBox^ play2_pic_groupBox;
+	private: System::Windows::Forms::PictureBox^ play2_pictureBox1;
+	private: System::Windows::Forms::PictureBox^ play2_pictureBox4;
+	private: System::Windows::Forms::PictureBox^ play2_pictureBox2;
+	private: System::Windows::Forms::PictureBox^ play2_pictureBox3;
+	private: System::Windows::Forms::GroupBox^ play2_score_groupBox;
+
+	private: System::Windows::Forms::PictureBox^ play2_score_picBox4;
+
+
+	private: System::Windows::Forms::PictureBox^ play2_score_picBox3;
+
+	private: System::Windows::Forms::PictureBox^ play2_score_picBox2;
+
+	private: System::Windows::Forms::PictureBox^ play2_score_picBox1;
+	private: System::Windows::Forms::Button^ blank_score_button;
+	private: System::Windows::Forms::GroupBox^ play3_pic_groupBox;
+	private: System::Windows::Forms::PictureBox^ play3_pictureBox1;
+	private: System::Windows::Forms::PictureBox^ play3_pictureBox4;
+
+
+	private: System::Windows::Forms::PictureBox^ play3_pictureBox2;
+	private: System::Windows::Forms::PictureBox^ play3_pictureBox3;
+
+
+	private: System::Windows::Forms::GroupBox^ play4_pic_groupBox;
+	private: System::Windows::Forms::PictureBox^ play4_pictureBox1;
+	private: System::Windows::Forms::PictureBox^ play4_pictureBox4;
+
+
+	private: System::Windows::Forms::PictureBox^ play4_pictureBox2;
+	private: System::Windows::Forms::PictureBox^ play4_pictureBox3;
+
+
+	private: System::Windows::Forms::GroupBox^ play5_pic_groupBox;
+	private: System::Windows::Forms::PictureBox^ play5_pictureBox1;
+
+	private: System::Windows::Forms::PictureBox^ play5_pictureBox4;
+	private: System::Windows::Forms::PictureBox^ play5_pictureBox2;
+
+
+	private: System::Windows::Forms::PictureBox^ play5_pictureBox3;
+
+	private: System::Windows::Forms::GroupBox^ play6_pic_groupBox;
+	private: System::Windows::Forms::PictureBox^ play6_pictureBox1;
+	private: System::Windows::Forms::PictureBox^ play6_pictureBox4;
+
+
+	private: System::Windows::Forms::PictureBox^ play6_pictureBox2;
+	private: System::Windows::Forms::PictureBox^ play6_pictureBox3;
+
+
+	private: System::Windows::Forms::GroupBox^ play7_pic_groupBox;
+	private: System::Windows::Forms::PictureBox^ play7_pictureBox1;
+	private: System::Windows::Forms::PictureBox^ play7_pictureBox4;
+
+
+	private: System::Windows::Forms::PictureBox^ play7_pictureBox2;
+	private: System::Windows::Forms::PictureBox^ play7_pictureBox3;
+
+
+	private: System::Windows::Forms::GroupBox^ play8_pic_groupBox;
+	private: System::Windows::Forms::PictureBox^ play8_pictureBox1;
+	private: System::Windows::Forms::PictureBox^ play8_pictureBox4;
+
+
+	private: System::Windows::Forms::PictureBox^ play8_pictureBox2;
+	private: System::Windows::Forms::PictureBox^ play8_pictureBox3;
+
+
+	private: System::Windows::Forms::GroupBox^ play3_score_groupBox;
+
+	private: System::Windows::Forms::PictureBox^ play3_score_picBox4;
+	
+	private: System::Windows::Forms::PictureBox^ play3_score_picBox3;
+	
+	private: System::Windows::Forms::PictureBox^ play3_score_picBox2;
+
+	private: System::Windows::Forms::PictureBox^ play3_score_picBox1;
+	private: System::Windows::Forms::GroupBox^ play4_score_groupBox;
+	private: System::Windows::Forms::PictureBox^ play4_score_picBox4;	
+	
+	
+	private: System::Windows::Forms::PictureBox^ play4_score_picBox3;
+	
+	private: System::Windows::Forms::PictureBox^ play4_score_picBox2;
+	
+	private: System::Windows::Forms::PictureBox^ play4_score_picBox1;
+	
+	private: System::Windows::Forms::GroupBox^ play5_score_groupBox;
+	private: System::Windows::Forms::PictureBox^ play5_score_picBox4;
+	
+	
+	private: System::Windows::Forms::PictureBox^ play5_score_picBox3;
+	
+	private: System::Windows::Forms::PictureBox^ play5_score_picBox2;
+	
+	private: System::Windows::Forms::PictureBox^ play5_score_picBox1;
+	
+	private: System::Windows::Forms::GroupBox^ play6_score_groupBox;
+	private: System::Windows::Forms::PictureBox^ play6_score_picBox4;
+	
+	
+	private: System::Windows::Forms::PictureBox^ play6_score_picBox3;
+	
+	private: System::Windows::Forms::PictureBox^ play6_score_picBox2;
+	
+	private: System::Windows::Forms::PictureBox^ play6_score_picBox1;
+	
+	private: System::Windows::Forms::GroupBox^ play7_score_groupBox;
+	private: System::Windows::Forms::PictureBox^ play7_score_picBox4;
+	
+	
+	private: System::Windows::Forms::PictureBox^ play7_score_picBox3;
+	
+	private: System::Windows::Forms::PictureBox^ play7_score_picBox2;
+	
+	private: System::Windows::Forms::PictureBox^ play7_score_picBox1;
+	
+	private: System::Windows::Forms::GroupBox^ play8_score_groupBox;
+	private: System::Windows::Forms::PictureBox^ play8_score_picBox4;
+	
+	
+	private: System::Windows::Forms::PictureBox^ play8_score_picBox3;
+	
+	private: System::Windows::Forms::PictureBox^ play8_score_picBox2;
+	
+	private: System::Windows::Forms::PictureBox^ play8_score_picBox1;
 
 
 
@@ -102,28 +241,10 @@ namespace MasterMindProyectoFinal {
 
 			if (objSettings->getDifficulty() == 1)
 			{
-				/*
-				play7_groupBox->Visible = true;
-				play7_groupBox->Enabled = true;
-				play7_score_groupBox->Visible = true;
-				play7_score_groupBox->Enabled = true;
-
-				play8_groupBox->Visible = true;
-				play8_groupBox->Enabled = true;
-				play8_score_groupBox->Visible = true;
-				play8_score_groupBox->Enabled = true;
-				*/
 				difficulty_label->Text = "Difficulty: Easy";
 			}
 			else if (objSettings->getDifficulty() == 2)
 			{
-				/*
-				play7_groupBox->Visible = true;
-				play7_groupBox->Enabled = true;
-				play7_score_groupBox->Visible = true;
-				play7_score_groupBox->Enabled = true;
-				*/
-
 				difficulty_label->Text = "Difficulty: Medium";
 			}
 			else if (objSettings->getDifficulty() == 3)
@@ -191,12 +312,12 @@ namespace MasterMindProyectoFinal {
 
 
 	private: System::ComponentModel::IContainer^ components;
-private: System::Windows::Forms::Button^ play1_score_btn4;
+	private: System::Windows::Forms::Button^ play1_score_btn4;
 
 
-private: System::Windows::Forms::Button^ play1_score_btn1;
-private: System::Windows::Forms::Button^ play1_score_btn2;
-private: System::Windows::Forms::Button^ play1_score_btn3;
+	private: System::Windows::Forms::Button^ play1_score_btn1;
+	private: System::Windows::Forms::Button^ play1_score_btn2;
+	private: System::Windows::Forms::Button^ play1_score_btn3;
 
 
 
@@ -207,127 +328,9 @@ private: System::Windows::Forms::Button^ play1_score_btn3;
 	private: System::Windows::Forms::Label^ color_wbtn_label;
 	private: System::Windows::Forms::Label^ color_position_bbtn_label;
 	private: System::Windows::Forms::Button^ enter_play_button;
-	private: System::Windows::Forms::GroupBox^ play2_groupBox;
-private: System::Windows::Forms::Button^ play2_guess1_button;
-private: System::Windows::Forms::Button^ play2_guess2_button;
-private: System::Windows::Forms::Button^ play2_guess3_button;
-private: System::Windows::Forms::Button^ play2_guess4_button;
 
 
 
-
-
-	private: System::Windows::Forms::GroupBox^ play3_groupBox;
-private: System::Windows::Forms::Button^ play3_guess1_button;
-private: System::Windows::Forms::Button^ play3_guess2_button;
-private: System::Windows::Forms::Button^ play3_guess3_button;
-private: System::Windows::Forms::Button^ play3_guess4_button;
-
-
-
-
-
-	private: System::Windows::Forms::GroupBox^ play4_groupBox;
-private: System::Windows::Forms::Button^ play4_guess1_button;
-private: System::Windows::Forms::Button^ play4_guess2_button;
-private: System::Windows::Forms::Button^ play4_guess3_button;
-private: System::Windows::Forms::Button^ play4_guess4_button;
-
-
-
-
-
-	private: System::Windows::Forms::GroupBox^ play5_groupBox;
-private: System::Windows::Forms::Button^ play5_guess1_button;
-private: System::Windows::Forms::Button^ play5_guess2_button;
-private: System::Windows::Forms::Button^ play5_guess3_button;
-private: System::Windows::Forms::Button^ play5_guess4_button;
-
-
-
-
-
-	private: System::Windows::Forms::GroupBox^ play6_groupBox;
-private: System::Windows::Forms::Button^ play6_guess1_button;
-private: System::Windows::Forms::Button^ play6_guess2_button;
-private: System::Windows::Forms::Button^ play6_guess3_button;
-private: System::Windows::Forms::Button^ play6_guess4_button;
-
-
-
-
-
-
-	private: System::Windows::Forms::GroupBox^ play7_groupBox;
-private: System::Windows::Forms::Button^ play7_guess1_button;
-private: System::Windows::Forms::Button^ play7_guess2_button;
-private: System::Windows::Forms::Button^ play7_guess3_button;
-private: System::Windows::Forms::Button^ play7_guess4_button;
-
-
-
-
-
-
-	private: System::Windows::Forms::GroupBox^ play2_score_groupBox;
-private: System::Windows::Forms::Button^ play2_score_btn1;
-private: System::Windows::Forms::Button^ play2_score_btn4;
-
-
-
-
-private: System::Windows::Forms::Button^ play2_score_btn3;
-
-private: System::Windows::Forms::Button^ play2_score_btn2;
-
-	private: System::Windows::Forms::GroupBox^ play3_score_groupBox;
-private: System::Windows::Forms::Button^ play3_score_btn1;
-private: System::Windows::Forms::Button^ play3_score_btn4;
-
-
-
-private: System::Windows::Forms::Button^ play3_score_btn3;
-
-private: System::Windows::Forms::Button^ play3_score_btn2;
-
-	private: System::Windows::Forms::GroupBox^ play4_score_groupBox;
-
-	private: System::Windows::Forms::Button^ button33;
-	private: System::Windows::Forms::Button^ button34;
-	private: System::Windows::Forms::Button^ button35;
-	private: System::Windows::Forms::Button^ button36;
-	private: System::Windows::Forms::GroupBox^ play5_score_groupBox;
-
-	private: System::Windows::Forms::Button^ button37;
-	private: System::Windows::Forms::Button^ button38;
-	private: System::Windows::Forms::Button^ button39;
-	private: System::Windows::Forms::Button^ button40;
-	private: System::Windows::Forms::GroupBox^ play6_score_groupBox;
-
-	private: System::Windows::Forms::Button^ button41;
-	private: System::Windows::Forms::Button^ button42;
-	private: System::Windows::Forms::Button^ button43;
-	private: System::Windows::Forms::Button^ button44;
-	private: System::Windows::Forms::GroupBox^ play7_score_groupBox;
-
-	private: System::Windows::Forms::Button^ button45;
-	private: System::Windows::Forms::Button^ button46;
-	private: System::Windows::Forms::Button^ button47;
-	private: System::Windows::Forms::Button^ button48;
-	private: System::Windows::Forms::GroupBox^ play8_groupBox;
-private: System::Windows::Forms::Button^ play8_guess1_button;
-private: System::Windows::Forms::Button^ play8_guess2_button;
-private: System::Windows::Forms::Button^ play8_guess3_button;
-private: System::Windows::Forms::Button^ play8_guess4_button;
-
-
-
-
-	private: System::Windows::Forms::GroupBox^ play8_score_groupBox;
-	private: System::Windows::Forms::Button^ button53;
-	private: System::Windows::Forms::Button^ button54;
-	private: System::Windows::Forms::Button^ button55;
-	private: System::Windows::Forms::Button^ button56;
 	private: System::Windows::Forms::Label^ difficulty_label;
 	private: System::Windows::Forms::Label^ repetition_label;
 
@@ -389,76 +392,6 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			this->color_wbtn_label = (gcnew System::Windows::Forms::Label());
 			this->color_position_bbtn_label = (gcnew System::Windows::Forms::Label());
 			this->enter_play_button = (gcnew System::Windows::Forms::Button());
-			this->play2_groupBox = (gcnew System::Windows::Forms::GroupBox());
-			this->play2_guess1_button = (gcnew System::Windows::Forms::Button());
-			this->play2_guess2_button = (gcnew System::Windows::Forms::Button());
-			this->play2_guess3_button = (gcnew System::Windows::Forms::Button());
-			this->play2_guess4_button = (gcnew System::Windows::Forms::Button());
-			this->play3_groupBox = (gcnew System::Windows::Forms::GroupBox());
-			this->play3_guess1_button = (gcnew System::Windows::Forms::Button());
-			this->play3_guess2_button = (gcnew System::Windows::Forms::Button());
-			this->play3_guess3_button = (gcnew System::Windows::Forms::Button());
-			this->play3_guess4_button = (gcnew System::Windows::Forms::Button());
-			this->play4_groupBox = (gcnew System::Windows::Forms::GroupBox());
-			this->play4_guess1_button = (gcnew System::Windows::Forms::Button());
-			this->play4_guess2_button = (gcnew System::Windows::Forms::Button());
-			this->play4_guess3_button = (gcnew System::Windows::Forms::Button());
-			this->play4_guess4_button = (gcnew System::Windows::Forms::Button());
-			this->play5_groupBox = (gcnew System::Windows::Forms::GroupBox());
-			this->play5_guess1_button = (gcnew System::Windows::Forms::Button());
-			this->play5_guess2_button = (gcnew System::Windows::Forms::Button());
-			this->play5_guess3_button = (gcnew System::Windows::Forms::Button());
-			this->play5_guess4_button = (gcnew System::Windows::Forms::Button());
-			this->play6_groupBox = (gcnew System::Windows::Forms::GroupBox());
-			this->play6_guess1_button = (gcnew System::Windows::Forms::Button());
-			this->play6_guess2_button = (gcnew System::Windows::Forms::Button());
-			this->play6_guess3_button = (gcnew System::Windows::Forms::Button());
-			this->play6_guess4_button = (gcnew System::Windows::Forms::Button());
-			this->play7_groupBox = (gcnew System::Windows::Forms::GroupBox());
-			this->play7_guess1_button = (gcnew System::Windows::Forms::Button());
-			this->play7_guess2_button = (gcnew System::Windows::Forms::Button());
-			this->play7_guess3_button = (gcnew System::Windows::Forms::Button());
-			this->play7_guess4_button = (gcnew System::Windows::Forms::Button());
-			this->play2_score_groupBox = (gcnew System::Windows::Forms::GroupBox());
-			this->play2_score_btn1 = (gcnew System::Windows::Forms::Button());
-			this->play2_score_btn4 = (gcnew System::Windows::Forms::Button());
-			this->play2_score_btn3 = (gcnew System::Windows::Forms::Button());
-			this->play2_score_btn2 = (gcnew System::Windows::Forms::Button());
-			this->play3_score_groupBox = (gcnew System::Windows::Forms::GroupBox());
-			this->play3_score_btn1 = (gcnew System::Windows::Forms::Button());
-			this->play3_score_btn4 = (gcnew System::Windows::Forms::Button());
-			this->play3_score_btn3 = (gcnew System::Windows::Forms::Button());
-			this->play3_score_btn2 = (gcnew System::Windows::Forms::Button());
-			this->play4_score_groupBox = (gcnew System::Windows::Forms::GroupBox());
-			this->button33 = (gcnew System::Windows::Forms::Button());
-			this->button34 = (gcnew System::Windows::Forms::Button());
-			this->button35 = (gcnew System::Windows::Forms::Button());
-			this->button36 = (gcnew System::Windows::Forms::Button());
-			this->play5_score_groupBox = (gcnew System::Windows::Forms::GroupBox());
-			this->button37 = (gcnew System::Windows::Forms::Button());
-			this->button38 = (gcnew System::Windows::Forms::Button());
-			this->button39 = (gcnew System::Windows::Forms::Button());
-			this->button40 = (gcnew System::Windows::Forms::Button());
-			this->play6_score_groupBox = (gcnew System::Windows::Forms::GroupBox());
-			this->button41 = (gcnew System::Windows::Forms::Button());
-			this->button42 = (gcnew System::Windows::Forms::Button());
-			this->button43 = (gcnew System::Windows::Forms::Button());
-			this->button44 = (gcnew System::Windows::Forms::Button());
-			this->play7_score_groupBox = (gcnew System::Windows::Forms::GroupBox());
-			this->button45 = (gcnew System::Windows::Forms::Button());
-			this->button46 = (gcnew System::Windows::Forms::Button());
-			this->button47 = (gcnew System::Windows::Forms::Button());
-			this->button48 = (gcnew System::Windows::Forms::Button());
-			this->play8_groupBox = (gcnew System::Windows::Forms::GroupBox());
-			this->play8_guess1_button = (gcnew System::Windows::Forms::Button());
-			this->play8_guess2_button = (gcnew System::Windows::Forms::Button());
-			this->play8_guess3_button = (gcnew System::Windows::Forms::Button());
-			this->play8_guess4_button = (gcnew System::Windows::Forms::Button());
-			this->play8_score_groupBox = (gcnew System::Windows::Forms::GroupBox());
-			this->button53 = (gcnew System::Windows::Forms::Button());
-			this->button54 = (gcnew System::Windows::Forms::Button());
-			this->button55 = (gcnew System::Windows::Forms::Button());
-			this->button56 = (gcnew System::Windows::Forms::Button());
 			this->difficulty_label = (gcnew System::Windows::Forms::Label());
 			this->repetition_label = (gcnew System::Windows::Forms::Label());
 			this->quit_game_groupBox = (gcnew System::Windows::Forms::GroupBox());
@@ -477,27 +410,175 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			this->lose_groupBox = (gcnew System::Windows::Forms::GroupBox());
 			this->ok_lose_button = (gcnew System::Windows::Forms::Button());
 			this->you_lose_label = (gcnew System::Windows::Forms::Label());
+			this->play1_pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->play1_pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->play1_pictureBox3 = (gcnew System::Windows::Forms::PictureBox());
+			this->play1_pictureBox4 = (gcnew System::Windows::Forms::PictureBox());
+			this->score_groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->play1_score_picBox4 = (gcnew System::Windows::Forms::PictureBox());
+			this->play1_score_picBox3 = (gcnew System::Windows::Forms::PictureBox());
+			this->play1_score_picBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->play1_score_picBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->play1_pic_groupBox = (gcnew System::Windows::Forms::GroupBox());
+			this->blank_button = (gcnew System::Windows::Forms::Button());
+			this->play2_pic_groupBox = (gcnew System::Windows::Forms::GroupBox());
+			this->play2_pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->play2_pictureBox4 = (gcnew System::Windows::Forms::PictureBox());
+			this->play2_pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->play2_pictureBox3 = (gcnew System::Windows::Forms::PictureBox());
+			this->play2_score_groupBox = (gcnew System::Windows::Forms::GroupBox());
+			this->play2_score_picBox4 = (gcnew System::Windows::Forms::PictureBox());
+			this->play2_score_picBox3 = (gcnew System::Windows::Forms::PictureBox());
+			this->play2_score_picBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->play2_score_picBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->blank_score_button = (gcnew System::Windows::Forms::Button());
+			this->play3_pic_groupBox = (gcnew System::Windows::Forms::GroupBox());
+			this->play3_pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->play3_pictureBox4 = (gcnew System::Windows::Forms::PictureBox());
+			this->play3_pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->play3_pictureBox3 = (gcnew System::Windows::Forms::PictureBox());
+			this->play4_pic_groupBox = (gcnew System::Windows::Forms::GroupBox());
+			this->play4_pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->play4_pictureBox4 = (gcnew System::Windows::Forms::PictureBox());
+			this->play4_pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->play4_pictureBox3 = (gcnew System::Windows::Forms::PictureBox());
+			this->play5_pic_groupBox = (gcnew System::Windows::Forms::GroupBox());
+			this->play5_pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->play5_pictureBox4 = (gcnew System::Windows::Forms::PictureBox());
+			this->play5_pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->play5_pictureBox3 = (gcnew System::Windows::Forms::PictureBox());
+			this->play6_pic_groupBox = (gcnew System::Windows::Forms::GroupBox());
+			this->play6_pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->play6_pictureBox4 = (gcnew System::Windows::Forms::PictureBox());
+			this->play6_pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->play6_pictureBox3 = (gcnew System::Windows::Forms::PictureBox());
+			this->play7_pic_groupBox = (gcnew System::Windows::Forms::GroupBox());
+			this->play7_pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->play7_pictureBox4 = (gcnew System::Windows::Forms::PictureBox());
+			this->play7_pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->play7_pictureBox3 = (gcnew System::Windows::Forms::PictureBox());
+			this->play8_pic_groupBox = (gcnew System::Windows::Forms::GroupBox());
+			this->play8_pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->play8_pictureBox4 = (gcnew System::Windows::Forms::PictureBox());
+			this->play8_pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->play8_pictureBox3 = (gcnew System::Windows::Forms::PictureBox());
+			this->play3_score_groupBox = (gcnew System::Windows::Forms::GroupBox());
+			this->play3_score_picBox4 = (gcnew System::Windows::Forms::PictureBox());
+			this->play3_score_picBox3 = (gcnew System::Windows::Forms::PictureBox());
+			this->play3_score_picBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->play3_score_picBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->play4_score_groupBox = (gcnew System::Windows::Forms::GroupBox());
+			this->play4_score_picBox4 = (gcnew System::Windows::Forms::PictureBox());
+			this->play4_score_picBox3 = (gcnew System::Windows::Forms::PictureBox());
+			this->play4_score_picBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->play4_score_picBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->play5_score_groupBox = (gcnew System::Windows::Forms::GroupBox());
+			this->play5_score_picBox4 = (gcnew System::Windows::Forms::PictureBox());
+			this->play5_score_picBox3 = (gcnew System::Windows::Forms::PictureBox());
+			this->play5_score_picBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->play5_score_picBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->play6_score_groupBox = (gcnew System::Windows::Forms::GroupBox());
+			this->play6_score_picBox4 = (gcnew System::Windows::Forms::PictureBox());
+			this->play6_score_picBox3 = (gcnew System::Windows::Forms::PictureBox());
+			this->play6_score_picBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->play6_score_picBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->play7_score_groupBox = (gcnew System::Windows::Forms::GroupBox());
+			this->play7_score_picBox4 = (gcnew System::Windows::Forms::PictureBox());
+			this->play7_score_picBox3 = (gcnew System::Windows::Forms::PictureBox());
+			this->play7_score_picBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->play7_score_picBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->play8_score_groupBox = (gcnew System::Windows::Forms::GroupBox());
+			this->play8_score_picBox4 = (gcnew System::Windows::Forms::PictureBox());
+			this->play8_score_picBox3 = (gcnew System::Windows::Forms::PictureBox());
+			this->play8_score_picBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->play8_score_picBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->menuStrip1->SuspendLayout();
 			this->play1_groupBox->SuspendLayout();
 			this->play1_score_groupBox->SuspendLayout();
-			this->play2_groupBox->SuspendLayout();
-			this->play3_groupBox->SuspendLayout();
-			this->play4_groupBox->SuspendLayout();
-			this->play5_groupBox->SuspendLayout();
-			this->play6_groupBox->SuspendLayout();
-			this->play7_groupBox->SuspendLayout();
-			this->play2_score_groupBox->SuspendLayout();
-			this->play3_score_groupBox->SuspendLayout();
-			this->play4_score_groupBox->SuspendLayout();
-			this->play5_score_groupBox->SuspendLayout();
-			this->play6_score_groupBox->SuspendLayout();
-			this->play7_score_groupBox->SuspendLayout();
-			this->play8_groupBox->SuspendLayout();
-			this->play8_score_groupBox->SuspendLayout();
 			this->quit_game_groupBox->SuspendLayout();
 			this->rand_comb_groupBox->SuspendLayout();
 			this->win_groupBox->SuspendLayout();
 			this->lose_groupBox->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play1_pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play1_pictureBox2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play1_pictureBox3))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play1_pictureBox4))->BeginInit();
+			this->score_groupBox1->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play1_score_picBox4))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play1_score_picBox3))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play1_score_picBox2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play1_score_picBox1))->BeginInit();
+			this->play1_pic_groupBox->SuspendLayout();
+			this->play2_pic_groupBox->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play2_pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play2_pictureBox4))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play2_pictureBox2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play2_pictureBox3))->BeginInit();
+			this->play2_score_groupBox->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play2_score_picBox4))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play2_score_picBox3))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play2_score_picBox2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play2_score_picBox1))->BeginInit();
+			this->play3_pic_groupBox->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play3_pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play3_pictureBox4))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play3_pictureBox2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play3_pictureBox3))->BeginInit();
+			this->play4_pic_groupBox->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play4_pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play4_pictureBox4))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play4_pictureBox2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play4_pictureBox3))->BeginInit();
+			this->play5_pic_groupBox->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play5_pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play5_pictureBox4))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play5_pictureBox2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play5_pictureBox3))->BeginInit();
+			this->play6_pic_groupBox->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play6_pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play6_pictureBox4))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play6_pictureBox2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play6_pictureBox3))->BeginInit();
+			this->play7_pic_groupBox->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play7_pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play7_pictureBox4))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play7_pictureBox2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play7_pictureBox3))->BeginInit();
+			this->play8_pic_groupBox->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play8_pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play8_pictureBox4))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play8_pictureBox2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play8_pictureBox3))->BeginInit();
+			this->play3_score_groupBox->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play3_score_picBox4))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play3_score_picBox3))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play3_score_picBox2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play3_score_picBox1))->BeginInit();
+			this->play4_score_groupBox->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play4_score_picBox4))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play4_score_picBox3))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play4_score_picBox2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play4_score_picBox1))->BeginInit();
+			this->play5_score_groupBox->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play5_score_picBox4))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play5_score_picBox3))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play5_score_picBox2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play5_score_picBox1))->BeginInit();
+			this->play6_score_groupBox->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play6_score_picBox4))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play6_score_picBox3))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play6_score_picBox2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play6_score_picBox1))->BeginInit();
+			this->play7_score_groupBox->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play7_score_picBox4))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play7_score_picBox3))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play7_score_picBox2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play7_score_picBox1))->BeginInit();
+			this->play8_score_groupBox->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play8_score_picBox4))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play8_score_picBox3))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play8_score_picBox2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play8_score_picBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// red_button
@@ -507,7 +588,7 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			this->red_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->red_button->Enabled = false;
 			this->red_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->red_button->Location = System::Drawing::Point(71, 173);
+			this->red_button->Location = System::Drawing::Point(582, 255);
 			this->red_button->Name = L"red_button";
 			this->red_button->Size = System::Drawing::Size(50, 45);
 			this->red_button->TabIndex = 0;
@@ -522,7 +603,7 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			this->blue_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->blue_button->Enabled = false;
 			this->blue_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->blue_button->Location = System::Drawing::Point(71, 224);
+			this->blue_button->Location = System::Drawing::Point(582, 306);
 			this->blue_button->Name = L"blue_button";
 			this->blue_button->Size = System::Drawing::Size(50, 45);
 			this->blue_button->TabIndex = 1;
@@ -537,7 +618,7 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			this->green_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->green_button->Enabled = false;
 			this->green_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->green_button->Location = System::Drawing::Point(71, 275);
+			this->green_button->Location = System::Drawing::Point(582, 357);
 			this->green_button->Name = L"green_button";
 			this->green_button->Size = System::Drawing::Size(50, 45);
 			this->green_button->TabIndex = 2;
@@ -552,7 +633,7 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			this->yellow_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->yellow_button->Enabled = false;
 			this->yellow_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->yellow_button->Location = System::Drawing::Point(71, 326);
+			this->yellow_button->Location = System::Drawing::Point(582, 408);
 			this->yellow_button->Name = L"yellow_button";
 			this->yellow_button->Size = System::Drawing::Size(50, 45);
 			this->yellow_button->TabIndex = 3;
@@ -567,7 +648,7 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			this->pink_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->pink_button->Enabled = false;
 			this->pink_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->pink_button->Location = System::Drawing::Point(71, 377);
+			this->pink_button->Location = System::Drawing::Point(582, 458);
 			this->pink_button->Name = L"pink_button";
 			this->pink_button->Size = System::Drawing::Size(50, 45);
 			this->pink_button->TabIndex = 4;
@@ -582,7 +663,7 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			this->brown_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->brown_button->Enabled = false;
 			this->brown_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->brown_button->Location = System::Drawing::Point(71, 428);
+			this->brown_button->Location = System::Drawing::Point(582, 509);
 			this->brown_button->Name = L"brown_button";
 			this->brown_button->Size = System::Drawing::Size(50, 45);
 			this->brown_button->TabIndex = 5;
@@ -665,7 +746,7 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
 			this->menuStrip1->Padding = System::Windows::Forms::Padding(4, 2, 0, 2);
-			this->menuStrip1->Size = System::Drawing::Size(732, 24);
+			this->menuStrip1->Size = System::Drawing::Size(823, 24);
 			this->menuStrip1->TabIndex = 19;
 			this->menuStrip1->Text = L"menuStrip1";
 			this->menuStrip1->ItemClicked += gcnew System::Windows::Forms::ToolStripItemClickedEventHandler(this, &VentanaPlay::menuStrip1_ItemClicked);
@@ -758,7 +839,7 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			this->play1_groupBox->Controls->Add(this->play1_guess2_button);
 			this->play1_groupBox->Controls->Add(this->play1_guess3_button);
 			this->play1_groupBox->Controls->Add(this->play1_guess4_button);
-			this->play1_groupBox->Location = System::Drawing::Point(241, 565);
+			this->play1_groupBox->Location = System::Drawing::Point(576, 565);
 			this->play1_groupBox->Name = L"play1_groupBox";
 			this->play1_groupBox->Size = System::Drawing::Size(234, 75);
 			this->play1_groupBox->TabIndex = 23;
@@ -823,11 +904,12 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			this->play1_score_groupBox->Controls->Add(this->play1_score_btn4);
 			this->play1_score_groupBox->Controls->Add(this->play1_score_btn3);
 			this->play1_score_groupBox->Controls->Add(this->play1_score_btn2);
-			this->play1_score_groupBox->Location = System::Drawing::Point(481, 565);
+			this->play1_score_groupBox->Location = System::Drawing::Point(694, 392);
 			this->play1_score_groupBox->Name = L"play1_score_groupBox";
 			this->play1_score_groupBox->Size = System::Drawing::Size(68, 75);
 			this->play1_score_groupBox->TabIndex = 28;
 			this->play1_score_groupBox->TabStop = false;
+			this->play1_score_groupBox->Visible = false;
 			// 
 			// black_button
 			// 
@@ -836,7 +918,7 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			this->black_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->black_button->Enabled = false;
 			this->black_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->black_button->Location = System::Drawing::Point(576, 534);
+			this->black_button->Location = System::Drawing::Point(12, 459);
 			this->black_button->Name = L"black_button";
 			this->black_button->Size = System::Drawing::Size(25, 25);
 			this->black_button->TabIndex = 28;
@@ -849,7 +931,7 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			this->white_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->white_button->Enabled = false;
 			this->white_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->white_button->Location = System::Drawing::Point(576, 503);
+			this->white_button->Location = System::Drawing::Point(12, 428);
 			this->white_button->Name = L"white_button";
 			this->white_button->Size = System::Drawing::Size(25, 25);
 			this->white_button->TabIndex = 29;
@@ -858,7 +940,7 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			// color_wbtn_label
 			// 
 			this->color_wbtn_label->AutoSize = true;
-			this->color_wbtn_label->Location = System::Drawing::Point(607, 509);
+			this->color_wbtn_label->Location = System::Drawing::Point(43, 434);
 			this->color_wbtn_label->Name = L"color_wbtn_label";
 			this->color_wbtn_label->Size = System::Drawing::Size(30, 13);
 			this->color_wbtn_label->TabIndex = 30;
@@ -868,7 +950,7 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			// color_position_bbtn_label
 			// 
 			this->color_position_bbtn_label->AutoSize = true;
-			this->color_position_bbtn_label->Location = System::Drawing::Point(607, 541);
+			this->color_position_bbtn_label->Location = System::Drawing::Point(43, 465);
 			this->color_position_bbtn_label->Name = L"color_position_bbtn_label";
 			this->color_position_bbtn_label->Size = System::Drawing::Size(90, 13);
 			this->color_position_bbtn_label->TabIndex = 31;
@@ -878,7 +960,7 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			// enter_play_button
 			// 
 			this->enter_play_button->Enabled = false;
-			this->enter_play_button->Location = System::Drawing::Point(59, 497);
+			this->enter_play_button->Location = System::Drawing::Point(687, 531);
 			this->enter_play_button->Name = L"enter_play_button";
 			this->enter_play_button->Size = System::Drawing::Size(75, 23);
 			this->enter_play_button->TabIndex = 32;
@@ -886,949 +968,10 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			this->enter_play_button->UseVisualStyleBackColor = true;
 			this->enter_play_button->Click += gcnew System::EventHandler(this, &VentanaPlay::enter_play_button_Click);
 			// 
-			// play2_groupBox
-			// 
-			this->play2_groupBox->Controls->Add(this->play2_guess1_button);
-			this->play2_groupBox->Controls->Add(this->play2_guess2_button);
-			this->play2_groupBox->Controls->Add(this->play2_guess3_button);
-			this->play2_groupBox->Controls->Add(this->play2_guess4_button);
-			this->play2_groupBox->Location = System::Drawing::Point(241, 490);
-			this->play2_groupBox->Name = L"play2_groupBox";
-			this->play2_groupBox->Size = System::Drawing::Size(234, 75);
-			this->play2_groupBox->TabIndex = 24;
-			this->play2_groupBox->TabStop = false;
-			this->play2_groupBox->Text = L"Play 2";
-			this->play2_groupBox->Visible = false;
-			// 
-			// play2_guess1_button
-			// 
-			this->play2_guess1_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play2_guess1_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play2_guess1_button.BackgroundImage")));
-			this->play2_guess1_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play2_guess1_button->Enabled = false;
-			this->play2_guess1_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play2_guess1_button->Location = System::Drawing::Point(6, 19);
-			this->play2_guess1_button->Name = L"play2_guess1_button";
-			this->play2_guess1_button->Size = System::Drawing::Size(50, 45);
-			this->play2_guess1_button->TabIndex = 14;
-			this->play2_guess1_button->Text = L"Guess 1";
-			this->play2_guess1_button->UseVisualStyleBackColor = false;
-			this->play2_guess1_button->Click += gcnew System::EventHandler(this, &VentanaPlay::play2_guess1_button_Click);
-			// 
-			// play2_guess2_button
-			// 
-			this->play2_guess2_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play2_guess2_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play2_guess2_button.BackgroundImage")));
-			this->play2_guess2_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play2_guess2_button->Enabled = false;
-			this->play2_guess2_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play2_guess2_button->Location = System::Drawing::Point(62, 19);
-			this->play2_guess2_button->Name = L"play2_guess2_button";
-			this->play2_guess2_button->Size = System::Drawing::Size(50, 45);
-			this->play2_guess2_button->TabIndex = 15;
-			this->play2_guess2_button->Text = L"Guess 2";
-			this->play2_guess2_button->UseVisualStyleBackColor = false;
-			this->play2_guess2_button->Click += gcnew System::EventHandler(this, &VentanaPlay::play2_guess2_button_Click);
-			// 
-			// play2_guess3_button
-			// 
-			this->play2_guess3_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play2_guess3_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play2_guess3_button.BackgroundImage")));
-			this->play2_guess3_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play2_guess3_button->Enabled = false;
-			this->play2_guess3_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play2_guess3_button->Location = System::Drawing::Point(118, 19);
-			this->play2_guess3_button->Name = L"play2_guess3_button";
-			this->play2_guess3_button->Size = System::Drawing::Size(50, 45);
-			this->play2_guess3_button->TabIndex = 16;
-			this->play2_guess3_button->Text = L"Guess 3";
-			this->play2_guess3_button->UseVisualStyleBackColor = false;
-			this->play2_guess3_button->Click += gcnew System::EventHandler(this, &VentanaPlay::play2_guess3_button_Click);
-			// 
-			// play2_guess4_button
-			// 
-			this->play2_guess4_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play2_guess4_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play2_guess4_button.BackgroundImage")));
-			this->play2_guess4_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play2_guess4_button->Enabled = false;
-			this->play2_guess4_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play2_guess4_button->Location = System::Drawing::Point(174, 19);
-			this->play2_guess4_button->Name = L"play2_guess4_button";
-			this->play2_guess4_button->Size = System::Drawing::Size(50, 45);
-			this->play2_guess4_button->TabIndex = 17;
-			this->play2_guess4_button->Text = L"Guess 4";
-			this->play2_guess4_button->UseVisualStyleBackColor = false;
-			this->play2_guess4_button->Click += gcnew System::EventHandler(this, &VentanaPlay::play2_guess4_button_Click);
-			// 
-			// play3_groupBox
-			// 
-			this->play3_groupBox->Controls->Add(this->play3_guess1_button);
-			this->play3_groupBox->Controls->Add(this->play3_guess2_button);
-			this->play3_groupBox->Controls->Add(this->play3_guess3_button);
-			this->play3_groupBox->Controls->Add(this->play3_guess4_button);
-			this->play3_groupBox->Location = System::Drawing::Point(241, 415);
-			this->play3_groupBox->Name = L"play3_groupBox";
-			this->play3_groupBox->Size = System::Drawing::Size(234, 75);
-			this->play3_groupBox->TabIndex = 24;
-			this->play3_groupBox->TabStop = false;
-			this->play3_groupBox->Text = L"Play 3";
-			this->play3_groupBox->Visible = false;
-			// 
-			// play3_guess1_button
-			// 
-			this->play3_guess1_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play3_guess1_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play3_guess1_button.BackgroundImage")));
-			this->play3_guess1_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play3_guess1_button->Enabled = false;
-			this->play3_guess1_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play3_guess1_button->Location = System::Drawing::Point(6, 19);
-			this->play3_guess1_button->Name = L"play3_guess1_button";
-			this->play3_guess1_button->Size = System::Drawing::Size(50, 45);
-			this->play3_guess1_button->TabIndex = 14;
-			this->play3_guess1_button->Text = L"Guess 1";
-			this->play3_guess1_button->UseVisualStyleBackColor = false;
-			this->play3_guess1_button->Click += gcnew System::EventHandler(this, &VentanaPlay::play3_guess1_button_Click);
-			// 
-			// play3_guess2_button
-			// 
-			this->play3_guess2_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play3_guess2_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play3_guess2_button.BackgroundImage")));
-			this->play3_guess2_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play3_guess2_button->Enabled = false;
-			this->play3_guess2_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play3_guess2_button->Location = System::Drawing::Point(62, 19);
-			this->play3_guess2_button->Name = L"play3_guess2_button";
-			this->play3_guess2_button->Size = System::Drawing::Size(50, 45);
-			this->play3_guess2_button->TabIndex = 15;
-			this->play3_guess2_button->Text = L"Guess 2";
-			this->play3_guess2_button->UseVisualStyleBackColor = false;
-			this->play3_guess2_button->Click += gcnew System::EventHandler(this, &VentanaPlay::play3_guess2_button_Click);
-			// 
-			// play3_guess3_button
-			// 
-			this->play3_guess3_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play3_guess3_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play3_guess3_button.BackgroundImage")));
-			this->play3_guess3_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play3_guess3_button->Enabled = false;
-			this->play3_guess3_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play3_guess3_button->Location = System::Drawing::Point(118, 19);
-			this->play3_guess3_button->Name = L"play3_guess3_button";
-			this->play3_guess3_button->Size = System::Drawing::Size(50, 45);
-			this->play3_guess3_button->TabIndex = 16;
-			this->play3_guess3_button->Text = L"Guess 3";
-			this->play3_guess3_button->UseVisualStyleBackColor = false;
-			this->play3_guess3_button->Click += gcnew System::EventHandler(this, &VentanaPlay::play3_guess3_button_Click);
-			// 
-			// play3_guess4_button
-			// 
-			this->play3_guess4_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play3_guess4_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play3_guess4_button.BackgroundImage")));
-			this->play3_guess4_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play3_guess4_button->Enabled = false;
-			this->play3_guess4_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play3_guess4_button->Location = System::Drawing::Point(174, 19);
-			this->play3_guess4_button->Name = L"play3_guess4_button";
-			this->play3_guess4_button->Size = System::Drawing::Size(50, 45);
-			this->play3_guess4_button->TabIndex = 17;
-			this->play3_guess4_button->Text = L"Guess 4";
-			this->play3_guess4_button->UseVisualStyleBackColor = false;
-			this->play3_guess4_button->Click += gcnew System::EventHandler(this, &VentanaPlay::play3_guess4_button_Click);
-			// 
-			// play4_groupBox
-			// 
-			this->play4_groupBox->Controls->Add(this->play4_guess1_button);
-			this->play4_groupBox->Controls->Add(this->play4_guess2_button);
-			this->play4_groupBox->Controls->Add(this->play4_guess3_button);
-			this->play4_groupBox->Controls->Add(this->play4_guess4_button);
-			this->play4_groupBox->Location = System::Drawing::Point(241, 340);
-			this->play4_groupBox->Name = L"play4_groupBox";
-			this->play4_groupBox->Size = System::Drawing::Size(234, 75);
-			this->play4_groupBox->TabIndex = 25;
-			this->play4_groupBox->TabStop = false;
-			this->play4_groupBox->Text = L"Play 4";
-			this->play4_groupBox->Visible = false;
-			// 
-			// play4_guess1_button
-			// 
-			this->play4_guess1_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play4_guess1_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play4_guess1_button.BackgroundImage")));
-			this->play4_guess1_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play4_guess1_button->Enabled = false;
-			this->play4_guess1_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play4_guess1_button->Location = System::Drawing::Point(6, 19);
-			this->play4_guess1_button->Name = L"play4_guess1_button";
-			this->play4_guess1_button->Size = System::Drawing::Size(50, 45);
-			this->play4_guess1_button->TabIndex = 14;
-			this->play4_guess1_button->Text = L"Guess 1";
-			this->play4_guess1_button->UseVisualStyleBackColor = false;
-			// 
-			// play4_guess2_button
-			// 
-			this->play4_guess2_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play4_guess2_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play4_guess2_button.BackgroundImage")));
-			this->play4_guess2_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play4_guess2_button->Enabled = false;
-			this->play4_guess2_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play4_guess2_button->Location = System::Drawing::Point(62, 19);
-			this->play4_guess2_button->Name = L"play4_guess2_button";
-			this->play4_guess2_button->Size = System::Drawing::Size(50, 45);
-			this->play4_guess2_button->TabIndex = 15;
-			this->play4_guess2_button->Text = L"Guess 2";
-			this->play4_guess2_button->UseVisualStyleBackColor = false;
-			// 
-			// play4_guess3_button
-			// 
-			this->play4_guess3_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play4_guess3_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play4_guess3_button.BackgroundImage")));
-			this->play4_guess3_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play4_guess3_button->Enabled = false;
-			this->play4_guess3_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play4_guess3_button->Location = System::Drawing::Point(118, 19);
-			this->play4_guess3_button->Name = L"play4_guess3_button";
-			this->play4_guess3_button->Size = System::Drawing::Size(50, 45);
-			this->play4_guess3_button->TabIndex = 16;
-			this->play4_guess3_button->Text = L"Guess 3";
-			this->play4_guess3_button->UseVisualStyleBackColor = false;
-			// 
-			// play4_guess4_button
-			// 
-			this->play4_guess4_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play4_guess4_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play4_guess4_button.BackgroundImage")));
-			this->play4_guess4_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play4_guess4_button->Enabled = false;
-			this->play4_guess4_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play4_guess4_button->Location = System::Drawing::Point(174, 19);
-			this->play4_guess4_button->Name = L"play4_guess4_button";
-			this->play4_guess4_button->Size = System::Drawing::Size(50, 45);
-			this->play4_guess4_button->TabIndex = 17;
-			this->play4_guess4_button->Text = L"Guess 4";
-			this->play4_guess4_button->UseVisualStyleBackColor = false;
-			// 
-			// play5_groupBox
-			// 
-			this->play5_groupBox->Controls->Add(this->play5_guess1_button);
-			this->play5_groupBox->Controls->Add(this->play5_guess2_button);
-			this->play5_groupBox->Controls->Add(this->play5_guess3_button);
-			this->play5_groupBox->Controls->Add(this->play5_guess4_button);
-			this->play5_groupBox->Location = System::Drawing::Point(241, 265);
-			this->play5_groupBox->Name = L"play5_groupBox";
-			this->play5_groupBox->Size = System::Drawing::Size(234, 75);
-			this->play5_groupBox->TabIndex = 26;
-			this->play5_groupBox->TabStop = false;
-			this->play5_groupBox->Text = L"Play 5";
-			this->play5_groupBox->Visible = false;
-			// 
-			// play5_guess1_button
-			// 
-			this->play5_guess1_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play5_guess1_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play5_guess1_button.BackgroundImage")));
-			this->play5_guess1_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play5_guess1_button->Enabled = false;
-			this->play5_guess1_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play5_guess1_button->Location = System::Drawing::Point(6, 19);
-			this->play5_guess1_button->Name = L"play5_guess1_button";
-			this->play5_guess1_button->Size = System::Drawing::Size(50, 45);
-			this->play5_guess1_button->TabIndex = 14;
-			this->play5_guess1_button->Text = L"Guess 1";
-			this->play5_guess1_button->UseVisualStyleBackColor = false;
-			// 
-			// play5_guess2_button
-			// 
-			this->play5_guess2_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play5_guess2_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play5_guess2_button.BackgroundImage")));
-			this->play5_guess2_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play5_guess2_button->Enabled = false;
-			this->play5_guess2_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play5_guess2_button->Location = System::Drawing::Point(62, 19);
-			this->play5_guess2_button->Name = L"play5_guess2_button";
-			this->play5_guess2_button->Size = System::Drawing::Size(50, 45);
-			this->play5_guess2_button->TabIndex = 15;
-			this->play5_guess2_button->Text = L"Guess 2";
-			this->play5_guess2_button->UseVisualStyleBackColor = false;
-			// 
-			// play5_guess3_button
-			// 
-			this->play5_guess3_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play5_guess3_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play5_guess3_button.BackgroundImage")));
-			this->play5_guess3_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play5_guess3_button->Enabled = false;
-			this->play5_guess3_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play5_guess3_button->Location = System::Drawing::Point(118, 19);
-			this->play5_guess3_button->Name = L"play5_guess3_button";
-			this->play5_guess3_button->Size = System::Drawing::Size(50, 45);
-			this->play5_guess3_button->TabIndex = 16;
-			this->play5_guess3_button->Text = L"Guess 3";
-			this->play5_guess3_button->UseVisualStyleBackColor = false;
-			// 
-			// play5_guess4_button
-			// 
-			this->play5_guess4_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play5_guess4_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play5_guess4_button.BackgroundImage")));
-			this->play5_guess4_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play5_guess4_button->Enabled = false;
-			this->play5_guess4_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play5_guess4_button->Location = System::Drawing::Point(174, 19);
-			this->play5_guess4_button->Name = L"play5_guess4_button";
-			this->play5_guess4_button->Size = System::Drawing::Size(50, 45);
-			this->play5_guess4_button->TabIndex = 17;
-			this->play5_guess4_button->Text = L"Guess 4";
-			this->play5_guess4_button->UseVisualStyleBackColor = false;
-			// 
-			// play6_groupBox
-			// 
-			this->play6_groupBox->Controls->Add(this->play6_guess1_button);
-			this->play6_groupBox->Controls->Add(this->play6_guess2_button);
-			this->play6_groupBox->Controls->Add(this->play6_guess3_button);
-			this->play6_groupBox->Controls->Add(this->play6_guess4_button);
-			this->play6_groupBox->Location = System::Drawing::Point(241, 190);
-			this->play6_groupBox->Name = L"play6_groupBox";
-			this->play6_groupBox->Size = System::Drawing::Size(234, 75);
-			this->play6_groupBox->TabIndex = 27;
-			this->play6_groupBox->TabStop = false;
-			this->play6_groupBox->Text = L"Play 6";
-			this->play6_groupBox->Visible = false;
-			// 
-			// play6_guess1_button
-			// 
-			this->play6_guess1_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play6_guess1_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play6_guess1_button.BackgroundImage")));
-			this->play6_guess1_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play6_guess1_button->Enabled = false;
-			this->play6_guess1_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play6_guess1_button->Location = System::Drawing::Point(6, 19);
-			this->play6_guess1_button->Name = L"play6_guess1_button";
-			this->play6_guess1_button->Size = System::Drawing::Size(50, 45);
-			this->play6_guess1_button->TabIndex = 14;
-			this->play6_guess1_button->Text = L"Guess 1";
-			this->play6_guess1_button->UseVisualStyleBackColor = false;
-			// 
-			// play6_guess2_button
-			// 
-			this->play6_guess2_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play6_guess2_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play6_guess2_button.BackgroundImage")));
-			this->play6_guess2_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play6_guess2_button->Enabled = false;
-			this->play6_guess2_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play6_guess2_button->Location = System::Drawing::Point(62, 19);
-			this->play6_guess2_button->Name = L"play6_guess2_button";
-			this->play6_guess2_button->Size = System::Drawing::Size(50, 45);
-			this->play6_guess2_button->TabIndex = 15;
-			this->play6_guess2_button->Text = L"Guess 2";
-			this->play6_guess2_button->UseVisualStyleBackColor = false;
-			// 
-			// play6_guess3_button
-			// 
-			this->play6_guess3_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play6_guess3_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play6_guess3_button.BackgroundImage")));
-			this->play6_guess3_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play6_guess3_button->Enabled = false;
-			this->play6_guess3_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play6_guess3_button->Location = System::Drawing::Point(118, 19);
-			this->play6_guess3_button->Name = L"play6_guess3_button";
-			this->play6_guess3_button->Size = System::Drawing::Size(50, 45);
-			this->play6_guess3_button->TabIndex = 16;
-			this->play6_guess3_button->Text = L"Guess 3";
-			this->play6_guess3_button->UseVisualStyleBackColor = false;
-			// 
-			// play6_guess4_button
-			// 
-			this->play6_guess4_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play6_guess4_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play6_guess4_button.BackgroundImage")));
-			this->play6_guess4_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play6_guess4_button->Enabled = false;
-			this->play6_guess4_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play6_guess4_button->Location = System::Drawing::Point(174, 19);
-			this->play6_guess4_button->Name = L"play6_guess4_button";
-			this->play6_guess4_button->Size = System::Drawing::Size(50, 45);
-			this->play6_guess4_button->TabIndex = 17;
-			this->play6_guess4_button->Text = L"Guess 4";
-			this->play6_guess4_button->UseVisualStyleBackColor = false;
-			// 
-			// play7_groupBox
-			// 
-			this->play7_groupBox->Controls->Add(this->play7_guess1_button);
-			this->play7_groupBox->Controls->Add(this->play7_guess2_button);
-			this->play7_groupBox->Controls->Add(this->play7_guess3_button);
-			this->play7_groupBox->Controls->Add(this->play7_guess4_button);
-			this->play7_groupBox->Enabled = false;
-			this->play7_groupBox->Location = System::Drawing::Point(241, 115);
-			this->play7_groupBox->Name = L"play7_groupBox";
-			this->play7_groupBox->Size = System::Drawing::Size(234, 75);
-			this->play7_groupBox->TabIndex = 28;
-			this->play7_groupBox->TabStop = false;
-			this->play7_groupBox->Text = L"Play 7";
-			this->play7_groupBox->Visible = false;
-			this->play7_groupBox->Enter += gcnew System::EventHandler(this, &VentanaPlay::play7_groupBox_Enter);
-			// 
-			// play7_guess1_button
-			// 
-			this->play7_guess1_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play7_guess1_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play7_guess1_button.BackgroundImage")));
-			this->play7_guess1_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play7_guess1_button->Enabled = false;
-			this->play7_guess1_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play7_guess1_button->Location = System::Drawing::Point(6, 19);
-			this->play7_guess1_button->Name = L"play7_guess1_button";
-			this->play7_guess1_button->Size = System::Drawing::Size(50, 45);
-			this->play7_guess1_button->TabIndex = 14;
-			this->play7_guess1_button->Text = L"Guess 1";
-			this->play7_guess1_button->UseVisualStyleBackColor = false;
-			// 
-			// play7_guess2_button
-			// 
-			this->play7_guess2_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play7_guess2_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play7_guess2_button.BackgroundImage")));
-			this->play7_guess2_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play7_guess2_button->Enabled = false;
-			this->play7_guess2_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play7_guess2_button->Location = System::Drawing::Point(62, 19);
-			this->play7_guess2_button->Name = L"play7_guess2_button";
-			this->play7_guess2_button->Size = System::Drawing::Size(50, 45);
-			this->play7_guess2_button->TabIndex = 15;
-			this->play7_guess2_button->Text = L"Guess 2";
-			this->play7_guess2_button->UseVisualStyleBackColor = false;
-			// 
-			// play7_guess3_button
-			// 
-			this->play7_guess3_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play7_guess3_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play7_guess3_button.BackgroundImage")));
-			this->play7_guess3_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play7_guess3_button->Enabled = false;
-			this->play7_guess3_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play7_guess3_button->Location = System::Drawing::Point(118, 19);
-			this->play7_guess3_button->Name = L"play7_guess3_button";
-			this->play7_guess3_button->Size = System::Drawing::Size(50, 45);
-			this->play7_guess3_button->TabIndex = 16;
-			this->play7_guess3_button->Text = L"Guess 3";
-			this->play7_guess3_button->UseVisualStyleBackColor = false;
-			// 
-			// play7_guess4_button
-			// 
-			this->play7_guess4_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play7_guess4_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play7_guess4_button.BackgroundImage")));
-			this->play7_guess4_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play7_guess4_button->Enabled = false;
-			this->play7_guess4_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play7_guess4_button->Location = System::Drawing::Point(174, 19);
-			this->play7_guess4_button->Name = L"play7_guess4_button";
-			this->play7_guess4_button->Size = System::Drawing::Size(50, 45);
-			this->play7_guess4_button->TabIndex = 17;
-			this->play7_guess4_button->Text = L"Guess 4";
-			this->play7_guess4_button->UseVisualStyleBackColor = false;
-			// 
-			// play2_score_groupBox
-			// 
-			this->play2_score_groupBox->Controls->Add(this->play2_score_btn1);
-			this->play2_score_groupBox->Controls->Add(this->play2_score_btn4);
-			this->play2_score_groupBox->Controls->Add(this->play2_score_btn3);
-			this->play2_score_groupBox->Controls->Add(this->play2_score_btn2);
-			this->play2_score_groupBox->Location = System::Drawing::Point(481, 490);
-			this->play2_score_groupBox->Name = L"play2_score_groupBox";
-			this->play2_score_groupBox->Size = System::Drawing::Size(68, 75);
-			this->play2_score_groupBox->TabIndex = 29;
-			this->play2_score_groupBox->TabStop = false;
-			// 
-			// play2_score_btn1
-			// 
-			this->play2_score_btn1->BackColor = System::Drawing::Color::Sienna;
-			this->play2_score_btn1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play2_score_btn1.BackgroundImage")));
-			this->play2_score_btn1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play2_score_btn1->Enabled = false;
-			this->play2_score_btn1->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play2_score_btn1->Location = System::Drawing::Point(6, 13);
-			this->play2_score_btn1->Name = L"play2_score_btn1";
-			this->play2_score_btn1->Size = System::Drawing::Size(25, 25);
-			this->play2_score_btn1->TabIndex = 25;
-			this->play2_score_btn1->UseVisualStyleBackColor = false;
-			// 
-			// play2_score_btn4
-			// 
-			this->play2_score_btn4->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play2_score_btn4.BackgroundImage")));
-			this->play2_score_btn4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play2_score_btn4->Enabled = false;
-			this->play2_score_btn4->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play2_score_btn4->Location = System::Drawing::Point(37, 44);
-			this->play2_score_btn4->Name = L"play2_score_btn4";
-			this->play2_score_btn4->Size = System::Drawing::Size(25, 25);
-			this->play2_score_btn4->TabIndex = 24;
-			this->play2_score_btn4->UseVisualStyleBackColor = true;
-			// 
-			// play2_score_btn3
-			// 
-			this->play2_score_btn3->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play2_score_btn3.BackgroundImage")));
-			this->play2_score_btn3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play2_score_btn3->Enabled = false;
-			this->play2_score_btn3->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play2_score_btn3->Location = System::Drawing::Point(6, 44);
-			this->play2_score_btn3->Name = L"play2_score_btn3";
-			this->play2_score_btn3->Size = System::Drawing::Size(25, 25);
-			this->play2_score_btn3->TabIndex = 27;
-			this->play2_score_btn3->UseVisualStyleBackColor = true;
-			// 
-			// play2_score_btn2
-			// 
-			this->play2_score_btn2->BackColor = System::Drawing::Color::Sienna;
-			this->play2_score_btn2->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play2_score_btn2.BackgroundImage")));
-			this->play2_score_btn2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play2_score_btn2->Enabled = false;
-			this->play2_score_btn2->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play2_score_btn2->Location = System::Drawing::Point(37, 13);
-			this->play2_score_btn2->Name = L"play2_score_btn2";
-			this->play2_score_btn2->Size = System::Drawing::Size(25, 25);
-			this->play2_score_btn2->TabIndex = 26;
-			this->play2_score_btn2->UseVisualStyleBackColor = false;
-			// 
-			// play3_score_groupBox
-			// 
-			this->play3_score_groupBox->Controls->Add(this->play3_score_btn1);
-			this->play3_score_groupBox->Controls->Add(this->play3_score_btn4);
-			this->play3_score_groupBox->Controls->Add(this->play3_score_btn3);
-			this->play3_score_groupBox->Controls->Add(this->play3_score_btn2);
-			this->play3_score_groupBox->Location = System::Drawing::Point(481, 415);
-			this->play3_score_groupBox->Name = L"play3_score_groupBox";
-			this->play3_score_groupBox->Size = System::Drawing::Size(68, 75);
-			this->play3_score_groupBox->TabIndex = 29;
-			this->play3_score_groupBox->TabStop = false;
-			// 
-			// play3_score_btn1
-			// 
-			this->play3_score_btn1->BackColor = System::Drawing::Color::Sienna;
-			this->play3_score_btn1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play3_score_btn1.BackgroundImage")));
-			this->play3_score_btn1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play3_score_btn1->Enabled = false;
-			this->play3_score_btn1->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play3_score_btn1->Location = System::Drawing::Point(6, 13);
-			this->play3_score_btn1->Name = L"play3_score_btn1";
-			this->play3_score_btn1->Size = System::Drawing::Size(25, 25);
-			this->play3_score_btn1->TabIndex = 25;
-			this->play3_score_btn1->UseVisualStyleBackColor = false;
-			// 
-			// play3_score_btn4
-			// 
-			this->play3_score_btn4->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play3_score_btn4.BackgroundImage")));
-			this->play3_score_btn4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play3_score_btn4->Enabled = false;
-			this->play3_score_btn4->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play3_score_btn4->Location = System::Drawing::Point(37, 44);
-			this->play3_score_btn4->Name = L"play3_score_btn4";
-			this->play3_score_btn4->Size = System::Drawing::Size(25, 25);
-			this->play3_score_btn4->TabIndex = 24;
-			this->play3_score_btn4->UseVisualStyleBackColor = true;
-			// 
-			// play3_score_btn3
-			// 
-			this->play3_score_btn3->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play3_score_btn3.BackgroundImage")));
-			this->play3_score_btn3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play3_score_btn3->Enabled = false;
-			this->play3_score_btn3->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play3_score_btn3->Location = System::Drawing::Point(6, 44);
-			this->play3_score_btn3->Name = L"play3_score_btn3";
-			this->play3_score_btn3->Size = System::Drawing::Size(25, 25);
-			this->play3_score_btn3->TabIndex = 27;
-			this->play3_score_btn3->UseVisualStyleBackColor = true;
-			// 
-			// play3_score_btn2
-			// 
-			this->play3_score_btn2->BackColor = System::Drawing::Color::Sienna;
-			this->play3_score_btn2->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play3_score_btn2.BackgroundImage")));
-			this->play3_score_btn2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play3_score_btn2->Enabled = false;
-			this->play3_score_btn2->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play3_score_btn2->Location = System::Drawing::Point(37, 13);
-			this->play3_score_btn2->Name = L"play3_score_btn2";
-			this->play3_score_btn2->Size = System::Drawing::Size(25, 25);
-			this->play3_score_btn2->TabIndex = 26;
-			this->play3_score_btn2->UseVisualStyleBackColor = false;
-			// 
-			// play4_score_groupBox
-			// 
-			this->play4_score_groupBox->Controls->Add(this->button33);
-			this->play4_score_groupBox->Controls->Add(this->button34);
-			this->play4_score_groupBox->Controls->Add(this->button35);
-			this->play4_score_groupBox->Controls->Add(this->button36);
-			this->play4_score_groupBox->Location = System::Drawing::Point(481, 340);
-			this->play4_score_groupBox->Name = L"play4_score_groupBox";
-			this->play4_score_groupBox->Size = System::Drawing::Size(68, 75);
-			this->play4_score_groupBox->TabIndex = 29;
-			this->play4_score_groupBox->TabStop = false;
-			// 
-			// button33
-			// 
-			this->button33->BackColor = System::Drawing::Color::Sienna;
-			this->button33->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button33.BackgroundImage")));
-			this->button33->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button33->Enabled = false;
-			this->button33->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button33->Location = System::Drawing::Point(6, 13);
-			this->button33->Name = L"button33";
-			this->button33->Size = System::Drawing::Size(25, 25);
-			this->button33->TabIndex = 25;
-			this->button33->UseVisualStyleBackColor = false;
-			// 
-			// button34
-			// 
-			this->button34->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button34.BackgroundImage")));
-			this->button34->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button34->Enabled = false;
-			this->button34->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button34->Location = System::Drawing::Point(37, 44);
-			this->button34->Name = L"button34";
-			this->button34->Size = System::Drawing::Size(25, 25);
-			this->button34->TabIndex = 24;
-			this->button34->UseVisualStyleBackColor = true;
-			// 
-			// button35
-			// 
-			this->button35->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button35.BackgroundImage")));
-			this->button35->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button35->Enabled = false;
-			this->button35->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button35->Location = System::Drawing::Point(6, 44);
-			this->button35->Name = L"button35";
-			this->button35->Size = System::Drawing::Size(25, 25);
-			this->button35->TabIndex = 27;
-			this->button35->UseVisualStyleBackColor = true;
-			// 
-			// button36
-			// 
-			this->button36->BackColor = System::Drawing::Color::Sienna;
-			this->button36->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button36.BackgroundImage")));
-			this->button36->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button36->Enabled = false;
-			this->button36->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button36->Location = System::Drawing::Point(37, 13);
-			this->button36->Name = L"button36";
-			this->button36->Size = System::Drawing::Size(25, 25);
-			this->button36->TabIndex = 26;
-			this->button36->UseVisualStyleBackColor = false;
-			// 
-			// play5_score_groupBox
-			// 
-			this->play5_score_groupBox->Controls->Add(this->button37);
-			this->play5_score_groupBox->Controls->Add(this->button38);
-			this->play5_score_groupBox->Controls->Add(this->button39);
-			this->play5_score_groupBox->Controls->Add(this->button40);
-			this->play5_score_groupBox->Location = System::Drawing::Point(481, 265);
-			this->play5_score_groupBox->Name = L"play5_score_groupBox";
-			this->play5_score_groupBox->Size = System::Drawing::Size(68, 75);
-			this->play5_score_groupBox->TabIndex = 29;
-			this->play5_score_groupBox->TabStop = false;
-			// 
-			// button37
-			// 
-			this->button37->BackColor = System::Drawing::Color::Sienna;
-			this->button37->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button37.BackgroundImage")));
-			this->button37->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button37->Enabled = false;
-			this->button37->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button37->Location = System::Drawing::Point(6, 13);
-			this->button37->Name = L"button37";
-			this->button37->Size = System::Drawing::Size(25, 25);
-			this->button37->TabIndex = 25;
-			this->button37->UseVisualStyleBackColor = false;
-			// 
-			// button38
-			// 
-			this->button38->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button38.BackgroundImage")));
-			this->button38->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button38->Enabled = false;
-			this->button38->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button38->Location = System::Drawing::Point(37, 44);
-			this->button38->Name = L"button38";
-			this->button38->Size = System::Drawing::Size(25, 25);
-			this->button38->TabIndex = 24;
-			this->button38->UseVisualStyleBackColor = true;
-			// 
-			// button39
-			// 
-			this->button39->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button39.BackgroundImage")));
-			this->button39->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button39->Enabled = false;
-			this->button39->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button39->Location = System::Drawing::Point(6, 44);
-			this->button39->Name = L"button39";
-			this->button39->Size = System::Drawing::Size(25, 25);
-			this->button39->TabIndex = 27;
-			this->button39->UseVisualStyleBackColor = true;
-			// 
-			// button40
-			// 
-			this->button40->BackColor = System::Drawing::Color::Sienna;
-			this->button40->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button40.BackgroundImage")));
-			this->button40->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button40->Enabled = false;
-			this->button40->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button40->Location = System::Drawing::Point(37, 13);
-			this->button40->Name = L"button40";
-			this->button40->Size = System::Drawing::Size(25, 25);
-			this->button40->TabIndex = 26;
-			this->button40->UseVisualStyleBackColor = false;
-			// 
-			// play6_score_groupBox
-			// 
-			this->play6_score_groupBox->Controls->Add(this->button41);
-			this->play6_score_groupBox->Controls->Add(this->button42);
-			this->play6_score_groupBox->Controls->Add(this->button43);
-			this->play6_score_groupBox->Controls->Add(this->button44);
-			this->play6_score_groupBox->Location = System::Drawing::Point(481, 190);
-			this->play6_score_groupBox->Name = L"play6_score_groupBox";
-			this->play6_score_groupBox->Size = System::Drawing::Size(68, 75);
-			this->play6_score_groupBox->TabIndex = 29;
-			this->play6_score_groupBox->TabStop = false;
-			// 
-			// button41
-			// 
-			this->button41->BackColor = System::Drawing::Color::Sienna;
-			this->button41->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button41.BackgroundImage")));
-			this->button41->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button41->Enabled = false;
-			this->button41->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button41->Location = System::Drawing::Point(6, 13);
-			this->button41->Name = L"button41";
-			this->button41->Size = System::Drawing::Size(25, 25);
-			this->button41->TabIndex = 25;
-			this->button41->UseVisualStyleBackColor = false;
-			// 
-			// button42
-			// 
-			this->button42->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button42.BackgroundImage")));
-			this->button42->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button42->Enabled = false;
-			this->button42->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button42->Location = System::Drawing::Point(37, 44);
-			this->button42->Name = L"button42";
-			this->button42->Size = System::Drawing::Size(25, 25);
-			this->button42->TabIndex = 24;
-			this->button42->UseVisualStyleBackColor = true;
-			// 
-			// button43
-			// 
-			this->button43->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button43.BackgroundImage")));
-			this->button43->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button43->Enabled = false;
-			this->button43->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button43->Location = System::Drawing::Point(6, 44);
-			this->button43->Name = L"button43";
-			this->button43->Size = System::Drawing::Size(25, 25);
-			this->button43->TabIndex = 27;
-			this->button43->UseVisualStyleBackColor = true;
-			// 
-			// button44
-			// 
-			this->button44->BackColor = System::Drawing::Color::Sienna;
-			this->button44->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button44.BackgroundImage")));
-			this->button44->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button44->Enabled = false;
-			this->button44->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button44->Location = System::Drawing::Point(37, 13);
-			this->button44->Name = L"button44";
-			this->button44->Size = System::Drawing::Size(25, 25);
-			this->button44->TabIndex = 26;
-			this->button44->UseVisualStyleBackColor = false;
-			// 
-			// play7_score_groupBox
-			// 
-			this->play7_score_groupBox->Controls->Add(this->button45);
-			this->play7_score_groupBox->Controls->Add(this->button46);
-			this->play7_score_groupBox->Controls->Add(this->button47);
-			this->play7_score_groupBox->Controls->Add(this->button48);
-			this->play7_score_groupBox->Enabled = false;
-			this->play7_score_groupBox->Location = System::Drawing::Point(481, 115);
-			this->play7_score_groupBox->Name = L"play7_score_groupBox";
-			this->play7_score_groupBox->Size = System::Drawing::Size(68, 75);
-			this->play7_score_groupBox->TabIndex = 29;
-			this->play7_score_groupBox->TabStop = false;
-			this->play7_score_groupBox->Visible = false;
-			// 
-			// button45
-			// 
-			this->button45->BackColor = System::Drawing::Color::Sienna;
-			this->button45->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button45.BackgroundImage")));
-			this->button45->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button45->Enabled = false;
-			this->button45->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button45->Location = System::Drawing::Point(6, 13);
-			this->button45->Name = L"button45";
-			this->button45->Size = System::Drawing::Size(25, 25);
-			this->button45->TabIndex = 25;
-			this->button45->UseVisualStyleBackColor = false;
-			// 
-			// button46
-			// 
-			this->button46->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button46.BackgroundImage")));
-			this->button46->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button46->Enabled = false;
-			this->button46->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button46->Location = System::Drawing::Point(37, 44);
-			this->button46->Name = L"button46";
-			this->button46->Size = System::Drawing::Size(25, 25);
-			this->button46->TabIndex = 24;
-			this->button46->UseVisualStyleBackColor = true;
-			// 
-			// button47
-			// 
-			this->button47->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button47.BackgroundImage")));
-			this->button47->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button47->Enabled = false;
-			this->button47->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button47->Location = System::Drawing::Point(6, 44);
-			this->button47->Name = L"button47";
-			this->button47->Size = System::Drawing::Size(25, 25);
-			this->button47->TabIndex = 27;
-			this->button47->UseVisualStyleBackColor = true;
-			// 
-			// button48
-			// 
-			this->button48->BackColor = System::Drawing::Color::Sienna;
-			this->button48->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button48.BackgroundImage")));
-			this->button48->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button48->Enabled = false;
-			this->button48->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button48->Location = System::Drawing::Point(37, 13);
-			this->button48->Name = L"button48";
-			this->button48->Size = System::Drawing::Size(25, 25);
-			this->button48->TabIndex = 26;
-			this->button48->UseVisualStyleBackColor = false;
-			// 
-			// play8_groupBox
-			// 
-			this->play8_groupBox->Controls->Add(this->play8_guess1_button);
-			this->play8_groupBox->Controls->Add(this->play8_guess2_button);
-			this->play8_groupBox->Controls->Add(this->play8_guess3_button);
-			this->play8_groupBox->Controls->Add(this->play8_guess4_button);
-			this->play8_groupBox->Enabled = false;
-			this->play8_groupBox->Location = System::Drawing::Point(241, 40);
-			this->play8_groupBox->Name = L"play8_groupBox";
-			this->play8_groupBox->Size = System::Drawing::Size(234, 75);
-			this->play8_groupBox->TabIndex = 29;
-			this->play8_groupBox->TabStop = false;
-			this->play8_groupBox->Text = L"Play 8";
-			this->play8_groupBox->Visible = false;
-			// 
-			// play8_guess1_button
-			// 
-			this->play8_guess1_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play8_guess1_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play8_guess1_button.BackgroundImage")));
-			this->play8_guess1_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play8_guess1_button->Enabled = false;
-			this->play8_guess1_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play8_guess1_button->Location = System::Drawing::Point(6, 19);
-			this->play8_guess1_button->Name = L"play8_guess1_button";
-			this->play8_guess1_button->Size = System::Drawing::Size(50, 45);
-			this->play8_guess1_button->TabIndex = 14;
-			this->play8_guess1_button->Text = L"Guess 1";
-			this->play8_guess1_button->UseVisualStyleBackColor = false;
-			// 
-			// play8_guess2_button
-			// 
-			this->play8_guess2_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play8_guess2_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play8_guess2_button.BackgroundImage")));
-			this->play8_guess2_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play8_guess2_button->Enabled = false;
-			this->play8_guess2_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play8_guess2_button->Location = System::Drawing::Point(62, 19);
-			this->play8_guess2_button->Name = L"play8_guess2_button";
-			this->play8_guess2_button->Size = System::Drawing::Size(50, 45);
-			this->play8_guess2_button->TabIndex = 15;
-			this->play8_guess2_button->Text = L"Guess 2";
-			this->play8_guess2_button->UseVisualStyleBackColor = false;
-			// 
-			// play8_guess3_button
-			// 
-			this->play8_guess3_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play8_guess3_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play8_guess3_button.BackgroundImage")));
-			this->play8_guess3_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play8_guess3_button->Enabled = false;
-			this->play8_guess3_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play8_guess3_button->Location = System::Drawing::Point(118, 19);
-			this->play8_guess3_button->Name = L"play8_guess3_button";
-			this->play8_guess3_button->Size = System::Drawing::Size(50, 45);
-			this->play8_guess3_button->TabIndex = 16;
-			this->play8_guess3_button->Text = L"Guess 3";
-			this->play8_guess3_button->UseVisualStyleBackColor = false;
-			// 
-			// play8_guess4_button
-			// 
-			this->play8_guess4_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->play8_guess4_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play8_guess4_button.BackgroundImage")));
-			this->play8_guess4_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->play8_guess4_button->Enabled = false;
-			this->play8_guess4_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->play8_guess4_button->Location = System::Drawing::Point(174, 19);
-			this->play8_guess4_button->Name = L"play8_guess4_button";
-			this->play8_guess4_button->Size = System::Drawing::Size(50, 45);
-			this->play8_guess4_button->TabIndex = 17;
-			this->play8_guess4_button->Text = L"Guess 4";
-			this->play8_guess4_button->UseVisualStyleBackColor = false;
-			// 
-			// play8_score_groupBox
-			// 
-			this->play8_score_groupBox->Controls->Add(this->button53);
-			this->play8_score_groupBox->Controls->Add(this->button54);
-			this->play8_score_groupBox->Controls->Add(this->button55);
-			this->play8_score_groupBox->Controls->Add(this->button56);
-			this->play8_score_groupBox->Enabled = false;
-			this->play8_score_groupBox->Location = System::Drawing::Point(481, 40);
-			this->play8_score_groupBox->Name = L"play8_score_groupBox";
-			this->play8_score_groupBox->Size = System::Drawing::Size(68, 75);
-			this->play8_score_groupBox->TabIndex = 30;
-			this->play8_score_groupBox->TabStop = false;
-			this->play8_score_groupBox->Visible = false;
-			// 
-			// button53
-			// 
-			this->button53->BackColor = System::Drawing::Color::Sienna;
-			this->button53->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button53.BackgroundImage")));
-			this->button53->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button53->Enabled = false;
-			this->button53->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button53->Location = System::Drawing::Point(6, 13);
-			this->button53->Name = L"button53";
-			this->button53->Size = System::Drawing::Size(25, 25);
-			this->button53->TabIndex = 25;
-			this->button53->UseVisualStyleBackColor = false;
-			// 
-			// button54
-			// 
-			this->button54->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button54.BackgroundImage")));
-			this->button54->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button54->Enabled = false;
-			this->button54->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button54->Location = System::Drawing::Point(37, 44);
-			this->button54->Name = L"button54";
-			this->button54->Size = System::Drawing::Size(25, 25);
-			this->button54->TabIndex = 24;
-			this->button54->UseVisualStyleBackColor = true;
-			// 
-			// button55
-			// 
-			this->button55->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button55.BackgroundImage")));
-			this->button55->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button55->Enabled = false;
-			this->button55->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button55->Location = System::Drawing::Point(6, 44);
-			this->button55->Name = L"button55";
-			this->button55->Size = System::Drawing::Size(25, 25);
-			this->button55->TabIndex = 27;
-			this->button55->UseVisualStyleBackColor = true;
-			// 
-			// button56
-			// 
-			this->button56->BackColor = System::Drawing::Color::Sienna;
-			this->button56->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button56.BackgroundImage")));
-			this->button56->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button56->Enabled = false;
-			this->button56->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button56->Location = System::Drawing::Point(37, 13);
-			this->button56->Name = L"button56";
-			this->button56->Size = System::Drawing::Size(25, 25);
-			this->button56->TabIndex = 26;
-			this->button56->UseVisualStyleBackColor = false;
-			// 
 			// difficulty_label
 			// 
 			this->difficulty_label->AutoSize = true;
-			this->difficulty_label->Location = System::Drawing::Point(573, 428);
+			this->difficulty_label->Location = System::Drawing::Point(9, 365);
 			this->difficulty_label->Name = L"difficulty_label";
 			this->difficulty_label->Size = System::Drawing::Size(53, 13);
 			this->difficulty_label->TabIndex = 33;
@@ -1838,7 +981,7 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			// repetition_label
 			// 
 			this->repetition_label->AutoSize = true;
-			this->repetition_label->Location = System::Drawing::Point(573, 459);
+			this->repetition_label->Location = System::Drawing::Point(9, 391);
 			this->repetition_label->Name = L"repetition_label";
 			this->repetition_label->Size = System::Drawing::Size(0, 13);
 			this->repetition_label->TabIndex = 34;
@@ -1851,7 +994,7 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			this->quit_game_groupBox->Controls->Add(this->ok_quit_button);
 			this->quit_game_groupBox->Controls->Add(this->quit_label);
 			this->quit_game_groupBox->Enabled = false;
-			this->quit_game_groupBox->Location = System::Drawing::Point(165, 77);
+			this->quit_game_groupBox->Location = System::Drawing::Point(180, 117);
 			this->quit_game_groupBox->Name = L"quit_game_groupBox";
 			this->quit_game_groupBox->Size = System::Drawing::Size(411, 212);
 			this->quit_game_groupBox->TabIndex = 35;
@@ -1958,12 +1101,13 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			this->rand_comb_groupBox->Controls->Add(this->rand_comb3_button);
 			this->rand_comb_groupBox->Controls->Add(this->rand_comb2_button);
 			this->rand_comb_groupBox->Enabled = false;
-			this->rand_comb_groupBox->Location = System::Drawing::Point(588, 53);
+			this->rand_comb_groupBox->Location = System::Drawing::Point(660, 473);
 			this->rand_comb_groupBox->Name = L"rand_comb_groupBox";
 			this->rand_comb_groupBox->Size = System::Drawing::Size(132, 52);
 			this->rand_comb_groupBox->TabIndex = 40;
 			this->rand_comb_groupBox->TabStop = false;
 			this->rand_comb_groupBox->Text = L"Random Combination";
+			this->rand_comb_groupBox->Visible = false;
 			// 
 			// win_groupBox
 			// 
@@ -1971,9 +1115,9 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			this->win_groupBox->Controls->Add(this->ok_win_button);
 			this->win_groupBox->Controls->Add(this->you_win_label);
 			this->win_groupBox->Enabled = false;
-			this->win_groupBox->Location = System::Drawing::Point(71, 295);
+			this->win_groupBox->Location = System::Drawing::Point(648, 91);
 			this->win_groupBox->Name = L"win_groupBox";
-			this->win_groupBox->Size = System::Drawing::Size(265, 165);
+			this->win_groupBox->Size = System::Drawing::Size(144, 100);
 			this->win_groupBox->TabIndex = 41;
 			this->win_groupBox->TabStop = false;
 			this->win_groupBox->Text = L"Win";
@@ -1981,7 +1125,7 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			// 
 			// ok_win_button
 			// 
-			this->ok_win_button->Location = System::Drawing::Point(97, 116);
+			this->ok_win_button->Location = System::Drawing::Point(33, 65);
 			this->ok_win_button->Name = L"ok_win_button";
 			this->ok_win_button->Size = System::Drawing::Size(75, 23);
 			this->ok_win_button->TabIndex = 1;
@@ -1992,7 +1136,7 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			// you_win_label
 			// 
 			this->you_win_label->AutoSize = true;
-			this->you_win_label->Location = System::Drawing::Point(108, 25);
+			this->you_win_label->Location = System::Drawing::Point(45, 37);
 			this->you_win_label->Name = L"you_win_label";
 			this->you_win_label->Size = System::Drawing::Size(51, 13);
 			this->you_win_label->TabIndex = 0;
@@ -2005,9 +1149,9 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			this->lose_groupBox->Controls->Add(this->ok_lose_button);
 			this->lose_groupBox->Controls->Add(this->you_lose_label);
 			this->lose_groupBox->Enabled = false;
-			this->lose_groupBox->Location = System::Drawing::Point(555, 303);
+			this->lose_groupBox->Location = System::Drawing::Point(12, 91);
 			this->lose_groupBox->Name = L"lose_groupBox";
-			this->lose_groupBox->Size = System::Drawing::Size(157, 150);
+			this->lose_groupBox->Size = System::Drawing::Size(144, 100);
 			this->lose_groupBox->TabIndex = 42;
 			this->lose_groupBox->TabStop = false;
 			this->lose_groupBox->Text = L"Lose";
@@ -2015,7 +1159,7 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			// 
 			// ok_lose_button
 			// 
-			this->ok_lose_button->Location = System::Drawing::Point(39, 89);
+			this->ok_lose_button->Location = System::Drawing::Point(27, 65);
 			this->ok_lose_button->Name = L"ok_lose_button";
 			this->ok_lose_button->Size = System::Drawing::Size(75, 23);
 			this->ok_lose_button->TabIndex = 1;
@@ -2026,11 +1170,843 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			// you_lose_label
 			// 
 			this->you_lose_label->AutoSize = true;
-			this->you_lose_label->Location = System::Drawing::Point(52, 50);
+			this->you_lose_label->Location = System::Drawing::Point(41, 37);
 			this->you_lose_label->Name = L"you_lose_label";
 			this->you_lose_label->Size = System::Drawing::Size(61, 13);
 			this->you_lose_label->TabIndex = 0;
 			this->you_lose_label->Text = L"You Lose :(";
+			// 
+			// play1_pictureBox1
+			// 
+			this->play1_pictureBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play1_pictureBox1->Location = System::Drawing::Point(6, 19);
+			this->play1_pictureBox1->Name = L"play1_pictureBox1";
+			this->play1_pictureBox1->Size = System::Drawing::Size(50, 45);
+			this->play1_pictureBox1->TabIndex = 43;
+			this->play1_pictureBox1->TabStop = false;
+			// 
+			// play1_pictureBox2
+			// 
+			this->play1_pictureBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play1_pictureBox2->Location = System::Drawing::Point(62, 19);
+			this->play1_pictureBox2->Name = L"play1_pictureBox2";
+			this->play1_pictureBox2->Size = System::Drawing::Size(50, 45);
+			this->play1_pictureBox2->TabIndex = 44;
+			this->play1_pictureBox2->TabStop = false;
+			// 
+			// play1_pictureBox3
+			// 
+			this->play1_pictureBox3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play1_pictureBox3->Location = System::Drawing::Point(118, 19);
+			this->play1_pictureBox3->Name = L"play1_pictureBox3";
+			this->play1_pictureBox3->Size = System::Drawing::Size(50, 45);
+			this->play1_pictureBox3->TabIndex = 45;
+			this->play1_pictureBox3->TabStop = false;
+			// 
+			// play1_pictureBox4
+			// 
+			this->play1_pictureBox4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play1_pictureBox4->Location = System::Drawing::Point(174, 19);
+			this->play1_pictureBox4->Name = L"play1_pictureBox4";
+			this->play1_pictureBox4->Size = System::Drawing::Size(50, 45);
+			this->play1_pictureBox4->TabIndex = 46;
+			this->play1_pictureBox4->TabStop = false;
+			// 
+			// score_groupBox1
+			// 
+			this->score_groupBox1->Controls->Add(this->play1_score_picBox4);
+			this->score_groupBox1->Controls->Add(this->play1_score_picBox3);
+			this->score_groupBox1->Controls->Add(this->play1_score_picBox2);
+			this->score_groupBox1->Controls->Add(this->play1_score_picBox1);
+			this->score_groupBox1->Location = System::Drawing::Point(481, 571);
+			this->score_groupBox1->Name = L"score_groupBox1";
+			this->score_groupBox1->Size = System::Drawing::Size(68, 75);
+			this->score_groupBox1->TabIndex = 30;
+			this->score_groupBox1->TabStop = false;
+			// 
+			// play1_score_picBox4
+			// 
+			this->play1_score_picBox4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play1_score_picBox4->Location = System::Drawing::Point(37, 44);
+			this->play1_score_picBox4->Name = L"play1_score_picBox4";
+			this->play1_score_picBox4->Size = System::Drawing::Size(25, 25);
+			this->play1_score_picBox4->TabIndex = 31;
+			this->play1_score_picBox4->TabStop = false;
+			// 
+			// play1_score_picBox3
+			// 
+			this->play1_score_picBox3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play1_score_picBox3->Location = System::Drawing::Point(6, 44);
+			this->play1_score_picBox3->Name = L"play1_score_picBox3";
+			this->play1_score_picBox3->Size = System::Drawing::Size(25, 25);
+			this->play1_score_picBox3->TabIndex = 30;
+			this->play1_score_picBox3->TabStop = false;
+			// 
+			// play1_score_picBox2
+			// 
+			this->play1_score_picBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play1_score_picBox2->Location = System::Drawing::Point(37, 13);
+			this->play1_score_picBox2->Name = L"play1_score_picBox2";
+			this->play1_score_picBox2->Size = System::Drawing::Size(25, 25);
+			this->play1_score_picBox2->TabIndex = 29;
+			this->play1_score_picBox2->TabStop = false;
+			// 
+			// play1_score_picBox1
+			// 
+			this->play1_score_picBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play1_score_picBox1->Location = System::Drawing::Point(6, 13);
+			this->play1_score_picBox1->Name = L"play1_score_picBox1";
+			this->play1_score_picBox1->Size = System::Drawing::Size(25, 25);
+			this->play1_score_picBox1->TabIndex = 28;
+			this->play1_score_picBox1->TabStop = false;
+			// 
+			// play1_pic_groupBox
+			// 
+			this->play1_pic_groupBox->Controls->Add(this->play1_pictureBox1);
+			this->play1_pic_groupBox->Controls->Add(this->play1_pictureBox4);
+			this->play1_pic_groupBox->Controls->Add(this->play1_pictureBox2);
+			this->play1_pic_groupBox->Controls->Add(this->play1_pictureBox3);
+			this->play1_pic_groupBox->Location = System::Drawing::Point(241, 571);
+			this->play1_pic_groupBox->Name = L"play1_pic_groupBox";
+			this->play1_pic_groupBox->Size = System::Drawing::Size(234, 75);
+			this->play1_pic_groupBox->TabIndex = 24;
+			this->play1_pic_groupBox->TabStop = false;
+			this->play1_pic_groupBox->Text = L"Play 1";
+			// 
+			// blank_button
+			// 
+			this->blank_button->BackColor = System::Drawing::SystemColors::ActiveBorder;
+			this->blank_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"blank_button.BackgroundImage")));
+			this->blank_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->blank_button->Enabled = false;
+			this->blank_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->blank_button->Location = System::Drawing::Point(123, 490);
+			this->blank_button->Name = L"blank_button";
+			this->blank_button->Size = System::Drawing::Size(50, 45);
+			this->blank_button->TabIndex = 18;
+			this->blank_button->Text = L"Blank";
+			this->blank_button->UseVisualStyleBackColor = false;
+			this->blank_button->Visible = false;
+			// 
+			// play2_pic_groupBox
+			// 
+			this->play2_pic_groupBox->Controls->Add(this->play2_pictureBox1);
+			this->play2_pic_groupBox->Controls->Add(this->play2_pictureBox4);
+			this->play2_pic_groupBox->Controls->Add(this->play2_pictureBox2);
+			this->play2_pic_groupBox->Controls->Add(this->play2_pictureBox3);
+			this->play2_pic_groupBox->Enabled = false;
+			this->play2_pic_groupBox->Location = System::Drawing::Point(241, 490);
+			this->play2_pic_groupBox->Name = L"play2_pic_groupBox";
+			this->play2_pic_groupBox->Size = System::Drawing::Size(234, 75);
+			this->play2_pic_groupBox->TabIndex = 47;
+			this->play2_pic_groupBox->TabStop = false;
+			this->play2_pic_groupBox->Text = L"Play 2";
+			this->play2_pic_groupBox->Visible = false;
+			// 
+			// play2_pictureBox1
+			// 
+			this->play2_pictureBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play2_pictureBox1->Location = System::Drawing::Point(6, 19);
+			this->play2_pictureBox1->Name = L"play2_pictureBox1";
+			this->play2_pictureBox1->Size = System::Drawing::Size(50, 45);
+			this->play2_pictureBox1->TabIndex = 43;
+			this->play2_pictureBox1->TabStop = false;
+			// 
+			// play2_pictureBox4
+			// 
+			this->play2_pictureBox4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play2_pictureBox4->Location = System::Drawing::Point(174, 19);
+			this->play2_pictureBox4->Name = L"play2_pictureBox4";
+			this->play2_pictureBox4->Size = System::Drawing::Size(50, 45);
+			this->play2_pictureBox4->TabIndex = 46;
+			this->play2_pictureBox4->TabStop = false;
+			// 
+			// play2_pictureBox2
+			// 
+			this->play2_pictureBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play2_pictureBox2->Location = System::Drawing::Point(62, 19);
+			this->play2_pictureBox2->Name = L"play2_pictureBox2";
+			this->play2_pictureBox2->Size = System::Drawing::Size(50, 45);
+			this->play2_pictureBox2->TabIndex = 44;
+			this->play2_pictureBox2->TabStop = false;
+			// 
+			// play2_pictureBox3
+			// 
+			this->play2_pictureBox3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play2_pictureBox3->Location = System::Drawing::Point(118, 19);
+			this->play2_pictureBox3->Name = L"play2_pictureBox3";
+			this->play2_pictureBox3->Size = System::Drawing::Size(50, 45);
+			this->play2_pictureBox3->TabIndex = 45;
+			this->play2_pictureBox3->TabStop = false;
+			// 
+			// play2_score_groupBox
+			// 
+			this->play2_score_groupBox->Controls->Add(this->play2_score_picBox4);
+			this->play2_score_groupBox->Controls->Add(this->play2_score_picBox3);
+			this->play2_score_groupBox->Controls->Add(this->play2_score_picBox2);
+			this->play2_score_groupBox->Controls->Add(this->play2_score_picBox1);
+			this->play2_score_groupBox->Enabled = false;
+			this->play2_score_groupBox->Location = System::Drawing::Point(481, 490);
+			this->play2_score_groupBox->Name = L"play2_score_groupBox";
+			this->play2_score_groupBox->Size = System::Drawing::Size(68, 75);
+			this->play2_score_groupBox->TabIndex = 32;
+			this->play2_score_groupBox->TabStop = false;
+			this->play2_score_groupBox->Visible = false;
+			// 
+			// play2_score_picBox4
+			// 
+			this->play2_score_picBox4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play2_score_picBox4->Location = System::Drawing::Point(37, 44);
+			this->play2_score_picBox4->Name = L"play2_score_picBox4";
+			this->play2_score_picBox4->Size = System::Drawing::Size(25, 25);
+			this->play2_score_picBox4->TabIndex = 31;
+			this->play2_score_picBox4->TabStop = false;
+			// 
+			// play2_score_picBox3
+			// 
+			this->play2_score_picBox3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play2_score_picBox3->Location = System::Drawing::Point(6, 44);
+			this->play2_score_picBox3->Name = L"play2_score_picBox3";
+			this->play2_score_picBox3->Size = System::Drawing::Size(25, 25);
+			this->play2_score_picBox3->TabIndex = 30;
+			this->play2_score_picBox3->TabStop = false;
+			// 
+			// play2_score_picBox2
+			// 
+			this->play2_score_picBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play2_score_picBox2->Location = System::Drawing::Point(37, 13);
+			this->play2_score_picBox2->Name = L"play2_score_picBox2";
+			this->play2_score_picBox2->Size = System::Drawing::Size(25, 25);
+			this->play2_score_picBox2->TabIndex = 29;
+			this->play2_score_picBox2->TabStop = false;
+			// 
+			// play2_score_picBox1
+			// 
+			this->play2_score_picBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play2_score_picBox1->Location = System::Drawing::Point(6, 13);
+			this->play2_score_picBox1->Name = L"play2_score_picBox1";
+			this->play2_score_picBox1->Size = System::Drawing::Size(25, 25);
+			this->play2_score_picBox1->TabIndex = 28;
+			this->play2_score_picBox1->TabStop = false;
+			// 
+			// blank_score_button
+			// 
+			this->blank_score_button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"blank_score_button.BackgroundImage")));
+			this->blank_score_button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->blank_score_button->Enabled = false;
+			this->blank_score_button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->blank_score_button->Location = System::Drawing::Point(92, 509);
+			this->blank_score_button->Name = L"blank_score_button";
+			this->blank_score_button->Size = System::Drawing::Size(25, 25);
+			this->blank_score_button->TabIndex = 28;
+			this->blank_score_button->UseVisualStyleBackColor = true;
+			this->blank_score_button->Visible = false;
+			// 
+			// play3_pic_groupBox
+			// 
+			this->play3_pic_groupBox->Controls->Add(this->play3_pictureBox1);
+			this->play3_pic_groupBox->Controls->Add(this->play3_pictureBox4);
+			this->play3_pic_groupBox->Controls->Add(this->play3_pictureBox2);
+			this->play3_pic_groupBox->Controls->Add(this->play3_pictureBox3);
+			this->play3_pic_groupBox->Enabled = false;
+			this->play3_pic_groupBox->Location = System::Drawing::Point(241, 415);
+			this->play3_pic_groupBox->Name = L"play3_pic_groupBox";
+			this->play3_pic_groupBox->Size = System::Drawing::Size(234, 75);
+			this->play3_pic_groupBox->TabIndex = 48;
+			this->play3_pic_groupBox->TabStop = false;
+			this->play3_pic_groupBox->Text = L"Play 3";
+			this->play3_pic_groupBox->Visible = false;
+			// 
+			// play3_pictureBox1
+			// 
+			this->play3_pictureBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play3_pictureBox1->Location = System::Drawing::Point(6, 19);
+			this->play3_pictureBox1->Name = L"play3_pictureBox1";
+			this->play3_pictureBox1->Size = System::Drawing::Size(50, 45);
+			this->play3_pictureBox1->TabIndex = 43;
+			this->play3_pictureBox1->TabStop = false;
+			// 
+			// play3_pictureBox4
+			// 
+			this->play3_pictureBox4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play3_pictureBox4->Location = System::Drawing::Point(174, 19);
+			this->play3_pictureBox4->Name = L"play3_pictureBox4";
+			this->play3_pictureBox4->Size = System::Drawing::Size(50, 45);
+			this->play3_pictureBox4->TabIndex = 46;
+			this->play3_pictureBox4->TabStop = false;
+			// 
+			// play3_pictureBox2
+			// 
+			this->play3_pictureBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play3_pictureBox2->Location = System::Drawing::Point(62, 19);
+			this->play3_pictureBox2->Name = L"play3_pictureBox2";
+			this->play3_pictureBox2->Size = System::Drawing::Size(50, 45);
+			this->play3_pictureBox2->TabIndex = 44;
+			this->play3_pictureBox2->TabStop = false;
+			// 
+			// play3_pictureBox3
+			// 
+			this->play3_pictureBox3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play3_pictureBox3->Location = System::Drawing::Point(118, 19);
+			this->play3_pictureBox3->Name = L"play3_pictureBox3";
+			this->play3_pictureBox3->Size = System::Drawing::Size(50, 45);
+			this->play3_pictureBox3->TabIndex = 45;
+			this->play3_pictureBox3->TabStop = false;
+			// 
+			// play4_pic_groupBox
+			// 
+			this->play4_pic_groupBox->Controls->Add(this->play4_pictureBox1);
+			this->play4_pic_groupBox->Controls->Add(this->play4_pictureBox4);
+			this->play4_pic_groupBox->Controls->Add(this->play4_pictureBox2);
+			this->play4_pic_groupBox->Controls->Add(this->play4_pictureBox3);
+			this->play4_pic_groupBox->Enabled = false;
+			this->play4_pic_groupBox->Location = System::Drawing::Point(241, 340);
+			this->play4_pic_groupBox->Name = L"play4_pic_groupBox";
+			this->play4_pic_groupBox->Size = System::Drawing::Size(234, 75);
+			this->play4_pic_groupBox->TabIndex = 48;
+			this->play4_pic_groupBox->TabStop = false;
+			this->play4_pic_groupBox->Text = L"Play 4";
+			this->play4_pic_groupBox->Visible = false;
+			// 
+			// play4_pictureBox1
+			// 
+			this->play4_pictureBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play4_pictureBox1->Location = System::Drawing::Point(6, 19);
+			this->play4_pictureBox1->Name = L"play4_pictureBox1";
+			this->play4_pictureBox1->Size = System::Drawing::Size(50, 45);
+			this->play4_pictureBox1->TabIndex = 43;
+			this->play4_pictureBox1->TabStop = false;
+			// 
+			// play4_pictureBox4
+			// 
+			this->play4_pictureBox4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play4_pictureBox4->Location = System::Drawing::Point(174, 19);
+			this->play4_pictureBox4->Name = L"play4_pictureBox4";
+			this->play4_pictureBox4->Size = System::Drawing::Size(50, 45);
+			this->play4_pictureBox4->TabIndex = 46;
+			this->play4_pictureBox4->TabStop = false;
+			// 
+			// play4_pictureBox2
+			// 
+			this->play4_pictureBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play4_pictureBox2->Location = System::Drawing::Point(62, 19);
+			this->play4_pictureBox2->Name = L"play4_pictureBox2";
+			this->play4_pictureBox2->Size = System::Drawing::Size(50, 45);
+			this->play4_pictureBox2->TabIndex = 44;
+			this->play4_pictureBox2->TabStop = false;
+			// 
+			// play4_pictureBox3
+			// 
+			this->play4_pictureBox3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play4_pictureBox3->Location = System::Drawing::Point(118, 19);
+			this->play4_pictureBox3->Name = L"play4_pictureBox3";
+			this->play4_pictureBox3->Size = System::Drawing::Size(50, 45);
+			this->play4_pictureBox3->TabIndex = 45;
+			this->play4_pictureBox3->TabStop = false;
+			// 
+			// play5_pic_groupBox
+			// 
+			this->play5_pic_groupBox->Controls->Add(this->play5_pictureBox1);
+			this->play5_pic_groupBox->Controls->Add(this->play5_pictureBox4);
+			this->play5_pic_groupBox->Controls->Add(this->play5_pictureBox2);
+			this->play5_pic_groupBox->Controls->Add(this->play5_pictureBox3);
+			this->play5_pic_groupBox->Enabled = false;
+			this->play5_pic_groupBox->Location = System::Drawing::Point(241, 265);
+			this->play5_pic_groupBox->Name = L"play5_pic_groupBox";
+			this->play5_pic_groupBox->Size = System::Drawing::Size(234, 75);
+			this->play5_pic_groupBox->TabIndex = 49;
+			this->play5_pic_groupBox->TabStop = false;
+			this->play5_pic_groupBox->Text = L"Play 5";
+			this->play5_pic_groupBox->Visible = false;
+			// 
+			// play5_pictureBox1
+			// 
+			this->play5_pictureBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play5_pictureBox1->Location = System::Drawing::Point(6, 19);
+			this->play5_pictureBox1->Name = L"play5_pictureBox1";
+			this->play5_pictureBox1->Size = System::Drawing::Size(50, 45);
+			this->play5_pictureBox1->TabIndex = 43;
+			this->play5_pictureBox1->TabStop = false;
+			// 
+			// play5_pictureBox4
+			// 
+			this->play5_pictureBox4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play5_pictureBox4->Location = System::Drawing::Point(174, 19);
+			this->play5_pictureBox4->Name = L"play5_pictureBox4";
+			this->play5_pictureBox4->Size = System::Drawing::Size(50, 45);
+			this->play5_pictureBox4->TabIndex = 46;
+			this->play5_pictureBox4->TabStop = false;
+			// 
+			// play5_pictureBox2
+			// 
+			this->play5_pictureBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play5_pictureBox2->Location = System::Drawing::Point(62, 19);
+			this->play5_pictureBox2->Name = L"play5_pictureBox2";
+			this->play5_pictureBox2->Size = System::Drawing::Size(50, 45);
+			this->play5_pictureBox2->TabIndex = 44;
+			this->play5_pictureBox2->TabStop = false;
+			// 
+			// play5_pictureBox3
+			// 
+			this->play5_pictureBox3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play5_pictureBox3->Location = System::Drawing::Point(118, 19);
+			this->play5_pictureBox3->Name = L"play5_pictureBox3";
+			this->play5_pictureBox3->Size = System::Drawing::Size(50, 45);
+			this->play5_pictureBox3->TabIndex = 45;
+			this->play5_pictureBox3->TabStop = false;
+			// 
+			// play6_pic_groupBox
+			// 
+			this->play6_pic_groupBox->Controls->Add(this->play6_pictureBox1);
+			this->play6_pic_groupBox->Controls->Add(this->play6_pictureBox4);
+			this->play6_pic_groupBox->Controls->Add(this->play6_pictureBox2);
+			this->play6_pic_groupBox->Controls->Add(this->play6_pictureBox3);
+			this->play6_pic_groupBox->Enabled = false;
+			this->play6_pic_groupBox->Location = System::Drawing::Point(241, 190);
+			this->play6_pic_groupBox->Name = L"play6_pic_groupBox";
+			this->play6_pic_groupBox->Size = System::Drawing::Size(234, 75);
+			this->play6_pic_groupBox->TabIndex = 49;
+			this->play6_pic_groupBox->TabStop = false;
+			this->play6_pic_groupBox->Text = L"Play 6";
+			this->play6_pic_groupBox->Visible = false;
+			// 
+			// play6_pictureBox1
+			// 
+			this->play6_pictureBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play6_pictureBox1->Location = System::Drawing::Point(6, 19);
+			this->play6_pictureBox1->Name = L"play6_pictureBox1";
+			this->play6_pictureBox1->Size = System::Drawing::Size(50, 45);
+			this->play6_pictureBox1->TabIndex = 43;
+			this->play6_pictureBox1->TabStop = false;
+			// 
+			// play6_pictureBox4
+			// 
+			this->play6_pictureBox4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play6_pictureBox4->Location = System::Drawing::Point(174, 19);
+			this->play6_pictureBox4->Name = L"play6_pictureBox4";
+			this->play6_pictureBox4->Size = System::Drawing::Size(50, 45);
+			this->play6_pictureBox4->TabIndex = 46;
+			this->play6_pictureBox4->TabStop = false;
+			// 
+			// play6_pictureBox2
+			// 
+			this->play6_pictureBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play6_pictureBox2->Location = System::Drawing::Point(62, 19);
+			this->play6_pictureBox2->Name = L"play6_pictureBox2";
+			this->play6_pictureBox2->Size = System::Drawing::Size(50, 45);
+			this->play6_pictureBox2->TabIndex = 44;
+			this->play6_pictureBox2->TabStop = false;
+			// 
+			// play6_pictureBox3
+			// 
+			this->play6_pictureBox3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play6_pictureBox3->Location = System::Drawing::Point(118, 19);
+			this->play6_pictureBox3->Name = L"play6_pictureBox3";
+			this->play6_pictureBox3->Size = System::Drawing::Size(50, 45);
+			this->play6_pictureBox3->TabIndex = 45;
+			this->play6_pictureBox3->TabStop = false;
+			// 
+			// play7_pic_groupBox
+			// 
+			this->play7_pic_groupBox->Controls->Add(this->play7_pictureBox1);
+			this->play7_pic_groupBox->Controls->Add(this->play7_pictureBox4);
+			this->play7_pic_groupBox->Controls->Add(this->play7_pictureBox2);
+			this->play7_pic_groupBox->Controls->Add(this->play7_pictureBox3);
+			this->play7_pic_groupBox->Enabled = false;
+			this->play7_pic_groupBox->Location = System::Drawing::Point(241, 115);
+			this->play7_pic_groupBox->Name = L"play7_pic_groupBox";
+			this->play7_pic_groupBox->Size = System::Drawing::Size(234, 75);
+			this->play7_pic_groupBox->TabIndex = 49;
+			this->play7_pic_groupBox->TabStop = false;
+			this->play7_pic_groupBox->Text = L"Play 7";
+			this->play7_pic_groupBox->Visible = false;
+			// 
+			// play7_pictureBox1
+			// 
+			this->play7_pictureBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play7_pictureBox1->Location = System::Drawing::Point(6, 19);
+			this->play7_pictureBox1->Name = L"play7_pictureBox1";
+			this->play7_pictureBox1->Size = System::Drawing::Size(50, 45);
+			this->play7_pictureBox1->TabIndex = 43;
+			this->play7_pictureBox1->TabStop = false;
+			// 
+			// play7_pictureBox4
+			// 
+			this->play7_pictureBox4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play7_pictureBox4->Location = System::Drawing::Point(174, 19);
+			this->play7_pictureBox4->Name = L"play7_pictureBox4";
+			this->play7_pictureBox4->Size = System::Drawing::Size(50, 45);
+			this->play7_pictureBox4->TabIndex = 46;
+			this->play7_pictureBox4->TabStop = false;
+			// 
+			// play7_pictureBox2
+			// 
+			this->play7_pictureBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play7_pictureBox2->Location = System::Drawing::Point(62, 19);
+			this->play7_pictureBox2->Name = L"play7_pictureBox2";
+			this->play7_pictureBox2->Size = System::Drawing::Size(50, 45);
+			this->play7_pictureBox2->TabIndex = 44;
+			this->play7_pictureBox2->TabStop = false;
+			// 
+			// play7_pictureBox3
+			// 
+			this->play7_pictureBox3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play7_pictureBox3->Location = System::Drawing::Point(118, 19);
+			this->play7_pictureBox3->Name = L"play7_pictureBox3";
+			this->play7_pictureBox3->Size = System::Drawing::Size(50, 45);
+			this->play7_pictureBox3->TabIndex = 45;
+			this->play7_pictureBox3->TabStop = false;
+			// 
+			// play8_pic_groupBox
+			// 
+			this->play8_pic_groupBox->Controls->Add(this->play8_pictureBox1);
+			this->play8_pic_groupBox->Controls->Add(this->play8_pictureBox4);
+			this->play8_pic_groupBox->Controls->Add(this->play8_pictureBox2);
+			this->play8_pic_groupBox->Controls->Add(this->play8_pictureBox3);
+			this->play8_pic_groupBox->Enabled = false;
+			this->play8_pic_groupBox->Location = System::Drawing::Point(241, 40);
+			this->play8_pic_groupBox->Name = L"play8_pic_groupBox";
+			this->play8_pic_groupBox->Size = System::Drawing::Size(234, 75);
+			this->play8_pic_groupBox->TabIndex = 49;
+			this->play8_pic_groupBox->TabStop = false;
+			this->play8_pic_groupBox->Text = L"Play 8";
+			this->play8_pic_groupBox->Visible = false;
+			// 
+			// play8_pictureBox1
+			// 
+			this->play8_pictureBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play8_pictureBox1->Location = System::Drawing::Point(6, 19);
+			this->play8_pictureBox1->Name = L"play8_pictureBox1";
+			this->play8_pictureBox1->Size = System::Drawing::Size(50, 45);
+			this->play8_pictureBox1->TabIndex = 43;
+			this->play8_pictureBox1->TabStop = false;
+			// 
+			// play8_pictureBox4
+			// 
+			this->play8_pictureBox4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play8_pictureBox4->Location = System::Drawing::Point(174, 19);
+			this->play8_pictureBox4->Name = L"play8_pictureBox4";
+			this->play8_pictureBox4->Size = System::Drawing::Size(50, 45);
+			this->play8_pictureBox4->TabIndex = 46;
+			this->play8_pictureBox4->TabStop = false;
+			// 
+			// play8_pictureBox2
+			// 
+			this->play8_pictureBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play8_pictureBox2->Location = System::Drawing::Point(62, 19);
+			this->play8_pictureBox2->Name = L"play8_pictureBox2";
+			this->play8_pictureBox2->Size = System::Drawing::Size(50, 45);
+			this->play8_pictureBox2->TabIndex = 44;
+			this->play8_pictureBox2->TabStop = false;
+			// 
+			// play8_pictureBox3
+			// 
+			this->play8_pictureBox3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play8_pictureBox3->Location = System::Drawing::Point(118, 19);
+			this->play8_pictureBox3->Name = L"play8_pictureBox3";
+			this->play8_pictureBox3->Size = System::Drawing::Size(50, 45);
+			this->play8_pictureBox3->TabIndex = 45;
+			this->play8_pictureBox3->TabStop = false;
+			// 
+			// play3_score_groupBox
+			// 
+			this->play3_score_groupBox->Controls->Add(this->play3_score_picBox4);
+			this->play3_score_groupBox->Controls->Add(this->play3_score_picBox3);
+			this->play3_score_groupBox->Controls->Add(this->play3_score_picBox2);
+			this->play3_score_groupBox->Controls->Add(this->play3_score_picBox1);
+			this->play3_score_groupBox->Enabled = false;
+			this->play3_score_groupBox->Location = System::Drawing::Point(481, 415);
+			this->play3_score_groupBox->Name = L"play3_score_groupBox";
+			this->play3_score_groupBox->Size = System::Drawing::Size(68, 75);
+			this->play3_score_groupBox->TabIndex = 33;
+			this->play3_score_groupBox->TabStop = false;
+			this->play3_score_groupBox->Visible = false;
+			// 
+			// play3_score_picBox4
+			// 
+			this->play3_score_picBox4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play3_score_picBox4->Location = System::Drawing::Point(37, 44);
+			this->play3_score_picBox4->Name = L"play3_score_picBox4";
+			this->play3_score_picBox4->Size = System::Drawing::Size(25, 25);
+			this->play3_score_picBox4->TabIndex = 31;
+			this->play3_score_picBox4->TabStop = false;
+			// 
+			// play3_score_picBox3
+			// 
+			this->play3_score_picBox3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play3_score_picBox3->Location = System::Drawing::Point(6, 44);
+			this->play3_score_picBox3->Name = L"play3_score_picBox3";
+			this->play3_score_picBox3->Size = System::Drawing::Size(25, 25);
+			this->play3_score_picBox3->TabIndex = 30;
+			this->play3_score_picBox3->TabStop = false;
+			// 
+			// play3_score_picBox2
+			// 
+			this->play3_score_picBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play3_score_picBox2->Location = System::Drawing::Point(37, 13);
+			this->play3_score_picBox2->Name = L"play3_score_picBox2";
+			this->play3_score_picBox2->Size = System::Drawing::Size(25, 25);
+			this->play3_score_picBox2->TabIndex = 29;
+			this->play3_score_picBox2->TabStop = false;
+			// 
+			// play3_score_picBox1
+			// 
+			this->play3_score_picBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play3_score_picBox1->Location = System::Drawing::Point(6, 13);
+			this->play3_score_picBox1->Name = L"play3_score_picBox1";
+			this->play3_score_picBox1->Size = System::Drawing::Size(25, 25);
+			this->play3_score_picBox1->TabIndex = 28;
+			this->play3_score_picBox1->TabStop = false;
+			// 
+			// play4_score_groupBox
+			// 
+			this->play4_score_groupBox->Controls->Add(this->play4_score_picBox4);
+			this->play4_score_groupBox->Controls->Add(this->play4_score_picBox3);
+			this->play4_score_groupBox->Controls->Add(this->play4_score_picBox2);
+			this->play4_score_groupBox->Controls->Add(this->play4_score_picBox1);
+			this->play4_score_groupBox->Enabled = false;
+			this->play4_score_groupBox->Location = System::Drawing::Point(481, 340);
+			this->play4_score_groupBox->Name = L"play4_score_groupBox";
+			this->play4_score_groupBox->Size = System::Drawing::Size(68, 75);
+			this->play4_score_groupBox->TabIndex = 33;
+			this->play4_score_groupBox->TabStop = false;
+			this->play4_score_groupBox->Visible = false;
+			// 
+			// play4_score_picBox4
+			// 
+			this->play4_score_picBox4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play4_score_picBox4->Location = System::Drawing::Point(37, 44);
+			this->play4_score_picBox4->Name = L"play4_score_picBox4";
+			this->play4_score_picBox4->Size = System::Drawing::Size(25, 25);
+			this->play4_score_picBox4->TabIndex = 31;
+			this->play4_score_picBox4->TabStop = false;
+			// 
+			// play4_score_picBox3
+			// 
+			this->play4_score_picBox3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play4_score_picBox3->Location = System::Drawing::Point(6, 44);
+			this->play4_score_picBox3->Name = L"play4_score_picBox3";
+			this->play4_score_picBox3->Size = System::Drawing::Size(25, 25);
+			this->play4_score_picBox3->TabIndex = 30;
+			this->play4_score_picBox3->TabStop = false;
+			// 
+			// play4_score_picBox2
+			// 
+			this->play4_score_picBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play4_score_picBox2->Location = System::Drawing::Point(37, 13);
+			this->play4_score_picBox2->Name = L"play4_score_picBox2";
+			this->play4_score_picBox2->Size = System::Drawing::Size(25, 25);
+			this->play4_score_picBox2->TabIndex = 29;
+			this->play4_score_picBox2->TabStop = false;
+			// 
+			// play4_score_picBox1
+			// 
+			this->play4_score_picBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play4_score_picBox1->Location = System::Drawing::Point(6, 13);
+			this->play4_score_picBox1->Name = L"play4_score_picBox1";
+			this->play4_score_picBox1->Size = System::Drawing::Size(25, 25);
+			this->play4_score_picBox1->TabIndex = 28;
+			this->play4_score_picBox1->TabStop = false;
+			// 
+			// play5_score_groupBox
+			// 
+			this->play5_score_groupBox->Controls->Add(this->play5_score_picBox4);
+			this->play5_score_groupBox->Controls->Add(this->play5_score_picBox3);
+			this->play5_score_groupBox->Controls->Add(this->play5_score_picBox2);
+			this->play5_score_groupBox->Controls->Add(this->play5_score_picBox1);
+			this->play5_score_groupBox->Enabled = false;
+			this->play5_score_groupBox->Location = System::Drawing::Point(481, 265);
+			this->play5_score_groupBox->Name = L"play5_score_groupBox";
+			this->play5_score_groupBox->Size = System::Drawing::Size(68, 75);
+			this->play5_score_groupBox->TabIndex = 33;
+			this->play5_score_groupBox->TabStop = false;
+			this->play5_score_groupBox->Visible = false;
+			// 
+			// play5_score_picBox4
+			// 
+			this->play5_score_picBox4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play5_score_picBox4->Location = System::Drawing::Point(37, 44);
+			this->play5_score_picBox4->Name = L"play5_score_picBox4";
+			this->play5_score_picBox4->Size = System::Drawing::Size(25, 25);
+			this->play5_score_picBox4->TabIndex = 31;
+			this->play5_score_picBox4->TabStop = false;
+			// 
+			// play5_score_picBox3
+			// 
+			this->play5_score_picBox3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play5_score_picBox3->Location = System::Drawing::Point(6, 44);
+			this->play5_score_picBox3->Name = L"play5_score_picBox3";
+			this->play5_score_picBox3->Size = System::Drawing::Size(25, 25);
+			this->play5_score_picBox3->TabIndex = 30;
+			this->play5_score_picBox3->TabStop = false;
+			// 
+			// play5_score_picBox2
+			// 
+			this->play5_score_picBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play5_score_picBox2->Location = System::Drawing::Point(37, 13);
+			this->play5_score_picBox2->Name = L"play5_score_picBox2";
+			this->play5_score_picBox2->Size = System::Drawing::Size(25, 25);
+			this->play5_score_picBox2->TabIndex = 29;
+			this->play5_score_picBox2->TabStop = false;
+			// 
+			// play5_score_picBox1
+			// 
+			this->play5_score_picBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play5_score_picBox1->Location = System::Drawing::Point(6, 13);
+			this->play5_score_picBox1->Name = L"play5_score_picBox1";
+			this->play5_score_picBox1->Size = System::Drawing::Size(25, 25);
+			this->play5_score_picBox1->TabIndex = 28;
+			this->play5_score_picBox1->TabStop = false;
+			// 
+			// play6_score_groupBox
+			// 
+			this->play6_score_groupBox->Controls->Add(this->play6_score_picBox4);
+			this->play6_score_groupBox->Controls->Add(this->play6_score_picBox3);
+			this->play6_score_groupBox->Controls->Add(this->play6_score_picBox2);
+			this->play6_score_groupBox->Controls->Add(this->play6_score_picBox1);
+			this->play6_score_groupBox->Enabled = false;
+			this->play6_score_groupBox->Location = System::Drawing::Point(481, 190);
+			this->play6_score_groupBox->Name = L"play6_score_groupBox";
+			this->play6_score_groupBox->Size = System::Drawing::Size(68, 75);
+			this->play6_score_groupBox->TabIndex = 33;
+			this->play6_score_groupBox->TabStop = false;
+			this->play6_score_groupBox->Visible = false;
+			// 
+			// play6_score_picBox4
+			// 
+			this->play6_score_picBox4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play6_score_picBox4->Location = System::Drawing::Point(37, 44);
+			this->play6_score_picBox4->Name = L"play6_score_picBox4";
+			this->play6_score_picBox4->Size = System::Drawing::Size(25, 25);
+			this->play6_score_picBox4->TabIndex = 31;
+			this->play6_score_picBox4->TabStop = false;
+			// 
+			// play6_score_picBox3
+			// 
+			this->play6_score_picBox3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play6_score_picBox3->Location = System::Drawing::Point(6, 44);
+			this->play6_score_picBox3->Name = L"play6_score_picBox3";
+			this->play6_score_picBox3->Size = System::Drawing::Size(25, 25);
+			this->play6_score_picBox3->TabIndex = 30;
+			this->play6_score_picBox3->TabStop = false;
+			// 
+			// play6_score_picBox2
+			// 
+			this->play6_score_picBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play6_score_picBox2->Location = System::Drawing::Point(37, 13);
+			this->play6_score_picBox2->Name = L"play6_score_picBox2";
+			this->play6_score_picBox2->Size = System::Drawing::Size(25, 25);
+			this->play6_score_picBox2->TabIndex = 29;
+			this->play6_score_picBox2->TabStop = false;
+			// 
+			// play6_score_picBox1
+			// 
+			this->play6_score_picBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play6_score_picBox1->Location = System::Drawing::Point(6, 13);
+			this->play6_score_picBox1->Name = L"play6_score_picBox1";
+			this->play6_score_picBox1->Size = System::Drawing::Size(25, 25);
+			this->play6_score_picBox1->TabIndex = 28;
+			this->play6_score_picBox1->TabStop = false;
+			// 
+			// play7_score_groupBox
+			// 
+			this->play7_score_groupBox->Controls->Add(this->play7_score_picBox4);
+			this->play7_score_groupBox->Controls->Add(this->play7_score_picBox3);
+			this->play7_score_groupBox->Controls->Add(this->play7_score_picBox2);
+			this->play7_score_groupBox->Controls->Add(this->play7_score_picBox1);
+			this->play7_score_groupBox->Enabled = false;
+			this->play7_score_groupBox->Location = System::Drawing::Point(481, 115);
+			this->play7_score_groupBox->Name = L"play7_score_groupBox";
+			this->play7_score_groupBox->Size = System::Drawing::Size(68, 75);
+			this->play7_score_groupBox->TabIndex = 33;
+			this->play7_score_groupBox->TabStop = false;
+			this->play7_score_groupBox->Visible = false;
+			// 
+			// play7_score_picBox4
+			// 
+			this->play7_score_picBox4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play7_score_picBox4->Location = System::Drawing::Point(37, 44);
+			this->play7_score_picBox4->Name = L"play7_score_picBox4";
+			this->play7_score_picBox4->Size = System::Drawing::Size(25, 25);
+			this->play7_score_picBox4->TabIndex = 31;
+			this->play7_score_picBox4->TabStop = false;
+			// 
+			// play7_score_picBox3
+			// 
+			this->play7_score_picBox3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play7_score_picBox3->Location = System::Drawing::Point(6, 44);
+			this->play7_score_picBox3->Name = L"play7_score_picBox3";
+			this->play7_score_picBox3->Size = System::Drawing::Size(25, 25);
+			this->play7_score_picBox3->TabIndex = 30;
+			this->play7_score_picBox3->TabStop = false;
+			// 
+			// play7_score_picBox2
+			// 
+			this->play7_score_picBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play7_score_picBox2->Location = System::Drawing::Point(37, 13);
+			this->play7_score_picBox2->Name = L"play7_score_picBox2";
+			this->play7_score_picBox2->Size = System::Drawing::Size(25, 25);
+			this->play7_score_picBox2->TabIndex = 29;
+			this->play7_score_picBox2->TabStop = false;
+			// 
+			// play7_score_picBox1
+			// 
+			this->play7_score_picBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play7_score_picBox1->Location = System::Drawing::Point(6, 13);
+			this->play7_score_picBox1->Name = L"play7_score_picBox1";
+			this->play7_score_picBox1->Size = System::Drawing::Size(25, 25);
+			this->play7_score_picBox1->TabIndex = 28;
+			this->play7_score_picBox1->TabStop = false;
+			// 
+			// play8_score_groupBox
+			// 
+			this->play8_score_groupBox->Controls->Add(this->play8_score_picBox4);
+			this->play8_score_groupBox->Controls->Add(this->play8_score_picBox3);
+			this->play8_score_groupBox->Controls->Add(this->play8_score_picBox2);
+			this->play8_score_groupBox->Controls->Add(this->play8_score_picBox1);
+			this->play8_score_groupBox->Enabled = false;
+			this->play8_score_groupBox->Location = System::Drawing::Point(481, 40);
+			this->play8_score_groupBox->Name = L"play8_score_groupBox";
+			this->play8_score_groupBox->Size = System::Drawing::Size(68, 75);
+			this->play8_score_groupBox->TabIndex = 33;
+			this->play8_score_groupBox->TabStop = false;
+			this->play8_score_groupBox->Visible = false;
+			// 
+			// play8_score_picBox4
+			// 
+			this->play8_score_picBox4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play8_score_picBox4->Location = System::Drawing::Point(37, 44);
+			this->play8_score_picBox4->Name = L"play8_score_picBox4";
+			this->play8_score_picBox4->Size = System::Drawing::Size(25, 25);
+			this->play8_score_picBox4->TabIndex = 31;
+			this->play8_score_picBox4->TabStop = false;
+			// 
+			// play8_score_picBox3
+			// 
+			this->play8_score_picBox3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play8_score_picBox3->Location = System::Drawing::Point(6, 44);
+			this->play8_score_picBox3->Name = L"play8_score_picBox3";
+			this->play8_score_picBox3->Size = System::Drawing::Size(25, 25);
+			this->play8_score_picBox3->TabIndex = 30;
+			this->play8_score_picBox3->TabStop = false;
+			// 
+			// play8_score_picBox2
+			// 
+			this->play8_score_picBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play8_score_picBox2->Location = System::Drawing::Point(37, 13);
+			this->play8_score_picBox2->Name = L"play8_score_picBox2";
+			this->play8_score_picBox2->Size = System::Drawing::Size(25, 25);
+			this->play8_score_picBox2->TabIndex = 29;
+			this->play8_score_picBox2->TabStop = false;
+			// 
+			// play8_score_picBox1
+			// 
+			this->play8_score_picBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->play8_score_picBox1->Location = System::Drawing::Point(6, 13);
+			this->play8_score_picBox1->Name = L"play8_score_picBox1";
+			this->play8_score_picBox1->Size = System::Drawing::Size(25, 25);
+			this->play8_score_picBox1->TabIndex = 28;
+			this->play8_score_picBox1->TabStop = false;
 			// 
 			// VentanaPlay
 			// 
@@ -2038,28 +2014,33 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::Sienna;
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->ClientSize = System::Drawing::Size(732, 652);
-			this->Controls->Add(this->lose_groupBox);
-			this->Controls->Add(this->win_groupBox);
+			this->ClientSize = System::Drawing::Size(823, 652);
+			this->Controls->Add(this->play3_pic_groupBox);
+			this->Controls->Add(this->play4_pic_groupBox);
 			this->Controls->Add(this->rand_comb_groupBox);
-			this->Controls->Add(this->quit_game_groupBox);
-			this->Controls->Add(this->repetition_label);
-			this->Controls->Add(this->difficulty_label);
+			this->Controls->Add(this->yellow_button);
 			this->Controls->Add(this->play8_score_groupBox);
-			this->Controls->Add(this->play8_groupBox);
+			this->Controls->Add(this->quit_game_groupBox);
 			this->Controls->Add(this->play7_score_groupBox);
 			this->Controls->Add(this->play6_score_groupBox);
 			this->Controls->Add(this->play5_score_groupBox);
 			this->Controls->Add(this->play4_score_groupBox);
 			this->Controls->Add(this->play3_score_groupBox);
+			this->Controls->Add(this->play8_pic_groupBox);
+			this->Controls->Add(this->play7_pic_groupBox);
+			this->Controls->Add(this->play6_pic_groupBox);
+			this->Controls->Add(this->play5_pic_groupBox);
+			this->Controls->Add(this->blank_score_button);
 			this->Controls->Add(this->play2_score_groupBox);
-			this->Controls->Add(this->play7_groupBox);
-			this->Controls->Add(this->play6_groupBox);
-			this->Controls->Add(this->play5_groupBox);
-			this->Controls->Add(this->play4_groupBox);
-			this->Controls->Add(this->play3_groupBox);
+			this->Controls->Add(this->play2_pic_groupBox);
+			this->Controls->Add(this->blank_button);
+			this->Controls->Add(this->play1_pic_groupBox);
+			this->Controls->Add(this->score_groupBox1);
+			this->Controls->Add(this->lose_groupBox);
+			this->Controls->Add(this->win_groupBox);
+			this->Controls->Add(this->repetition_label);
+			this->Controls->Add(this->difficulty_label);
 			this->Controls->Add(this->titulo_label);
-			this->Controls->Add(this->play2_groupBox);
 			this->Controls->Add(this->enter_play_button);
 			this->Controls->Add(this->color_position_bbtn_label);
 			this->Controls->Add(this->color_wbtn_label);
@@ -2071,7 +2052,6 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			this->Controls->Add(this->Time);
 			this->Controls->Add(this->brown_button);
 			this->Controls->Add(this->pink_button);
-			this->Controls->Add(this->yellow_button);
 			this->Controls->Add(this->green_button);
 			this->Controls->Add(this->blue_button);
 			this->Controls->Add(this->red_button);
@@ -2085,20 +2065,6 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			this->menuStrip1->PerformLayout();
 			this->play1_groupBox->ResumeLayout(false);
 			this->play1_score_groupBox->ResumeLayout(false);
-			this->play2_groupBox->ResumeLayout(false);
-			this->play3_groupBox->ResumeLayout(false);
-			this->play4_groupBox->ResumeLayout(false);
-			this->play5_groupBox->ResumeLayout(false);
-			this->play6_groupBox->ResumeLayout(false);
-			this->play7_groupBox->ResumeLayout(false);
-			this->play2_score_groupBox->ResumeLayout(false);
-			this->play3_score_groupBox->ResumeLayout(false);
-			this->play4_score_groupBox->ResumeLayout(false);
-			this->play5_score_groupBox->ResumeLayout(false);
-			this->play6_score_groupBox->ResumeLayout(false);
-			this->play7_score_groupBox->ResumeLayout(false);
-			this->play8_groupBox->ResumeLayout(false);
-			this->play8_score_groupBox->ResumeLayout(false);
 			this->quit_game_groupBox->ResumeLayout(false);
 			this->quit_game_groupBox->PerformLayout();
 			this->rand_comb_groupBox->ResumeLayout(false);
@@ -2106,6 +2072,86 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			this->win_groupBox->PerformLayout();
 			this->lose_groupBox->ResumeLayout(false);
 			this->lose_groupBox->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play1_pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play1_pictureBox2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play1_pictureBox3))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play1_pictureBox4))->EndInit();
+			this->score_groupBox1->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play1_score_picBox4))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play1_score_picBox3))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play1_score_picBox2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play1_score_picBox1))->EndInit();
+			this->play1_pic_groupBox->ResumeLayout(false);
+			this->play2_pic_groupBox->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play2_pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play2_pictureBox4))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play2_pictureBox2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play2_pictureBox3))->EndInit();
+			this->play2_score_groupBox->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play2_score_picBox4))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play2_score_picBox3))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play2_score_picBox2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play2_score_picBox1))->EndInit();
+			this->play3_pic_groupBox->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play3_pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play3_pictureBox4))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play3_pictureBox2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play3_pictureBox3))->EndInit();
+			this->play4_pic_groupBox->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play4_pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play4_pictureBox4))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play4_pictureBox2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play4_pictureBox3))->EndInit();
+			this->play5_pic_groupBox->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play5_pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play5_pictureBox4))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play5_pictureBox2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play5_pictureBox3))->EndInit();
+			this->play6_pic_groupBox->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play6_pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play6_pictureBox4))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play6_pictureBox2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play6_pictureBox3))->EndInit();
+			this->play7_pic_groupBox->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play7_pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play7_pictureBox4))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play7_pictureBox2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play7_pictureBox3))->EndInit();
+			this->play8_pic_groupBox->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play8_pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play8_pictureBox4))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play8_pictureBox2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play8_pictureBox3))->EndInit();
+			this->play3_score_groupBox->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play3_score_picBox4))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play3_score_picBox3))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play3_score_picBox2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play3_score_picBox1))->EndInit();
+			this->play4_score_groupBox->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play4_score_picBox4))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play4_score_picBox3))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play4_score_picBox2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play4_score_picBox1))->EndInit();
+			this->play5_score_groupBox->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play5_score_picBox4))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play5_score_picBox3))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play5_score_picBox2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play5_score_picBox1))->EndInit();
+			this->play6_score_groupBox->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play6_score_picBox4))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play6_score_picBox3))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play6_score_picBox2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play6_score_picBox1))->EndInit();
+			this->play7_score_groupBox->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play7_score_picBox4))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play7_score_picBox3))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play7_score_picBox2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play7_score_picBox1))->EndInit();
+			this->play8_score_groupBox->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play8_score_picBox4))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play8_score_picBox3))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play8_score_picBox2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->play8_score_picBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -2745,6 +2791,7 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 		}
 	}
 
+	/*
 	private: System::Void play2_guess1_button_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 
@@ -4150,7 +4197,7 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			enter_play_button->Enabled = true;
 		}
 	}
-
+	*/
 
 
 	private: System::Void Clock_Tick(System::Object^ sender, System::EventArgs^ e)
@@ -4380,42 +4427,267 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 	{
 		srand(time(0));
 
-		if (objSettings->getDifficulty() == 1)
+		//calificacion negra
+		if (play1_guess1_button->BackgroundImage == rand_comb1_button->BackgroundImage)
 		{
-			if (actual_play == 8)
-			{
-				enter_play_button->Enabled = false;
+			objSettings->setRandomNUM();
+			num_rand1 = objSettings->getRandomNUM();
 
-				//codigo para terminar el juego
-				lose_groupBox->Visible = true;
-				lose_groupBox->Enabled = true;
+			if (num_rand1 == 1)
+			{
+				play1_score_btn1->BackgroundImage = black_button->BackgroundImage;
+				//play1_score_btn1->BackgroundImageLayout = Stretch;
+			}
+			else if (num_rand1 == 2)
+			{
+				play1_score_btn2->BackgroundImage = black_button->BackgroundImage;
+			}
+			else if (num_rand1 == 3)
+			{
+				play1_score_btn3->BackgroundImage = black_button->BackgroundImage;
+			}
+			else if (num_rand1 == 4)
+			{
+				play1_score_btn4->BackgroundImage = black_button->BackgroundImage;
+			}
+
+		}
+
+		if (play1_guess2_button->BackgroundImage == rand_comb2_button->BackgroundImage)
+		{
+			objSettings->setRandomNUM();
+			num_rand2 = objSettings->getRandomNUM();
+
+			while (num_rand2 == num_rand1)
+			{
+				objSettings->setRandomNUM();
+				num_rand2 = objSettings->getRandomNUM();
+			}
+
+			if (num_rand2 == 1)
+			{
+				play1_score_btn1->BackgroundImage = black_button->BackgroundImage;
+				//play1_score_btn1->BackgroundImageLayout = Stretch;
+			}
+			else if (num_rand2 == 2)
+			{
+				play1_score_btn2->BackgroundImage = black_button->BackgroundImage;
+			}
+			else if (num_rand2 == 3)
+			{
+				play1_score_btn3->BackgroundImage = black_button->BackgroundImage;
+			}
+			else if (num_rand2 == 4)
+			{
+				play1_score_btn4->BackgroundImage = black_button->BackgroundImage;
 			}
 		}
-		else if (objSettings->getDifficulty() == 2)
-		{
-			if (actual_play == 7)
-			{
-				enter_play_button->Enabled = false;
 
-				//codigo para terminar el juego
-				lose_groupBox->Visible = true;
-				lose_groupBox->Enabled = true;
+		if (play1_guess3_button->BackgroundImage == rand_comb3_button->BackgroundImage)
+		{
+			objSettings->setRandomNUM();
+			num_rand3 = objSettings->getRandomNUM();
+
+			while ((num_rand3 == num_rand1) || (num_rand3 == num_rand2))
+			{
+				objSettings->setRandomNUM();
+				num_rand3 = objSettings->getRandomNUM();
+			}
+
+			if (num_rand3 == 1)
+			{
+				play1_score_btn1->BackgroundImage = black_button->BackgroundImage;
+				//play1_score_btn1->BackgroundImageLayout = Stretch;
+			}
+			else if (num_rand3 == 2)
+			{
+				play1_score_btn2->BackgroundImage = black_button->BackgroundImage;
+			}
+			else if (num_rand3 == 3)
+			{
+				play1_score_btn3->BackgroundImage = black_button->BackgroundImage;
+			}
+			else if (num_rand3 == 4)
+			{
+				play1_score_btn4->BackgroundImage = black_button->BackgroundImage;
 			}
 		}
-		else if (objSettings->getDifficulty() == 3)
-		{
-			if (actual_play == 6)
-			{
-				enter_play_button->Enabled = false;
 
-				//codigo para terminar el juego
-				lose_groupBox->Visible = true;
-				lose_groupBox->Enabled = true;
+		if (play1_guess4_button->BackgroundImage == rand_comb4_button->BackgroundImage)
+		{
+			objSettings->setRandomNUM();
+			num_rand4 = objSettings->getRandomNUM();
+
+
+			while ((num_rand4 == num_rand1) || (num_rand4 == num_rand2) || (num_rand4 == num3))
+			{
+				objSettings->setRandomNUM();
+				num_rand4 = objSettings->getRandomNUM();
+			}
+
+			if (num_rand4 == 1)
+			{
+				play1_score_btn1->BackgroundImage = black_button->BackgroundImage;
+				//play1_score_btn1->BackgroundImageLayout = Stretch;
+			}
+			else if (num_rand4 == 2)
+			{
+				play1_score_btn2->BackgroundImage = black_button->BackgroundImage;
+			}
+			else if (num_rand4 == 3)
+			{
+				play1_score_btn3->BackgroundImage = black_button->BackgroundImage;
+			}
+			else if (num_rand4 == 4)
+			{
+				play1_score_btn4->BackgroundImage = black_button->BackgroundImage;
 			}
 		}
+
+		//calificacion blanca
+		if (objSettings->getElementRep() == true)
+		{
+
+		}
+		else if (objSettings->getElementRep() == false)
+		{
+			if ((play1_guess1_button->BackgroundImage == rand_comb2_button->BackgroundImage) || (play1_guess1_button->BackgroundImage == rand_comb3_button->BackgroundImage) || (play1_guess1_button->BackgroundImage == rand_comb4_button->BackgroundImage))
+			{
+				if ((play1_score_btn1->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn1->BackgroundImage != white_button->BackgroundImage))
+				{
+					play1_score_btn1->BackgroundImage = white_button->BackgroundImage;
+				}
+				else if ((play1_score_btn2->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn2->BackgroundImage != white_button->BackgroundImage))
+				{
+					play1_score_btn2->BackgroundImage = white_button->BackgroundImage;
+				}
+				else if ((play1_score_btn3->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn3->BackgroundImage != white_button->BackgroundImage))
+				{
+					play1_score_btn3->BackgroundImage = white_button->BackgroundImage;
+				}
+				else if ((play1_score_btn4->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn4->BackgroundImage != white_button->BackgroundImage))
+				{
+					play1_score_btn4->BackgroundImage = white_button->BackgroundImage;
+				}
+			}
+			if ((play1_guess2_button->BackgroundImage == rand_comb1_button->BackgroundImage) || (play1_guess2_button->BackgroundImage == rand_comb3_button->BackgroundImage) || (play1_guess2_button->BackgroundImage == rand_comb4_button->BackgroundImage))
+			{
+				if ((play1_score_btn1->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn1->BackgroundImage != white_button->BackgroundImage))
+				{
+					play1_score_btn1->BackgroundImage = white_button->BackgroundImage;
+				}
+				else if ((play1_score_btn2->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn2->BackgroundImage != white_button->BackgroundImage))
+				{
+					play1_score_btn2->BackgroundImage = white_button->BackgroundImage;
+				}
+				else if ((play1_score_btn3->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn3->BackgroundImage != white_button->BackgroundImage))
+				{
+					play1_score_btn3->BackgroundImage = white_button->BackgroundImage;
+				}
+				else if ((play1_score_btn4->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn4->BackgroundImage != white_button->BackgroundImage))
+				{
+					play1_score_btn4->BackgroundImage = white_button->BackgroundImage;
+				}
+			}
+			if ((play1_guess3_button->BackgroundImage == rand_comb1_button->BackgroundImage) || (play1_guess3_button->BackgroundImage == rand_comb2_button->BackgroundImage) || (play1_guess3_button->BackgroundImage == rand_comb4_button->BackgroundImage))
+			{
+				if ((play1_score_btn1->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn1->BackgroundImage != white_button->BackgroundImage))
+				{
+					play1_score_btn1->BackgroundImage = white_button->BackgroundImage;
+				}
+				else if ((play1_score_btn2->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn2->BackgroundImage != white_button->BackgroundImage))
+				{
+					play1_score_btn2->BackgroundImage = white_button->BackgroundImage;
+				}
+				else if ((play1_score_btn3->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn3->BackgroundImage != white_button->BackgroundImage))
+				{
+					play1_score_btn3->BackgroundImage = white_button->BackgroundImage;
+				}
+				else if ((play1_score_btn4->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn4->BackgroundImage != white_button->BackgroundImage))
+				{
+					play1_score_btn4->BackgroundImage = white_button->BackgroundImage;
+				}
+			}
+			if ((play1_guess4_button->BackgroundImage == rand_comb1_button->BackgroundImage) || (play1_guess4_button->BackgroundImage == rand_comb2_button->BackgroundImage) || (play1_guess4_button->BackgroundImage == rand_comb3_button->BackgroundImage))
+			{
+				if ((play1_score_btn1->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn1->BackgroundImage != white_button->BackgroundImage))
+				{
+					play1_score_btn1->BackgroundImage = white_button->BackgroundImage;
+				}
+				else if ((play1_score_btn2->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn2->BackgroundImage != white_button->BackgroundImage))
+				{
+					play1_score_btn2->BackgroundImage = white_button->BackgroundImage;
+				}
+				else if ((play1_score_btn3->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn3->BackgroundImage != white_button->BackgroundImage))
+				{
+					play1_score_btn3->BackgroundImage = white_button->BackgroundImage;
+				}
+				else if ((play1_score_btn4->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn4->BackgroundImage != white_button->BackgroundImage))
+				{
+					play1_score_btn4->BackgroundImage = white_button->BackgroundImage;
+				}
+			}
+		}
+
+		//ganar juego / perder juego
+		if ((play1_score_btn1->BackgroundImage == black_button->BackgroundImage) && (play1_score_btn2->BackgroundImage == black_button->BackgroundImage) && (play1_score_btn3->BackgroundImage == black_button->BackgroundImage) && (play1_score_btn4->BackgroundImage == black_button->BackgroundImage))
+		{
+			win_groupBox->Visible = true;
+			win_groupBox->Enabled = true;
+
+			rand_comb_groupBox->Visible = true;
+			win = true;
+		}
+		
+		else
+		{
+			if ((objSettings->getDifficulty() == 1) && (win == false))
+			{
+				if (actual_play == 8)
+				{
+					enter_play_button->Enabled = false;
+
+					//codigo para terminar el juego
+					lose_groupBox->Visible = true;
+					lose_groupBox->Enabled = true;
+
+					rand_comb_groupBox->Visible = true;
+				}
+			}
+			else if ((objSettings->getDifficulty() == 2) && (win == false))
+			{
+				if (actual_play == 7)
+				{
+					enter_play_button->Enabled = false;
+
+					//codigo para terminar el juego
+					lose_groupBox->Visible = true;
+					lose_groupBox->Enabled = true;
+
+					rand_comb_groupBox->Visible = true;
+				}
+			}
+			else if ((objSettings->getDifficulty() == 3) && (win == false))
+			{
+				if (actual_play == 6)
+				{
+					enter_play_button->Enabled = false;
+
+					//codigo para terminar el juego
+					lose_groupBox->Visible = true;
+					lose_groupBox->Enabled = true;
+
+					rand_comb_groupBox->Visible = true;
+				}
+			}
+		}
+
+
+		//jugadas
 
 		if (actual_play == 1)
 		{
+			/*
 			play1_groupBox->Enabled = false;
 			play2_groupBox->Enabled = true;
 
@@ -4425,224 +4697,51 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			play2_guess2_button->Enabled = true;
 			play2_guess3_button->Enabled = true;
 			play2_guess4_button->Enabled = true;
+			*/
 
 
-			//codigo para calificar jugada 1
-			
-			//calificacion negra
-			if (play1_guess1_button->BackgroundImage == rand_comb1_button->BackgroundImage)
-			{
-				objSettings->setRandomNUM();
-				num_rand1 = objSettings->getRandomNUM();
 
-				if (num_rand1 == 1)
-				{
-					play1_score_btn1->BackgroundImage = black_button->BackgroundImage;
-					//play1_score_btn1->BackgroundImageLayout = Stretch;
-				}
-				else if (num_rand1 == 2)
-				{
-					play1_score_btn2->BackgroundImage = black_button->BackgroundImage;
-				}
-				else if (num_rand1 == 3)
-				{
-					play1_score_btn3->BackgroundImage = black_button->BackgroundImage;
-				}
-				else if (num_rand1 == 4)
-				{
-					play1_score_btn4->BackgroundImage = black_button->BackgroundImage;
-				}
-				
-			}
-			
-			if (play1_guess2_button->BackgroundImage == rand_comb2_button->BackgroundImage)
-			{
-				objSettings->setRandomNUM();
-				num_rand2 = objSettings->getRandomNUM();
-				
-				while (num_rand2 == num_rand1)
-				{
-					objSettings->setRandomNUM();
-					num_rand2 = objSettings->getRandomNUM();
-				}
+			//picture boxes
+			play1_pictureBox1->BackgroundImage = play1_guess1_button->BackgroundImage;
+			play1_pictureBox2->BackgroundImage = play1_guess2_button->BackgroundImage;
+			play1_pictureBox3->BackgroundImage = play1_guess3_button->BackgroundImage;
+			play1_pictureBox4->BackgroundImage = play1_guess4_button->BackgroundImage;
 
-				if (num_rand2 == 1)
-				{
-					play1_score_btn1->BackgroundImage = black_button->BackgroundImage;
-					//play1_score_btn1->BackgroundImageLayout = Stretch;
-				}
-				else if (num_rand2 == 2)
-				{
-					play1_score_btn2->BackgroundImage = black_button->BackgroundImage;
-				}
-				else if (num_rand2 == 3)
-				{
-					play1_score_btn3->BackgroundImage = black_button->BackgroundImage;
-				}
-				else if (num_rand2 == 4)
-				{
-					play1_score_btn4->BackgroundImage = black_button->BackgroundImage;
-				}
-			}
+			play1_score_picBox1->BackgroundImage = play1_score_btn1->BackgroundImage;
+			play1_score_picBox2->BackgroundImage = play1_score_btn2->BackgroundImage;
+			play1_score_picBox3->BackgroundImage = play1_score_btn3->BackgroundImage;
+			play1_score_picBox4->BackgroundImage = play1_score_btn4->BackgroundImage;
 
-			if (play1_guess3_button->BackgroundImage == rand_comb3_button->BackgroundImage)
-			{
-				objSettings->setRandomNUM();
-				num_rand3 = objSettings->getRandomNUM();
+			//guess button back to blank
+			play1_guess1_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess1_button->BackColor = blank_button->BackColor;
+			play1_guess2_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess2_button->BackColor = blank_button->BackColor;
+			play1_guess3_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess3_button->BackColor = blank_button->BackColor;
+			play1_guess4_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess4_button->BackColor = blank_button->BackColor;
 
-				while ((num_rand3 == num_rand1) || (num_rand3 == num_rand2))
-				{
-					objSettings->setRandomNUM();
-					num_rand3 = objSettings->getRandomNUM();
-				}
+			//score button back to blank
+			play1_score_btn1->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn1->BackColor = blank_score_button->BackColor;
+			play1_score_btn2->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn2->BackColor = blank_score_button->BackColor;
+			play1_score_btn3->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn3->BackColor = blank_score_button->BackColor;
+			play1_score_btn4->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn4->BackColor = blank_score_button->BackColor;
 
-				if (num_rand3 == 1)
-				{
-					play1_score_btn1->BackgroundImage = black_button->BackgroundImage;
-					//play1_score_btn1->BackgroundImageLayout = Stretch;
-				}
-				else if (num_rand3 == 2)
-				{
-					play1_score_btn2->BackgroundImage = black_button->BackgroundImage;
-				}
-				else if (num_rand3 == 3)
-				{
-					play1_score_btn3->BackgroundImage = black_button->BackgroundImage;
-				}
-				else if (num_rand3 == 4)
-				{
-					play1_score_btn4->BackgroundImage = black_button->BackgroundImage;
-				}
-			}
 
-			if (play1_guess4_button->BackgroundImage == rand_comb4_button->BackgroundImage)
-			{
-				objSettings->setRandomNUM();
-				num_rand4 = objSettings->getRandomNUM();
-
-				
-				while ((num_rand4 == num_rand1) || (num_rand4 == num_rand2) || (num_rand4 == num3))
-				{
-					objSettings->setRandomNUM();
-					num_rand4 = objSettings->getRandomNUM();
-				}
-
-				if (num_rand4 == 1)
-				{
-					play1_score_btn1->BackgroundImage = black_button->BackgroundImage;
-					//play1_score_btn1->BackgroundImageLayout = Stretch;
-				}
-				else if (num_rand4 == 2)
-				{
-					play1_score_btn2->BackgroundImage = black_button->BackgroundImage;
-				}
-				else if (num_rand4 == 3)
-				{
-					play1_score_btn3->BackgroundImage = black_button->BackgroundImage;
-				}
-				else if (num_rand4 == 4)
-				{
-					play1_score_btn4->BackgroundImage = black_button->BackgroundImage;
-				}
-			}
-
-			//calificacion blanca
-			if (objSettings->getElementRep() == true)
-			{
-
-			}
-			else if (objSettings->getElementRep() == false)
-			{
-				if ((play1_guess1_button->BackgroundImage == rand_comb2_button->BackgroundImage) || (play1_guess1_button->BackgroundImage == rand_comb3_button->BackgroundImage) || (play1_guess1_button->BackgroundImage == rand_comb4_button->BackgroundImage))
-				{
-					if ((play1_score_btn1->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn1->BackgroundImage != white_button->BackgroundImage))
-					{
-						play1_score_btn1->BackgroundImage = white_button->BackgroundImage;
-					}
-					else if ((play1_score_btn2->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn2->BackgroundImage != white_button->BackgroundImage))
-					{
-						play1_score_btn2->BackgroundImage = white_button->BackgroundImage;
-					}
-					else if ((play1_score_btn3->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn3->BackgroundImage != white_button->BackgroundImage))
-					{
-						play1_score_btn3->BackgroundImage = white_button->BackgroundImage;
-					}
-					else if ((play1_score_btn4->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn4->BackgroundImage != white_button->BackgroundImage))
-					{
-						play1_score_btn4->BackgroundImage = white_button->BackgroundImage;
-					}
-				}
-				if ((play1_guess2_button->BackgroundImage == rand_comb1_button->BackgroundImage) || (play1_guess2_button->BackgroundImage == rand_comb3_button->BackgroundImage) || (play1_guess2_button->BackgroundImage == rand_comb4_button->BackgroundImage))
-				{
-					if ((play1_score_btn1->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn1->BackgroundImage != white_button->BackgroundImage))
-					{
-						play1_score_btn1->BackgroundImage = white_button->BackgroundImage;
-					}
-					else if ((play1_score_btn2->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn2->BackgroundImage != white_button->BackgroundImage))
-					{
-						play1_score_btn2->BackgroundImage = white_button->BackgroundImage;
-					}
-					else if ((play1_score_btn3->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn3->BackgroundImage != white_button->BackgroundImage))
-					{
-						play1_score_btn3->BackgroundImage = white_button->BackgroundImage;
-					}
-					else if ((play1_score_btn4->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn4->BackgroundImage != white_button->BackgroundImage))
-					{
-						play1_score_btn4->BackgroundImage = white_button->BackgroundImage;
-					}
-				}
-				if ((play1_guess3_button->BackgroundImage == rand_comb1_button->BackgroundImage) || (play1_guess3_button->BackgroundImage == rand_comb2_button->BackgroundImage) || (play1_guess3_button->BackgroundImage == rand_comb4_button->BackgroundImage))
-				{
-					if ((play1_score_btn1->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn1->BackgroundImage != white_button->BackgroundImage))
-					{
-						play1_score_btn1->BackgroundImage = white_button->BackgroundImage;
-					}
-					else if ((play1_score_btn2->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn2->BackgroundImage != white_button->BackgroundImage))
-					{
-						play1_score_btn2->BackgroundImage = white_button->BackgroundImage;
-					}
-					else if ((play1_score_btn3->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn3->BackgroundImage != white_button->BackgroundImage))
-					{
-						play1_score_btn3->BackgroundImage = white_button->BackgroundImage;
-					}
-					else if ((play1_score_btn4->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn4->BackgroundImage != white_button->BackgroundImage))
-					{
-						play1_score_btn4->BackgroundImage = white_button->BackgroundImage;
-					}
-				}
-				if ((play1_guess4_button->BackgroundImage == rand_comb1_button->BackgroundImage) || (play1_guess4_button->BackgroundImage == rand_comb2_button->BackgroundImage) || (play4_guess1_button->BackgroundImage == rand_comb3_button->BackgroundImage))
-				{
-					if ((play1_score_btn1->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn1->BackgroundImage != white_button->BackgroundImage))
-					{
-						play1_score_btn1->BackgroundImage = white_button->BackgroundImage;
-					}
-					else if ((play1_score_btn2->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn2->BackgroundImage != white_button->BackgroundImage))
-					{
-						play1_score_btn2->BackgroundImage = white_button->BackgroundImage;
-					}
-					else if ((play1_score_btn3->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn3->BackgroundImage != white_button->BackgroundImage))
-					{
-						play1_score_btn3->BackgroundImage = white_button->BackgroundImage;
-					}
-					else if ((play1_score_btn4->BackgroundImage != black_button->BackgroundImage) && (play1_score_btn4->BackgroundImage != white_button->BackgroundImage))
-					{
-						play1_score_btn4->BackgroundImage = white_button->BackgroundImage;
-					}
-				}
-			}
-
-			//ganar juego
-			if ((play1_score_btn1->BackgroundImage == black_button->BackgroundImage) && (play1_score_btn2->BackgroundImage == black_button->BackgroundImage) && (play1_score_btn3->BackgroundImage == black_button->BackgroundImage) && (play1_score_btn4->BackgroundImage == black_button->BackgroundImage))
-			{
-				win_groupBox->Visible = true;
-				win_groupBox->Enabled = true;
-			}
-			
+			play2_pic_groupBox->Visible = true;
+			play2_pic_groupBox->Enabled = true;
+			play2_score_groupBox->Visible = true;
+			play2_score_groupBox->Enabled = true;
 		}
 		
-
 		else if (actual_play == 2)
 		{
+			/*
 			play2_groupBox->Enabled = false;
 			play3_groupBox->Enabled = true;
 
@@ -4653,6 +4752,7 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			play3_guess3_button->Enabled = true;
 			play3_guess4_button->Enabled = true;
 
+			
 			//codigo para calificar jugada 2
 			if (play2_guess1_button->BackgroundImage == rand_comb1_button->BackgroundImage)
 			{
@@ -4767,10 +4867,50 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 					play2_score_btn4->BackgroundImage = black_button->BackgroundImage;
 				}
 			}
+			*/
+
+			//picture boxes
+			play2_pictureBox1->BackgroundImage = play1_guess1_button->BackgroundImage;
+			play2_pictureBox2->BackgroundImage = play1_guess2_button->BackgroundImage;
+			play2_pictureBox3->BackgroundImage = play1_guess3_button->BackgroundImage;
+			play2_pictureBox4->BackgroundImage = play1_guess4_button->BackgroundImage;
+				
+			play2_score_picBox1->BackgroundImage = play1_score_btn1->BackgroundImage;
+			play2_score_picBox2->BackgroundImage = play1_score_btn2->BackgroundImage;
+			play2_score_picBox3->BackgroundImage = play1_score_btn3->BackgroundImage;
+			play2_score_picBox4->BackgroundImage = play1_score_btn4->BackgroundImage;
+				
+			//guess button back to blank
+			play1_guess1_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess1_button->BackColor = blank_button->BackColor;
+			play1_guess2_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess2_button->BackColor = blank_button->BackColor;
+			play1_guess3_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess3_button->BackColor = blank_button->BackColor;
+			play1_guess4_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess4_button->BackColor = blank_button->BackColor;
+
+			//score button back to blank
+			play1_score_btn1->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn1->BackColor = blank_score_button->BackColor;
+			play1_score_btn2->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn2->BackColor = blank_score_button->BackColor;
+			play1_score_btn3->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn3->BackColor = blank_score_button->BackColor;
+			play1_score_btn4->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn4->BackColor = blank_score_button->BackColor;
+
+
+			play3_pic_groupBox->Visible = true;
+			play3_pic_groupBox->Enabled = true;
+			play3_score_groupBox->Visible = true;
+			play3_score_groupBox->Enabled = true;
 		}
 
 		else if (actual_play == 3)
 		{
+			
+			/*
 			play3_groupBox->Enabled = false;
 			play4_groupBox->Enabled = true;
 
@@ -4897,9 +5037,48 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 					play3_score_btn4->BackgroundImage = black_button->BackgroundImage;
 				}
 			}
+			*/
+			
+			//picture boxes
+			play3_pictureBox1->BackgroundImage = play1_guess1_button->BackgroundImage;
+			play3_pictureBox2->BackgroundImage = play1_guess2_button->BackgroundImage;
+			play3_pictureBox3->BackgroundImage = play1_guess3_button->BackgroundImage;
+			play3_pictureBox4->BackgroundImage = play1_guess4_button->BackgroundImage;
+			
+			play3_score_picBox1->BackgroundImage = play1_score_btn1->BackgroundImage;
+			play3_score_picBox2->BackgroundImage = play1_score_btn2->BackgroundImage;
+			play3_score_picBox3->BackgroundImage = play1_score_btn3->BackgroundImage;
+			play3_score_picBox4->BackgroundImage = play1_score_btn4->BackgroundImage;
+			
+			//guess button back to blank
+			play1_guess1_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess1_button->BackColor = blank_button->BackColor;
+			play1_guess2_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess2_button->BackColor = blank_button->BackColor;
+			play1_guess3_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess3_button->BackColor = blank_button->BackColor;
+			play1_guess4_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess4_button->BackColor = blank_button->BackColor;
+				
+			//score button back to blank
+			play1_score_btn1->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn1->BackColor = blank_score_button->BackColor;
+			play1_score_btn2->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn2->BackColor = blank_score_button->BackColor;
+			play1_score_btn3->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn3->BackColor = blank_score_button->BackColor;
+			play1_score_btn4->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn4->BackColor = blank_score_button->BackColor;
+
+			play4_pic_groupBox->Visible = true;
+			play4_pic_groupBox->Enabled = true;
+			play4_score_groupBox->Visible = true;
+			play4_score_groupBox->Enabled = true;
 		}
+	
 		else if (actual_play == 4)
 		{
+			/*
 			play4_groupBox->Enabled = false;
 			play5_groupBox->Enabled = true;
 
@@ -4911,9 +5090,48 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			play5_guess4_button->Enabled = true;
 
 			//codigo para calificar jugada 4
+			*/
+
+			//picture boxes
+			play4_pictureBox1->BackgroundImage = play1_guess1_button->BackgroundImage;
+			play4_pictureBox2->BackgroundImage = play1_guess2_button->BackgroundImage;
+			play4_pictureBox3->BackgroundImage = play1_guess3_button->BackgroundImage;
+			play4_pictureBox4->BackgroundImage = play1_guess4_button->BackgroundImage;
+
+			play4_score_picBox1->BackgroundImage = play1_score_btn1->BackgroundImage;
+			play4_score_picBox2->BackgroundImage = play1_score_btn2->BackgroundImage;
+			play4_score_picBox3->BackgroundImage = play1_score_btn3->BackgroundImage;
+			play4_score_picBox4->BackgroundImage = play1_score_btn4->BackgroundImage;
+
+			//guess button back to blank
+			play1_guess1_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess1_button->BackColor = blank_button->BackColor;
+			play1_guess2_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess2_button->BackColor = blank_button->BackColor;
+			play1_guess3_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess3_button->BackColor = blank_button->BackColor;
+			play1_guess4_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess4_button->BackColor = blank_button->BackColor;
+
+			//score button back to blank
+			play1_score_btn1->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn1->BackColor = blank_score_button->BackColor;
+			play1_score_btn2->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn2->BackColor = blank_score_button->BackColor;
+			play1_score_btn3->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn3->BackColor = blank_score_button->BackColor;
+			play1_score_btn4->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn4->BackColor = blank_score_button->BackColor;
+
+			play5_pic_groupBox->Visible = true;
+			play5_pic_groupBox->Enabled = true;
+			play5_score_groupBox->Visible = true;
+			play5_score_groupBox->Enabled = true;
 		}
+		
 		else if (actual_play == 5)
 		{
+			/*
 			play5_groupBox->Enabled = false;
 			play6_groupBox->Enabled = true;
 
@@ -4925,9 +5143,48 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			play6_guess4_button->Enabled = true;
 
 			//codigo para calificar jugada 5
+			*/
+
+			//picture boxes
+			play5_pictureBox1->BackgroundImage = play1_guess1_button->BackgroundImage;
+			play5_pictureBox2->BackgroundImage = play1_guess2_button->BackgroundImage;
+			play5_pictureBox3->BackgroundImage = play1_guess3_button->BackgroundImage;
+			play5_pictureBox4->BackgroundImage = play1_guess4_button->BackgroundImage;
+
+			play5_score_picBox1->BackgroundImage = play1_score_btn1->BackgroundImage;
+			play5_score_picBox2->BackgroundImage = play1_score_btn2->BackgroundImage;
+			play5_score_picBox3->BackgroundImage = play1_score_btn3->BackgroundImage;
+			play5_score_picBox4->BackgroundImage = play1_score_btn4->BackgroundImage;
+
+			//guess button back to blank
+			play1_guess1_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess1_button->BackColor = blank_button->BackColor;
+			play1_guess2_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess2_button->BackColor = blank_button->BackColor;
+			play1_guess3_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess3_button->BackColor = blank_button->BackColor;
+			play1_guess4_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess4_button->BackColor = blank_button->BackColor;
+
+			//score button back to blank
+			play1_score_btn1->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn1->BackColor = blank_score_button->BackColor;
+			play1_score_btn2->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn2->BackColor = blank_score_button->BackColor;
+			play1_score_btn3->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn3->BackColor = blank_score_button->BackColor;
+			play1_score_btn4->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn4->BackColor = blank_score_button->BackColor;
+
+			play6_pic_groupBox->Visible = true;
+			play6_pic_groupBox->Enabled = true;
+			play6_score_groupBox->Visible = true;
+			play6_score_groupBox->Enabled = true;
 		}
+		
 		else if (actual_play == 6)
 		{
+			/*
 			play6_groupBox->Enabled = false;
 			play7_groupBox->Enabled = true;
 
@@ -4939,9 +5196,48 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			play7_guess4_button->Enabled = true;
 
 			//codigo para calificar jugada 6
+			*/
+
+			//picture boxes
+			play6_pictureBox1->BackgroundImage = play1_guess1_button->BackgroundImage;
+			play6_pictureBox2->BackgroundImage = play1_guess2_button->BackgroundImage;
+			play6_pictureBox3->BackgroundImage = play1_guess3_button->BackgroundImage;
+			play6_pictureBox4->BackgroundImage = play1_guess4_button->BackgroundImage;
+
+			play6_score_picBox1->BackgroundImage = play1_score_btn1->BackgroundImage;
+			play6_score_picBox2->BackgroundImage = play1_score_btn2->BackgroundImage;
+			play6_score_picBox3->BackgroundImage = play1_score_btn3->BackgroundImage;
+			play6_score_picBox4->BackgroundImage = play1_score_btn4->BackgroundImage;
+
+			//guess button back to blank
+			play1_guess1_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess1_button->BackColor = blank_button->BackColor;
+			play1_guess2_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess2_button->BackColor = blank_button->BackColor;
+			play1_guess3_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess3_button->BackColor = blank_button->BackColor;
+			play1_guess4_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess4_button->BackColor = blank_button->BackColor;
+
+			//score button back to blank
+			play1_score_btn1->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn1->BackColor = blank_score_button->BackColor;
+			play1_score_btn2->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn2->BackColor = blank_score_button->BackColor;
+			play1_score_btn3->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn3->BackColor = blank_score_button->BackColor;
+			play1_score_btn4->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn4->BackColor = blank_score_button->BackColor;
+
+			play7_pic_groupBox->Visible = true;
+			play7_pic_groupBox->Enabled = true;
+			play7_score_groupBox->Visible = true;
+			play7_score_groupBox->Enabled = true;
 		}
+		
 		else if (actual_play == 7)
 		{
+			/*
 			play7_groupBox->Enabled = false;
 			play8_groupBox->Enabled = true;
 
@@ -4953,13 +5249,86 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 			play8_guess4_button->Enabled = true;
 
 			//codigo para calificar jugada 7
+			*/
+
+			//picture boxes
+			play7_pictureBox1->BackgroundImage = play1_guess1_button->BackgroundImage;
+			play7_pictureBox2->BackgroundImage = play1_guess2_button->BackgroundImage;
+			play7_pictureBox3->BackgroundImage = play1_guess3_button->BackgroundImage;
+			play7_pictureBox4->BackgroundImage = play1_guess4_button->BackgroundImage;
+
+			play7_score_picBox1->BackgroundImage = play1_score_btn1->BackgroundImage;
+			play7_score_picBox2->BackgroundImage = play1_score_btn2->BackgroundImage;
+			play7_score_picBox3->BackgroundImage = play1_score_btn3->BackgroundImage;
+			play7_score_picBox4->BackgroundImage = play1_score_btn4->BackgroundImage;
+
+			//guess button back to blank
+			play1_guess1_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess1_button->BackColor = blank_button->BackColor;
+			play1_guess2_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess2_button->BackColor = blank_button->BackColor;
+			play1_guess3_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess3_button->BackColor = blank_button->BackColor;
+			play1_guess4_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess4_button->BackColor = blank_button->BackColor;
+
+			//score button back to blank
+			play1_score_btn1->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn1->BackColor = blank_score_button->BackColor;
+			play1_score_btn2->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn2->BackColor = blank_score_button->BackColor;
+			play1_score_btn3->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn3->BackColor = blank_score_button->BackColor;
+			play1_score_btn4->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn4->BackColor = blank_score_button->BackColor;
+
+			play8_pic_groupBox->Visible = true;
+			play8_pic_groupBox->Enabled = true;
+			play8_score_groupBox->Visible = true;
+			play8_score_groupBox->Enabled = true;
 		}
+		
 		else if (actual_play == 8)
 		{
+			/*
 			play8_groupBox->Enabled = false;
 
 			//codigo para calificar jugada 8
+			*/
+
+			//picture boxes
+			play8_pictureBox1->BackgroundImage = play1_guess1_button->BackgroundImage;
+			play8_pictureBox2->BackgroundImage = play1_guess2_button->BackgroundImage;
+			play8_pictureBox3->BackgroundImage = play1_guess3_button->BackgroundImage;
+			play8_pictureBox4->BackgroundImage = play1_guess4_button->BackgroundImage;
+
+			play8_score_picBox1->BackgroundImage = play1_score_btn1->BackgroundImage;
+			play8_score_picBox2->BackgroundImage = play1_score_btn2->BackgroundImage;
+			play8_score_picBox3->BackgroundImage = play1_score_btn3->BackgroundImage;
+			play8_score_picBox4->BackgroundImage = play1_score_btn4->BackgroundImage;
+
+			//guess button back to blank
+			play1_guess1_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess1_button->BackColor = blank_button->BackColor;
+			play1_guess2_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess2_button->BackColor = blank_button->BackColor;
+			play1_guess3_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess3_button->BackColor = blank_button->BackColor;
+			play1_guess4_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess4_button->BackColor = blank_button->BackColor;
+
+			//score button back to blank
+			play1_score_btn1->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn1->BackColor = blank_score_button->BackColor;
+			play1_score_btn2->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn2->BackColor = blank_score_button->BackColor;
+			play1_score_btn3->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn3->BackColor = blank_score_button->BackColor;
+			play1_score_btn4->BackgroundImage = blank_score_button->BackgroundImage;
+			play1_score_btn4->BackColor = blank_score_button->BackColor;
+
 		}
+
 
 
 		actual_play++;
@@ -5014,19 +5383,32 @@ private: System::Windows::Forms::Button^ play8_guess4_button;
 	}
 	
 
-private: System::Void label1_Click_1(System::Object^ sender, System::EventArgs^ e) {
-}
+	private: System::Void label1_Click_1(System::Object^ sender, System::EventArgs^ e) {
+	}
 
 	private: System::Void ok_win_button_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
 		//codigo para guardar el highscore del jugador
 
 		VentanaPlay::Close();
-	}
 
+		//devuleve los valores del reloj/cronometro a 0
+		seconds = 0;
+		minutes = 0;
+		hours = 0;
+	}
 	private: System::Void ok_lose_button_Click(System::Object^ sender, System::EventArgs^ e)	
 	{
 		VentanaPlay::Close();
+
+		//devuleve los valores del reloj/cronometro a 0
+		seconds = 0;
+		minutes = 0;
+		hours = 0;
 	}
-};
+
+
+
+
+	};
 }
