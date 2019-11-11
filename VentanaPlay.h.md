@@ -4401,9 +4401,11 @@ namespace MasterMindProyectoFinal {
 			}
 			if (hoursG == 0)
 			{
-				secondsG = 60;
-				minutesG = 59;
-				hoursG = 1;
+				secondsG = 00;
+				minutesG = 00;
+				hoursG = 00;
+				bool TimeKG = false;
+				objSettings->setTimekeeperGame(TimeKG);
 			}
 			secG = Convert::ToString(secondsG);
 			minG = Convert::ToString(minutesG);
