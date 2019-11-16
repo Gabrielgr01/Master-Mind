@@ -402,11 +402,23 @@ namespace MasterMindProyectoFinal {
 	{
 		clock = true;
 		objSettings->setClock(clock);
+
+		timekeeper_game = false;
+		objSettings->setTimekeeperGame(timekeeper_game);
+
+		timekeeper_play = false;
+		objSettings->setTimekeeperPlay(timekeeper_play);
 	}
 	private: System::Void Clock_Disabled_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 	{
 		clock = false;
 		objSettings->setClock(clock);
+
+		timekeeper_game = false;
+		objSettings->setTimekeeperGame(timekeeper_game);
+
+		timekeeper_play = false;
+		objSettings->setTimekeeperPlay(timekeeper_play);
 	}
 	private: System::Void Timekeeper_Play_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 	{
