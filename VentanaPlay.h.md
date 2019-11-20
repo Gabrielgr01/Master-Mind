@@ -3,6 +3,7 @@
 #pragma once
 
 #include "ConfigurationClass.h"
+#include "HowToPlay.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctime>
@@ -59,7 +60,10 @@ namespace MasterMindProyectoFinal {
 		String^ secG;
 		String^ minG;
 		String^ hourG;
-
+		
+		static String^ userNameBtt;
+		//System::Windows::Forms::Label^ Username;
+		
 		bool bool_red_button = false;
 		bool bool_blue_button = false;
 		bool bool_green_button = false;
@@ -79,8 +83,6 @@ namespace MasterMindProyectoFinal {
 		int num_rand4 = 0;
 		bool quit_game = false;
 		bool en_partida = false;
-
-		bool you_lose_ON = false;
 
 
 	private: System::Windows::Forms::Button^ rand_comb4_button;
@@ -235,6 +237,7 @@ namespace MasterMindProyectoFinal {
 	
 	private: System::Windows::Forms::PictureBox^ play8_score_picBox2;
 private: System::Windows::Forms::Timer^ you_lose_timer;
+private: System::Windows::Forms::Label^ Username_label;
 
 
 	private: System::Windows::Forms::PictureBox^ play8_score_picBox1;
@@ -277,9 +280,12 @@ private: System::Windows::Forms::Timer^ you_lose_timer;
 				Time->Visible = false;
 			}
 
+			Username_label->Text = userNameBtt;
+
 			//
 			//TODO: agregar código de constructor aquí
 			//
+
 		}
 
 	protected:
@@ -508,6 +514,7 @@ private: System::Windows::Forms::Timer^ you_lose_timer;
 			this->play8_score_picBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->play8_score_picBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->you_lose_timer = (gcnew System::Windows::Forms::Timer(this->components));
+			this->Username_label = (gcnew System::Windows::Forms::Label());
 			this->menuStrip1->SuspendLayout();
 			this->play1_groupBox->SuspendLayout();
 			this->play1_score_groupBox->SuspendLayout();
@@ -796,12 +803,14 @@ private: System::Windows::Forms::Timer^ you_lose_timer;
 			this->ayudaToolStripMenuItem->Name = L"ayudaToolStripMenuItem";
 			this->ayudaToolStripMenuItem->Size = System::Drawing::Size(44, 20);
 			this->ayudaToolStripMenuItem->Text = L"Help";
+			this->ayudaToolStripMenuItem->Click += gcnew System::EventHandler(this, &VentanaPlay::ayudaToolStripMenuItem_Click);
 			// 
 			// instruccionesToolStripMenuItem
 			// 
 			this->instruccionesToolStripMenuItem->Name = L"instruccionesToolStripMenuItem";
-			this->instruccionesToolStripMenuItem->Size = System::Drawing::Size(138, 22);
+			this->instruccionesToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->instruccionesToolStripMenuItem->Text = L"How to play";
+			this->instruccionesToolStripMenuItem->Click += gcnew System::EventHandler(this, &VentanaPlay::instruccionesToolStripMenuItem_Click);
 			// 
 			// salirToolStripMenuItem
 			// 
@@ -2036,6 +2045,17 @@ private: System::Windows::Forms::Timer^ you_lose_timer;
 			this->you_lose_timer->Interval = 1000;
 			this->you_lose_timer->Tick += gcnew System::EventHandler(this, &VentanaPlay::you_lose_timer_Tick);
 			// 
+			// Username_label
+			// 
+			this->Username_label->AutoSize = true;
+			this->Username_label->Font = (gcnew System::Drawing::Font(L"Modern No. 20", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->Username_label->Location = System::Drawing::Point(656, 40);
+			this->Username_label->Name = L"Username_label";
+			this->Username_label->Size = System::Drawing::Size(134, 25);
+			this->Username_label->TabIndex = 50;
+			this->Username_label->Text = L"(Username)";
+			// 
 			// VentanaPlay
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -2043,6 +2063,7 @@ private: System::Windows::Forms::Timer^ you_lose_timer;
 			this->BackColor = System::Drawing::Color::Sienna;
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(823, 652);
+			this->Controls->Add(this->Username_label);
 			this->Controls->Add(this->play3_pic_groupBox);
 			this->Controls->Add(this->play4_pic_groupBox);
 			this->Controls->Add(this->rand_comb_groupBox);
@@ -2293,7 +2314,26 @@ private: System::Windows::Forms::Timer^ you_lose_timer;
 		quit_game_groupBox->Visible = true;
 		quit_game_groupBox->Enabled = true;
 	}
+	
+	private: System::Void win_lose_disable()
+	{
+		red_button->Enabled = false;
+		blue_button->Enabled = false;
+		green_button->Enabled = false;
+		yellow_button->Enabled = false;
+		pink_button->Enabled = false;
+		brown_button->Enabled = false;
 
+		play1_guess1_button->Enabled = false;
+		play1_guess2_button->Enabled = false;
+		play1_guess3_button->Enabled = false;
+		play1_guess4_button->Enabled = false;
+
+		enter_play_button->Enabled = false;
+		salirToolStripMenuItem->Enabled = false;
+		archivoToolStripMenuItem->Enabled = false;
+
+	}
 
 	private: System::Void play1_guess1_button_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
@@ -4302,7 +4342,6 @@ private: System::Windows::Forms::Timer^ you_lose_timer;
 			}
 		}
 		
-		
 		else if (objSettings->getTimekeeperPlay() == true)
 				{
 					//CODIGO TIMEKEEPER POR JUGADA
@@ -4314,6 +4353,9 @@ private: System::Windows::Forms::Timer^ you_lose_timer;
 						objSettings->setTimekeeperPlay(TimeKP);
 
 						//Tiempo llega a cero
+						lose_groupBox->Visible = true;
+						lose_groupBox->Enabled = true;
+						win_lose_disable();
 					}
 					secP = Convert::ToString(secondsP);
 					minP = Convert::ToString(minutesP);
@@ -4399,6 +4441,10 @@ private: System::Windows::Forms::Timer^ you_lose_timer;
 						objSettings->setTimekeeperGame(TimeKG);
 						
 						//Finish Game / Lose
+						lose_groupBox->Visible = true;
+						lose_groupBox->Enabled = true;
+						win_lose_disable();
+
 					}
 
 
@@ -5706,6 +5752,7 @@ private: System::Windows::Forms::Timer^ you_lose_timer;
 			rand_comb_groupBox->Visible = true;
 			win = true;
 
+			win_lose_disable();
 		}
 		else
 		{
@@ -5723,6 +5770,8 @@ private: System::Windows::Forms::Timer^ you_lose_timer;
 					you_lose_timer->Enabled = true;
 
 					rand_comb_groupBox->Visible = true;
+
+					win_lose_disable();
 				}
 			}
 			else if ((objSettings->getDifficulty() == 2) && (win == false))
@@ -5739,6 +5788,8 @@ private: System::Windows::Forms::Timer^ you_lose_timer;
 					you_lose_timer->Enabled = true;
 
 					rand_comb_groupBox->Visible = true;
+
+					win_lose_disable();
 				}
 			}
 			else if ((objSettings->getDifficulty() == 3) && (win == false))
@@ -5755,6 +5806,8 @@ private: System::Windows::Forms::Timer^ you_lose_timer;
 					you_lose_timer->Enabled = true;
 
 					rand_comb_groupBox->Visible = true;
+
+					win_lose_disable();
 				}
 			}
 		
@@ -6181,6 +6234,17 @@ private: System::Windows::Forms::Timer^ you_lose_timer;
 	private: System::Void lose_groupBox_Enter(System::Object^ sender, System::EventArgs^ e) {
 	}
 	
+
+	private: System::Void ayudaToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	
+	private: System::Void instruccionesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		//How to Play
+		HowToPlay instrucciones;
+		instrucciones.ShowDialog();
+	}
+
 
 };
 }
