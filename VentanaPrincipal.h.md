@@ -26,6 +26,7 @@ namespace MasterMindProyectoFinal {
 	public ref class VentanaPrincipal : public System::Windows::Forms::Form
 	{
 
+	public: static String^ userNameBtt;
 	public:
 		
 		VentanaPrincipal(void)
@@ -125,6 +126,7 @@ namespace MasterMindProyectoFinal {
 			// 
 			// button_play
 			// 
+			this->button_play->Enabled = false;
 			this->button_play->Location = System::Drawing::Point(126, 184);
 			this->button_play->Name = L"button_play";
 			this->button_play->Size = System::Drawing::Size(92, 23);
@@ -135,11 +137,11 @@ namespace MasterMindProyectoFinal {
 			// 
 			// textBox_enter_username
 			// 
-			this->textBox_enter_username->Location = System::Drawing::Point(126, 124);
+			this->textBox_enter_username->Location = System::Drawing::Point(74, 127);
 			this->textBox_enter_username->Name = L"textBox_enter_username";
-			this->textBox_enter_username->Size = System::Drawing::Size(92, 20);
+			this->textBox_enter_username->Size = System::Drawing::Size(191, 20);
 			this->textBox_enter_username->TabIndex = 2;
-			this->textBox_enter_username->Text = L"Enter Username";
+			this->textBox_enter_username->Text = L"Enter Username: 2-30 characters";
 			this->textBox_enter_username->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			this->textBox_enter_username->TextChanged += gcnew System::EventHandler(this, &VentanaPrincipal::textBox2_TextChanged);
 			// 
@@ -233,6 +235,19 @@ namespace MasterMindProyectoFinal {
 	private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) 
 	{
 		//codigo para guardar en una variable el nombre de usuario ingresado
+
+		if ((textBox_enter_username->Text->Length > 2) == (textBox_enter_username->Text->Length < 30))
+		{
+			userNameBtt = textBox_enter_username->Text;
+			MasterMindProyectoFinal::VentanaPlay::userNameBtt = userNameBtt;
+
+			button_play->Enabled = true;
+			
+		}
+		if (textBox_enter_username->Text->Length > 30)
+			button_play->Enabled = false;
+		if (textBox_enter_username->Text->Length < 2)
+			button_play->Enabled = false;
 	}
 	/*
 	private: System::Void changeGameSettingsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
