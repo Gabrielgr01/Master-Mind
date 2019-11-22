@@ -4,11 +4,15 @@
 
 #include "ConfigurationClass.h"
 #include "HowToPlay.h"
+#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctime>
 #include <chrono>
 #include <thread>
+#include <fstream>
+#include <string>
+#include <msclr\marshal_cppstd.h>
 
 
 namespace MasterMindProyectoFinal {
@@ -19,10 +23,8 @@ namespace MasterMindProyectoFinal {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-	
 	using namespace std::this_thread;
 	using namespace std::chrono;
-
 
 	/// <summary>
 	/// Resumen de MyForm
@@ -83,6 +85,9 @@ namespace MasterMindProyectoFinal {
 		int num_rand4 = 0;
 		bool quit_game = false;
 		bool en_partida = false;
+
+		int saved_plays = 0;
+		bool loaded_game = false;
 
 
 	private: System::Windows::Forms::Button^ rand_comb4_button;
@@ -236,8 +241,8 @@ namespace MasterMindProyectoFinal {
 	private: System::Windows::Forms::PictureBox^ play8_score_picBox3;
 	
 	private: System::Windows::Forms::PictureBox^ play8_score_picBox2;
-private: System::Windows::Forms::Timer^ you_lose_timer;
-private: System::Windows::Forms::Label^ Username_label;
+	private: System::Windows::Forms::Timer^ you_lose_timer;
+	private: System::Windows::Forms::Label^ Username_label;
 
 
 	private: System::Windows::Forms::PictureBox^ play8_score_picBox1;
@@ -790,12 +795,14 @@ private: System::Windows::Forms::Label^ Username_label;
 			this->saveToolStripMenuItem->Name = L"saveToolStripMenuItem";
 			this->saveToolStripMenuItem->Size = System::Drawing::Size(134, 22);
 			this->saveToolStripMenuItem->Text = L"Save Game";
+			this->saveToolStripMenuItem->Click += gcnew System::EventHandler(this, &VentanaPlay::saveToolStripMenuItem_Click);
 			// 
 			// loadGameToolStripMenuItem
 			// 
 			this->loadGameToolStripMenuItem->Name = L"loadGameToolStripMenuItem";
 			this->loadGameToolStripMenuItem->Size = System::Drawing::Size(134, 22);
 			this->loadGameToolStripMenuItem->Text = L"Load Game";
+			this->loadGameToolStripMenuItem->Click += gcnew System::EventHandler(this, &VentanaPlay::loadGameToolStripMenuItem_Click);
 			// 
 			// ayudaToolStripMenuItem
 			// 
@@ -808,7 +815,7 @@ private: System::Windows::Forms::Label^ Username_label;
 			// instruccionesToolStripMenuItem
 			// 
 			this->instruccionesToolStripMenuItem->Name = L"instruccionesToolStripMenuItem";
-			this->instruccionesToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->instruccionesToolStripMenuItem->Size = System::Drawing::Size(138, 22);
 			this->instruccionesToolStripMenuItem->Text = L"How to play";
 			this->instruccionesToolStripMenuItem->Click += gcnew System::EventHandler(this, &VentanaPlay::instruccionesToolStripMenuItem_Click);
 			// 
@@ -1021,7 +1028,7 @@ private: System::Windows::Forms::Label^ Username_label;
 			this->quit_game_groupBox->Enabled = false;
 			this->quit_game_groupBox->Location = System::Drawing::Point(180, 117);
 			this->quit_game_groupBox->Name = L"quit_game_groupBox";
-			this->quit_game_groupBox->Size = System::Drawing::Size(411, 212);
+			this->quit_game_groupBox->Size = System::Drawing::Size(462, 271);
 			this->quit_game_groupBox->TabIndex = 35;
 			this->quit_game_groupBox->TabStop = false;
 			this->quit_game_groupBox->Text = L"Quit Game";
@@ -1042,7 +1049,7 @@ private: System::Windows::Forms::Label^ Username_label;
 			// quit_no_radioButton
 			// 
 			this->quit_no_radioButton->AutoSize = true;
-			this->quit_no_radioButton->Location = System::Drawing::Point(268, 111);
+			this->quit_no_radioButton->Location = System::Drawing::Point(338, 117);
 			this->quit_no_radioButton->Name = L"quit_no_radioButton";
 			this->quit_no_radioButton->Size = System::Drawing::Size(39, 17);
 			this->quit_no_radioButton->TabIndex = 36;
@@ -1054,7 +1061,7 @@ private: System::Windows::Forms::Label^ Username_label;
 			// ok_quit_button
 			// 
 			this->ok_quit_button->Enabled = false;
-			this->ok_quit_button->Location = System::Drawing::Point(160, 157);
+			this->ok_quit_button->Location = System::Drawing::Point(196, 189);
 			this->ok_quit_button->Name = L"ok_quit_button";
 			this->ok_quit_button->Size = System::Drawing::Size(75, 23);
 			this->ok_quit_button->TabIndex = 21;
@@ -1065,7 +1072,7 @@ private: System::Windows::Forms::Label^ Username_label;
 			// quit_label
 			// 
 			this->quit_label->AutoSize = true;
-			this->quit_label->Location = System::Drawing::Point(132, 61);
+			this->quit_label->Location = System::Drawing::Point(164, 60);
 			this->quit_label->Name = L"quit_label";
 			this->quit_label->Size = System::Drawing::Size(150, 13);
 			this->quit_label->TabIndex = 20;
@@ -2313,6 +2320,7 @@ private: System::Windows::Forms::Label^ Username_label;
 	{
 		quit_game_groupBox->Visible = true;
 		quit_game_groupBox->Enabled = true;
+		quit_game_groupBox->BringToFront();
 	}
 	
 	private: System::Void win_lose_disable()
@@ -4343,262 +4351,267 @@ private: System::Windows::Forms::Label^ Username_label;
 		}
 		
 		else if (objSettings->getTimekeeperPlay() == true)
+		{
+			//CODIGO TIMEKEEPER POR JUGADA
+			secondsP--;
+			if (secondsP == 0)
+			{
+				secondsP = 00;
+				bool TimeKP = false;
+				objSettings->setTimekeeperPlay(TimeKP);
+
+				//Tiempo llega a cero
+				lose_groupBox->Visible = true;
+				lose_groupBox->Enabled = true;
+				win_lose_disable();
+			}
+			secP = Convert::ToString(secondsP);
+			minP = Convert::ToString(minutesP);
+
+			if (hours < 10)
+			{
+				if (minutesP < 10)
 				{
-					//CODIGO TIMEKEEPER POR JUGADA
-					secondsP--;
-					if (secondsP == 0)
+					if (secondsP < 10)
 					{
-						secondsP = 00;
-						bool TimeKP = false;
-						objSettings->setTimekeeperPlay(TimeKP);
-
-						//Tiempo llega a cero
-						lose_groupBox->Visible = true;
-						lose_groupBox->Enabled = true;
-						win_lose_disable();
+						Time->Text = "00" + ":0" + minP + ":0" + secP;
 					}
-					secP = Convert::ToString(secondsP);
-					minP = Convert::ToString(minutesP);
-					if (hours < 10)
+					else if (secondsP >= 10)
 					{
-						if (minutesP < 10)
-						{
-							if (secondsP < 10)
-							{
-								Time->Text = "00" + ":0" + minP + ":0" + secP;
-
-							}
-							else if (secondsP >= 10)
-							{
-								Time->Text = "00" + ":0" + minP + ":" + secP;
-							}
-						}
-						else if (minutesP >= 10)
-						{
-							if (secondsP < 10)
-							{
-								Time->Text = "00" + ":" + minP + ":0" + secP;
-							}
-							else if (secondsP >= 10)
-							{
-								Time->Text = "00" + ":" + minP + ":" + secP;
-							}
-						}
+						Time->Text = "00" + ":0" + minP + ":" + secP;
 					}
-					else if (hours >= 10)
-					{
-						if (minutesP < 10)
-						{
-							if (secondsP < 10)
-							{
-								Time->Text = "00" + ":0" + minP + ":0" + secP;
-							}
-							else if (secondsP >= 10)
-							{
-								Time->Text = "00" + ":0" + minP + ":" + secP;
-							}
-						}
-						else if (minutesP >= 10)
-						{
-							if (secondsP < 10)
-							{
-								Time->Text = "00" + ":" + minP + ":0" + secP;
-							}
-							else if (seconds >= 10)
-							{
-								Time->Text = "00" + ":" + minP + ":" + secP;
-							}
-						}
-					}
-
 				}
+				else if (minutesP >= 10)
+				{
+					if (secondsP < 10)
+					{
+						Time->Text = "00" + ":" + minP + ":0" + secP;
+					}
+					else if (secondsP >= 10)
+					{
+						Time->Text = "00" + ":" + minP + ":" + secP;
+					}
+				}
+			}
+			else if (hours >= 10)
+			{
+				if (minutesP < 10)
+				{
+					if (secondsP < 10)
+					{
+						Time->Text = "00" + ":0" + minP + ":0" + secP;
+					}
+					else if (secondsP >= 10)
+					{
+						Time->Text = "00" + ":0" + minP + ":" + secP;
+					}
+				}
+				else if (minutesP >= 10)
+				{
+					if (secondsP < 10)
+					{
+						Time->Text = "00" + ":" + minP + ":0" + secP;
+					}
+					else if (seconds >= 10)
+					{
+						Time->Text = "00" + ":" + minP + ":" + secP;
+					}
+				}
+			}
+
+		}
 
 		else if (objSettings->getTimekeeperGame() == true)
+		{
+			//CODIGO TIMEKEEPER POR JUEGO
+			secondsG--;
+			if (secondsG == 0)
+			{
+				secondsG = 60;
+				minutesG--;
+			}
+			if (minutesG == 0)
+			{
+				minutesG = 60;
+				hoursG--;
+			}
+			if (hoursG == 0)
+			{
+				hoursG = 00;
+			}
+			if ((hoursG == 0) && (minutesG == 0) && (secondsG == 0))
+			{
+				secondsG = 00;
+				minutesG = 00;
+				hoursG = 00;
+
+				bool TimeKG = false;
+				objSettings->setTimekeeperGame(TimeKG);
+				
+				//Finish Game / Lose
+				lose_groupBox->Visible = true;
+				lose_groupBox->Enabled = true;
+				win_lose_disable();
+
+			}
+
+
+			secG = Convert::ToString(secondsG);
+			minG = Convert::ToString(minutesG);
+			hourG = Convert::ToString(hoursG);
+
+			if (hoursG < 10)
+			{
+				if (minutesG < 10)
 				{
-					//CODIGO TIMEKEEPER POR JUEGO
-					secondsG--;
-					if (secondsG == 0)
+					if (secondsG < 10)
 					{
-						secondsG = 60;
-						minutesG--;
+						Time->Text = "0" + hourG + ":0" + minG + ":0" + secG;
 					}
-					if (minutesG == 0)
+					else if (secondsG >= 10)
 					{
-						minutesG = 60;
-						hoursG--;
-					}
-					if (hoursG == 0)
-					{
-						hoursG = 00;
-					}
-					if ((hoursG == 0) && (minutesG == 0) && (secondsG == 0))
-					{
-						secondsG = 00;
-						minutesG = 00;
-						hoursG = 00;
-
-						bool TimeKG = false;
-						objSettings->setTimekeeperGame(TimeKG);
-						
-						//Finish Game / Lose
-						lose_groupBox->Visible = true;
-						lose_groupBox->Enabled = true;
-						win_lose_disable();
-
-					}
-
-
-					secG = Convert::ToString(secondsG);
-					minG = Convert::ToString(minutesG);
-					hourG = Convert::ToString(hoursG);
-
-					if (hoursG < 10)
-					{
-						if (minutesG < 10)
-						{
-							if (secondsG < 10)
-							{
-								Time->Text = "0" + hourG + ":0" + minG + ":0" + secG;
-							}
-							else if (secondsG >= 10)
-							{
-								Time->Text = "0" + hourG + ":0" + minG + ":" + secG;
-							}
-						}
-						else if (minutesG >= 10)
-						{
-							if (secondsG < 10)
-							{
-								Time->Text = "0" + hourG + ":" + minG + ":0" + secG;
-							}
-							else if (secondsG >= 10)
-							{
-								Time->Text = "0" + hourG + ":" + minG + ":" + secG;
-							}
-						}
-					}
-					else if (hoursG >= 10)
-					{
-						if (minutesG < 10)
-						{
-							if (secondsG < 10)
-							{
-								Time->Text = hourG + ":0" + minG + ":0" + secG;
-							}
-							else if (secondsG >= 10)
-							{
-								Time->Text = hourG + ":0" + minG + ":" + secG;
-							}
-						}
-						else if (minutesG >= 10)
-						{
-							if (secondsG < 10)
-							{
-								Time->Text = hourG + ":" + minG + ":0" + secG;
-							}
-							else if (secondsG >= 10)
-							{
-								Time->Text = hourG + ":" + minG + ":" + secG;
-							}
-						}
+						Time->Text = "0" + hourG + ":0" + minG + ":" + secG;
 					}
 				}
+				else if (minutesG >= 10)
+				{
+					if (secondsG < 10)
+					{
+						Time->Text = "0" + hourG + ":" + minG + ":0" + secG;
+					}
+					else if (secondsG >= 10)
+					{
+						Time->Text = "0" + hourG + ":" + minG + ":" + secG;
+					}
+				}
+			}
+			else if (hoursG >= 10)
+			{
+				if (minutesG < 10)
+				{
+					if (secondsG < 10)
+					{
+						Time->Text = hourG + ":0" + minG + ":0" + secG;
+					}
+					else if (secondsG >= 10)
+					{
+						Time->Text = hourG + ":0" + minG + ":" + secG;
+					}
+				}
+				else if (minutesG >= 10)
+				{
+					if (secondsG < 10)
+					{
+						Time->Text = hourG + ":" + minG + ":0" + secG;
+					}
+					else if (secondsG >= 10)
+					{
+						Time->Text = hourG + ":" + minG + ":" + secG;
+					}
+				}
+			}
+		}
 		
 	}
 
 	private: System::Void Vent_Play_Start_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		//combination
-		//1 = red
-		//2 = blue
-		//3 = green
-		//4 = yellow
-		//5 = pink
-		//6 = brown
 
-		if (objSettings->getElementRep() == true)
+		if (loaded_game == false)
 		{
-			objSettings->setRandomNum1();
-			objSettings->setRandomNum2();
-			objSettings->setRandomNum3();
-			objSettings->setRandomNum4();
-		}
-		else if (objSettings->getElementRep() == false)
-		{
-			objSettings->setRandomNum1();
 
-			objSettings->setRandomNum2();
-			while (objSettings->getRandomNum2() == objSettings->getRandomNum1())
+			//combination
+			//1 = red
+			//2 = blue
+			//3 = green
+			//4 = yellow
+			//5 = pink
+			//6 = brown
+
+			if (objSettings->getElementRep() == true)
 			{
+				objSettings->setRandomNum1();
 				objSettings->setRandomNum2();
-			}
-
-			objSettings->setRandomNum3();
-			while ((objSettings->getRandomNum3() == objSettings->getRandomNum1()) || (objSettings->getRandomNum3() == objSettings->getRandomNum2()))
-			{
 				objSettings->setRandomNum3();
-			}
-
-			objSettings->setRandomNum4();
-			while ((objSettings->getRandomNum4() == objSettings->getRandomNum1()) || (objSettings->getRandomNum4() == objSettings->getRandomNum2()) || (objSettings->getRandomNum4() == objSettings->getRandomNum3()))
-			{
 				objSettings->setRandomNum4();
 			}
+			else if (objSettings->getElementRep() == false)
+			{
+				objSettings->setRandomNum1();
+
+				objSettings->setRandomNum2();
+				while (objSettings->getRandomNum2() == objSettings->getRandomNum1())
+				{
+					objSettings->setRandomNum2();
+				}
+
+				objSettings->setRandomNum3();
+				while ((objSettings->getRandomNum3() == objSettings->getRandomNum1()) || (objSettings->getRandomNum3() == objSettings->getRandomNum2()))
+				{
+					objSettings->setRandomNum3();
+				}
+
+				objSettings->setRandomNum4();
+				while ((objSettings->getRandomNum4() == objSettings->getRandomNum1()) || (objSettings->getRandomNum4() == objSettings->getRandomNum2()) || (objSettings->getRandomNum4() == objSettings->getRandomNum3()))
+				{
+					objSettings->setRandomNum4();
+				}
+			}
+
+
+
+			if (objSettings->getRandomNum1() == 1)
+				rand_comb1_button->BackgroundImage = red_button->BackgroundImage;
+			if (objSettings->getRandomNum1() == 2)
+				rand_comb1_button->BackgroundImage = blue_button->BackgroundImage;
+			if (objSettings->getRandomNum1() == 3)
+				rand_comb1_button->BackgroundImage = green_button->BackgroundImage;
+			if (objSettings->getRandomNum1() == 4)
+				rand_comb1_button->BackgroundImage = yellow_button->BackgroundImage;
+			if (objSettings->getRandomNum1() == 5)
+				rand_comb1_button->BackgroundImage = pink_button->BackgroundImage;
+			if (objSettings->getRandomNum1() == 6)
+				rand_comb1_button->BackgroundImage = brown_button->BackgroundImage;
+
+			if (objSettings->getRandomNum2() == 1)
+				rand_comb2_button->BackgroundImage = red_button->BackgroundImage;
+			if (objSettings->getRandomNum2() == 2)
+				rand_comb2_button->BackgroundImage = blue_button->BackgroundImage;
+			if (objSettings->getRandomNum2() == 3)
+				rand_comb2_button->BackgroundImage = green_button->BackgroundImage;
+			if (objSettings->getRandomNum2() == 4)
+				rand_comb2_button->BackgroundImage = yellow_button->BackgroundImage;
+			if (objSettings->getRandomNum2() == 5)
+				rand_comb2_button->BackgroundImage = pink_button->BackgroundImage;
+			if (objSettings->getRandomNum2() == 6)
+				rand_comb2_button->BackgroundImage = brown_button->BackgroundImage;
+
+			if (objSettings->getRandomNum3() == 1)
+				rand_comb3_button->BackgroundImage = red_button->BackgroundImage;
+			if (objSettings->getRandomNum3() == 2)
+				rand_comb3_button->BackgroundImage = blue_button->BackgroundImage;
+			if (objSettings->getRandomNum3() == 3)
+				rand_comb3_button->BackgroundImage = green_button->BackgroundImage;
+			if (objSettings->getRandomNum3() == 4)
+				rand_comb3_button->BackgroundImage = yellow_button->BackgroundImage;
+			if (objSettings->getRandomNum3() == 5)
+				rand_comb3_button->BackgroundImage = pink_button->BackgroundImage;
+			if (objSettings->getRandomNum3() == 6)
+				rand_comb3_button->BackgroundImage = brown_button->BackgroundImage;
+
+			if (objSettings->getRandomNum4() == 1)
+				rand_comb4_button->BackgroundImage = red_button->BackgroundImage;
+			if (objSettings->getRandomNum4() == 2)
+				rand_comb4_button->BackgroundImage = blue_button->BackgroundImage;
+			if (objSettings->getRandomNum4() == 3)
+				rand_comb4_button->BackgroundImage = green_button->BackgroundImage;
+			if (objSettings->getRandomNum4() == 4)
+				rand_comb4_button->BackgroundImage = yellow_button->BackgroundImage;
+			if (objSettings->getRandomNum4() == 5)
+				rand_comb4_button->BackgroundImage = pink_button->BackgroundImage;
+			if (objSettings->getRandomNum4() == 6)
+				rand_comb4_button->BackgroundImage = brown_button->BackgroundImage;
 		}
-
-
-
-		if (objSettings->getRandomNum1() == 1)
-			rand_comb1_button->BackgroundImage = red_button->BackgroundImage;
-		if (objSettings->getRandomNum1() == 2)
-			rand_comb1_button->BackgroundImage = blue_button->BackgroundImage;
-		if (objSettings->getRandomNum1() == 3)
-			rand_comb1_button->BackgroundImage = green_button->BackgroundImage;
-		if (objSettings->getRandomNum1() == 4)
-			rand_comb1_button->BackgroundImage = yellow_button->BackgroundImage;
-		if (objSettings->getRandomNum1() == 5)
-			rand_comb1_button->BackgroundImage = pink_button->BackgroundImage;
-		if (objSettings->getRandomNum1() == 6)
-			rand_comb1_button->BackgroundImage = brown_button->BackgroundImage;
-
-		if (objSettings->getRandomNum2() == 1)
-			rand_comb2_button->BackgroundImage = red_button->BackgroundImage;
-		if (objSettings->getRandomNum2() == 2)
-			rand_comb2_button->BackgroundImage = blue_button->BackgroundImage;
-		if (objSettings->getRandomNum2() == 3)
-			rand_comb2_button->BackgroundImage = green_button->BackgroundImage;
-		if (objSettings->getRandomNum2() == 4)
-			rand_comb2_button->BackgroundImage = yellow_button->BackgroundImage;
-		if (objSettings->getRandomNum2() == 5)
-			rand_comb2_button->BackgroundImage = pink_button->BackgroundImage;
-		if (objSettings->getRandomNum2() == 6)
-			rand_comb2_button->BackgroundImage = brown_button->BackgroundImage;
-
-		if (objSettings->getRandomNum3() == 1)
-			rand_comb3_button->BackgroundImage = red_button->BackgroundImage;
-		if (objSettings->getRandomNum3() == 2)
-			rand_comb3_button->BackgroundImage = blue_button->BackgroundImage;
-		if (objSettings->getRandomNum3() == 3)
-			rand_comb3_button->BackgroundImage = green_button->BackgroundImage;
-		if (objSettings->getRandomNum3() == 4)
-			rand_comb3_button->BackgroundImage = yellow_button->BackgroundImage;
-		if (objSettings->getRandomNum3() == 5)
-			rand_comb3_button->BackgroundImage = pink_button->BackgroundImage;
-		if (objSettings->getRandomNum3() == 6)
-			rand_comb3_button->BackgroundImage = brown_button->BackgroundImage;
-
-		if (objSettings->getRandomNum4() == 1)
-			rand_comb4_button->BackgroundImage = red_button->BackgroundImage;
-		if (objSettings->getRandomNum4() == 2)
-			rand_comb4_button->BackgroundImage = blue_button->BackgroundImage;
-		if (objSettings->getRandomNum4() == 3)
-			rand_comb4_button->BackgroundImage = green_button->BackgroundImage;
-		if (objSettings->getRandomNum4() == 4)
-			rand_comb4_button->BackgroundImage = yellow_button->BackgroundImage;
-		if (objSettings->getRandomNum4() == 5)
-			rand_comb4_button->BackgroundImage = pink_button->BackgroundImage;
-		if (objSettings->getRandomNum4() == 6)
-			rand_comb4_button->BackgroundImage = brown_button->BackgroundImage;
 
 		//Enables the colors buttons
 		VentanaPlay::red_button->Enabled = true;
@@ -4635,9 +4648,8 @@ private: System::Windows::Forms::Label^ Username_label;
 		Vent_Play_Start->Enabled = false;
 		salirToolStripMenuItem->Enabled = true;
 
-		actual_play = 1;
+		//actual_play = 1;
 	}
-
 
 
 	private: System::Void asign_white()
@@ -6122,6 +6134,8 @@ private: System::Windows::Forms::Label^ Username_label;
 		actual_play++;
 	
 		enter_play_button->Enabled = false;
+
+		saved_plays++;
 	}
 
 
@@ -6182,6 +6196,21 @@ private: System::Windows::Forms::Label^ Username_label;
 
 	private: System::Void ok_win_button_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
+		using namespace std;
+
+		//guardar info en archivo
+		/*
+		if (!archivo.is_open())
+		{
+			archivo.open("Records.txt", ios::out);
+		}
+		archivo << "Nombre" << endl;
+		archivo << "Tiempo" << endl;
+		archivo << "Combinación" << endl;
+		
+		archivo.close();
+		*/
+
 		//codigo para guardar el highscore del jugador
 
 		VentanaPlay::Close();
@@ -6245,6 +6274,781 @@ private: System::Windows::Forms::Label^ Username_label;
 		instrucciones.ShowDialog();
 	}
 
+	private: System::Void save_game()
+	{
+		using namespace std;
+		using std::string;
+		
+		int play_count = 1;
+
+		ofstream saved_game_file;
+
+		//codigo para crear el archivo o sobreescribirlo
+		saved_game_file.open("SavedGameData.txt", ios::out); // opens file
+		saved_game_file.close(); // closes file
+
+		saved_game_file.open("SavedGameData.txt", ios::app); // opens file, in mode append
+
+		if (saved_game_file.fail())
+		{
+			//error
+			//exit(1);
+		}
+
+		//save username
+		saved_game_file << "Username ";
+		string username = msclr::interop::marshal_as<std::string>(Username_label->Text);
+		saved_game_file << username << endl;
+
+		//save difficulty
+		saved_game_file << "Difficulty: ";
+		if (objSettings->getDifficulty() == 1)
+			saved_game_file << "Easy" << endl;
+		else if (objSettings->getDifficulty() == 2)
+			saved_game_file << "Medium" << endl;
+		else if (objSettings->getDifficulty() == 3)
+			saved_game_file << "Hard" << endl;
+
+		//save random comb
+		saved_game_file << "Random_Combination: ";
+
+		auto actual_randCombBtn_backImg = rand_comb1_button->BackgroundImage;
+
+		int count_comb = 0;
+		while (count_comb < 4)
+		{
+			if (count_comb == 1)
+				actual_randCombBtn_backImg = rand_comb2_button->BackgroundImage;
+			else if (count_comb == 2)
+				actual_randCombBtn_backImg = rand_comb3_button->BackgroundImage;
+			else if (count_comb == 3)
+				actual_randCombBtn_backImg = rand_comb4_button->BackgroundImage;
+
+
+			if (actual_randCombBtn_backImg == red_button->BackgroundImage)
+				saved_game_file << "red ";
+			else if (actual_randCombBtn_backImg == blue_button->BackgroundImage)
+				saved_game_file << "blue ";
+			else if (actual_randCombBtn_backImg == green_button->BackgroundImage)
+				saved_game_file << "green ";
+			else if (actual_randCombBtn_backImg == yellow_button->BackgroundImage)
+				saved_game_file << "yellow ";
+			else if (actual_randCombBtn_backImg == pink_button->BackgroundImage)
+				saved_game_file << "pink ";
+			else if (actual_randCombBtn_backImg == brown_button->BackgroundImage)
+				saved_game_file << "brown ";
+
+			count_comb++;
+		}
+		saved_game_file << endl;
+
+		//save element rep
+		saved_game_file << "Element_Repetition: ";
+
+		if (objSettings->getElementRep() == true)
+			saved_game_file << "Enabled";
+		else if (objSettings->getElementRep() == false)
+			saved_game_file << "Disabled";
+		saved_game_file << endl;
+
+		//save saved_plays
+		saved_game_file << "saved_plays_counter: ";
+		saved_game_file << saved_plays << endl;
+
+		// saves combinations per play
+		auto play_picBox1_backImg = play1_pictureBox1->BackgroundImage;
+		auto play_picBox2_backImg = play1_pictureBox2->BackgroundImage;
+		auto play_picBox3_backImg = play1_pictureBox3->BackgroundImage;
+		auto play_picBox4_backImg = play1_pictureBox4->BackgroundImage;
+
+		while (play_count <= saved_plays)
+		{
+			saved_game_file << "Combination: ";
+
+			if (play_count == 1)
+			{
+				/*
+				auto play_picBox1_backImg = play1_pictureBox1->BackgroundImage;
+				auto play_picBox2_backImg = play1_pictureBox2->BackgroundImage;
+				auto play_picBox3_backImg = play1_pictureBox3->BackgroundImage;
+				auto play_picBox4_backImg = play1_pictureBox4->BackgroundImage;
+				*/			
+			}
+			if (play_count == 2)
+			{
+				play_picBox1_backImg = play2_pictureBox1->BackgroundImage;
+				play_picBox2_backImg = play2_pictureBox2->BackgroundImage;
+				play_picBox3_backImg = play2_pictureBox3->BackgroundImage;
+				play_picBox4_backImg = play2_pictureBox4->BackgroundImage;
+			}
+			if (play_count == 3)
+			{
+				play_picBox1_backImg = play3_pictureBox1->BackgroundImage;
+				play_picBox2_backImg = play3_pictureBox2->BackgroundImage;
+				play_picBox3_backImg = play3_pictureBox3->BackgroundImage;
+				play_picBox4_backImg = play3_pictureBox4->BackgroundImage;
+			}
+			if (play_count == 4)
+			{
+				play_picBox1_backImg = play4_pictureBox1->BackgroundImage;
+				play_picBox2_backImg = play4_pictureBox2->BackgroundImage;
+				play_picBox3_backImg = play4_pictureBox3->BackgroundImage;
+				play_picBox4_backImg = play4_pictureBox4->BackgroundImage;
+			}
+			if (play_count == 5)
+			{
+				play_picBox1_backImg = play5_pictureBox1->BackgroundImage;
+				play_picBox2_backImg = play5_pictureBox2->BackgroundImage;
+				play_picBox3_backImg = play5_pictureBox3->BackgroundImage;
+				play_picBox4_backImg = play5_pictureBox4->BackgroundImage;
+			}
+			if (play_count == 6)
+			{
+				play_picBox1_backImg = play6_pictureBox1->BackgroundImage;
+				play_picBox2_backImg = play6_pictureBox2->BackgroundImage;
+				play_picBox3_backImg = play6_pictureBox3->BackgroundImage;
+				play_picBox4_backImg = play6_pictureBox4->BackgroundImage;
+			}
+			if (play_count == 7)
+			{
+				play_picBox1_backImg = play7_pictureBox1->BackgroundImage;
+				play_picBox2_backImg = play7_pictureBox2->BackgroundImage;
+				play_picBox3_backImg = play7_pictureBox3->BackgroundImage;
+				play_picBox4_backImg = play7_pictureBox4->BackgroundImage;
+			}
+			if (play_count == 7)
+			{
+				play_picBox1_backImg = play8_pictureBox1->BackgroundImage;
+				play_picBox2_backImg = play8_pictureBox2->BackgroundImage;
+				play_picBox3_backImg = play8_pictureBox3->BackgroundImage;
+				play_picBox4_backImg = play8_pictureBox4->BackgroundImage;
+			}
+
+			if (play_picBox1_backImg == red_button->BackgroundImage)
+				saved_game_file << "red ";
+			else if (play_picBox1_backImg == blue_button->BackgroundImage)
+				saved_game_file << "blue ";
+			else if (play_picBox1_backImg == green_button->BackgroundImage)
+				saved_game_file << "green ";
+			else if (play_picBox1_backImg == yellow_button->BackgroundImage)
+				saved_game_file << "yellow ";
+			else if (play_picBox1_backImg == pink_button->BackgroundImage)
+				saved_game_file << "pink ";
+			else if (play_picBox1_backImg == brown_button->BackgroundImage)
+				saved_game_file << "brown ";
+
+			if (play_picBox2_backImg == red_button->BackgroundImage)
+				saved_game_file << "red ";
+			else if (play_picBox2_backImg == blue_button->BackgroundImage)
+				saved_game_file << "blue ";
+			else if (play_picBox2_backImg == green_button->BackgroundImage)
+				saved_game_file << "green ";
+			else if (play_picBox2_backImg == yellow_button->BackgroundImage)
+				saved_game_file << "yellow ";
+			else if (play_picBox2_backImg == pink_button->BackgroundImage)
+				saved_game_file << "pink ";
+			else if (play_picBox2_backImg == brown_button->BackgroundImage)
+				saved_game_file << "brown ";
+
+			if (play_picBox3_backImg == red_button->BackgroundImage)
+				saved_game_file << "red ";
+			else if (play_picBox3_backImg == blue_button->BackgroundImage)
+				saved_game_file << "blue ";
+			else if (play_picBox3_backImg == green_button->BackgroundImage)
+				saved_game_file << "green ";
+			else if (play_picBox3_backImg == yellow_button->BackgroundImage)
+				saved_game_file << "yellow ";
+			else if (play_picBox3_backImg == pink_button->BackgroundImage)
+				saved_game_file << "pink ";
+			else if (play_picBox3_backImg == brown_button->BackgroundImage)
+				saved_game_file << "brown ";
+
+			if (play_picBox4_backImg == red_button->BackgroundImage)
+				saved_game_file << "red ";
+			else if (play_picBox4_backImg == blue_button->BackgroundImage)
+				saved_game_file << "blue ";
+			else if (play_picBox4_backImg == green_button->BackgroundImage)
+				saved_game_file << "green ";
+			else if (play_picBox4_backImg == yellow_button->BackgroundImage)
+				saved_game_file << "yellow ";
+			else if (play_picBox4_backImg == pink_button->BackgroundImage)
+				saved_game_file << "pink ";
+			else if (play_picBox4_backImg == brown_button->BackgroundImage)
+				saved_game_file << "brown ";
+
+			saved_game_file << endl;
+
+			play_count++;
+		}
+
+		//save clock
+		saved_game_file << "Clock: ";
+		if (objSettings->getClock() == true)
+			saved_game_file << "Clock_Enabled ";
+		else if ((objSettings->getClock() == false) && (objSettings->getTimekeeperGame() == false) && (objSettings->getTimekeeperPlay() == false))
+			saved_game_file << "Clock_Disabled ";
+		else if (objSettings->getTimekeeperGame() == true)
+			saved_game_file << "Timekeeper_Game ";
+		else if (objSettings->getTimekeeperPlay() == true)
+			saved_game_file << "Timekeeper_Play ";
+		saved_game_file << endl;
+
+		//save time
+		saved_game_file << "Time: ";
+
+		if (objSettings->getClock() == true)
+		{
+			saved_game_file << hours << " ";
+			saved_game_file << minutes << " ";
+			saved_game_file << seconds << " ";
+			saved_game_file << endl;
+		}
+		else if (objSettings->getTimekeeperGame() == true)
+		{
+			saved_game_file << hoursG << " ";
+			saved_game_file << minutesG << " ";
+			saved_game_file << secondsG << " ";
+			saved_game_file << endl;
+		}
+		else if (objSettings->getTimekeeperPlay() == true)
+		{
+			saved_game_file << "0 ";
+			saved_game_file << minutesP << " ";
+			saved_game_file << secondsP << " ";
+			saved_game_file << endl;
+		}
+
+		saved_game_file.close(); // closes file 
+	}
+
+	private: System::Void load_game()
+	{
+		using namespace std;
+
+		string titulo;
+		string dato;
+
+		ifstream saved_game_file;
+		saved_game_file.open("SavedGameData.txt", ios::in); //opens file, in read-only mode
+		
+		// codigo para cargar el juego
+		int line_counter = 0;
+		while (line_counter < 8)
+		{
+			if (line_counter == 1)
+			{
+				saved_game_file >> titulo;
+				saved_game_file >> dato;
+				
+				string username = dato;
+				Username_label->Text = gcnew String(username.c_str());
+			}
+			if (line_counter == 2)
+			{
+				saved_game_file >> titulo;
+				saved_game_file >> dato;
+
+
+				if (dato == "Easy")
+				{
+					objSettings->setDifficulty(1);
+					difficulty_label->Text = "Difficulty: Easy";
+				}
+				else if (dato == "Medium")
+				{
+					objSettings->setDifficulty(2);
+					difficulty_label->Text = "Difficulty: Medium";
+				}
+				else if (dato == "Hard")
+				{
+					objSettings->setDifficulty(3);
+					difficulty_label->Text = "Difficulty: Hard";
+				}
+			}
+			if (line_counter == 3)
+			{
+				saved_game_file >> titulo;
+	
+				auto color = blank_button->BackgroundImage;
+				int local_count = 0;
+				while (local_count < 4)
+				{
+					saved_game_file >> dato;
+
+					if (dato == "red")
+						color = red_button->BackgroundImage;
+					else if (dato == "blue")
+						color = blue_button->BackgroundImage;
+					else if (dato == "green")
+						color = green_button->BackgroundImage;
+					else if (dato == "yellow")
+						color = yellow_button->BackgroundImage;
+					else if (dato == "pink")
+						color = pink_button->BackgroundImage;
+					else if (dato == "brown")
+						color = brown_button->BackgroundImage;
+
+					if (local_count == 0)
+						rand_comb1_button->BackgroundImage = color;
+					if (local_count == 1)
+						rand_comb2_button->BackgroundImage = color;
+					if (local_count == 2)
+						rand_comb3_button->BackgroundImage = color;
+					if (local_count == 3)
+						rand_comb4_button->BackgroundImage = color;
+
+					local_count++;
+				}
+			}
+			if (line_counter == 4)
+			{
+				saved_game_file >> titulo;
+				saved_game_file >> dato;
+
+				if (dato == "Disabled")
+				{
+					objSettings->setElementRep(false);
+					repetition_label->Text = "Element Repetition: OFF";
+				}
+				else if (dato == "Enabled")
+				{
+					objSettings->setElementRep(true);
+					repetition_label->Text = "Element Repetition: ON";
+				}
+			}
+			if (line_counter == 5)
+			{
+				saved_game_file >> titulo;
+				saved_game_file >> dato;
+
+				saved_plays = stoi(dato);
+
+				actual_play = saved_plays + 1; // actual play controls in which play the enter_play_button will write the score
+			}
+			if (line_counter == 6)
+			{
+				auto color = blank_button->BackgroundImage;
+				int play_counter = 1;
+				while (play_counter <= saved_plays)
+				{
+					saved_game_file >> titulo;
+
+					int color_counter = 1;
+					while (color_counter <= 4)
+					{
+						saved_game_file >> dato;
+
+						if (dato == "red")
+							color = red_button->BackgroundImage;
+						else if (dato == "blue")
+							color = blue_button->BackgroundImage;
+						else if (dato == "green")
+							color = green_button->BackgroundImage;
+						else if (dato == "yellow")
+							color = yellow_button->BackgroundImage;
+						else if (dato == "pink")
+							color = pink_button->BackgroundImage;
+						else if (dato == "brown")
+							color = brown_button->BackgroundImage;
+
+						if (play_counter == 1)
+						{
+							if (color_counter == 1)
+								play1_pictureBox1->BackgroundImage = color;
+							else if (color_counter == 2)
+								play1_pictureBox2->BackgroundImage = color;
+							else if (color_counter == 3)
+								play1_pictureBox3->BackgroundImage = color;
+							else if (color_counter == 4)
+								play1_pictureBox4->BackgroundImage = color;
+							
+							//Enables next pic_groupBox
+							play2_pic_groupBox->Visible = true;
+							play2_pic_groupBox->Enabled = true;
+							//Enables next score_groupBox
+							play2_score_groupBox->Visible = true;
+							play2_score_groupBox->Enabled = true;
+						}
+						else if (play_counter == 2)
+						{
+							if (color_counter == 1)
+								play2_pictureBox1->BackgroundImage = color;
+							else if (color_counter == 2)
+								play2_pictureBox2->BackgroundImage = color;
+							else if (color_counter == 3)
+								play2_pictureBox3->BackgroundImage = color;
+							else if (color_counter == 4)
+								play2_pictureBox4->BackgroundImage = color;
+
+							//Enables next pic_groupBox
+							play3_pic_groupBox->Visible = true;
+							play3_pic_groupBox->Enabled = true;
+							//Enables next score_groupBox
+							play3_score_groupBox->Visible = true;
+							play3_score_groupBox->Enabled = true;
+						}
+						else if (play_counter == 3)
+						{
+							if (color_counter == 1)
+								play3_pictureBox1->BackgroundImage = color;
+							else if (color_counter == 2)
+								play3_pictureBox2->BackgroundImage = color;
+							else if (color_counter == 3)
+								play3_pictureBox3->BackgroundImage = color;
+							else if (color_counter == 4)
+								play3_pictureBox4->BackgroundImage = color;
+
+							//Enables next pic_groupBox
+							play4_pic_groupBox->Visible = true;
+							play4_pic_groupBox->Enabled = true;
+							//Enables next score_groupBox
+							play4_score_groupBox->Visible = true;
+							play4_score_groupBox->Enabled = true;
+						}
+						else if (play_counter == 4)
+						{
+							if (color_counter == 1)
+								play4_pictureBox1->BackgroundImage = color;
+							else if (color_counter == 2)
+								play4_pictureBox2->BackgroundImage = color;
+							else if (color_counter == 3)
+								play4_pictureBox3->BackgroundImage = color;
+							else if (color_counter == 4)
+								play4_pictureBox4->BackgroundImage = color;
+
+							//Enables next pic_groupBox
+							play5_pic_groupBox->Visible = true;
+							play5_pic_groupBox->Enabled = true;
+							//Enables next score_groupBox
+							play5_score_groupBox->Visible = true;
+							play5_score_groupBox->Enabled = true;
+						}
+						else if (play_counter == 5)
+						{
+							if (color_counter == 1)
+								play5_pictureBox1->BackgroundImage = color;
+							else if (color_counter == 2)
+								play5_pictureBox2->BackgroundImage = color;
+							else if (color_counter == 3)
+								play5_pictureBox3->BackgroundImage = color;
+							else if (color_counter == 4)
+								play5_pictureBox4->BackgroundImage = color;
+
+							//Enables next pic_groupBox
+							play6_pic_groupBox->Visible = true;
+							play6_pic_groupBox->Enabled = true;
+							//Enables next score_groupBox
+							play6_score_groupBox->Visible = true;
+							play6_score_groupBox->Enabled = true;
+						}
+						else if (play_counter == 6)
+						{
+							if (color_counter == 1)
+								play6_pictureBox1->BackgroundImage = color;
+							else if (color_counter == 2)
+								play6_pictureBox2->BackgroundImage = color;
+							else if (color_counter == 3)
+								play6_pictureBox3->BackgroundImage = color;
+							else if (color_counter == 4)
+								play6_pictureBox4->BackgroundImage = color;
+
+							//Enables next pic_groupBox
+							play7_pic_groupBox->Visible = true;
+							play7_pic_groupBox->Enabled = true;
+							//Enables next score_groupBox
+							play7_score_groupBox->Visible = true;
+							play7_score_groupBox->Enabled = true;
+						}
+						else if (play_counter == 7)
+						{
+							if (color_counter == 1)
+								play7_pictureBox1->BackgroundImage = color;
+							else if (color_counter == 2)
+								play7_pictureBox2->BackgroundImage = color;
+							else if (color_counter == 3)
+								play7_pictureBox3->BackgroundImage = color;
+							else if (color_counter == 4)
+								play7_pictureBox4->BackgroundImage = color;
+
+							//Enables next pic_groupBox
+							play8_pic_groupBox->Visible = true;
+							play8_pic_groupBox->Enabled = true;
+							//Enables next score_groupBox
+							play8_score_groupBox->Visible = true;
+							play8_score_groupBox->Enabled = true;
+						}
+						else if (play_counter == 8)
+						{
+							if (color_counter == 1)
+								play8_pictureBox1->BackgroundImage = color;
+							else if (color_counter == 2)
+								play8_pictureBox2->BackgroundImage = color;
+							else if (color_counter == 3)
+								play8_pictureBox3->BackgroundImage = color;
+							else if (color_counter == 4)
+								play8_pictureBox4->BackgroundImage = color;
+						}
+
+						color_counter++;
+					}
+
+					play_counter++;
+				}
+			}
+			if (line_counter == 7)
+			{
+				saved_game_file >> titulo;
+				saved_game_file >> dato;
+
+				if (dato == "Clock_Enabled")
+				{
+					objSettings->setClock(true);
+					objSettings->setTimekeeperGame(false);
+					objSettings->setTimekeeperPlay(false);
+
+					saved_game_file >> titulo;
+					saved_game_file >> dato;
+					hours = stoi(dato);
+					saved_game_file >> dato;
+					minutes = stoi(dato);
+					saved_game_file >> dato;
+					seconds = stoi(dato);
+
+					//Gives the clock its initial value
+					if (hours < 10)
+					{
+						if (minutes < 10)
+						{
+							if (seconds < 10)
+							{
+								Time->Text = "0" + hours + ":0" + minutes + ":0" + seconds;
+							}
+							else if (seconds >= 10)
+							{
+								Time->Text = "0" + hours + ":0" + minutes + ":" + seconds;
+							}
+						}
+						else if (minutes >= 10)
+						{
+							if (seconds < 10)
+							{
+								Time->Text = "0" + hours + ":" + minutes + ":0" + seconds;
+							}
+							else if (seconds >= 10)
+							{
+								Time->Text = "0" + hours + ":" + minutes + ":" + seconds;
+							}
+						}
+					}
+					else if (hours >= 10)
+					{
+						if (minutes < 10)
+						{
+							if (seconds < 10)
+							{
+								Time->Text = hours + ":0" + minutes + ":0" + seconds;
+							}
+							else if (seconds >= 10)
+							{
+								Time->Text = hours + ":0" + minutes + ":" + seconds;
+							}
+						}
+						else if (minutes >= 10)
+						{
+							if (seconds < 10)
+							{
+								Time->Text = hours + ":" + minutes + ":0" + seconds;
+							}
+							else if (seconds >= 10)
+							{
+								Time->Text = hours + ":" + minutes + ":" + seconds;
+							}
+						}
+					}
+				}
+				else if (dato == "Clock_Disabled") 
+				{
+					objSettings->setClock(false);
+					objSettings->setTimekeeperGame(false);
+					objSettings->setTimekeeperPlay(false);
+					saved_game_file >> titulo;
+
+					Time->Visible = false;
+				}
+				else if (dato == "Timekeeper_Play")
+				{
+					objSettings->setTimekeeperPlay(true);
+					objSettings->setTimekeeperGame(false);
+					objSettings->setClock(false);
+
+					saved_game_file >> titulo;
+					saved_game_file >> dato; // for the hours
+					saved_game_file >> dato;
+					minutesP = stoi(dato);
+					saved_game_file >> dato;
+					secondsP = stoi(dato);
+
+					if (hours < 10)
+					{
+						if (minutesP < 10)
+						{
+							if (secondsP < 10)
+							{
+								Time->Text = "00" + ":0" + minutesP + ":0" + secondsP;
+							}
+							else if (secondsP >= 10)
+							{
+								Time->Text = "00" + ":0" + minutesP + ":" + secondsP;
+							}
+						}
+						else if (minutesP >= 10)
+						{
+							if (secondsP < 10)
+							{
+								Time->Text = "00" + ":" + minutesP + ":0" + seconds;
+							}
+							else if (secondsP >= 10)
+							{
+								Time->Text = "00" + ":" + minutesP + ":" + seconds;
+							}
+						}
+					}
+					else if (hours >= 10)
+					{
+						if (minutesP < 10)
+						{
+							if (secondsP < 10)
+							{
+								Time->Text = "00" + ":0" + minutesP + ":0" + seconds;
+							}
+							else if (secondsP >= 10)
+							{
+								Time->Text = "00" + ":0" + minutesP + ":" + seconds;
+							}
+						}
+						else if (minutesP >= 10)
+						{
+							if (secondsP < 10)
+							{
+								Time->Text = "00" + ":" + minutesP + ":0" + seconds;
+							}
+							else if (seconds >= 10)
+							{
+								Time->Text = "00" + ":" + minutesP + ":" + seconds;
+							}
+						}
+					}
+				}
+				else if (dato == "Timekeeper_Game")
+				{
+					objSettings->setTimekeeperGame(true);
+					objSettings->setTimekeeperPlay(false);
+					objSettings->setClock(false);
+
+					saved_game_file >> titulo;
+					saved_game_file >> dato;
+					hoursG = stoi(dato);
+					saved_game_file >> dato;
+					minutesG = stoi(dato);
+					saved_game_file >> dato;
+					secondsG = stoi(dato);
+					
+					if (hoursG < 10)
+					{
+						if (minutesG < 10)
+						{
+							if (secondsG < 10)
+							{
+								Time->Text = "0" + hoursG + ":0" + minutesG + ":0" + secondsG;
+							}
+							else if (secondsG >= 10)
+							{
+								Time->Text = "0" + hoursG + ":0" + minutesG + ":" + secondsG;
+							}
+						}
+						else if (minutesG >= 10)
+						{
+							if (secondsG < 10)
+							{
+								Time->Text = "0" + hoursG + ":" + minutesG + ":0" + secondsG;
+							}
+							else if (secondsG >= 10)
+							{
+								Time->Text = "0" + hoursG + ":" + minutesG + ":" + secondsG;
+							}
+						}
+					}
+					else if (hoursG >= 10)
+					{
+						if (minutesG < 10)
+						{
+							if (secondsG < 10)
+							{
+								Time->Text = hoursG + ":0" + minutesG + ":0" + secondsG;
+							}
+							else if (secondsG >= 10)
+							{
+								Time->Text = hoursG + ":0" + minutesG + ":" + secondsG;
+							}
+						}
+						else if (minutesG >= 10)
+						{
+							if (secondsG < 10)
+							{
+								Time->Text = hoursG + ":" + minutesG + ":0" + secondsG;
+							}
+							else if (secondsG >= 10)
+							{
+								Time->Text = hoursG + ":" + minutesG + ":" + secondsG;
+							}
+						}
+					}
+		
+				}
+
+				line_counter++;
+			}
+
+			line_counter++;
+		}
+
+		saved_game_file.close(); // closes file
+	}
+
+	private: System::Void saveToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		
+		/*
+		nombre de usuario
+		cantidad de enter plays
+		Time
+		combinaciones
+		*/
+
+		save_game(); //calls save_game() function
+	}
+
+
+	private: System::Void loadGameToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		Clock->Enabled = false; //stops the Clock
+		load_game();
+		loaded_game = true;
+
+		play1_guess1_button->Enabled = false;
+		play1_guess2_button->Enabled = false;
+		play1_guess3_button->Enabled = false;
+		play1_guess4_button->Enabled = false;
+		red_button->Enabled = false;
+		blue_button->Enabled = false;
+		green_button->Enabled = false;
+		yellow_button->Enabled = false;
+		pink_button->Enabled = false;
+		brown_button->Enabled = false;
+
+		Vent_Play_Start->Enabled = true;
+	}
+	
 
 };
 }
