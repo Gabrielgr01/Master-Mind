@@ -1,4 +1,3 @@
-# Master-Mind
 
 #pragma once
 
@@ -9,6 +8,10 @@
 #include <ctime>
 #include <chrono>
 #include <thread>
+#include <fstream>
+#include <msclr\marshal_cppstd.h>
+#include <time.h>
+
 
 
 namespace MasterMindProyectoFinal {
@@ -19,7 +22,7 @@ namespace MasterMindProyectoFinal {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-	
+	using namespace System::Media;
 	using namespace std::this_thread;
 	using namespace std::chrono;
 
@@ -60,10 +63,10 @@ namespace MasterMindProyectoFinal {
 		String^ secG;
 		String^ minG;
 		String^ hourG;
-		
+
 		static String^ userNameBtt;
 		//System::Windows::Forms::Label^ Username;
-		
+
 		bool bool_red_button = false;
 		bool bool_blue_button = false;
 		bool bool_green_button = false;
@@ -83,6 +86,9 @@ namespace MasterMindProyectoFinal {
 		int num_rand4 = 0;
 		bool quit_game = false;
 		bool en_partida = false;
+		SoundPlayer^ backg = gcnew SoundPlayer("Jazz.wav");
+		SoundPlayer^ applause= gcnew SoundPlayer("Applause.wav");
+		SoundPlayer^ disappointment = gcnew SoundPlayer("Disappointment.wav");
 
 
 	private: System::Windows::Forms::Button^ rand_comb4_button;
@@ -183,61 +189,61 @@ namespace MasterMindProyectoFinal {
 	private: System::Windows::Forms::GroupBox^ play3_score_groupBox;
 
 	private: System::Windows::Forms::PictureBox^ play3_score_picBox4;
-	
+
 	private: System::Windows::Forms::PictureBox^ play3_score_picBox3;
-	
+
 	private: System::Windows::Forms::PictureBox^ play3_score_picBox2;
 
 	private: System::Windows::Forms::PictureBox^ play3_score_picBox1;
 	private: System::Windows::Forms::GroupBox^ play4_score_groupBox;
-	private: System::Windows::Forms::PictureBox^ play4_score_picBox4;	
-	
-	
+	private: System::Windows::Forms::PictureBox^ play4_score_picBox4;
+
+
 	private: System::Windows::Forms::PictureBox^ play4_score_picBox3;
-	
+
 	private: System::Windows::Forms::PictureBox^ play4_score_picBox2;
-	
+
 	private: System::Windows::Forms::PictureBox^ play4_score_picBox1;
-	
+
 	private: System::Windows::Forms::GroupBox^ play5_score_groupBox;
 	private: System::Windows::Forms::PictureBox^ play5_score_picBox4;
-	
-	
+
+
 	private: System::Windows::Forms::PictureBox^ play5_score_picBox3;
-	
+
 	private: System::Windows::Forms::PictureBox^ play5_score_picBox2;
-	
+
 	private: System::Windows::Forms::PictureBox^ play5_score_picBox1;
-	
+
 	private: System::Windows::Forms::GroupBox^ play6_score_groupBox;
 	private: System::Windows::Forms::PictureBox^ play6_score_picBox4;
-	
-	
+
+
 	private: System::Windows::Forms::PictureBox^ play6_score_picBox3;
-	
+
 	private: System::Windows::Forms::PictureBox^ play6_score_picBox2;
-	
+
 	private: System::Windows::Forms::PictureBox^ play6_score_picBox1;
-	
+
 	private: System::Windows::Forms::GroupBox^ play7_score_groupBox;
 	private: System::Windows::Forms::PictureBox^ play7_score_picBox4;
-	
-	
+
+
 	private: System::Windows::Forms::PictureBox^ play7_score_picBox3;
-	
+
 	private: System::Windows::Forms::PictureBox^ play7_score_picBox2;
-	
+
 	private: System::Windows::Forms::PictureBox^ play7_score_picBox1;
-	
+
 	private: System::Windows::Forms::GroupBox^ play8_score_groupBox;
 	private: System::Windows::Forms::PictureBox^ play8_score_picBox4;
-	
-	
+
+
 	private: System::Windows::Forms::PictureBox^ play8_score_picBox3;
-	
+
 	private: System::Windows::Forms::PictureBox^ play8_score_picBox2;
-private: System::Windows::Forms::Timer^ you_lose_timer;
-private: System::Windows::Forms::Label^ Username_label;
+	private: System::Windows::Forms::Timer^ you_lose_timer;
+	private: System::Windows::Forms::Label^ Username_label;
 
 
 	private: System::Windows::Forms::PictureBox^ play8_score_picBox1;
@@ -249,6 +255,7 @@ private: System::Windows::Forms::Label^ Username_label;
 		VentanaPlay(ConfigurationClass* objSettings)
 		{
 			InitializeComponent();
+			backg->PlayLooping();
 
 			this->objSettings = objSettings;
 
@@ -274,8 +281,8 @@ private: System::Windows::Forms::Label^ Username_label;
 			{
 				repetition_label->Text = "Element repetition: OFF";
 			}
-			
-			if ((objSettings->getClock() == false) && (objSettings->getTimekeeperGame() ==false) && (objSettings->getTimekeeperPlay() == false))
+
+			if ((objSettings->getClock() == false) && (objSettings->getTimekeeperGame() == false) && (objSettings->getTimekeeperPlay() == false))
 			{
 				Time->Visible = false;
 			}
@@ -310,13 +317,13 @@ private: System::Windows::Forms::Label^ Username_label;
 
 
 	private: System::Windows::Forms::Timer^ Clock;
-	/*
-	private: System::Windows::Forms::Button^ guess1_button;
-	private: System::Windows::Forms::Button^ guess2_button;
-	private: System::Windows::Forms::Button^ guess3_button;
-	private: System::Windows::Forms::Button^ guess4_button;	
-	private: System::Windows::Forms::GroupBox^ play1_groupBox;
-	*/
+		   /*
+		   private: System::Windows::Forms::Button^ guess1_button;
+		   private: System::Windows::Forms::Button^ guess2_button;
+		   private: System::Windows::Forms::Button^ guess3_button;
+		   private: System::Windows::Forms::Button^ guess4_button;
+		   private: System::Windows::Forms::GroupBox^ play1_groupBox;
+		   */
 
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 
@@ -2207,39 +2214,38 @@ private: System::Windows::Forms::Label^ Username_label;
 		}
 #pragma endregion
 
-	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e)
 	{
 		seconds = 0;
 		minutes = 0;
 		hours = 0;
-
 		secondsP = 60;
 		minutesP = 0;
 		secondsG = 60;
 		minutesG = 29;
 		hoursG = 1;
 	}
-	private: System::Void titulo_label_Click(System::Object^ sender, System::EventArgs^ e){
+	private: System::Void titulo_label_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e){
+	private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 
-	private: System::Void red_button_Click_1(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void red_button_Click_1(System::Object^ sender, System::EventArgs^ e)
 	{
 
 		//Enables the guess buttons
-		
+
 		play1_guess1_button->Enabled = true;
 		play1_guess2_button->Enabled = true;
 		play1_guess3_button->Enabled = true;
 		play1_guess4_button->Enabled = true;
-		
+
 		//code for focusing the buttons
 
 		bool_red_button = true;
 
 	}
-	private: System::Void blue_button_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void blue_button_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		//Enables the guess buttons
 		play1_guess1_button->Enabled = true;
@@ -2251,7 +2257,7 @@ private: System::Windows::Forms::Label^ Username_label;
 
 		bool_blue_button = true;
 	}
-	private: System::Void green_button_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void green_button_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		//Enables the guess buttons
 		play1_guess1_button->Enabled = true;
@@ -2263,7 +2269,7 @@ private: System::Windows::Forms::Label^ Username_label;
 
 		bool_green_button = true;
 	}
-	private: System::Void yellow_button_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void yellow_button_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		//Enables the guess buttons
 		play1_guess1_button->Enabled = true;
@@ -2275,7 +2281,7 @@ private: System::Windows::Forms::Label^ Username_label;
 
 		bool_yellow_button = true;
 	}
-	private: System::Void pink_button_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void pink_button_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		//Enables the guess buttons
 		play1_guess1_button->Enabled = true;
@@ -2287,7 +2293,7 @@ private: System::Windows::Forms::Label^ Username_label;
 
 		bool_pink_button = true;
 	}
-	private: System::Void brown_button_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void brown_button_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		//Enables the guess buttons
 		play1_guess1_button->Enabled = true;
@@ -2301,11 +2307,11 @@ private: System::Windows::Forms::Label^ Username_label;
 	}
 
 
-	private: System::Void menuStrip1_ItemClicked(System::Object^ sender, System::Windows::Forms::ToolStripItemClickedEventArgs^ e) 
+	private: System::Void menuStrip1_ItemClicked(System::Object^ sender, System::Windows::Forms::ToolStripItemClickedEventArgs^ e)
 	{
 
 	}
-	private: System::Void archivoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void archivoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 
 	}
@@ -2314,7 +2320,7 @@ private: System::Windows::Forms::Label^ Username_label;
 		quit_game_groupBox->Visible = true;
 		quit_game_groupBox->Enabled = true;
 	}
-	
+
 	private: System::Void win_lose_disable()
 	{
 		red_button->Enabled = false;
@@ -2335,7 +2341,7 @@ private: System::Windows::Forms::Label^ Username_label;
 
 	}
 
-	private: System::Void play1_guess1_button_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void play1_guess1_button_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 
 		if (bool_red_button == true)
@@ -2416,7 +2422,7 @@ private: System::Windows::Forms::Label^ Username_label;
 				}
 			}
 
-			bool_yellow_button= false;
+			bool_yellow_button = false;
 		}
 		if (bool_pink_button == true)
 		{
@@ -2466,7 +2472,7 @@ private: System::Windows::Forms::Label^ Username_label;
 			enter_play_button->Enabled = true;
 		}
 	}
-	private: System::Void play1_guess2_button_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void play1_guess2_button_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		if (bool_red_button == true)
 		{
@@ -2596,7 +2602,7 @@ private: System::Windows::Forms::Label^ Username_label;
 			enter_play_button->Enabled = true;
 		}
 	}
-	private: System::Void play1_guess3_button_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void play1_guess3_button_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		if (bool_red_button == true)
 		{
@@ -2726,7 +2732,7 @@ private: System::Windows::Forms::Label^ Username_label;
 			enter_play_button->Enabled = true;
 		}
 	}
-	private: System::Void play1_guess4_button_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void play1_guess4_button_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		if (bool_red_button == true)
 		{
@@ -2857,1413 +2863,1413 @@ private: System::Windows::Forms::Label^ Username_label;
 		}
 	}
 
-	/*
-	private: System::Void play2_guess1_button_Click(System::Object^ sender, System::EventArgs^ e)
-	{
-
-		if (bool_red_button == true)
-		{
-			play2_guess1_button->BackgroundImage = red_button->BackgroundImage;
-			play2_guess1_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
-			play2_guess1_button->BackColor = red_button->BackColor;
-
-			bool_red_button = false;
-		}
-		if (bool_blue_button == true)
-		{
-			play2_guess1_button->BackgroundImage = blue_button->BackgroundImage;
-			play2_guess1_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
-			play2_guess1_button->BackColor = blue_button->BackColor;
-
-			bool_blue_button = false;
-		}
-		if (bool_green_button == true)
-		{
-			play2_guess1_button->BackgroundImage = green_button->BackgroundImage;
-			play2_guess1_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
-			play2_guess1_button->BackColor = green_button->BackColor;
-
-			bool_green_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play2_guess1_button->BackgroundImage = yellow_button->BackgroundImage;
-			play2_guess1_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
-			play2_guess1_button->BackColor = yellow_button->BackColor;
-
-			bool_yellow_button = false;
-		}
-		if (bool_pink_button == true)
-		{
-			play2_guess1_button->BackgroundImage = pink_button->BackgroundImage;
-			play2_guess1_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
-			play2_guess1_button->BackColor = pink_button->BackColor;
-
-			bool_pink_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play2_guess1_button->BackgroundImage = brown_button->BackgroundImage;
-			play2_guess1_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
-			play2_guess1_button->BackColor = brown_button->BackColor;
-
-			bool_brown_button = false;
-		}
-
-		//Enter button 
-		enter_play_ready++;
-		if (enter_play_ready >= 4)
-		{
-			enter_play_button->Enabled = true;
-		}
-	}
-	private: System::Void play2_guess2_button_Click(System::Object^ sender, System::EventArgs^ e)
-	{
-		if (bool_red_button == true)
-		{
-			play2_guess2_button->BackgroundImage = red_button->BackgroundImage;
-			play2_guess2_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
-			play2_guess2_button->BackColor = red_button->BackColor;
-
-			bool_red_button = false;
-		}
-		if (bool_blue_button == true)
-		{
-			play2_guess2_button->BackgroundImage = blue_button->BackgroundImage;
-			play2_guess2_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
-			play2_guess2_button->BackColor = blue_button->BackColor;
-
-			bool_blue_button = false;
-		}
-		if (bool_green_button == true)
-		{
-			play2_guess2_button->BackgroundImage = green_button->BackgroundImage;
-			play2_guess2_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
-			play2_guess2_button->BackColor = green_button->BackColor;
-
-			bool_green_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play2_guess2_button->BackgroundImage = yellow_button->BackgroundImage;
-			play2_guess2_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
-			play2_guess2_button->BackColor = yellow_button->BackColor;
-
-			bool_yellow_button = false;
-		}
-		if (bool_pink_button == true)
-		{
-			play2_guess2_button->BackgroundImage = pink_button->BackgroundImage;
-			play2_guess2_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
-			play2_guess2_button->BackColor = pink_button->BackColor;
-
-			bool_pink_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play2_guess2_button->BackgroundImage = brown_button->BackgroundImage;
-			play2_guess2_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
-			play2_guess2_button->BackColor = brown_button->BackColor;
-
-			bool_brown_button = false;
-		}
-
-		//Enter button 
-		enter_play_ready++;
-		if (enter_play_ready >= 4)
-		{
-			enter_play_button->Enabled = true;
-		}
-	}
-	private: System::Void play2_guess3_button_Click(System::Object^ sender, System::EventArgs^ e)
-	{
-		if (bool_red_button == true)
-		{
-			play2_guess3_button->BackgroundImage = red_button->BackgroundImage;
-			play2_guess3_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
-			play2_guess3_button->BackColor = red_button->BackColor;
-
-			bool_red_button = false;
-		}
-		if (bool_blue_button == true)
-		{
-			play2_guess3_button->BackgroundImage = blue_button->BackgroundImage;
-			play2_guess3_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
-			play2_guess3_button->BackColor = blue_button->BackColor;
-
-			bool_blue_button = false;
-		}
-		if (bool_green_button == true)
-		{
-			play2_guess3_button->BackgroundImage = green_button->BackgroundImage;
-			play2_guess3_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
-			play2_guess3_button->BackColor = green_button->BackColor;
-
-			bool_green_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play2_guess3_button->BackgroundImage = yellow_button->BackgroundImage;
-			play2_guess3_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
-			play2_guess3_button->BackColor = yellow_button->BackColor;
-
-			bool_yellow_button = false;
-		}
-		if (bool_pink_button == true)
-		{
-			play2_guess3_button->BackgroundImage = pink_button->BackgroundImage;
-			play2_guess3_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
-			play2_guess3_button->BackColor = pink_button->BackColor;
-
-			bool_pink_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play2_guess3_button->BackgroundImage = brown_button->BackgroundImage;
-			play2_guess3_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
-			play2_guess3_button->BackColor = brown_button->BackColor;
-
-			bool_brown_button = false;
-		}
-
-		//Enter button 
-		enter_play_ready++;
-		if (enter_play_ready >= 4)
-		{
-			enter_play_button->Enabled = true;
-		}
-	}
-	private: System::Void play2_guess4_button_Click(System::Object^ sender, System::EventArgs^ e)
-	{
-		if (bool_red_button == true)
-		{
-			play2_guess4_button->BackgroundImage = red_button->BackgroundImage;
-			play2_guess4_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
-			play2_guess4_button->BackColor = red_button->BackColor;
-
-			bool_red_button = false;
-		}
-		if (bool_blue_button == true)
-		{
-			play2_guess4_button->BackgroundImage = blue_button->BackgroundImage;
-			play2_guess4_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
-			play2_guess4_button->BackColor = blue_button->BackColor;
-
-			bool_blue_button = false;
-		}
-		if (bool_green_button == true)
-		{
-			play2_guess4_button->BackgroundImage = green_button->BackgroundImage;
-			play2_guess4_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
-			play2_guess4_button->BackColor = green_button->BackColor;
-
-			bool_green_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play2_guess4_button->BackgroundImage = yellow_button->BackgroundImage;
-			play2_guess4_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
-			play2_guess4_button->BackColor = yellow_button->BackColor;
-
-			bool_yellow_button = false;
-		}
-		if (bool_pink_button == true)
-		{
-			play2_guess4_button->BackgroundImage = pink_button->BackgroundImage;
-			play2_guess4_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
-			play2_guess4_button->BackColor = pink_button->BackColor;
-
-			bool_pink_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play2_guess4_button->BackgroundImage = brown_button->BackgroundImage;
-			play2_guess4_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
-			play2_guess4_button->BackColor = brown_button->BackColor;
-
-			bool_brown_button = false;
-		}
-
-		//Enter button 
-		enter_play_ready++;
-		if (enter_play_ready >= 4)
-		{
-			enter_play_button->Enabled = true;
-		}
-	}
-	
-	private: System::Void play3_guess1_button_Click(System::Object^ sender, System::EventArgs^ e)
-	{
-
-		if (bool_red_button == true)
-		{
-			play3_guess1_button->BackgroundImage = red_button->BackgroundImage;
-			play3_guess1_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
-			play3_guess1_button->BackColor = red_button->BackColor;
-
-			bool_red_button = false;
-		}
-		if (bool_blue_button == true)
-		{
-			play3_guess1_button->BackgroundImage = blue_button->BackgroundImage;
-			play3_guess1_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
-			play3_guess1_button->BackColor = blue_button->BackColor;
-
-			bool_blue_button = false;
-		}
-		if (bool_green_button == true)
-		{
-			play3_guess1_button->BackgroundImage = green_button->BackgroundImage;
-			play3_guess1_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
-			play3_guess1_button->BackColor = green_button->BackColor;
-
-			bool_green_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play3_guess1_button->BackgroundImage = yellow_button->BackgroundImage;
-			play3_guess1_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
-			play3_guess1_button->BackColor = yellow_button->BackColor;
-
-			bool_yellow_button = false;
-		}
-		if (bool_pink_button == true)
-		{
-			play3_guess1_button->BackgroundImage = pink_button->BackgroundImage;
-			play3_guess1_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
-			play3_guess1_button->BackColor = pink_button->BackColor;
-
-			bool_pink_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play3_guess1_button->BackgroundImage = brown_button->BackgroundImage;
-			play3_guess1_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
-			play3_guess1_button->BackColor = brown_button->BackColor;
-
-			bool_brown_button = false;
-		}
-
-		//Enter button 
-		enter_play_ready++;
-		if (enter_play_ready >= 4)
-		{
-			enter_play_button->Enabled = true;
-		}
-	}
-	private: System::Void play3_guess2_button_Click(System::Object^ sender, System::EventArgs^ e)
-	{
-		if (bool_red_button == true)
-		{
-			play3_guess2_button->BackgroundImage = red_button->BackgroundImage;
-			play3_guess2_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
-			play3_guess2_button->BackColor = red_button->BackColor;
-
-			bool_red_button = false;
-		}
-		if (bool_blue_button == true)
-		{
-			play3_guess2_button->BackgroundImage = blue_button->BackgroundImage;
-			play3_guess2_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
-			play3_guess2_button->BackColor = blue_button->BackColor;
-
-			bool_blue_button = false;
-		}
-		if (bool_green_button == true)
-		{
-			play3_guess2_button->BackgroundImage = green_button->BackgroundImage;
-			play3_guess2_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
-			play3_guess2_button->BackColor = green_button->BackColor;
-
-			bool_green_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play3_guess2_button->BackgroundImage = yellow_button->BackgroundImage;
-			play3_guess2_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
-			play3_guess2_button->BackColor = yellow_button->BackColor;
-
-			bool_yellow_button = false;
-		}
-		if (bool_pink_button == true)
-		{
-			play3_guess2_button->BackgroundImage = pink_button->BackgroundImage;
-			play3_guess2_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
-			play3_guess2_button->BackColor = pink_button->BackColor;
-
-			bool_pink_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play3_guess2_button->BackgroundImage = brown_button->BackgroundImage;
-			play3_guess2_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
-			play3_guess2_button->BackColor = brown_button->BackColor;
-
-			bool_brown_button = false;
-		}
-
-		//Enter button 
-		enter_play_ready++;
-		if (enter_play_ready >= 4)
-		{
-			enter_play_button->Enabled = true;
-		}
-	}
-	private: System::Void play3_guess3_button_Click(System::Object^ sender, System::EventArgs^ e)
-	{
-		if (bool_red_button == true)
-		{
-			play3_guess3_button->BackgroundImage = red_button->BackgroundImage;
-			play3_guess3_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
-			play3_guess3_button->BackColor = red_button->BackColor;
-
-			bool_red_button = false;
-		}
-		if (bool_blue_button == true)
-		{
-			play3_guess3_button->BackgroundImage = blue_button->BackgroundImage;
-			play3_guess3_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
-			play3_guess3_button->BackColor = blue_button->BackColor;
-
-			bool_blue_button = false;
-		}
-		if (bool_green_button == true)
-		{
-			play3_guess3_button->BackgroundImage = green_button->BackgroundImage;
-			play3_guess3_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
-			play3_guess3_button->BackColor = green_button->BackColor;
-
-			bool_green_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play3_guess3_button->BackgroundImage = yellow_button->BackgroundImage;
-			play3_guess3_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
-			play3_guess3_button->BackColor = yellow_button->BackColor;
-
-			bool_yellow_button = false;
-		}
-		if (bool_pink_button == true)
-		{
-			play3_guess3_button->BackgroundImage = pink_button->BackgroundImage;
-			play3_guess3_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
-			play3_guess3_button->BackColor = pink_button->BackColor;
-
-			bool_pink_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play3_guess3_button->BackgroundImage = brown_button->BackgroundImage;
-			play3_guess3_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
-			play3_guess3_button->BackColor = brown_button->BackColor;
-
-			bool_brown_button = false;
-		}
-
-		//Enter button 
-		enter_play_ready++;
-		if (enter_play_ready >= 4)
-		{
-			enter_play_button->Enabled = true;
-		}
-	}
-	private: System::Void play3_guess4_button_Click(System::Object^ sender, System::EventArgs^ e)
-	{
-		if (bool_red_button == true)
-		{
-			play3_guess4_button->BackgroundImage = red_button->BackgroundImage;
-			play3_guess4_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
-			play3_guess4_button->BackColor = red_button->BackColor;
-
-			bool_red_button = false;
-		}
-		if (bool_blue_button == true)
-		{
-			play3_guess4_button->BackgroundImage = blue_button->BackgroundImage;
-			play3_guess4_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
-			play3_guess4_button->BackColor = blue_button->BackColor;
-
-			bool_blue_button = false;
-		}
-		if (bool_green_button == true)
-		{
-			play3_guess4_button->BackgroundImage = green_button->BackgroundImage;
-			play3_guess4_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
-			play3_guess4_button->BackColor = green_button->BackColor;
-
-			bool_green_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play3_guess4_button->BackgroundImage = yellow_button->BackgroundImage;
-			play3_guess4_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
-			play3_guess4_button->BackColor = yellow_button->BackColor;
-
-			bool_yellow_button = false;
-		}
-		if (bool_pink_button == true)
-		{
-			play3_guess4_button->BackgroundImage = pink_button->BackgroundImage;
-			play3_guess4_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
-			play3_guess4_button->BackColor = pink_button->BackColor;
-
-			bool_pink_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play3_guess4_button->BackgroundImage = brown_button->BackgroundImage;
-			play3_guess4_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
-			play3_guess4_button->BackColor = brown_button->BackColor;
-
-			bool_brown_button = false;
-		}
-
-		//Enter button 
-		enter_play_ready++;
-		if (enter_play_ready >= 4)
-		{
-			enter_play_button->Enabled = true;
-		}
-	}
-	
-
-
-	private: System::Void play4_guess1_button_Click1(System::Object^ sender, System::EventArgs^ e)
-	{
-
-		if (bool_red_button == true)
-		{
-			play1_guess1_button->BackgroundImage = red_button->BackgroundImage;
-			play1_guess1_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
-			play1_guess1_button->BackColor = red_button->BackColor;
-
-			bool_red_button = false;
-		}
-		if (bool_blue_button == true)
-		{
-			play1_guess1_button->BackgroundImage = blue_button->BackgroundImage;
-			play1_guess1_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
-			play1_guess1_button->BackColor = blue_button->BackColor;
-
-			bool_blue_button = false;
-		}
-		if (bool_green_button == true)
-		{
-			play1_guess1_button->BackgroundImage = green_button->BackgroundImage;
-			play1_guess1_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
-			play1_guess1_button->BackColor = green_button->BackColor;
-
-			bool_green_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess1_button->BackgroundImage = yellow_button->BackgroundImage;
-			play1_guess1_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
-			play1_guess1_button->BackColor = yellow_button->BackColor;
-
-			bool_yellow_button = false;
-		}
-		if (bool_pink_button == true)
-		{
-			play1_guess1_button->BackgroundImage = pink_button->BackgroundImage;
-			play1_guess1_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
-			play1_guess1_button->BackColor = pink_button->BackColor;
-
-			bool_pink_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess1_button->BackgroundImage = brown_button->BackgroundImage;
-			play1_guess1_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
-			play1_guess1_button->BackColor = brown_button->BackColor;
-
-			bool_brown_button = false;
-		}
-
-		//Enter button 
-		enter_play_ready++;
-		if (enter_play_ready >= 4)
-		{
-			enter_play_button->Enabled = true;
-		}
-	}
-	private: System::Void play4_guess2_button_Click1(System::Object^ sender, System::EventArgs^ e)
-	{
-		if (bool_red_button == true)
-		{
-			play1_guess2_button->BackgroundImage = red_button->BackgroundImage;
-			play1_guess2_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
-			play1_guess2_button->BackColor = red_button->BackColor;
-
-			bool_red_button = false;
-		}
-		if (bool_blue_button == true)
-		{
-			play1_guess2_button->BackgroundImage = blue_button->BackgroundImage;
-			play1_guess2_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
-			play1_guess2_button->BackColor = blue_button->BackColor;
-
-			bool_blue_button = false;
-		}
-		if (bool_green_button == true)
-		{
-			play1_guess2_button->BackgroundImage = green_button->BackgroundImage;
-			play1_guess2_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
-			play1_guess2_button->BackColor = green_button->BackColor;
-
-			bool_green_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess2_button->BackgroundImage = yellow_button->BackgroundImage;
-			play1_guess2_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
-			play1_guess2_button->BackColor = yellow_button->BackColor;
-
-			bool_yellow_button = false;
-		}
-		if (bool_pink_button == true)
-		{
-			play1_guess2_button->BackgroundImage = pink_button->BackgroundImage;
-			play1_guess2_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
-			play1_guess2_button->BackColor = pink_button->BackColor;
-
-			bool_pink_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess2_button->BackgroundImage = brown_button->BackgroundImage;
-			play1_guess2_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
-			play1_guess2_button->BackColor = brown_button->BackColor;
-
-			bool_brown_button = false;
-		}
-
-		//Enter button 
-		enter_play_ready++;
-		if (enter_play_ready >= 4)
-		{
-			enter_play_button->Enabled = true;
-		}
-	}
-	private: System::Void play4_guess3_button_Click1(System::Object^ sender, System::EventArgs^ e)
-	{
-		if (bool_red_button == true)
-		{
-			play1_guess3_button->BackgroundImage = red_button->BackgroundImage;
-			play1_guess3_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
-			play1_guess3_button->BackColor = red_button->BackColor;
-
-			bool_red_button = false;
-		}
-		if (bool_blue_button == true)
-		{
-			play1_guess3_button->BackgroundImage = blue_button->BackgroundImage;
-			play1_guess3_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
-			play1_guess3_button->BackColor = blue_button->BackColor;
-
-			bool_blue_button = false;
-		}
-		if (bool_green_button == true)
-		{
-			play1_guess3_button->BackgroundImage = green_button->BackgroundImage;
-			play1_guess3_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
-			play1_guess3_button->BackColor = green_button->BackColor;
-
-			bool_green_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess3_button->BackgroundImage = yellow_button->BackgroundImage;
-			play1_guess3_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
-			play1_guess3_button->BackColor = yellow_button->BackColor;
-
-			bool_yellow_button = false;
-		}
-		if (bool_pink_button == true)
-		{
-			play1_guess3_button->BackgroundImage = pink_button->BackgroundImage;
-			play1_guess3_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
-			play1_guess3_button->BackColor = pink_button->BackColor;
-
-			bool_pink_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess3_button->BackgroundImage = brown_button->BackgroundImage;
-			play1_guess3_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
-			play1_guess3_button->BackColor = brown_button->BackColor;
-
-			bool_brown_button = false;
-		}
-
-		//Enter button 
-		enter_play_ready++;
-		if (enter_play_ready >= 4)
-		{
-			enter_play_button->Enabled = true;
-		}
-	}
-	private: System::Void play4_guess4_button_Click1(System::Object^ sender, System::EventArgs^ e)
-	{
-		if (bool_red_button == true)
-		{
-			play1_guess4_button->BackgroundImage = red_button->BackgroundImage;
-			play1_guess4_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
-			play1_guess4_button->BackColor = red_button->BackColor;
-
-			bool_red_button = false;
-		}
-		if (bool_blue_button == true)
-		{
-			play1_guess4_button->BackgroundImage = blue_button->BackgroundImage;
-			play1_guess4_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
-			play1_guess4_button->BackColor = blue_button->BackColor;
-
-			bool_blue_button = false;
-		}
-		if (bool_green_button == true)
-		{
-			play1_guess4_button->BackgroundImage = green_button->BackgroundImage;
-			play1_guess4_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
-			play1_guess4_button->BackColor = green_button->BackColor;
-
-			bool_green_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess4_button->BackgroundImage = yellow_button->BackgroundImage;
-			play1_guess4_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
-			play1_guess4_button->BackColor = yellow_button->BackColor;
-
-			bool_yellow_button = false;
-		}
-		if (bool_pink_button == true)
-		{
-			play1_guess4_button->BackgroundImage = pink_button->BackgroundImage;
-			play1_guess4_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
-			play1_guess4_button->BackColor = pink_button->BackColor;
-
-			bool_pink_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess4_button->BackgroundImage = brown_button->BackgroundImage;
-			play1_guess4_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
-			play1_guess4_button->BackColor = brown_button->BackColor;
-
-			bool_brown_button = false;
-		}
-
-		//Enter button 
-		enter_play_ready++;
-		if (enter_play_ready >= 4)
-		{
-			enter_play_button->Enabled = true;
-		}
-	}
-
-	private: System::Void play5_guess1_button_Click1(System::Object^ sender, System::EventArgs^ e)
-{
-
-	if (bool_red_button == true)
-	{
-		play1_guess1_button->BackgroundImage = red_button->BackgroundImage;
-		play1_guess1_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
-		play1_guess1_button->BackColor = red_button->BackColor;
-
-		bool_red_button = false;
-	}
-	if (bool_blue_button == true)
-	{
-		play1_guess1_button->BackgroundImage = blue_button->BackgroundImage;
-		play1_guess1_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
-		play1_guess1_button->BackColor = blue_button->BackColor;
-
-		bool_blue_button = false;
-	}
-	if (bool_green_button == true)
-	{
-		play1_guess1_button->BackgroundImage = green_button->BackgroundImage;
-		play1_guess1_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
-		play1_guess1_button->BackColor = green_button->BackColor;
-
-		bool_green_button = false;
-	}
-	if (bool_yellow_button == true)
-	{
-		play1_guess1_button->BackgroundImage = yellow_button->BackgroundImage;
-		play1_guess1_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
-		play1_guess1_button->BackColor = yellow_button->BackColor;
-
-		bool_yellow_button = false;
-	}
-	if (bool_pink_button == true)
-	{
-		play1_guess1_button->BackgroundImage = pink_button->BackgroundImage;
-		play1_guess1_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
-		play1_guess1_button->BackColor = pink_button->BackColor;
-
-		bool_pink_button = false;
-	}
-	if (bool_yellow_button == true)
-	{
-		play1_guess1_button->BackgroundImage = brown_button->BackgroundImage;
-		play1_guess1_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
-		play1_guess1_button->BackColor = brown_button->BackColor;
-
-		bool_brown_button = false;
-	}
-
-	//Enter button 
-	enter_play_ready++;
-	if (enter_play_ready >= 4)
-	{
-		enter_play_button->Enabled = true;
-	}
-}
-	private: System::Void play5_guess2_button_Click1(System::Object^ sender, System::EventArgs^ e)
-	{
-		if (bool_red_button == true)
-		{
-			play1_guess2_button->BackgroundImage = red_button->BackgroundImage;
-			play1_guess2_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
-			play1_guess2_button->BackColor = red_button->BackColor;
-
-			bool_red_button = false;
-		}
-		if (bool_blue_button == true)
-		{
-			play1_guess2_button->BackgroundImage = blue_button->BackgroundImage;
-			play1_guess2_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
-			play1_guess2_button->BackColor = blue_button->BackColor;
-
-			bool_blue_button = false;
-		}
-		if (bool_green_button == true)
-		{
-			play1_guess2_button->BackgroundImage = green_button->BackgroundImage;
-			play1_guess2_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
-			play1_guess2_button->BackColor = green_button->BackColor;
-
-			bool_green_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess2_button->BackgroundImage = yellow_button->BackgroundImage;
-			play1_guess2_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
-			play1_guess2_button->BackColor = yellow_button->BackColor;
-
-			bool_yellow_button = false;
-		}
-		if (bool_pink_button == true)
-		{
-			play1_guess2_button->BackgroundImage = pink_button->BackgroundImage;
-			play1_guess2_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
-			play1_guess2_button->BackColor = pink_button->BackColor;
-
-			bool_pink_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess2_button->BackgroundImage = brown_button->BackgroundImage;
-			play1_guess2_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
-			play1_guess2_button->BackColor = brown_button->BackColor;
-
-			bool_brown_button = false;
-		}
-
-		//Enter button 
-		enter_play_ready++;
-		if (enter_play_ready >= 4)
-		{
-			enter_play_button->Enabled = true;
-		}
-	}
-	private: System::Void play5_guess3_button_Click1(System::Object^ sender, System::EventArgs^ e)
-	{
-		if (bool_red_button == true)
-		{
-			play1_guess3_button->BackgroundImage = red_button->BackgroundImage;
-			play1_guess3_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
-			play1_guess3_button->BackColor = red_button->BackColor;
-
-			bool_red_button = false;
-		}
-		if (bool_blue_button == true)
-		{
-			play1_guess3_button->BackgroundImage = blue_button->BackgroundImage;
-			play1_guess3_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
-			play1_guess3_button->BackColor = blue_button->BackColor;
-
-			bool_blue_button = false;
-		}
-		if (bool_green_button == true)
-		{
-			play1_guess3_button->BackgroundImage = green_button->BackgroundImage;
-			play1_guess3_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
-			play1_guess3_button->BackColor = green_button->BackColor;
-
-			bool_green_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess3_button->BackgroundImage = yellow_button->BackgroundImage;
-			play1_guess3_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
-			play1_guess3_button->BackColor = yellow_button->BackColor;
-
-			bool_yellow_button = false;
-		}
-		if (bool_pink_button == true)
-		{
-			play1_guess3_button->BackgroundImage = pink_button->BackgroundImage;
-			play1_guess3_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
-			play1_guess3_button->BackColor = pink_button->BackColor;
-
-			bool_pink_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess3_button->BackgroundImage = brown_button->BackgroundImage;
-			play1_guess3_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
-			play1_guess3_button->BackColor = brown_button->BackColor;
-
-			bool_brown_button = false;
-		}
-
-		//Enter button 
-		enter_play_ready++;
-		if (enter_play_ready >= 4)
-		{
-			enter_play_button->Enabled = true;
-		}
-	}
-	private: System::Void play5_guess4_button_Click1(System::Object^ sender, System::EventArgs^ e)
-	{
-		if (bool_red_button == true)
-		{
-			play1_guess4_button->BackgroundImage = red_button->BackgroundImage;
-			play1_guess4_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
-			play1_guess4_button->BackColor = red_button->BackColor;
-
-			bool_red_button = false;
-		}
-		if (bool_blue_button == true)
-		{
-			play1_guess4_button->BackgroundImage = blue_button->BackgroundImage;
-			play1_guess4_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
-			play1_guess4_button->BackColor = blue_button->BackColor;
-
-			bool_blue_button = false;
-		}
-		if (bool_green_button == true)
-		{
-			play1_guess4_button->BackgroundImage = green_button->BackgroundImage;
-			play1_guess4_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
-			play1_guess4_button->BackColor = green_button->BackColor;
-
-			bool_green_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess4_button->BackgroundImage = yellow_button->BackgroundImage;
-			play1_guess4_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
-			play1_guess4_button->BackColor = yellow_button->BackColor;
-
-			bool_yellow_button = false;
-		}
-		if (bool_pink_button == true)
-		{
-			play1_guess4_button->BackgroundImage = pink_button->BackgroundImage;
-			play1_guess4_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
-			play1_guess4_button->BackColor = pink_button->BackColor;
-
-			bool_pink_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess4_button->BackgroundImage = brown_button->BackgroundImage;
-			play1_guess4_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
-			play1_guess4_button->BackColor = brown_button->BackColor;
-
-			bool_brown_button = false;
-		}
-
-		//Enter button 
-		enter_play_ready++;
-		if (enter_play_ready >= 4)
-		{
-			enter_play_button->Enabled = true;
-		}
-	}
-
-	private: System::Void play6_guess1_button_Click1(System::Object^ sender, System::EventArgs^ e)
-	{
-
-		if (bool_red_button == true)
-		{
-			play1_guess1_button->BackgroundImage = red_button->BackgroundImage;
-			play1_guess1_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
-			play1_guess1_button->BackColor = red_button->BackColor;
-
-			bool_red_button = false;
-		}
-		if (bool_blue_button == true)
-		{
-			play1_guess1_button->BackgroundImage = blue_button->BackgroundImage;
-			play1_guess1_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
-			play1_guess1_button->BackColor = blue_button->BackColor;
-
-			bool_blue_button = false;
-		}
-		if (bool_green_button == true)
-		{
-			play1_guess1_button->BackgroundImage = green_button->BackgroundImage;
-			play1_guess1_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
-			play1_guess1_button->BackColor = green_button->BackColor;
-
-			bool_green_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess1_button->BackgroundImage = yellow_button->BackgroundImage;
-			play1_guess1_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
-			play1_guess1_button->BackColor = yellow_button->BackColor;
-
-			bool_yellow_button = false;
-		}
-		if (bool_pink_button == true)
-		{
-			play1_guess1_button->BackgroundImage = pink_button->BackgroundImage;
-			play1_guess1_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
-			play1_guess1_button->BackColor = pink_button->BackColor;
-
-			bool_pink_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess1_button->BackgroundImage = brown_button->BackgroundImage;
-			play1_guess1_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
-			play1_guess1_button->BackColor = brown_button->BackColor;
-
-			bool_brown_button = false;
-		}
-
-		//Enter button 
-		enter_play_ready++;
-		if (enter_play_ready >= 4)
-		{
-			enter_play_button->Enabled = true;
-		}
-	}
-	private: System::Void play6_guess2_button_Click1(System::Object^ sender, System::EventArgs^ e)
-	{
-		if (bool_red_button == true)
-		{
-			play1_guess2_button->BackgroundImage = red_button->BackgroundImage;
-			play1_guess2_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
-			play1_guess2_button->BackColor = red_button->BackColor;
-
-			bool_red_button = false;
-		}
-		if (bool_blue_button == true)
-		{
-			play1_guess2_button->BackgroundImage = blue_button->BackgroundImage;
-			play1_guess2_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
-			play1_guess2_button->BackColor = blue_button->BackColor;
-
-			bool_blue_button = false;
-		}
-		if (bool_green_button == true)
-		{
-			play1_guess2_button->BackgroundImage = green_button->BackgroundImage;
-			play1_guess2_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
-			play1_guess2_button->BackColor = green_button->BackColor;
-
-			bool_green_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess2_button->BackgroundImage = yellow_button->BackgroundImage;
-			play1_guess2_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
-			play1_guess2_button->BackColor = yellow_button->BackColor;
-
-			bool_yellow_button = false;
-		}
-		if (bool_pink_button == true)
-		{
-			play1_guess2_button->BackgroundImage = pink_button->BackgroundImage;
-			play1_guess2_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
-			play1_guess2_button->BackColor = pink_button->BackColor;
-
-			bool_pink_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess2_button->BackgroundImage = brown_button->BackgroundImage;
-			play1_guess2_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
-			play1_guess2_button->BackColor = brown_button->BackColor;
-
-			bool_brown_button = false;
-		}
-
-		//Enter button 
-		enter_play_ready++;
-		if (enter_play_ready >= 4)
-		{
-			enter_play_button->Enabled = true;
-		}
-	}
-	private: System::Void play6_guess3_button_Click1(System::Object^ sender, System::EventArgs^ e)
-	{
-		if (bool_red_button == true)
-		{
-			play1_guess3_button->BackgroundImage = red_button->BackgroundImage;
-			play1_guess3_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
-			play1_guess3_button->BackColor = red_button->BackColor;
-
-			bool_red_button = false;
-		}
-		if (bool_blue_button == true)
-		{
-			play1_guess3_button->BackgroundImage = blue_button->BackgroundImage;
-			play1_guess3_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
-			play1_guess3_button->BackColor = blue_button->BackColor;
-
-			bool_blue_button = false;
-		}
-		if (bool_green_button == true)
-		{
-			play1_guess3_button->BackgroundImage = green_button->BackgroundImage;
-			play1_guess3_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
-			play1_guess3_button->BackColor = green_button->BackColor;
-
-			bool_green_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess3_button->BackgroundImage = yellow_button->BackgroundImage;
-			play1_guess3_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
-			play1_guess3_button->BackColor = yellow_button->BackColor;
-
-			bool_yellow_button = false;
-		}
-		if (bool_pink_button == true)
-		{
-			play1_guess3_button->BackgroundImage = pink_button->BackgroundImage;
-			play1_guess3_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
-			play1_guess3_button->BackColor = pink_button->BackColor;
-
-			bool_pink_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess3_button->BackgroundImage = brown_button->BackgroundImage;
-			play1_guess3_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
-			play1_guess3_button->BackColor = brown_button->BackColor;
-
-			bool_brown_button = false;
-		}
-
-		//Enter button 
-		enter_play_ready++;
-		if (enter_play_ready >= 4)
-		{
-			enter_play_button->Enabled = true;
-		}
-	}
-	private: System::Void play6_guess4_button_Click1(System::Object^ sender, System::EventArgs^ e)
-	{
-		if (bool_red_button == true)
-		{
-			play1_guess4_button->BackgroundImage = red_button->BackgroundImage;
-			play1_guess4_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
-			play1_guess4_button->BackColor = red_button->BackColor;
-
-			bool_red_button = false;
-		}
-		if (bool_blue_button == true)
-		{
-			play1_guess4_button->BackgroundImage = blue_button->BackgroundImage;
-			play1_guess4_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
-			play1_guess4_button->BackColor = blue_button->BackColor;
-
-			bool_blue_button = false;
-		}
-		if (bool_green_button == true)
-		{
-			play1_guess4_button->BackgroundImage = green_button->BackgroundImage;
-			play1_guess4_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
-			play1_guess4_button->BackColor = green_button->BackColor;
-
-			bool_green_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess4_button->BackgroundImage = yellow_button->BackgroundImage;
-			play1_guess4_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
-			play1_guess4_button->BackColor = yellow_button->BackColor;
-
-			bool_yellow_button = false;
-		}
-		if (bool_pink_button == true)
-		{
-			play1_guess4_button->BackgroundImage = pink_button->BackgroundImage;
-			play1_guess4_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
-			play1_guess4_button->BackColor = pink_button->BackColor;
-
-			bool_pink_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess4_button->BackgroundImage = brown_button->BackgroundImage;
-			play1_guess4_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
-			play1_guess4_button->BackColor = brown_button->BackColor;
-
-			bool_brown_button = false;
-		}
-
-		//Enter button 
-		enter_play_ready++;
-		if (enter_play_ready >= 4)
-		{
-			enter_play_button->Enabled = true;
-		}
-	}
-
-	private: System::Void play7_guess1_button_Click1(System::Object^ sender, System::EventArgs^ e)
-	{
-
-		if (bool_red_button == true)
-		{
-			play1_guess1_button->BackgroundImage = red_button->BackgroundImage;
-			play1_guess1_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
-			play1_guess1_button->BackColor = red_button->BackColor;
-
-			bool_red_button = false;
-		}
-		if (bool_blue_button == true)
-		{
-			play1_guess1_button->BackgroundImage = blue_button->BackgroundImage;
-			play1_guess1_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
-			play1_guess1_button->BackColor = blue_button->BackColor;
-
-			bool_blue_button = false;
-		}
-		if (bool_green_button == true)
-		{
-			play1_guess1_button->BackgroundImage = green_button->BackgroundImage;
-			play1_guess1_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
-			play1_guess1_button->BackColor = green_button->BackColor;
-
-			bool_green_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess1_button->BackgroundImage = yellow_button->BackgroundImage;
-			play1_guess1_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
-			play1_guess1_button->BackColor = yellow_button->BackColor;
-
-			bool_yellow_button = false;
-		}
-		if (bool_pink_button == true)
-		{
-			play1_guess1_button->BackgroundImage = pink_button->BackgroundImage;
-			play1_guess1_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
-			play1_guess1_button->BackColor = pink_button->BackColor;
-
-			bool_pink_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess1_button->BackgroundImage = brown_button->BackgroundImage;
-			play1_guess1_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
-			play1_guess1_button->BackColor = brown_button->BackColor;
-
-			bool_brown_button = false;
-		}
-
-		//Enter button 
-		enter_play_ready++;
-		if (enter_play_ready >= 4)
-		{
-			enter_play_button->Enabled = true;
-		}
-	}
-	private: System::Void play7_guess2_button_Click1(System::Object^ sender, System::EventArgs^ e)
-	{
-		if (bool_red_button == true)
-		{
-			play1_guess2_button->BackgroundImage = red_button->BackgroundImage;
-			play1_guess2_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
-			play1_guess2_button->BackColor = red_button->BackColor;
-
-			bool_red_button = false;
-		}
-		if (bool_blue_button == true)
-		{
-			play1_guess2_button->BackgroundImage = blue_button->BackgroundImage;
-			play1_guess2_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
-			play1_guess2_button->BackColor = blue_button->BackColor;
-
-			bool_blue_button = false;
-		}
-		if (bool_green_button == true)
-		{
-			play1_guess2_button->BackgroundImage = green_button->BackgroundImage;
-			play1_guess2_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
-			play1_guess2_button->BackColor = green_button->BackColor;
-
-			bool_green_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess2_button->BackgroundImage = yellow_button->BackgroundImage;
-			play1_guess2_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
-			play1_guess2_button->BackColor = yellow_button->BackColor;
-
-			bool_yellow_button = false;
-		}
-		if (bool_pink_button == true)
-		{
-			play1_guess2_button->BackgroundImage = pink_button->BackgroundImage;
-			play1_guess2_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
-			play1_guess2_button->BackColor = pink_button->BackColor;
-
-			bool_pink_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess2_button->BackgroundImage = brown_button->BackgroundImage;
-			play1_guess2_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
-			play1_guess2_button->BackColor = brown_button->BackColor;
-
-			bool_brown_button = false;
-		}
-
-		//Enter button 
-		enter_play_ready++;
-		if (enter_play_ready >= 4)
-		{
-			enter_play_button->Enabled = true;
-		}
-	}
-	private: System::Void play7_guess3_button_Click1(System::Object^ sender, System::EventArgs^ e)
-	{
-		if (bool_red_button == true)
-		{
-			play1_guess3_button->BackgroundImage = red_button->BackgroundImage;
-			play1_guess3_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
-			play1_guess3_button->BackColor = red_button->BackColor;
-
-			bool_red_button = false;
-		}
-		if (bool_blue_button == true)
-		{
-			play1_guess3_button->BackgroundImage = blue_button->BackgroundImage;
-			play1_guess3_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
-			play1_guess3_button->BackColor = blue_button->BackColor;
-
-			bool_blue_button = false;
-		}
-		if (bool_green_button == true)
-		{
-			play1_guess3_button->BackgroundImage = green_button->BackgroundImage;
-			play1_guess3_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
-			play1_guess3_button->BackColor = green_button->BackColor;
-
-			bool_green_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess3_button->BackgroundImage = yellow_button->BackgroundImage;
-			play1_guess3_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
-			play1_guess3_button->BackColor = yellow_button->BackColor;
-
-			bool_yellow_button = false;
-		}
-		if (bool_pink_button == true)
-		{
-			play1_guess3_button->BackgroundImage = pink_button->BackgroundImage;
-			play1_guess3_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
-			play1_guess3_button->BackColor = pink_button->BackColor;
-
-			bool_pink_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess3_button->BackgroundImage = brown_button->BackgroundImage;
-			play1_guess3_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
-			play1_guess3_button->BackColor = brown_button->BackColor;
-
-			bool_brown_button = false;
-		}
-
-		//Enter button 
-		enter_play_ready++;
-		if (enter_play_ready >= 4)
-		{
-			enter_play_button->Enabled = true;
-		}
-	}
-	private: System::Void play7_guess4_button_Click1(System::Object^ sender, System::EventArgs^ e)
-	{
-		if (bool_red_button == true)
-		{
-			play1_guess4_button->BackgroundImage = red_button->BackgroundImage;
-			play1_guess4_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
-			play1_guess4_button->BackColor = red_button->BackColor;
-
-			bool_red_button = false;
-		}
-		if (bool_blue_button == true)
-		{
-			play1_guess4_button->BackgroundImage = blue_button->BackgroundImage;
-			play1_guess4_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
-			play1_guess4_button->BackColor = blue_button->BackColor;
-
-			bool_blue_button = false;
-		}
-		if (bool_green_button == true)
-		{
-			play1_guess4_button->BackgroundImage = green_button->BackgroundImage;
-			play1_guess4_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
-			play1_guess4_button->BackColor = green_button->BackColor;
-
-			bool_green_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess4_button->BackgroundImage = yellow_button->BackgroundImage;
-			play1_guess4_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
-			play1_guess4_button->BackColor = yellow_button->BackColor;
-
-			bool_yellow_button = false;
-		}
-		if (bool_pink_button == true)
-		{
-			play1_guess4_button->BackgroundImage = pink_button->BackgroundImage;
-			play1_guess4_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
-			play1_guess4_button->BackColor = pink_button->BackColor;
-
-			bool_pink_button = false;
-		}
-		if (bool_yellow_button == true)
-		{
-			play1_guess4_button->BackgroundImage = brown_button->BackgroundImage;
-			play1_guess4_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
-			play1_guess4_button->BackColor = brown_button->BackColor;
-
-			bool_brown_button = false;
-		}
-
-		//Enter button 
-		enter_play_ready++;
-		if (enter_play_ready >= 4)
-		{
-			enter_play_button->Enabled = true;
-		}
-	}
-	*/
+		   /*
+		   private: System::Void play2_guess1_button_Click(System::Object^ sender, System::EventArgs^ e)
+		   {
+
+			   if (bool_red_button == true)
+			   {
+				   play2_guess1_button->BackgroundImage = red_button->BackgroundImage;
+				   play2_guess1_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
+				   play2_guess1_button->BackColor = red_button->BackColor;
+
+				   bool_red_button = false;
+			   }
+			   if (bool_blue_button == true)
+			   {
+				   play2_guess1_button->BackgroundImage = blue_button->BackgroundImage;
+				   play2_guess1_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
+				   play2_guess1_button->BackColor = blue_button->BackColor;
+
+				   bool_blue_button = false;
+			   }
+			   if (bool_green_button == true)
+			   {
+				   play2_guess1_button->BackgroundImage = green_button->BackgroundImage;
+				   play2_guess1_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
+				   play2_guess1_button->BackColor = green_button->BackColor;
+
+				   bool_green_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play2_guess1_button->BackgroundImage = yellow_button->BackgroundImage;
+				   play2_guess1_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
+				   play2_guess1_button->BackColor = yellow_button->BackColor;
+
+				   bool_yellow_button = false;
+			   }
+			   if (bool_pink_button == true)
+			   {
+				   play2_guess1_button->BackgroundImage = pink_button->BackgroundImage;
+				   play2_guess1_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
+				   play2_guess1_button->BackColor = pink_button->BackColor;
+
+				   bool_pink_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play2_guess1_button->BackgroundImage = brown_button->BackgroundImage;
+				   play2_guess1_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
+				   play2_guess1_button->BackColor = brown_button->BackColor;
+
+				   bool_brown_button = false;
+			   }
+
+			   //Enter button
+			   enter_play_ready++;
+			   if (enter_play_ready >= 4)
+			   {
+				   enter_play_button->Enabled = true;
+			   }
+		   }
+		   private: System::Void play2_guess2_button_Click(System::Object^ sender, System::EventArgs^ e)
+		   {
+			   if (bool_red_button == true)
+			   {
+				   play2_guess2_button->BackgroundImage = red_button->BackgroundImage;
+				   play2_guess2_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
+				   play2_guess2_button->BackColor = red_button->BackColor;
+
+				   bool_red_button = false;
+			   }
+			   if (bool_blue_button == true)
+			   {
+				   play2_guess2_button->BackgroundImage = blue_button->BackgroundImage;
+				   play2_guess2_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
+				   play2_guess2_button->BackColor = blue_button->BackColor;
+
+				   bool_blue_button = false;
+			   }
+			   if (bool_green_button == true)
+			   {
+				   play2_guess2_button->BackgroundImage = green_button->BackgroundImage;
+				   play2_guess2_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
+				   play2_guess2_button->BackColor = green_button->BackColor;
+
+				   bool_green_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play2_guess2_button->BackgroundImage = yellow_button->BackgroundImage;
+				   play2_guess2_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
+				   play2_guess2_button->BackColor = yellow_button->BackColor;
+
+				   bool_yellow_button = false;
+			   }
+			   if (bool_pink_button == true)
+			   {
+				   play2_guess2_button->BackgroundImage = pink_button->BackgroundImage;
+				   play2_guess2_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
+				   play2_guess2_button->BackColor = pink_button->BackColor;
+
+				   bool_pink_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play2_guess2_button->BackgroundImage = brown_button->BackgroundImage;
+				   play2_guess2_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
+				   play2_guess2_button->BackColor = brown_button->BackColor;
+
+				   bool_brown_button = false;
+			   }
+
+			   //Enter button
+			   enter_play_ready++;
+			   if (enter_play_ready >= 4)
+			   {
+				   enter_play_button->Enabled = true;
+			   }
+		   }
+		   private: System::Void play2_guess3_button_Click(System::Object^ sender, System::EventArgs^ e)
+		   {
+			   if (bool_red_button == true)
+			   {
+				   play2_guess3_button->BackgroundImage = red_button->BackgroundImage;
+				   play2_guess3_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
+				   play2_guess3_button->BackColor = red_button->BackColor;
+
+				   bool_red_button = false;
+			   }
+			   if (bool_blue_button == true)
+			   {
+				   play2_guess3_button->BackgroundImage = blue_button->BackgroundImage;
+				   play2_guess3_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
+				   play2_guess3_button->BackColor = blue_button->BackColor;
+
+				   bool_blue_button = false;
+			   }
+			   if (bool_green_button == true)
+			   {
+				   play2_guess3_button->BackgroundImage = green_button->BackgroundImage;
+				   play2_guess3_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
+				   play2_guess3_button->BackColor = green_button->BackColor;
+
+				   bool_green_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play2_guess3_button->BackgroundImage = yellow_button->BackgroundImage;
+				   play2_guess3_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
+				   play2_guess3_button->BackColor = yellow_button->BackColor;
+
+				   bool_yellow_button = false;
+			   }
+			   if (bool_pink_button == true)
+			   {
+				   play2_guess3_button->BackgroundImage = pink_button->BackgroundImage;
+				   play2_guess3_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
+				   play2_guess3_button->BackColor = pink_button->BackColor;
+
+				   bool_pink_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play2_guess3_button->BackgroundImage = brown_button->BackgroundImage;
+				   play2_guess3_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
+				   play2_guess3_button->BackColor = brown_button->BackColor;
+
+				   bool_brown_button = false;
+			   }
+
+			   //Enter button
+			   enter_play_ready++;
+			   if (enter_play_ready >= 4)
+			   {
+				   enter_play_button->Enabled = true;
+			   }
+		   }
+		   private: System::Void play2_guess4_button_Click(System::Object^ sender, System::EventArgs^ e)
+		   {
+			   if (bool_red_button == true)
+			   {
+				   play2_guess4_button->BackgroundImage = red_button->BackgroundImage;
+				   play2_guess4_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
+				   play2_guess4_button->BackColor = red_button->BackColor;
+
+				   bool_red_button = false;
+			   }
+			   if (bool_blue_button == true)
+			   {
+				   play2_guess4_button->BackgroundImage = blue_button->BackgroundImage;
+				   play2_guess4_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
+				   play2_guess4_button->BackColor = blue_button->BackColor;
+
+				   bool_blue_button = false;
+			   }
+			   if (bool_green_button == true)
+			   {
+				   play2_guess4_button->BackgroundImage = green_button->BackgroundImage;
+				   play2_guess4_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
+				   play2_guess4_button->BackColor = green_button->BackColor;
+
+				   bool_green_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play2_guess4_button->BackgroundImage = yellow_button->BackgroundImage;
+				   play2_guess4_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
+				   play2_guess4_button->BackColor = yellow_button->BackColor;
+
+				   bool_yellow_button = false;
+			   }
+			   if (bool_pink_button == true)
+			   {
+				   play2_guess4_button->BackgroundImage = pink_button->BackgroundImage;
+				   play2_guess4_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
+				   play2_guess4_button->BackColor = pink_button->BackColor;
+
+				   bool_pink_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play2_guess4_button->BackgroundImage = brown_button->BackgroundImage;
+				   play2_guess4_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
+				   play2_guess4_button->BackColor = brown_button->BackColor;
+
+				   bool_brown_button = false;
+			   }
+
+			   //Enter button
+			   enter_play_ready++;
+			   if (enter_play_ready >= 4)
+			   {
+				   enter_play_button->Enabled = true;
+			   }
+		   }
+
+		   private: System::Void play3_guess1_button_Click(System::Object^ sender, System::EventArgs^ e)
+		   {
+
+			   if (bool_red_button == true)
+			   {
+				   play3_guess1_button->BackgroundImage = red_button->BackgroundImage;
+				   play3_guess1_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
+				   play3_guess1_button->BackColor = red_button->BackColor;
+
+				   bool_red_button = false;
+			   }
+			   if (bool_blue_button == true)
+			   {
+				   play3_guess1_button->BackgroundImage = blue_button->BackgroundImage;
+				   play3_guess1_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
+				   play3_guess1_button->BackColor = blue_button->BackColor;
+
+				   bool_blue_button = false;
+			   }
+			   if (bool_green_button == true)
+			   {
+				   play3_guess1_button->BackgroundImage = green_button->BackgroundImage;
+				   play3_guess1_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
+				   play3_guess1_button->BackColor = green_button->BackColor;
+
+				   bool_green_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play3_guess1_button->BackgroundImage = yellow_button->BackgroundImage;
+				   play3_guess1_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
+				   play3_guess1_button->BackColor = yellow_button->BackColor;
+
+				   bool_yellow_button = false;
+			   }
+			   if (bool_pink_button == true)
+			   {
+				   play3_guess1_button->BackgroundImage = pink_button->BackgroundImage;
+				   play3_guess1_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
+				   play3_guess1_button->BackColor = pink_button->BackColor;
+
+				   bool_pink_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play3_guess1_button->BackgroundImage = brown_button->BackgroundImage;
+				   play3_guess1_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
+				   play3_guess1_button->BackColor = brown_button->BackColor;
+
+				   bool_brown_button = false;
+			   }
+
+			   //Enter button
+			   enter_play_ready++;
+			   if (enter_play_ready >= 4)
+			   {
+				   enter_play_button->Enabled = true;
+			   }
+		   }
+		   private: System::Void play3_guess2_button_Click(System::Object^ sender, System::EventArgs^ e)
+		   {
+			   if (bool_red_button == true)
+			   {
+				   play3_guess2_button->BackgroundImage = red_button->BackgroundImage;
+				   play3_guess2_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
+				   play3_guess2_button->BackColor = red_button->BackColor;
+
+				   bool_red_button = false;
+			   }
+			   if (bool_blue_button == true)
+			   {
+				   play3_guess2_button->BackgroundImage = blue_button->BackgroundImage;
+				   play3_guess2_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
+				   play3_guess2_button->BackColor = blue_button->BackColor;
+
+				   bool_blue_button = false;
+			   }
+			   if (bool_green_button == true)
+			   {
+				   play3_guess2_button->BackgroundImage = green_button->BackgroundImage;
+				   play3_guess2_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
+				   play3_guess2_button->BackColor = green_button->BackColor;
+
+				   bool_green_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play3_guess2_button->BackgroundImage = yellow_button->BackgroundImage;
+				   play3_guess2_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
+				   play3_guess2_button->BackColor = yellow_button->BackColor;
+
+				   bool_yellow_button = false;
+			   }
+			   if (bool_pink_button == true)
+			   {
+				   play3_guess2_button->BackgroundImage = pink_button->BackgroundImage;
+				   play3_guess2_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
+				   play3_guess2_button->BackColor = pink_button->BackColor;
+
+				   bool_pink_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play3_guess2_button->BackgroundImage = brown_button->BackgroundImage;
+				   play3_guess2_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
+				   play3_guess2_button->BackColor = brown_button->BackColor;
+
+				   bool_brown_button = false;
+			   }
+
+			   //Enter button
+			   enter_play_ready++;
+			   if (enter_play_ready >= 4)
+			   {
+				   enter_play_button->Enabled = true;
+			   }
+		   }
+		   private: System::Void play3_guess3_button_Click(System::Object^ sender, System::EventArgs^ e)
+		   {
+			   if (bool_red_button == true)
+			   {
+				   play3_guess3_button->BackgroundImage = red_button->BackgroundImage;
+				   play3_guess3_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
+				   play3_guess3_button->BackColor = red_button->BackColor;
+
+				   bool_red_button = false;
+			   }
+			   if (bool_blue_button == true)
+			   {
+				   play3_guess3_button->BackgroundImage = blue_button->BackgroundImage;
+				   play3_guess3_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
+				   play3_guess3_button->BackColor = blue_button->BackColor;
+
+				   bool_blue_button = false;
+			   }
+			   if (bool_green_button == true)
+			   {
+				   play3_guess3_button->BackgroundImage = green_button->BackgroundImage;
+				   play3_guess3_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
+				   play3_guess3_button->BackColor = green_button->BackColor;
+
+				   bool_green_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play3_guess3_button->BackgroundImage = yellow_button->BackgroundImage;
+				   play3_guess3_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
+				   play3_guess3_button->BackColor = yellow_button->BackColor;
+
+				   bool_yellow_button = false;
+			   }
+			   if (bool_pink_button == true)
+			   {
+				   play3_guess3_button->BackgroundImage = pink_button->BackgroundImage;
+				   play3_guess3_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
+				   play3_guess3_button->BackColor = pink_button->BackColor;
+
+				   bool_pink_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play3_guess3_button->BackgroundImage = brown_button->BackgroundImage;
+				   play3_guess3_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
+				   play3_guess3_button->BackColor = brown_button->BackColor;
+
+				   bool_brown_button = false;
+			   }
+
+			   //Enter button
+			   enter_play_ready++;
+			   if (enter_play_ready >= 4)
+			   {
+				   enter_play_button->Enabled = true;
+			   }
+		   }
+		   private: System::Void play3_guess4_button_Click(System::Object^ sender, System::EventArgs^ e)
+		   {
+			   if (bool_red_button == true)
+			   {
+				   play3_guess4_button->BackgroundImage = red_button->BackgroundImage;
+				   play3_guess4_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
+				   play3_guess4_button->BackColor = red_button->BackColor;
+
+				   bool_red_button = false;
+			   }
+			   if (bool_blue_button == true)
+			   {
+				   play3_guess4_button->BackgroundImage = blue_button->BackgroundImage;
+				   play3_guess4_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
+				   play3_guess4_button->BackColor = blue_button->BackColor;
+
+				   bool_blue_button = false;
+			   }
+			   if (bool_green_button == true)
+			   {
+				   play3_guess4_button->BackgroundImage = green_button->BackgroundImage;
+				   play3_guess4_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
+				   play3_guess4_button->BackColor = green_button->BackColor;
+
+				   bool_green_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play3_guess4_button->BackgroundImage = yellow_button->BackgroundImage;
+				   play3_guess4_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
+				   play3_guess4_button->BackColor = yellow_button->BackColor;
+
+				   bool_yellow_button = false;
+			   }
+			   if (bool_pink_button == true)
+			   {
+				   play3_guess4_button->BackgroundImage = pink_button->BackgroundImage;
+				   play3_guess4_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
+				   play3_guess4_button->BackColor = pink_button->BackColor;
+
+				   bool_pink_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play3_guess4_button->BackgroundImage = brown_button->BackgroundImage;
+				   play3_guess4_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
+				   play3_guess4_button->BackColor = brown_button->BackColor;
+
+				   bool_brown_button = false;
+			   }
+
+			   //Enter button
+			   enter_play_ready++;
+			   if (enter_play_ready >= 4)
+			   {
+				   enter_play_button->Enabled = true;
+			   }
+		   }
+
+
+
+		   private: System::Void play4_guess1_button_Click1(System::Object^ sender, System::EventArgs^ e)
+		   {
+
+			   if (bool_red_button == true)
+			   {
+				   play1_guess1_button->BackgroundImage = red_button->BackgroundImage;
+				   play1_guess1_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
+				   play1_guess1_button->BackColor = red_button->BackColor;
+
+				   bool_red_button = false;
+			   }
+			   if (bool_blue_button == true)
+			   {
+				   play1_guess1_button->BackgroundImage = blue_button->BackgroundImage;
+				   play1_guess1_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
+				   play1_guess1_button->BackColor = blue_button->BackColor;
+
+				   bool_blue_button = false;
+			   }
+			   if (bool_green_button == true)
+			   {
+				   play1_guess1_button->BackgroundImage = green_button->BackgroundImage;
+				   play1_guess1_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
+				   play1_guess1_button->BackColor = green_button->BackColor;
+
+				   bool_green_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess1_button->BackgroundImage = yellow_button->BackgroundImage;
+				   play1_guess1_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
+				   play1_guess1_button->BackColor = yellow_button->BackColor;
+
+				   bool_yellow_button = false;
+			   }
+			   if (bool_pink_button == true)
+			   {
+				   play1_guess1_button->BackgroundImage = pink_button->BackgroundImage;
+				   play1_guess1_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
+				   play1_guess1_button->BackColor = pink_button->BackColor;
+
+				   bool_pink_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess1_button->BackgroundImage = brown_button->BackgroundImage;
+				   play1_guess1_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
+				   play1_guess1_button->BackColor = brown_button->BackColor;
+
+				   bool_brown_button = false;
+			   }
+
+			   //Enter button
+			   enter_play_ready++;
+			   if (enter_play_ready >= 4)
+			   {
+				   enter_play_button->Enabled = true;
+			   }
+		   }
+		   private: System::Void play4_guess2_button_Click1(System::Object^ sender, System::EventArgs^ e)
+		   {
+			   if (bool_red_button == true)
+			   {
+				   play1_guess2_button->BackgroundImage = red_button->BackgroundImage;
+				   play1_guess2_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
+				   play1_guess2_button->BackColor = red_button->BackColor;
+
+				   bool_red_button = false;
+			   }
+			   if (bool_blue_button == true)
+			   {
+				   play1_guess2_button->BackgroundImage = blue_button->BackgroundImage;
+				   play1_guess2_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
+				   play1_guess2_button->BackColor = blue_button->BackColor;
+
+				   bool_blue_button = false;
+			   }
+			   if (bool_green_button == true)
+			   {
+				   play1_guess2_button->BackgroundImage = green_button->BackgroundImage;
+				   play1_guess2_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
+				   play1_guess2_button->BackColor = green_button->BackColor;
+
+				   bool_green_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess2_button->BackgroundImage = yellow_button->BackgroundImage;
+				   play1_guess2_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
+				   play1_guess2_button->BackColor = yellow_button->BackColor;
+
+				   bool_yellow_button = false;
+			   }
+			   if (bool_pink_button == true)
+			   {
+				   play1_guess2_button->BackgroundImage = pink_button->BackgroundImage;
+				   play1_guess2_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
+				   play1_guess2_button->BackColor = pink_button->BackColor;
+
+				   bool_pink_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess2_button->BackgroundImage = brown_button->BackgroundImage;
+				   play1_guess2_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
+				   play1_guess2_button->BackColor = brown_button->BackColor;
+
+				   bool_brown_button = false;
+			   }
+
+			   //Enter button
+			   enter_play_ready++;
+			   if (enter_play_ready >= 4)
+			   {
+				   enter_play_button->Enabled = true;
+			   }
+		   }
+		   private: System::Void play4_guess3_button_Click1(System::Object^ sender, System::EventArgs^ e)
+		   {
+			   if (bool_red_button == true)
+			   {
+				   play1_guess3_button->BackgroundImage = red_button->BackgroundImage;
+				   play1_guess3_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
+				   play1_guess3_button->BackColor = red_button->BackColor;
+
+				   bool_red_button = false;
+			   }
+			   if (bool_blue_button == true)
+			   {
+				   play1_guess3_button->BackgroundImage = blue_button->BackgroundImage;
+				   play1_guess3_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
+				   play1_guess3_button->BackColor = blue_button->BackColor;
+
+				   bool_blue_button = false;
+			   }
+			   if (bool_green_button == true)
+			   {
+				   play1_guess3_button->BackgroundImage = green_button->BackgroundImage;
+				   play1_guess3_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
+				   play1_guess3_button->BackColor = green_button->BackColor;
+
+				   bool_green_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess3_button->BackgroundImage = yellow_button->BackgroundImage;
+				   play1_guess3_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
+				   play1_guess3_button->BackColor = yellow_button->BackColor;
+
+				   bool_yellow_button = false;
+			   }
+			   if (bool_pink_button == true)
+			   {
+				   play1_guess3_button->BackgroundImage = pink_button->BackgroundImage;
+				   play1_guess3_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
+				   play1_guess3_button->BackColor = pink_button->BackColor;
+
+				   bool_pink_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess3_button->BackgroundImage = brown_button->BackgroundImage;
+				   play1_guess3_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
+				   play1_guess3_button->BackColor = brown_button->BackColor;
+
+				   bool_brown_button = false;
+			   }
+
+			   //Enter button
+			   enter_play_ready++;
+			   if (enter_play_ready >= 4)
+			   {
+				   enter_play_button->Enabled = true;
+			   }
+		   }
+		   private: System::Void play4_guess4_button_Click1(System::Object^ sender, System::EventArgs^ e)
+		   {
+			   if (bool_red_button == true)
+			   {
+				   play1_guess4_button->BackgroundImage = red_button->BackgroundImage;
+				   play1_guess4_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
+				   play1_guess4_button->BackColor = red_button->BackColor;
+
+				   bool_red_button = false;
+			   }
+			   if (bool_blue_button == true)
+			   {
+				   play1_guess4_button->BackgroundImage = blue_button->BackgroundImage;
+				   play1_guess4_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
+				   play1_guess4_button->BackColor = blue_button->BackColor;
+
+				   bool_blue_button = false;
+			   }
+			   if (bool_green_button == true)
+			   {
+				   play1_guess4_button->BackgroundImage = green_button->BackgroundImage;
+				   play1_guess4_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
+				   play1_guess4_button->BackColor = green_button->BackColor;
+
+				   bool_green_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess4_button->BackgroundImage = yellow_button->BackgroundImage;
+				   play1_guess4_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
+				   play1_guess4_button->BackColor = yellow_button->BackColor;
+
+				   bool_yellow_button = false;
+			   }
+			   if (bool_pink_button == true)
+			   {
+				   play1_guess4_button->BackgroundImage = pink_button->BackgroundImage;
+				   play1_guess4_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
+				   play1_guess4_button->BackColor = pink_button->BackColor;
+
+				   bool_pink_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess4_button->BackgroundImage = brown_button->BackgroundImage;
+				   play1_guess4_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
+				   play1_guess4_button->BackColor = brown_button->BackColor;
+
+				   bool_brown_button = false;
+			   }
+
+			   //Enter button
+			   enter_play_ready++;
+			   if (enter_play_ready >= 4)
+			   {
+				   enter_play_button->Enabled = true;
+			   }
+		   }
+
+		   private: System::Void play5_guess1_button_Click1(System::Object^ sender, System::EventArgs^ e)
+	   {
+
+		   if (bool_red_button == true)
+		   {
+			   play1_guess1_button->BackgroundImage = red_button->BackgroundImage;
+			   play1_guess1_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
+			   play1_guess1_button->BackColor = red_button->BackColor;
+
+			   bool_red_button = false;
+		   }
+		   if (bool_blue_button == true)
+		   {
+			   play1_guess1_button->BackgroundImage = blue_button->BackgroundImage;
+			   play1_guess1_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
+			   play1_guess1_button->BackColor = blue_button->BackColor;
+
+			   bool_blue_button = false;
+		   }
+		   if (bool_green_button == true)
+		   {
+			   play1_guess1_button->BackgroundImage = green_button->BackgroundImage;
+			   play1_guess1_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
+			   play1_guess1_button->BackColor = green_button->BackColor;
+
+			   bool_green_button = false;
+		   }
+		   if (bool_yellow_button == true)
+		   {
+			   play1_guess1_button->BackgroundImage = yellow_button->BackgroundImage;
+			   play1_guess1_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
+			   play1_guess1_button->BackColor = yellow_button->BackColor;
+
+			   bool_yellow_button = false;
+		   }
+		   if (bool_pink_button == true)
+		   {
+			   play1_guess1_button->BackgroundImage = pink_button->BackgroundImage;
+			   play1_guess1_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
+			   play1_guess1_button->BackColor = pink_button->BackColor;
+
+			   bool_pink_button = false;
+		   }
+		   if (bool_yellow_button == true)
+		   {
+			   play1_guess1_button->BackgroundImage = brown_button->BackgroundImage;
+			   play1_guess1_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
+			   play1_guess1_button->BackColor = brown_button->BackColor;
+
+			   bool_brown_button = false;
+		   }
+
+		   //Enter button
+		   enter_play_ready++;
+		   if (enter_play_ready >= 4)
+		   {
+			   enter_play_button->Enabled = true;
+		   }
+	   }
+		   private: System::Void play5_guess2_button_Click1(System::Object^ sender, System::EventArgs^ e)
+		   {
+			   if (bool_red_button == true)
+			   {
+				   play1_guess2_button->BackgroundImage = red_button->BackgroundImage;
+				   play1_guess2_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
+				   play1_guess2_button->BackColor = red_button->BackColor;
+
+				   bool_red_button = false;
+			   }
+			   if (bool_blue_button == true)
+			   {
+				   play1_guess2_button->BackgroundImage = blue_button->BackgroundImage;
+				   play1_guess2_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
+				   play1_guess2_button->BackColor = blue_button->BackColor;
+
+				   bool_blue_button = false;
+			   }
+			   if (bool_green_button == true)
+			   {
+				   play1_guess2_button->BackgroundImage = green_button->BackgroundImage;
+				   play1_guess2_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
+				   play1_guess2_button->BackColor = green_button->BackColor;
+
+				   bool_green_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess2_button->BackgroundImage = yellow_button->BackgroundImage;
+				   play1_guess2_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
+				   play1_guess2_button->BackColor = yellow_button->BackColor;
+
+				   bool_yellow_button = false;
+			   }
+			   if (bool_pink_button == true)
+			   {
+				   play1_guess2_button->BackgroundImage = pink_button->BackgroundImage;
+				   play1_guess2_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
+				   play1_guess2_button->BackColor = pink_button->BackColor;
+
+				   bool_pink_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess2_button->BackgroundImage = brown_button->BackgroundImage;
+				   play1_guess2_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
+				   play1_guess2_button->BackColor = brown_button->BackColor;
+
+				   bool_brown_button = false;
+			   }
+
+			   //Enter button
+			   enter_play_ready++;
+			   if (enter_play_ready >= 4)
+			   {
+				   enter_play_button->Enabled = true;
+			   }
+		   }
+		   private: System::Void play5_guess3_button_Click1(System::Object^ sender, System::EventArgs^ e)
+		   {
+			   if (bool_red_button == true)
+			   {
+				   play1_guess3_button->BackgroundImage = red_button->BackgroundImage;
+				   play1_guess3_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
+				   play1_guess3_button->BackColor = red_button->BackColor;
+
+				   bool_red_button = false;
+			   }
+			   if (bool_blue_button == true)
+			   {
+				   play1_guess3_button->BackgroundImage = blue_button->BackgroundImage;
+				   play1_guess3_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
+				   play1_guess3_button->BackColor = blue_button->BackColor;
+
+				   bool_blue_button = false;
+			   }
+			   if (bool_green_button == true)
+			   {
+				   play1_guess3_button->BackgroundImage = green_button->BackgroundImage;
+				   play1_guess3_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
+				   play1_guess3_button->BackColor = green_button->BackColor;
+
+				   bool_green_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess3_button->BackgroundImage = yellow_button->BackgroundImage;
+				   play1_guess3_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
+				   play1_guess3_button->BackColor = yellow_button->BackColor;
+
+				   bool_yellow_button = false;
+			   }
+			   if (bool_pink_button == true)
+			   {
+				   play1_guess3_button->BackgroundImage = pink_button->BackgroundImage;
+				   play1_guess3_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
+				   play1_guess3_button->BackColor = pink_button->BackColor;
+
+				   bool_pink_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess3_button->BackgroundImage = brown_button->BackgroundImage;
+				   play1_guess3_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
+				   play1_guess3_button->BackColor = brown_button->BackColor;
+
+				   bool_brown_button = false;
+			   }
+
+			   //Enter button
+			   enter_play_ready++;
+			   if (enter_play_ready >= 4)
+			   {
+				   enter_play_button->Enabled = true;
+			   }
+		   }
+		   private: System::Void play5_guess4_button_Click1(System::Object^ sender, System::EventArgs^ e)
+		   {
+			   if (bool_red_button == true)
+			   {
+				   play1_guess4_button->BackgroundImage = red_button->BackgroundImage;
+				   play1_guess4_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
+				   play1_guess4_button->BackColor = red_button->BackColor;
+
+				   bool_red_button = false;
+			   }
+			   if (bool_blue_button == true)
+			   {
+				   play1_guess4_button->BackgroundImage = blue_button->BackgroundImage;
+				   play1_guess4_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
+				   play1_guess4_button->BackColor = blue_button->BackColor;
+
+				   bool_blue_button = false;
+			   }
+			   if (bool_green_button == true)
+			   {
+				   play1_guess4_button->BackgroundImage = green_button->BackgroundImage;
+				   play1_guess4_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
+				   play1_guess4_button->BackColor = green_button->BackColor;
+
+				   bool_green_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess4_button->BackgroundImage = yellow_button->BackgroundImage;
+				   play1_guess4_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
+				   play1_guess4_button->BackColor = yellow_button->BackColor;
+
+				   bool_yellow_button = false;
+			   }
+			   if (bool_pink_button == true)
+			   {
+				   play1_guess4_button->BackgroundImage = pink_button->BackgroundImage;
+				   play1_guess4_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
+				   play1_guess4_button->BackColor = pink_button->BackColor;
+
+				   bool_pink_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess4_button->BackgroundImage = brown_button->BackgroundImage;
+				   play1_guess4_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
+				   play1_guess4_button->BackColor = brown_button->BackColor;
+
+				   bool_brown_button = false;
+			   }
+
+			   //Enter button
+			   enter_play_ready++;
+			   if (enter_play_ready >= 4)
+			   {
+				   enter_play_button->Enabled = true;
+			   }
+		   }
+
+		   private: System::Void play6_guess1_button_Click1(System::Object^ sender, System::EventArgs^ e)
+		   {
+
+			   if (bool_red_button == true)
+			   {
+				   play1_guess1_button->BackgroundImage = red_button->BackgroundImage;
+				   play1_guess1_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
+				   play1_guess1_button->BackColor = red_button->BackColor;
+
+				   bool_red_button = false;
+			   }
+			   if (bool_blue_button == true)
+			   {
+				   play1_guess1_button->BackgroundImage = blue_button->BackgroundImage;
+				   play1_guess1_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
+				   play1_guess1_button->BackColor = blue_button->BackColor;
+
+				   bool_blue_button = false;
+			   }
+			   if (bool_green_button == true)
+			   {
+				   play1_guess1_button->BackgroundImage = green_button->BackgroundImage;
+				   play1_guess1_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
+				   play1_guess1_button->BackColor = green_button->BackColor;
+
+				   bool_green_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess1_button->BackgroundImage = yellow_button->BackgroundImage;
+				   play1_guess1_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
+				   play1_guess1_button->BackColor = yellow_button->BackColor;
+
+				   bool_yellow_button = false;
+			   }
+			   if (bool_pink_button == true)
+			   {
+				   play1_guess1_button->BackgroundImage = pink_button->BackgroundImage;
+				   play1_guess1_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
+				   play1_guess1_button->BackColor = pink_button->BackColor;
+
+				   bool_pink_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess1_button->BackgroundImage = brown_button->BackgroundImage;
+				   play1_guess1_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
+				   play1_guess1_button->BackColor = brown_button->BackColor;
+
+				   bool_brown_button = false;
+			   }
+
+			   //Enter button
+			   enter_play_ready++;
+			   if (enter_play_ready >= 4)
+			   {
+				   enter_play_button->Enabled = true;
+			   }
+		   }
+		   private: System::Void play6_guess2_button_Click1(System::Object^ sender, System::EventArgs^ e)
+		   {
+			   if (bool_red_button == true)
+			   {
+				   play1_guess2_button->BackgroundImage = red_button->BackgroundImage;
+				   play1_guess2_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
+				   play1_guess2_button->BackColor = red_button->BackColor;
+
+				   bool_red_button = false;
+			   }
+			   if (bool_blue_button == true)
+			   {
+				   play1_guess2_button->BackgroundImage = blue_button->BackgroundImage;
+				   play1_guess2_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
+				   play1_guess2_button->BackColor = blue_button->BackColor;
+
+				   bool_blue_button = false;
+			   }
+			   if (bool_green_button == true)
+			   {
+				   play1_guess2_button->BackgroundImage = green_button->BackgroundImage;
+				   play1_guess2_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
+				   play1_guess2_button->BackColor = green_button->BackColor;
+
+				   bool_green_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess2_button->BackgroundImage = yellow_button->BackgroundImage;
+				   play1_guess2_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
+				   play1_guess2_button->BackColor = yellow_button->BackColor;
+
+				   bool_yellow_button = false;
+			   }
+			   if (bool_pink_button == true)
+			   {
+				   play1_guess2_button->BackgroundImage = pink_button->BackgroundImage;
+				   play1_guess2_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
+				   play1_guess2_button->BackColor = pink_button->BackColor;
+
+				   bool_pink_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess2_button->BackgroundImage = brown_button->BackgroundImage;
+				   play1_guess2_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
+				   play1_guess2_button->BackColor = brown_button->BackColor;
+
+				   bool_brown_button = false;
+			   }
+
+			   //Enter button
+			   enter_play_ready++;
+			   if (enter_play_ready >= 4)
+			   {
+				   enter_play_button->Enabled = true;
+			   }
+		   }
+		   private: System::Void play6_guess3_button_Click1(System::Object^ sender, System::EventArgs^ e)
+		   {
+			   if (bool_red_button == true)
+			   {
+				   play1_guess3_button->BackgroundImage = red_button->BackgroundImage;
+				   play1_guess3_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
+				   play1_guess3_button->BackColor = red_button->BackColor;
+
+				   bool_red_button = false;
+			   }
+			   if (bool_blue_button == true)
+			   {
+				   play1_guess3_button->BackgroundImage = blue_button->BackgroundImage;
+				   play1_guess3_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
+				   play1_guess3_button->BackColor = blue_button->BackColor;
+
+				   bool_blue_button = false;
+			   }
+			   if (bool_green_button == true)
+			   {
+				   play1_guess3_button->BackgroundImage = green_button->BackgroundImage;
+				   play1_guess3_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
+				   play1_guess3_button->BackColor = green_button->BackColor;
+
+				   bool_green_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess3_button->BackgroundImage = yellow_button->BackgroundImage;
+				   play1_guess3_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
+				   play1_guess3_button->BackColor = yellow_button->BackColor;
+
+				   bool_yellow_button = false;
+			   }
+			   if (bool_pink_button == true)
+			   {
+				   play1_guess3_button->BackgroundImage = pink_button->BackgroundImage;
+				   play1_guess3_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
+				   play1_guess3_button->BackColor = pink_button->BackColor;
+
+				   bool_pink_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess3_button->BackgroundImage = brown_button->BackgroundImage;
+				   play1_guess3_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
+				   play1_guess3_button->BackColor = brown_button->BackColor;
+
+				   bool_brown_button = false;
+			   }
+
+			   //Enter button
+			   enter_play_ready++;
+			   if (enter_play_ready >= 4)
+			   {
+				   enter_play_button->Enabled = true;
+			   }
+		   }
+		   private: System::Void play6_guess4_button_Click1(System::Object^ sender, System::EventArgs^ e)
+		   {
+			   if (bool_red_button == true)
+			   {
+				   play1_guess4_button->BackgroundImage = red_button->BackgroundImage;
+				   play1_guess4_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
+				   play1_guess4_button->BackColor = red_button->BackColor;
+
+				   bool_red_button = false;
+			   }
+			   if (bool_blue_button == true)
+			   {
+				   play1_guess4_button->BackgroundImage = blue_button->BackgroundImage;
+				   play1_guess4_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
+				   play1_guess4_button->BackColor = blue_button->BackColor;
+
+				   bool_blue_button = false;
+			   }
+			   if (bool_green_button == true)
+			   {
+				   play1_guess4_button->BackgroundImage = green_button->BackgroundImage;
+				   play1_guess4_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
+				   play1_guess4_button->BackColor = green_button->BackColor;
+
+				   bool_green_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess4_button->BackgroundImage = yellow_button->BackgroundImage;
+				   play1_guess4_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
+				   play1_guess4_button->BackColor = yellow_button->BackColor;
+
+				   bool_yellow_button = false;
+			   }
+			   if (bool_pink_button == true)
+			   {
+				   play1_guess4_button->BackgroundImage = pink_button->BackgroundImage;
+				   play1_guess4_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
+				   play1_guess4_button->BackColor = pink_button->BackColor;
+
+				   bool_pink_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess4_button->BackgroundImage = brown_button->BackgroundImage;
+				   play1_guess4_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
+				   play1_guess4_button->BackColor = brown_button->BackColor;
+
+				   bool_brown_button = false;
+			   }
+
+			   //Enter button
+			   enter_play_ready++;
+			   if (enter_play_ready >= 4)
+			   {
+				   enter_play_button->Enabled = true;
+			   }
+		   }
+
+		   private: System::Void play7_guess1_button_Click1(System::Object^ sender, System::EventArgs^ e)
+		   {
+
+			   if (bool_red_button == true)
+			   {
+				   play1_guess1_button->BackgroundImage = red_button->BackgroundImage;
+				   play1_guess1_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
+				   play1_guess1_button->BackColor = red_button->BackColor;
+
+				   bool_red_button = false;
+			   }
+			   if (bool_blue_button == true)
+			   {
+				   play1_guess1_button->BackgroundImage = blue_button->BackgroundImage;
+				   play1_guess1_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
+				   play1_guess1_button->BackColor = blue_button->BackColor;
+
+				   bool_blue_button = false;
+			   }
+			   if (bool_green_button == true)
+			   {
+				   play1_guess1_button->BackgroundImage = green_button->BackgroundImage;
+				   play1_guess1_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
+				   play1_guess1_button->BackColor = green_button->BackColor;
+
+				   bool_green_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess1_button->BackgroundImage = yellow_button->BackgroundImage;
+				   play1_guess1_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
+				   play1_guess1_button->BackColor = yellow_button->BackColor;
+
+				   bool_yellow_button = false;
+			   }
+			   if (bool_pink_button == true)
+			   {
+				   play1_guess1_button->BackgroundImage = pink_button->BackgroundImage;
+				   play1_guess1_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
+				   play1_guess1_button->BackColor = pink_button->BackColor;
+
+				   bool_pink_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess1_button->BackgroundImage = brown_button->BackgroundImage;
+				   play1_guess1_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
+				   play1_guess1_button->BackColor = brown_button->BackColor;
+
+				   bool_brown_button = false;
+			   }
+
+			   //Enter button
+			   enter_play_ready++;
+			   if (enter_play_ready >= 4)
+			   {
+				   enter_play_button->Enabled = true;
+			   }
+		   }
+		   private: System::Void play7_guess2_button_Click1(System::Object^ sender, System::EventArgs^ e)
+		   {
+			   if (bool_red_button == true)
+			   {
+				   play1_guess2_button->BackgroundImage = red_button->BackgroundImage;
+				   play1_guess2_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
+				   play1_guess2_button->BackColor = red_button->BackColor;
+
+				   bool_red_button = false;
+			   }
+			   if (bool_blue_button == true)
+			   {
+				   play1_guess2_button->BackgroundImage = blue_button->BackgroundImage;
+				   play1_guess2_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
+				   play1_guess2_button->BackColor = blue_button->BackColor;
+
+				   bool_blue_button = false;
+			   }
+			   if (bool_green_button == true)
+			   {
+				   play1_guess2_button->BackgroundImage = green_button->BackgroundImage;
+				   play1_guess2_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
+				   play1_guess2_button->BackColor = green_button->BackColor;
+
+				   bool_green_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess2_button->BackgroundImage = yellow_button->BackgroundImage;
+				   play1_guess2_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
+				   play1_guess2_button->BackColor = yellow_button->BackColor;
+
+				   bool_yellow_button = false;
+			   }
+			   if (bool_pink_button == true)
+			   {
+				   play1_guess2_button->BackgroundImage = pink_button->BackgroundImage;
+				   play1_guess2_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
+				   play1_guess2_button->BackColor = pink_button->BackColor;
+
+				   bool_pink_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess2_button->BackgroundImage = brown_button->BackgroundImage;
+				   play1_guess2_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
+				   play1_guess2_button->BackColor = brown_button->BackColor;
+
+				   bool_brown_button = false;
+			   }
+
+			   //Enter button
+			   enter_play_ready++;
+			   if (enter_play_ready >= 4)
+			   {
+				   enter_play_button->Enabled = true;
+			   }
+		   }
+		   private: System::Void play7_guess3_button_Click1(System::Object^ sender, System::EventArgs^ e)
+		   {
+			   if (bool_red_button == true)
+			   {
+				   play1_guess3_button->BackgroundImage = red_button->BackgroundImage;
+				   play1_guess3_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
+				   play1_guess3_button->BackColor = red_button->BackColor;
+
+				   bool_red_button = false;
+			   }
+			   if (bool_blue_button == true)
+			   {
+				   play1_guess3_button->BackgroundImage = blue_button->BackgroundImage;
+				   play1_guess3_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
+				   play1_guess3_button->BackColor = blue_button->BackColor;
+
+				   bool_blue_button = false;
+			   }
+			   if (bool_green_button == true)
+			   {
+				   play1_guess3_button->BackgroundImage = green_button->BackgroundImage;
+				   play1_guess3_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
+				   play1_guess3_button->BackColor = green_button->BackColor;
+
+				   bool_green_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess3_button->BackgroundImage = yellow_button->BackgroundImage;
+				   play1_guess3_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
+				   play1_guess3_button->BackColor = yellow_button->BackColor;
+
+				   bool_yellow_button = false;
+			   }
+			   if (bool_pink_button == true)
+			   {
+				   play1_guess3_button->BackgroundImage = pink_button->BackgroundImage;
+				   play1_guess3_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
+				   play1_guess3_button->BackColor = pink_button->BackColor;
+
+				   bool_pink_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess3_button->BackgroundImage = brown_button->BackgroundImage;
+				   play1_guess3_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
+				   play1_guess3_button->BackColor = brown_button->BackColor;
+
+				   bool_brown_button = false;
+			   }
+
+			   //Enter button
+			   enter_play_ready++;
+			   if (enter_play_ready >= 4)
+			   {
+				   enter_play_button->Enabled = true;
+			   }
+		   }
+		   private: System::Void play7_guess4_button_Click1(System::Object^ sender, System::EventArgs^ e)
+		   {
+			   if (bool_red_button == true)
+			   {
+				   play1_guess4_button->BackgroundImage = red_button->BackgroundImage;
+				   play1_guess4_button->BackgroundImageLayout = red_button->BackgroundImageLayout;
+				   play1_guess4_button->BackColor = red_button->BackColor;
+
+				   bool_red_button = false;
+			   }
+			   if (bool_blue_button == true)
+			   {
+				   play1_guess4_button->BackgroundImage = blue_button->BackgroundImage;
+				   play1_guess4_button->BackgroundImageLayout = blue_button->BackgroundImageLayout;
+				   play1_guess4_button->BackColor = blue_button->BackColor;
+
+				   bool_blue_button = false;
+			   }
+			   if (bool_green_button == true)
+			   {
+				   play1_guess4_button->BackgroundImage = green_button->BackgroundImage;
+				   play1_guess4_button->BackgroundImageLayout = green_button->BackgroundImageLayout;
+				   play1_guess4_button->BackColor = green_button->BackColor;
+
+				   bool_green_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess4_button->BackgroundImage = yellow_button->BackgroundImage;
+				   play1_guess4_button->BackgroundImageLayout = yellow_button->BackgroundImageLayout;
+				   play1_guess4_button->BackColor = yellow_button->BackColor;
+
+				   bool_yellow_button = false;
+			   }
+			   if (bool_pink_button == true)
+			   {
+				   play1_guess4_button->BackgroundImage = pink_button->BackgroundImage;
+				   play1_guess4_button->BackgroundImageLayout = pink_button->BackgroundImageLayout;
+				   play1_guess4_button->BackColor = pink_button->BackColor;
+
+				   bool_pink_button = false;
+			   }
+			   if (bool_yellow_button == true)
+			   {
+				   play1_guess4_button->BackgroundImage = brown_button->BackgroundImage;
+				   play1_guess4_button->BackgroundImageLayout = brown_button->BackgroundImageLayout;
+				   play1_guess4_button->BackColor = brown_button->BackColor;
+
+				   bool_brown_button = false;
+			   }
+
+			   //Enter button
+			   enter_play_ready++;
+			   if (enter_play_ready >= 4)
+			   {
+				   enter_play_button->Enabled = true;
+			   }
+		   }
+		   */
 
 	private: System::Void Clock_Tick(System::Object^ sender, System::EventArgs^ e)
 	{
@@ -4341,169 +4347,169 @@ private: System::Windows::Forms::Label^ Username_label;
 				}
 			}
 		}
-		
+
 		else if (objSettings->getTimekeeperPlay() == true)
+		{
+			//CODIGO TIMEKEEPER POR JUGADA
+			secondsP--;
+			if (secondsP == 0)
+			{
+				secondsP = 00;
+				bool TimeKP = false;
+				objSettings->setTimekeeperPlay(TimeKP);
+
+				//Tiempo llega a cero
+				lose_groupBox->Visible = true;
+				lose_groupBox->Enabled = true;
+				win_lose_disable();
+			}
+			secP = Convert::ToString(secondsP);
+			minP = Convert::ToString(minutesP);
+			if (hours < 10)
+			{
+				if (minutesP < 10)
 				{
-					//CODIGO TIMEKEEPER POR JUGADA
-					secondsP--;
-					if (secondsP == 0)
+					if (secondsP < 10)
 					{
-						secondsP = 00;
-						bool TimeKP = false;
-						objSettings->setTimekeeperPlay(TimeKP);
+						Time->Text = "00" + ":0" + minP + ":0" + secP;
 
-						//Tiempo llega a cero
-						lose_groupBox->Visible = true;
-						lose_groupBox->Enabled = true;
-						win_lose_disable();
 					}
-					secP = Convert::ToString(secondsP);
-					minP = Convert::ToString(minutesP);
-					if (hours < 10)
+					else if (secondsP >= 10)
 					{
-						if (minutesP < 10)
-						{
-							if (secondsP < 10)
-							{
-								Time->Text = "00" + ":0" + minP + ":0" + secP;
-
-							}
-							else if (secondsP >= 10)
-							{
-								Time->Text = "00" + ":0" + minP + ":" + secP;
-							}
-						}
-						else if (minutesP >= 10)
-						{
-							if (secondsP < 10)
-							{
-								Time->Text = "00" + ":" + minP + ":0" + secP;
-							}
-							else if (secondsP >= 10)
-							{
-								Time->Text = "00" + ":" + minP + ":" + secP;
-							}
-						}
+						Time->Text = "00" + ":0" + minP + ":" + secP;
 					}
-					else if (hours >= 10)
-					{
-						if (minutesP < 10)
-						{
-							if (secondsP < 10)
-							{
-								Time->Text = "00" + ":0" + minP + ":0" + secP;
-							}
-							else if (secondsP >= 10)
-							{
-								Time->Text = "00" + ":0" + minP + ":" + secP;
-							}
-						}
-						else if (minutesP >= 10)
-						{
-							if (secondsP < 10)
-							{
-								Time->Text = "00" + ":" + minP + ":0" + secP;
-							}
-							else if (seconds >= 10)
-							{
-								Time->Text = "00" + ":" + minP + ":" + secP;
-							}
-						}
-					}
-
 				}
+				else if (minutesP >= 10)
+				{
+					if (secondsP < 10)
+					{
+						Time->Text = "00" + ":" + minP + ":0" + secP;
+					}
+					else if (secondsP >= 10)
+					{
+						Time->Text = "00" + ":" + minP + ":" + secP;
+					}
+				}
+			}
+			else if (hours >= 10)
+			{
+				if (minutesP < 10)
+				{
+					if (secondsP < 10)
+					{
+						Time->Text = "00" + ":0" + minP + ":0" + secP;
+					}
+					else if (secondsP >= 10)
+					{
+						Time->Text = "00" + ":0" + minP + ":" + secP;
+					}
+				}
+				else if (minutesP >= 10)
+				{
+					if (secondsP < 10)
+					{
+						Time->Text = "00" + ":" + minP + ":0" + secP;
+					}
+					else if (seconds >= 10)
+					{
+						Time->Text = "00" + ":" + minP + ":" + secP;
+					}
+				}
+			}
+
+		}
 
 		else if (objSettings->getTimekeeperGame() == true)
+		{
+			//CODIGO TIMEKEEPER POR JUEGO
+			secondsG--;
+			if (secondsG == 0)
+			{
+				secondsG = 60;
+				minutesG--;
+			}
+			if (minutesG == 0)
+			{
+				minutesG = 60;
+				hoursG--;
+			}
+			if (hoursG == 0)
+			{
+				hoursG = 00;
+			}
+			if ((hoursG == 0) && (minutesG == 0) && (secondsG == 0))
+			{
+				secondsG = 00;
+				minutesG = 00;
+				hoursG = 00;
+
+				bool TimeKG = false;
+				objSettings->setTimekeeperGame(TimeKG);
+
+				//Finish Game / Lose
+				lose_groupBox->Visible = true;
+				lose_groupBox->Enabled = true;
+				win_lose_disable();
+
+			}
+
+
+			secG = Convert::ToString(secondsG);
+			minG = Convert::ToString(minutesG);
+			hourG = Convert::ToString(hoursG);
+
+			if (hoursG < 10)
+			{
+				if (minutesG < 10)
 				{
-					//CODIGO TIMEKEEPER POR JUEGO
-					secondsG--;
-					if (secondsG == 0)
+					if (secondsG < 10)
 					{
-						secondsG = 60;
-						minutesG--;
+						Time->Text = "0" + hourG + ":0" + minG + ":0" + secG;
 					}
-					if (minutesG == 0)
+					else if (secondsG >= 10)
 					{
-						minutesG = 60;
-						hoursG--;
-					}
-					if (hoursG == 0)
-					{
-						hoursG = 00;
-					}
-					if ((hoursG == 0) && (minutesG == 0) && (secondsG == 0))
-					{
-						secondsG = 00;
-						minutesG = 00;
-						hoursG = 00;
-
-						bool TimeKG = false;
-						objSettings->setTimekeeperGame(TimeKG);
-						
-						//Finish Game / Lose
-						lose_groupBox->Visible = true;
-						lose_groupBox->Enabled = true;
-						win_lose_disable();
-
-					}
-
-
-					secG = Convert::ToString(secondsG);
-					minG = Convert::ToString(minutesG);
-					hourG = Convert::ToString(hoursG);
-
-					if (hoursG < 10)
-					{
-						if (minutesG < 10)
-						{
-							if (secondsG < 10)
-							{
-								Time->Text = "0" + hourG + ":0" + minG + ":0" + secG;
-							}
-							else if (secondsG >= 10)
-							{
-								Time->Text = "0" + hourG + ":0" + minG + ":" + secG;
-							}
-						}
-						else if (minutesG >= 10)
-						{
-							if (secondsG < 10)
-							{
-								Time->Text = "0" + hourG + ":" + minG + ":0" + secG;
-							}
-							else if (secondsG >= 10)
-							{
-								Time->Text = "0" + hourG + ":" + minG + ":" + secG;
-							}
-						}
-					}
-					else if (hoursG >= 10)
-					{
-						if (minutesG < 10)
-						{
-							if (secondsG < 10)
-							{
-								Time->Text = hourG + ":0" + minG + ":0" + secG;
-							}
-							else if (secondsG >= 10)
-							{
-								Time->Text = hourG + ":0" + minG + ":" + secG;
-							}
-						}
-						else if (minutesG >= 10)
-						{
-							if (secondsG < 10)
-							{
-								Time->Text = hourG + ":" + minG + ":0" + secG;
-							}
-							else if (secondsG >= 10)
-							{
-								Time->Text = hourG + ":" + minG + ":" + secG;
-							}
-						}
+						Time->Text = "0" + hourG + ":0" + minG + ":" + secG;
 					}
 				}
-		
+				else if (minutesG >= 10)
+				{
+					if (secondsG < 10)
+					{
+						Time->Text = "0" + hourG + ":" + minG + ":0" + secG;
+					}
+					else if (secondsG >= 10)
+					{
+						Time->Text = "0" + hourG + ":" + minG + ":" + secG;
+					}
+				}
+			}
+			else if (hoursG >= 10)
+			{
+				if (minutesG < 10)
+				{
+					if (secondsG < 10)
+					{
+						Time->Text = hourG + ":0" + minG + ":0" + secG;
+					}
+					else if (secondsG >= 10)
+					{
+						Time->Text = hourG + ":0" + minG + ":" + secG;
+					}
+				}
+				else if (minutesG >= 10)
+				{
+					if (secondsG < 10)
+					{
+						Time->Text = hourG + ":" + minG + ":0" + secG;
+					}
+					else if (secondsG >= 10)
+					{
+						Time->Text = hourG + ":" + minG + ":" + secG;
+					}
+				}
+			}
+		}
+
 	}
 
 	private: System::Void Vent_Play_Start_Click(System::Object^ sender, System::EventArgs^ e)
@@ -4603,7 +4609,7 @@ private: System::Windows::Forms::Label^ Username_label;
 		//Enables the colors buttons
 		VentanaPlay::red_button->Enabled = true;
 		VentanaPlay::blue_button->Enabled = true;
-		VentanaPlay::green_button->Enabled  = true;
+		VentanaPlay::green_button->Enabled = true;
 		VentanaPlay::yellow_button->Enabled = true;
 		VentanaPlay::pink_button->Enabled = true;
 		VentanaPlay::brown_button->Enabled = true;
@@ -4660,7 +4666,7 @@ private: System::Windows::Forms::Label^ Username_label;
 		}
 	}
 
-	private: System::Void enter_play_button_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void enter_play_button_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		srand(time(0));
 
@@ -5055,7 +5061,7 @@ private: System::Windows::Forms::Label^ Username_label;
 				rand_comb4_int = 0;
 				guess2_int = -1;
 			}
-			
+
 			if (guess3_int == rand_comb1_int)
 			{
 				asign_white();
@@ -5133,7 +5139,7 @@ private: System::Windows::Forms::Label^ Username_label;
 					guess_cant_brown--;
 					rand_cant_brown--;
 				}
-				
+
 			}
 			if (play1_guess2_button->BackgroundImage == rand_comb2_button->BackgroundImage)
 			{
@@ -5543,123 +5549,123 @@ private: System::Windows::Forms::Label^ Username_label;
 			}
 			*/
 
-			
+
 		}
 		else if (objSettings->getElementRep() == false)
 		{
 			//Black Score
 			if (play1_guess1_button->BackgroundImage == rand_comb1_button->BackgroundImage)
-		{
-			objSettings->setRandomNUM();
-			num_rand1 = objSettings->getRandomNUM();
+			{
+				objSettings->setRandomNUM();
+				num_rand1 = objSettings->getRandomNUM();
 
-			if (num_rand1 == 1)
-			{
-				play1_score_btn1->BackgroundImage = black_button->BackgroundImage;
-				//play1_score_btn1->BackgroundImageLayout = Stretch;
-			}
-			else if (num_rand1 == 2)
-			{
-				play1_score_btn2->BackgroundImage = black_button->BackgroundImage;
-			}
-			else if (num_rand1 == 3)
-			{
-				play1_score_btn3->BackgroundImage = black_button->BackgroundImage;
-			}
-			else if (num_rand1 == 4)
-			{
-				play1_score_btn4->BackgroundImage = black_button->BackgroundImage;
-			}
+				if (num_rand1 == 1)
+				{
+					play1_score_btn1->BackgroundImage = black_button->BackgroundImage;
+					//play1_score_btn1->BackgroundImageLayout = Stretch;
+				}
+				else if (num_rand1 == 2)
+				{
+					play1_score_btn2->BackgroundImage = black_button->BackgroundImage;
+				}
+				else if (num_rand1 == 3)
+				{
+					play1_score_btn3->BackgroundImage = black_button->BackgroundImage;
+				}
+				else if (num_rand1 == 4)
+				{
+					play1_score_btn4->BackgroundImage = black_button->BackgroundImage;
+				}
 
-		}
+			}
 			if (play1_guess2_button->BackgroundImage == rand_comb2_button->BackgroundImage)
-		{
-			objSettings->setRandomNUM();
-			num_rand2 = objSettings->getRandomNUM();
-
-			while (num_rand2 == num_rand1)
 			{
 				objSettings->setRandomNUM();
 				num_rand2 = objSettings->getRandomNUM();
-			}
 
-			if (num_rand2 == 1)
-			{
-				play1_score_btn1->BackgroundImage = black_button->BackgroundImage;
-				//play1_score_btn1->BackgroundImageLayout = Stretch;
+				while (num_rand2 == num_rand1)
+				{
+					objSettings->setRandomNUM();
+					num_rand2 = objSettings->getRandomNUM();
+				}
+
+				if (num_rand2 == 1)
+				{
+					play1_score_btn1->BackgroundImage = black_button->BackgroundImage;
+					//play1_score_btn1->BackgroundImageLayout = Stretch;
+				}
+				else if (num_rand2 == 2)
+				{
+					play1_score_btn2->BackgroundImage = black_button->BackgroundImage;
+				}
+				else if (num_rand2 == 3)
+				{
+					play1_score_btn3->BackgroundImage = black_button->BackgroundImage;
+				}
+				else if (num_rand2 == 4)
+				{
+					play1_score_btn4->BackgroundImage = black_button->BackgroundImage;
+				}
 			}
-			else if (num_rand2 == 2)
-			{
-				play1_score_btn2->BackgroundImage = black_button->BackgroundImage;
-			}
-			else if (num_rand2 == 3)
-			{
-				play1_score_btn3->BackgroundImage = black_button->BackgroundImage;
-			}
-			else if (num_rand2 == 4)
-			{
-				play1_score_btn4->BackgroundImage = black_button->BackgroundImage;
-			}
-		}
 			if (play1_guess3_button->BackgroundImage == rand_comb3_button->BackgroundImage)
-		{
-			objSettings->setRandomNUM();
-			num_rand3 = objSettings->getRandomNUM();
-
-			while ((num_rand3 == num_rand1) || (num_rand3 == num_rand2))
 			{
 				objSettings->setRandomNUM();
 				num_rand3 = objSettings->getRandomNUM();
-			}
 
-			if (num_rand3 == 1)
-			{
-				play1_score_btn1->BackgroundImage = black_button->BackgroundImage;
-				//play1_score_btn1->BackgroundImageLayout = Stretch;
+				while ((num_rand3 == num_rand1) || (num_rand3 == num_rand2))
+				{
+					objSettings->setRandomNUM();
+					num_rand3 = objSettings->getRandomNUM();
+				}
+
+				if (num_rand3 == 1)
+				{
+					play1_score_btn1->BackgroundImage = black_button->BackgroundImage;
+					//play1_score_btn1->BackgroundImageLayout = Stretch;
+				}
+				else if (num_rand3 == 2)
+				{
+					play1_score_btn2->BackgroundImage = black_button->BackgroundImage;
+				}
+				else if (num_rand3 == 3)
+				{
+					play1_score_btn3->BackgroundImage = black_button->BackgroundImage;
+				}
+				else if (num_rand3 == 4)
+				{
+					play1_score_btn4->BackgroundImage = black_button->BackgroundImage;
+				}
 			}
-			else if (num_rand3 == 2)
-			{
-				play1_score_btn2->BackgroundImage = black_button->BackgroundImage;
-			}
-			else if (num_rand3 == 3)
-			{
-				play1_score_btn3->BackgroundImage = black_button->BackgroundImage;
-			}
-			else if (num_rand3 == 4)
-			{
-				play1_score_btn4->BackgroundImage = black_button->BackgroundImage;
-			}
-		}
 			if (play1_guess4_button->BackgroundImage == rand_comb4_button->BackgroundImage)
-		{
-			objSettings->setRandomNUM();
-			num_rand4 = objSettings->getRandomNUM();
-
-
-			while ((num_rand4 == num_rand1) || (num_rand4 == num_rand2) || (num_rand4 == num_rand3))
 			{
 				objSettings->setRandomNUM();
 				num_rand4 = objSettings->getRandomNUM();
-			}
 
-			if (num_rand4 == 1)
-			{
-				play1_score_btn1->BackgroundImage = black_button->BackgroundImage;
-				//play1_score_btn1->BackgroundImageLayout = Stretch;
+
+				while ((num_rand4 == num_rand1) || (num_rand4 == num_rand2) || (num_rand4 == num_rand3))
+				{
+					objSettings->setRandomNUM();
+					num_rand4 = objSettings->getRandomNUM();
+				}
+
+				if (num_rand4 == 1)
+				{
+					play1_score_btn1->BackgroundImage = black_button->BackgroundImage;
+					//play1_score_btn1->BackgroundImageLayout = Stretch;
+				}
+				else if (num_rand4 == 2)
+				{
+					play1_score_btn2->BackgroundImage = black_button->BackgroundImage;
+				}
+				else if (num_rand4 == 3)
+				{
+					play1_score_btn3->BackgroundImage = black_button->BackgroundImage;
+				}
+				else if (num_rand4 == 4)
+				{
+					play1_score_btn4->BackgroundImage = black_button->BackgroundImage;
+				}
 			}
-			else if (num_rand4 == 2)
-			{
-				play1_score_btn2->BackgroundImage = black_button->BackgroundImage;
-			}
-			else if (num_rand4 == 3)
-			{
-				play1_score_btn3->BackgroundImage = black_button->BackgroundImage;
-			}
-			else if (num_rand4 == 4)
-			{
-				play1_score_btn4->BackgroundImage = black_button->BackgroundImage;
-			}
-		}
 
 			//white score
 			if ((play1_guess1_button->BackgroundImage == rand_comb2_button->BackgroundImage) || (play1_guess1_button->BackgroundImage == rand_comb3_button->BackgroundImage) || (play1_guess1_button->BackgroundImage == rand_comb4_button->BackgroundImage))
@@ -5743,6 +5749,7 @@ private: System::Windows::Forms::Label^ Username_label;
 		//win game / lose game
 		if ((play1_score_btn1->BackgroundImage == black_button->BackgroundImage) && (play1_score_btn2->BackgroundImage == black_button->BackgroundImage) && (play1_score_btn3->BackgroundImage == black_button->BackgroundImage) && (play1_score_btn4->BackgroundImage == black_button->BackgroundImage))
 		{
+			using namespace std;
 			Clock->Enabled = false;
 
 			win_groupBox->Visible = true;
@@ -5751,7 +5758,95 @@ private: System::Windows::Forms::Label^ Username_label;
 
 			rand_comb_groupBox->Visible = true;
 			win = true;
+			if (win == true)
+			{
+				ofstream winnerinfo;//File with winner information
+				//winnerinfo.open("winner.txt",ios::out);
+				//winnerinfo.close();
+				winnerinfo.open("winner.txt",ios::app);
+				winnerinfo << "Difficulty: "<< endl;//Saves difficulty
+				if (objSettings->getDifficulty() == 1)
+					winnerinfo << "Easy" << endl;
+				else if (objSettings->getDifficulty() == 2)
+					winnerinfo << "Medium" << endl;
+				else if (objSettings->getDifficulty() == 3)
+					winnerinfo << "Hard" << endl;
+				winnerinfo << endl;
+				winnerinfo << "Username: " << endl;//Saves the username
+				string winnername = msclr::interop::marshal_as<std::string>(Username_label->Text);
+				winnerinfo << winnername << endl;
+				winnerinfo << endl;
+				winnerinfo << "Time: " << endl;//Saves time
+				if (objSettings->getClock() == true)
+				{
+					winnerinfo << seconds << endl;
+					winnerinfo << minutes << endl;
+					winnerinfo << hours << endl;
+					winnerinfo << endl;
+				}
+				else if (objSettings->getTimekeeperGame() == true)
+				{
+					winnerinfo << secondsG << endl;
+					winnerinfo << minutesG << endl;
+					winnerinfo << hoursG << endl;
+					winnerinfo << endl;
+				}
+				else if (objSettings->getClock() == true)
+				{
+					winnerinfo << secondsP << endl;
+					winnerinfo << minutesP << endl;
+					winnerinfo << endl;
+				}
+				winnerinfo << endl;
+				winnerinfo << "Combination: " << endl;//Saves combination
 
+				auto actual_Comb_Btn_BackIma = rand_comb1_button->BackgroundImage;
+				int combi = 0;
+				while (combi < 4)
+				{
+					if(combi==1)
+						actual_Comb_Btn_BackIma = rand_comb2_button->BackgroundImage;
+					else if(combi==2)
+						actual_Comb_Btn_BackIma = rand_comb3_button->BackgroundImage;
+					else if (combi == 3)
+						actual_Comb_Btn_BackIma = rand_comb4_button->BackgroundImage;
+
+
+					if (actual_Comb_Btn_BackIma == red_button->BackgroundImage)
+						winnerinfo << "Red" << endl;
+
+					else if (actual_Comb_Btn_BackIma == blue_button->BackgroundImage)
+						winnerinfo << "Blue" << endl;
+
+					else if (actual_Comb_Btn_BackIma == green_button->BackgroundImage)
+						winnerinfo << "Green" << endl;
+
+					else if (actual_Comb_Btn_BackIma == yellow_button->BackgroundImage)
+						winnerinfo << "Yellow" << endl;
+
+					else if (actual_Comb_Btn_BackIma == pink_button->BackgroundImage)
+						winnerinfo << "Pink" << endl;
+
+					else if (actual_Comb_Btn_BackIma == brown_button->BackgroundImage)
+						winnerinfo << "Brown" << endl;
+
+					combi++;
+				}
+				winnerinfo << endl;
+
+				winnerinfo << "Time and date: " << endl;
+
+				char fecha[25];//ctime devuelve 26 caracteres pero tambien se podría usar un puntero de char
+				time_t current_time;
+				current_time = time(NULL);
+				ctime(&current_time);
+				strcpy(fecha, ctime(&current_time));
+				winnerinfo << fecha << endl;
+
+			winnerinfo.close();
+			}
+		    backg->Stop();
+			applause->PlayLooping();
 			win_lose_disable();
 		}
 		else
@@ -5764,13 +5859,14 @@ private: System::Windows::Forms::Label^ Username_label;
 
 					//codigo para terminar el juego
 					Clock->Enabled = false;
-					
+
 					lose_groupBox->Visible = true;
 					lose_groupBox->Enabled = true;
 					you_lose_timer->Enabled = true;
 
 					rand_comb_groupBox->Visible = true;
-
+					backg->Stop();
+					disappointment->PlayLooping();
 					win_lose_disable();
 				}
 			}
@@ -5810,7 +5906,7 @@ private: System::Windows::Forms::Label^ Username_label;
 					win_lose_disable();
 				}
 			}
-		
+
 		}
 
 
@@ -5861,12 +5957,12 @@ private: System::Windows::Forms::Label^ Username_label;
 			play2_pictureBox2->BackgroundImage = play1_guess2_button->BackgroundImage;
 			play2_pictureBox3->BackgroundImage = play1_guess3_button->BackgroundImage;
 			play2_pictureBox4->BackgroundImage = play1_guess4_button->BackgroundImage;
-				
+
 			play2_score_picBox1->BackgroundImage = play1_score_btn1->BackgroundImage;
 			play2_score_picBox2->BackgroundImage = play1_score_btn2->BackgroundImage;
 			play2_score_picBox3->BackgroundImage = play1_score_btn3->BackgroundImage;
 			play2_score_picBox4->BackgroundImage = play1_score_btn4->BackgroundImage;
-				
+
 			//guess button back to blank
 			play1_guess1_button->BackgroundImage = blank_button->BackgroundImage;
 			play1_guess1_button->BackColor = blank_button->BackColor;
@@ -5900,12 +5996,12 @@ private: System::Windows::Forms::Label^ Username_label;
 			play3_pictureBox2->BackgroundImage = play1_guess2_button->BackgroundImage;
 			play3_pictureBox3->BackgroundImage = play1_guess3_button->BackgroundImage;
 			play3_pictureBox4->BackgroundImage = play1_guess4_button->BackgroundImage;
-			
+
 			play3_score_picBox1->BackgroundImage = play1_score_btn1->BackgroundImage;
 			play3_score_picBox2->BackgroundImage = play1_score_btn2->BackgroundImage;
 			play3_score_picBox3->BackgroundImage = play1_score_btn3->BackgroundImage;
 			play3_score_picBox4->BackgroundImage = play1_score_btn4->BackgroundImage;
-			
+
 			//guess button back to blank
 			play1_guess1_button->BackgroundImage = blank_button->BackgroundImage;
 			play1_guess1_button->BackColor = blank_button->BackColor;
@@ -5915,7 +6011,7 @@ private: System::Windows::Forms::Label^ Username_label;
 			play1_guess3_button->BackColor = blank_button->BackColor;
 			play1_guess4_button->BackgroundImage = blank_button->BackgroundImage;
 			play1_guess4_button->BackColor = blank_button->BackColor;
-				
+
 			//score button back to blank
 			play1_score_btn1->BackgroundImage = blank_score_button->BackgroundImage;
 			play1_score_btn1->BackColor = blank_score_button->BackColor;
@@ -6120,7 +6216,7 @@ private: System::Windows::Forms::Label^ Username_label;
 
 
 		actual_play++;
-	
+
 		enter_play_button->Enabled = false;
 	}
 
@@ -6132,18 +6228,19 @@ private: System::Windows::Forms::Label^ Username_label;
 
 
 
-	private: System::Void play7_groupBox_Enter(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void play7_groupBox_Enter(System::Object^ sender, System::EventArgs^ e)
 	{
-		
+
 	}
 
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 
-	private: System::Void ok_quit_button_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void ok_quit_button_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		if (quit_game == true)
 		{
+			backg->Stop();
 			VentanaPlay::Close();
 
 			//devuleve los valores del reloj/cronometro a 0
@@ -6163,27 +6260,27 @@ private: System::Windows::Forms::Label^ Username_label;
 			quit_game_groupBox->Visible = false;
 		}
 	}
-	private: System::Void quit_yes_radioButton_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void quit_yes_radioButton_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 	{
 		quit_game = true;
-	
+
 		ok_quit_button->Enabled = true;
 	}
-	private: System::Void quit_no_radioButton_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void quit_no_radioButton_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 	{
 		quit_game = false;
 
 		ok_quit_button->Enabled = true;
 	}
-	
+
 
 	private: System::Void label1_Click_1(System::Object^ sender, System::EventArgs^ e) {
 	}
 
-	private: System::Void ok_win_button_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void ok_win_button_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		//codigo para guardar el highscore del jugador
-
+		applause->Stop();
 		VentanaPlay::Close();
 
 		//devuleve los valores del reloj/cronometro a 0
@@ -6197,10 +6294,10 @@ private: System::Windows::Forms::Label^ Username_label;
 		minutesG = 29;
 		hoursG = 1;
 	}
-	private: System::Void ok_lose_button_Click(System::Object^ sender, System::EventArgs^ e)	
+	private: System::Void ok_lose_button_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		you_lose_timer->Enabled = false;
-
+		disappointment->Stop();
 		VentanaPlay::Close();
 
 		//devuleve los valores del reloj/cronometro a 0
@@ -6233,12 +6330,12 @@ private: System::Windows::Forms::Label^ Username_label;
 
 	private: System::Void lose_groupBox_Enter(System::Object^ sender, System::EventArgs^ e) {
 	}
-	
+
 
 	private: System::Void ayudaToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	
-	private: System::Void instruccionesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) 
+
+	private: System::Void instruccionesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		//How to Play
 		HowToPlay instrucciones;
@@ -6246,5 +6343,5 @@ private: System::Windows::Forms::Label^ Username_label;
 	}
 
 
-};
+	};
 }
