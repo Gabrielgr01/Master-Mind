@@ -35,14 +35,26 @@ namespace MasterMindProyectoFinal {
 		static Image^ picBox_img4_GS;
 		static Image^ picBox_img5_GS;
 		static Image^ picBox_img6_GS;
-
-	private: System::Windows::Forms::PictureBox^ pictureBox24;
+	private: System::Windows::Forms::PictureBox^ shapes_hexagon_picBox;
+	private: System::Windows::Forms::PictureBox^ shapes_pentagon_picBox;
+	private: System::Windows::Forms::PictureBox^ shapes_square_picBox;
+	private: System::Windows::Forms::PictureBox^ shapes_doubleTriangle_picBox;
+	private: System::Windows::Forms::PictureBox^ shapes_triangle_picBox;
+	private: System::Windows::Forms::PictureBox^ shapes_lightning_picBox;
 	public:
-	private: System::Windows::Forms::PictureBox^ pictureBox23;
-	private: System::Windows::Forms::PictureBox^ pictureBox22;
-	private: System::Windows::Forms::PictureBox^ pictureBox21;
-	private: System::Windows::Forms::PictureBox^ pictureBox20;
-	private: System::Windows::Forms::PictureBox^ pictureBox19;
+
+
+
+	public:
+
+
+
+
+
+
+
+
+
 	private: System::Windows::Forms::PictureBox^ numbers_5_picBox;
 
 	private: System::Windows::Forms::PictureBox^ numbers_4_picBox;
@@ -128,7 +140,8 @@ namespace MasterMindProyectoFinal {
 	public: System::Windows::Forms::RadioButton^ Element_rep_Enabled;
 
 	private: System::Windows::Forms::GroupBox^ groupBox4;
-	private: System::Windows::Forms::RadioButton^ radioButton13;
+private: System::Windows::Forms::RadioButton^ elem_type_shapes_rbtn;
+
 	private: System::Windows::Forms::RadioButton^ elem_type_numbers_rbtn;
 
 	private: System::Windows::Forms::RadioButton^ elem_type_letters_rbtn;
@@ -171,12 +184,12 @@ namespace MasterMindProyectoFinal {
 			this->Element_rep_Disabled = (gcnew System::Windows::Forms::RadioButton());
 			this->Element_rep_Enabled = (gcnew System::Windows::Forms::RadioButton());
 			this->groupBox4 = (gcnew System::Windows::Forms::GroupBox());
-			this->pictureBox24 = (gcnew System::Windows::Forms::PictureBox());
-			this->pictureBox23 = (gcnew System::Windows::Forms::PictureBox());
-			this->pictureBox22 = (gcnew System::Windows::Forms::PictureBox());
-			this->pictureBox21 = (gcnew System::Windows::Forms::PictureBox());
-			this->pictureBox20 = (gcnew System::Windows::Forms::PictureBox());
-			this->pictureBox19 = (gcnew System::Windows::Forms::PictureBox());
+			this->shapes_hexagon_picBox = (gcnew System::Windows::Forms::PictureBox());
+			this->shapes_pentagon_picBox = (gcnew System::Windows::Forms::PictureBox());
+			this->shapes_square_picBox = (gcnew System::Windows::Forms::PictureBox());
+			this->shapes_doubleTriangle_picBox = (gcnew System::Windows::Forms::PictureBox());
+			this->shapes_triangle_picBox = (gcnew System::Windows::Forms::PictureBox());
+			this->shapes_lightning_picBox = (gcnew System::Windows::Forms::PictureBox());
 			this->numbers_5_picBox = (gcnew System::Windows::Forms::PictureBox());
 			this->numbers_4_picBox = (gcnew System::Windows::Forms::PictureBox());
 			this->numbers_3_picBox = (gcnew System::Windows::Forms::PictureBox());
@@ -195,7 +208,7 @@ namespace MasterMindProyectoFinal {
 			this->colors_green_picBox = (gcnew System::Windows::Forms::PictureBox());
 			this->colors_blue_picBox = (gcnew System::Windows::Forms::PictureBox());
 			this->colors_red_picBox = (gcnew System::Windows::Forms::PictureBox());
-			this->radioButton13 = (gcnew System::Windows::Forms::RadioButton());
+			this->elem_type_shapes_rbtn = (gcnew System::Windows::Forms::RadioButton());
 			this->elem_type_numbers_rbtn = (gcnew System::Windows::Forms::RadioButton());
 			this->elem_type_letters_rbtn = (gcnew System::Windows::Forms::RadioButton());
 			this->elem_type_colors_rbtn = (gcnew System::Windows::Forms::RadioButton());
@@ -205,12 +218,12 @@ namespace MasterMindProyectoFinal {
 			this->groupBox2->SuspendLayout();
 			this->groupBox3->SuspendLayout();
 			this->groupBox4->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox24))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox23))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox22))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox21))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox20))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox19))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->shapes_hexagon_picBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->shapes_pentagon_picBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->shapes_square_picBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->shapes_doubleTriangle_picBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->shapes_triangle_picBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->shapes_lightning_picBox))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numbers_5_picBox))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numbers_4_picBox))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numbers_3_picBox))->BeginInit();
@@ -374,12 +387,12 @@ namespace MasterMindProyectoFinal {
 			// 
 			// groupBox4
 			// 
-			this->groupBox4->Controls->Add(this->pictureBox24);
-			this->groupBox4->Controls->Add(this->pictureBox23);
-			this->groupBox4->Controls->Add(this->pictureBox22);
-			this->groupBox4->Controls->Add(this->pictureBox21);
-			this->groupBox4->Controls->Add(this->pictureBox20);
-			this->groupBox4->Controls->Add(this->pictureBox19);
+			this->groupBox4->Controls->Add(this->shapes_hexagon_picBox);
+			this->groupBox4->Controls->Add(this->shapes_pentagon_picBox);
+			this->groupBox4->Controls->Add(this->shapes_square_picBox);
+			this->groupBox4->Controls->Add(this->shapes_doubleTriangle_picBox);
+			this->groupBox4->Controls->Add(this->shapes_triangle_picBox);
+			this->groupBox4->Controls->Add(this->shapes_lightning_picBox);
 			this->groupBox4->Controls->Add(this->numbers_5_picBox);
 			this->groupBox4->Controls->Add(this->numbers_4_picBox);
 			this->groupBox4->Controls->Add(this->numbers_3_picBox);
@@ -398,77 +411,77 @@ namespace MasterMindProyectoFinal {
 			this->groupBox4->Controls->Add(this->colors_green_picBox);
 			this->groupBox4->Controls->Add(this->colors_blue_picBox);
 			this->groupBox4->Controls->Add(this->colors_red_picBox);
-			this->groupBox4->Controls->Add(this->radioButton13);
+			this->groupBox4->Controls->Add(this->elem_type_shapes_rbtn);
 			this->groupBox4->Controls->Add(this->elem_type_numbers_rbtn);
 			this->groupBox4->Controls->Add(this->elem_type_letters_rbtn);
 			this->groupBox4->Controls->Add(this->elem_type_colors_rbtn);
 			this->groupBox4->Location = System::Drawing::Point(295, 12);
 			this->groupBox4->Name = L"groupBox4";
-			this->groupBox4->Size = System::Drawing::Size(307, 333);
+			this->groupBox4->Size = System::Drawing::Size(297, 333);
 			this->groupBox4->TabIndex = 0;
 			this->groupBox4->TabStop = false;
 			this->groupBox4->Text = L"Element type to use in combination";
 			this->groupBox4->Enter += gcnew System::EventHandler(this, &GameSettings::groupBox4_Enter);
 			// 
-			// pictureBox24
+			// shapes_hexagon_picBox
 			// 
-			this->pictureBox24->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox24.BackgroundImage")));
-			this->pictureBox24->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->pictureBox24->Location = System::Drawing::Point(232, 272);
-			this->pictureBox24->Name = L"pictureBox24";
-			this->pictureBox24->Size = System::Drawing::Size(45, 40);
-			this->pictureBox24->TabIndex = 30;
-			this->pictureBox24->TabStop = false;
+			this->shapes_hexagon_picBox->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"shapes_hexagon_picBox.BackgroundImage")));
+			this->shapes_hexagon_picBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->shapes_hexagon_picBox->Location = System::Drawing::Point(218, 272);
+			this->shapes_hexagon_picBox->Name = L"shapes_hexagon_picBox";
+			this->shapes_hexagon_picBox->Size = System::Drawing::Size(45, 40);
+			this->shapes_hexagon_picBox->TabIndex = 30;
+			this->shapes_hexagon_picBox->TabStop = false;
 			// 
-			// pictureBox23
+			// shapes_pentagon_picBox
 			// 
-			this->pictureBox23->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox23.BackgroundImage")));
-			this->pictureBox23->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->pictureBox23->Location = System::Drawing::Point(232, 226);
-			this->pictureBox23->Name = L"pictureBox23";
-			this->pictureBox23->Size = System::Drawing::Size(45, 40);
-			this->pictureBox23->TabIndex = 29;
-			this->pictureBox23->TabStop = false;
+			this->shapes_pentagon_picBox->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"shapes_pentagon_picBox.BackgroundImage")));
+			this->shapes_pentagon_picBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->shapes_pentagon_picBox->Location = System::Drawing::Point(218, 226);
+			this->shapes_pentagon_picBox->Name = L"shapes_pentagon_picBox";
+			this->shapes_pentagon_picBox->Size = System::Drawing::Size(45, 40);
+			this->shapes_pentagon_picBox->TabIndex = 29;
+			this->shapes_pentagon_picBox->TabStop = false;
 			// 
-			// pictureBox22
+			// shapes_square_picBox
 			// 
-			this->pictureBox22->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox22.BackgroundImage")));
-			this->pictureBox22->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->pictureBox22->Location = System::Drawing::Point(232, 180);
-			this->pictureBox22->Name = L"pictureBox22";
-			this->pictureBox22->Size = System::Drawing::Size(45, 40);
-			this->pictureBox22->TabIndex = 28;
-			this->pictureBox22->TabStop = false;
+			this->shapes_square_picBox->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"shapes_square_picBox.BackgroundImage")));
+			this->shapes_square_picBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->shapes_square_picBox->Location = System::Drawing::Point(218, 180);
+			this->shapes_square_picBox->Name = L"shapes_square_picBox";
+			this->shapes_square_picBox->Size = System::Drawing::Size(45, 40);
+			this->shapes_square_picBox->TabIndex = 28;
+			this->shapes_square_picBox->TabStop = false;
 			// 
-			// pictureBox21
+			// shapes_doubleTriangle_picBox
 			// 
-			this->pictureBox21->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox21.BackgroundImage")));
-			this->pictureBox21->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->pictureBox21->Location = System::Drawing::Point(232, 134);
-			this->pictureBox21->Name = L"pictureBox21";
-			this->pictureBox21->Size = System::Drawing::Size(45, 40);
-			this->pictureBox21->TabIndex = 27;
-			this->pictureBox21->TabStop = false;
+			this->shapes_doubleTriangle_picBox->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"shapes_doubleTriangle_picBox.BackgroundImage")));
+			this->shapes_doubleTriangle_picBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->shapes_doubleTriangle_picBox->Location = System::Drawing::Point(218, 134);
+			this->shapes_doubleTriangle_picBox->Name = L"shapes_doubleTriangle_picBox";
+			this->shapes_doubleTriangle_picBox->Size = System::Drawing::Size(45, 40);
+			this->shapes_doubleTriangle_picBox->TabIndex = 27;
+			this->shapes_doubleTriangle_picBox->TabStop = false;
 			// 
-			// pictureBox20
+			// shapes_triangle_picBox
 			// 
-			this->pictureBox20->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox20.BackgroundImage")));
-			this->pictureBox20->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->pictureBox20->Location = System::Drawing::Point(232, 88);
-			this->pictureBox20->Name = L"pictureBox20";
-			this->pictureBox20->Size = System::Drawing::Size(45, 40);
-			this->pictureBox20->TabIndex = 26;
-			this->pictureBox20->TabStop = false;
+			this->shapes_triangle_picBox->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"shapes_triangle_picBox.BackgroundImage")));
+			this->shapes_triangle_picBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->shapes_triangle_picBox->Location = System::Drawing::Point(218, 88);
+			this->shapes_triangle_picBox->Name = L"shapes_triangle_picBox";
+			this->shapes_triangle_picBox->Size = System::Drawing::Size(45, 40);
+			this->shapes_triangle_picBox->TabIndex = 26;
+			this->shapes_triangle_picBox->TabStop = false;
 			// 
-			// pictureBox19
+			// shapes_lightning_picBox
 			// 
-			this->pictureBox19->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox19.BackgroundImage")));
-			this->pictureBox19->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->pictureBox19->Location = System::Drawing::Point(232, 42);
-			this->pictureBox19->Name = L"pictureBox19";
-			this->pictureBox19->Size = System::Drawing::Size(45, 40);
-			this->pictureBox19->TabIndex = 25;
-			this->pictureBox19->TabStop = false;
+			this->shapes_lightning_picBox->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"shapes_lightning_picBox.BackgroundImage")));
+			this->shapes_lightning_picBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->shapes_lightning_picBox->Location = System::Drawing::Point(218, 42);
+			this->shapes_lightning_picBox->Name = L"shapes_lightning_picBox";
+			this->shapes_lightning_picBox->Size = System::Drawing::Size(45, 40);
+			this->shapes_lightning_picBox->TabIndex = 25;
+			this->shapes_lightning_picBox->TabStop = false;
 			// 
 			// numbers_5_picBox
 			// 
@@ -650,15 +663,16 @@ namespace MasterMindProyectoFinal {
 			this->colors_red_picBox->TabIndex = 7;
 			this->colors_red_picBox->TabStop = false;
 			// 
-			// radioButton13
+			// elem_type_shapes_rbtn
 			// 
-			this->radioButton13->AutoSize = true;
-			this->radioButton13->Location = System::Drawing::Point(202, 19);
-			this->radioButton13->Name = L"radioButton13";
-			this->radioButton13->Size = System::Drawing::Size(97, 17);
-			this->radioButton13->TabIndex = 3;
-			this->radioButton13->Text = L"(Undefined yet)";
-			this->radioButton13->UseVisualStyleBackColor = true;
+			this->elem_type_shapes_rbtn->AutoSize = true;
+			this->elem_type_shapes_rbtn->Location = System::Drawing::Point(202, 19);
+			this->elem_type_shapes_rbtn->Name = L"elem_type_shapes_rbtn";
+			this->elem_type_shapes_rbtn->Size = System::Drawing::Size(61, 17);
+			this->elem_type_shapes_rbtn->TabIndex = 3;
+			this->elem_type_shapes_rbtn->Text = L"Shapes";
+			this->elem_type_shapes_rbtn->UseVisualStyleBackColor = true;
+			this->elem_type_shapes_rbtn->CheckedChanged += gcnew System::EventHandler(this, &GameSettings::elem_type_shapes_rbtn_CheckedChanged);
 			// 
 			// elem_type_numbers_rbtn
 			// 
@@ -680,7 +694,7 @@ namespace MasterMindProyectoFinal {
 			this->elem_type_letters_rbtn->TabIndex = 1;
 			this->elem_type_letters_rbtn->Text = L"Letters";
 			this->elem_type_letters_rbtn->UseVisualStyleBackColor = true;
-			this->elem_type_letters_rbtn->CheckedChanged += gcnew System::EventHandler(this, &GameSettings::radioButton11_CheckedChanged);
+			this->elem_type_letters_rbtn->CheckedChanged += gcnew System::EventHandler(this, &GameSettings::elem_type_letters_rbtn_CheckedChanged);
 			// 
 			// elem_type_colors_rbtn
 			// 
@@ -693,7 +707,7 @@ namespace MasterMindProyectoFinal {
 			this->elem_type_colors_rbtn->TabStop = true;
 			this->elem_type_colors_rbtn->Text = L"Colors";
 			this->elem_type_colors_rbtn->UseVisualStyleBackColor = true;
-			this->elem_type_colors_rbtn->CheckedChanged += gcnew System::EventHandler(this, &GameSettings::radioButton10_CheckedChanged);
+			this->elem_type_colors_rbtn->CheckedChanged += gcnew System::EventHandler(this, &GameSettings::elem_type_colors_rbtn_CheckedChanged);
 			// 
 			// Save_Settings
 			// 
@@ -707,7 +721,7 @@ namespace MasterMindProyectoFinal {
 			// 
 			// button_back
 			// 
-			this->button_back->Location = System::Drawing::Point(527, 351);
+			this->button_back->Location = System::Drawing::Point(517, 351);
 			this->button_back->Name = L"button_back";
 			this->button_back->Size = System::Drawing::Size(75, 23);
 			this->button_back->TabIndex = 6;
@@ -719,7 +733,7 @@ namespace MasterMindProyectoFinal {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(614, 386);
+			this->ClientSize = System::Drawing::Size(604, 386);
 			this->Controls->Add(this->button_back);
 			this->Controls->Add(this->Save_Settings);
 			this->Controls->Add(this->groupBox4);
@@ -736,12 +750,12 @@ namespace MasterMindProyectoFinal {
 			this->groupBox3->PerformLayout();
 			this->groupBox4->ResumeLayout(false);
 			this->groupBox4->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox24))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox23))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox22))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox21))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox20))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox19))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->shapes_hexagon_picBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->shapes_pentagon_picBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->shapes_square_picBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->shapes_doubleTriangle_picBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->shapes_triangle_picBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->shapes_lightning_picBox))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numbers_5_picBox))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numbers_4_picBox))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numbers_3_picBox))->EndInit();
@@ -841,12 +855,12 @@ namespace MasterMindProyectoFinal {
 		objSettings->setElementRep(element_rep);
 	}
 
-	private: System::Void radioButton10_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void elem_type_colors_rbtn_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 	{
 		element_type = 1;
 		objSettings->setElementType(element_type);
 	}
-	private: System::Void radioButton11_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void elem_type_letters_rbtn_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 	{
 		element_type = 2;
 		objSettings->setElementType(element_type);
@@ -854,6 +868,11 @@ namespace MasterMindProyectoFinal {
 	private: System::Void elem_type_numbers_rbtn_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 	{
 		element_type = 3;
+		objSettings->setElementType(element_type);
+	}
+	private: System::Void elem_type_shapes_rbtn_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
+	{
+		element_type = 4;
 		objSettings->setElementType(element_type);
 	}
 
@@ -890,12 +909,12 @@ namespace MasterMindProyectoFinal {
 		}
 		else if (objSettings->getElementType() == 4)
 		{
-			picBox_img1_GS = colors_red_picBox->BackgroundImage;
-			picBox_img2_GS = colors_blue_picBox->BackgroundImage;
-			picBox_img3_GS = colors_green_picBox->BackgroundImage;
-			picBox_img4_GS = colors_yellow_picBox->BackgroundImage;
-			picBox_img5_GS = colors_pink_picBox->BackgroundImage;
-			picBox_img6_GS = colors_brown_picBox->BackgroundImage;
+			picBox_img1_GS = shapes_lightning_picBox->BackgroundImage;
+			picBox_img2_GS = shapes_triangle_picBox->BackgroundImage;
+			picBox_img3_GS = shapes_doubleTriangle_picBox->BackgroundImage;
+			picBox_img4_GS = shapes_square_picBox->BackgroundImage;
+			picBox_img5_GS = shapes_pentagon_picBox->BackgroundImage;
+			picBox_img6_GS = shapes_hexagon_picBox->BackgroundImage;
 		}
 
 		MasterMindProyectoFinal::VentanaPlay::btn_img1_play = picBox_img1_GS;
