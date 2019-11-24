@@ -1,7 +1,5 @@
 #Master-Mind
 
-//VentanaPlay.h
-
 #pragma once
 
 #include "ConfigurationClass.h"
@@ -15,6 +13,7 @@
 #include <fstream>
 #include <string>
 #include <msclr\marshal_cppstd.h>
+#include <time.h>
 
 
 namespace MasterMindProyectoFinal {
@@ -25,6 +24,7 @@ namespace MasterMindProyectoFinal {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Media;
 	using namespace std::this_thread;
 	using namespace std::chrono;
 
@@ -105,6 +105,115 @@ namespace MasterMindProyectoFinal {
 		static Image^ btn_img4_play;
 		static Image^ btn_img5_play;
 		static Image^ btn_img6_play;
+
+		SoundPlayer^ backg = gcnew SoundPlayer("Jazz.wav");
+		SoundPlayer^ applause = gcnew SoundPlayer("Applause.wav");
+		SoundPlayer^ disappointment = gcnew SoundPlayer("Disappointment.wav");
+
+
+
+	public:
+		VentanaPlay(ConfigurationClass* objSettings)
+		{
+			InitializeComponent();
+
+			backg->PlayLooping();
+
+			this->objSettings = objSettings;
+
+			if (objSettings->getDifficulty() == 1)
+			{
+				difficulty_label->Text = "Difficulty: Easy";
+			}
+			else if (objSettings->getDifficulty() == 2)
+			{
+				difficulty_label->Text = "Difficulty: Medium";
+			}
+			else if (objSettings->getDifficulty() == 3)
+			{
+				difficulty_label->Text = "Difficulty: Hard";
+			}
+
+
+			if (objSettings->getElementRep() == true)
+			{
+				repetition_label->Text = "Element repetition: ON";
+			}
+			else if (objSettings->getElementRep() == false)
+			{
+				repetition_label->Text = "Element repetition: OFF";
+			}
+
+			if ((objSettings->getClock() == false) && (objSettings->getTimekeeperGame() == false) && (objSettings->getTimekeeperPlay() == false))
+			{
+				Time->Visible = false;
+			}
+
+			Username_label->Text = userNameBtt;
+
+
+			//Element Type
+			
+			red_button->BackgroundImage = btn_img1_play;
+			blue_button->BackgroundImage = btn_img2_play;
+			green_button->BackgroundImage = btn_img3_play;
+			yellow_button->BackgroundImage = btn_img4_play;
+			pink_button->BackgroundImage = btn_img5_play;
+			brown_button->BackgroundImage = btn_img6_play;
+
+			if (objSettings->getElementType() == 1)
+			{
+				red_button->Text = "Red";
+				blue_button-> Text = "Blue";
+				green_button->Text = "Green";
+				yellow_button->Text = "Yellow";
+				pink_button->Text = "Pink";
+				brown_button->Text = "Brown";
+			}
+			else if ((objSettings->getElementType() == 2) || (objSettings->getElementType() == 3) || (objSettings->getElementType() == 4))
+			{
+				red_button->Text = "";
+				blue_button->Text = "";
+				green_button->Text = "";
+				yellow_button->Text = "";
+				pink_button->Text = "";
+				brown_button->Text = "";
+			}
+			
+			
+
+			using namespace std;
+			string titulo;
+			string dato;
+			ifstream saved_game_file;
+			saved_game_file.open("SavedGameData.txt", ios::in); //opens file, in read-only mode
+			saved_game_file >> titulo;
+			saved_game_file >> dato;
+			if (dato == "true")
+				saved_game = true;
+			else if (dato == "false")
+				saved_game = false;
+			saved_game_file.close();
+			
+			
+			//
+			//TODO: agregar código de constructor aquí
+			//
+
+		}
+
+	protected:
+		/// <summary>
+		/// Limpiar los recursos que se estén usando.
+		/// </summary>
+		~VentanaPlay()
+		{
+			if (components)
+			{
+				delete components;
+			}
+		}
+
 
 	private: System::Windows::Forms::Button^ rand_comb4_button;
 	private: System::Windows::Forms::Button^ rand_comb3_button;
@@ -281,105 +390,9 @@ private: System::Windows::Forms::Label^ num_gameTimer_label;
 
 
 
-	public:
-		VentanaPlay(ConfigurationClass* objSettings)
-		{
-			InitializeComponent();
-
-			this->objSettings = objSettings;
-
-			if (objSettings->getDifficulty() == 1)
-			{
-				difficulty_label->Text = "Difficulty: Easy";
-			}
-			else if (objSettings->getDifficulty() == 2)
-			{
-				difficulty_label->Text = "Difficulty: Medium";
-			}
-			else if (objSettings->getDifficulty() == 3)
-			{
-				difficulty_label->Text = "Difficulty: Hard";
-			}
 
 
-			if (objSettings->getElementRep() == true)
-			{
-				repetition_label->Text = "Element repetition: ON";
-			}
-			else if (objSettings->getElementRep() == false)
-			{
-				repetition_label->Text = "Element repetition: OFF";
-			}
 
-			if ((objSettings->getClock() == false) && (objSettings->getTimekeeperGame() == false) && (objSettings->getTimekeeperPlay() == false))
-			{
-				Time->Visible = false;
-			}
-
-			Username_label->Text = userNameBtt;
-
-
-			//Element Type
-			
-			red_button->BackgroundImage = btn_img1_play;
-			blue_button->BackgroundImage = btn_img2_play;
-			green_button->BackgroundImage = btn_img3_play;
-			yellow_button->BackgroundImage = btn_img4_play;
-			pink_button->BackgroundImage = btn_img5_play;
-			brown_button->BackgroundImage = btn_img6_play;
-
-			if (objSettings->getElementType() == 1)
-			{
-				red_button->Text = "Red";
-				blue_button-> Text = "Blue";
-				green_button->Text = "Green";
-				yellow_button->Text = "Yellow";
-				pink_button->Text = "Pink";
-				brown_button->Text = "Brown";
-			}
-			else if ((objSettings->getElementType() == 2) || (objSettings->getElementType() == 3) || (objSettings->getElementType() == 4))
-			{
-				red_button->Text = "";
-				blue_button->Text = "";
-				green_button->Text = "";
-				yellow_button->Text = "";
-				pink_button->Text = "";
-				brown_button->Text = "";
-			}
-			
-			
-
-			using namespace std;
-			string titulo;
-			string dato;
-			ifstream saved_game_file;
-			saved_game_file.open("SavedGameData.txt", ios::in); //opens file, in read-only mode
-			saved_game_file >> titulo;
-			saved_game_file >> dato;
-			if (dato == "true")
-				saved_game = true;
-			else if (dato == "false")
-				saved_game = false;
-			saved_game_file.close();
-			
-			
-			//
-			//TODO: agregar código de constructor aquí
-			//
-
-		}
-
-	protected:
-		/// <summary>
-		/// Limpiar los recursos que se estén usando.
-		/// </summary>
-		~VentanaPlay()
-		{
-			if (components)
-			{
-				delete components;
-			}
-		}
 
 
 	private: System::Windows::Forms::Button^ red_button;
@@ -2352,6 +2365,7 @@ private: System::Windows::Forms::Label^ num_gameTimer_label;
 			this->gameTimer_label->Size = System::Drawing::Size(49, 13);
 			this->gameTimer_label->TabIndex = 52;
 			this->gameTimer_label->Text = L"00:00:00";
+			this->gameTimer_label->Visible = false;
 			// 
 			// num_gameTimer_label
 			// 
@@ -2361,6 +2375,7 @@ private: System::Windows::Forms::Label^ num_gameTimer_label;
 			this->num_gameTimer_label->Size = System::Drawing::Size(43, 13);
 			this->num_gameTimer_label->TabIndex = 53;
 			this->num_gameTimer_label->Text = L"000000";
+			this->num_gameTimer_label->Visible = false;
 			// 
 			// VentanaPlay
 			// 
@@ -4671,6 +4686,9 @@ private: System::Windows::Forms::Label^ num_gameTimer_label;
 				lose_groupBox->Enabled = true;
 				you_lose_timer->Enabled = true;
 				win_lose_disable();
+
+				backg->Stop();
+				disappointment->PlayLooping();
 			}
 			secP = Convert::ToString(secondsP);
 			minP = Convert::ToString(minutesP);
@@ -4760,6 +4778,9 @@ private: System::Windows::Forms::Label^ num_gameTimer_label;
 				lose_groupBox->Enabled = true;
 				you_lose_timer->Enabled = true;
 				win_lose_disable();
+
+				backg->Stop();
+				disappointment->PlayLooping();
 
 			}
 
@@ -6105,29 +6126,6 @@ private: System::Windows::Forms::Label^ num_gameTimer_label;
 
 				winnerinfo << "Time_encrip: ";//Saves encripted time
 				winnerinfo << num_game_timer_str << endl;
-				/*
-				if (objSettings->getClock() == true)
-				{
-					winnerinfo << hours << " ";
-					winnerinfo << minutes << " ";
-					winnerinfo << seconds << " ";
-					winnerinfo << endl;
-				}
-				else if (objSettings->getTimekeeperGame() == true)
-				{
-					winnerinfo << hoursG << " ";
-					winnerinfo << minutesG << " ";
-					winnerinfo << secondsG << " ";
-					winnerinfo << endl;
-				}
-				else if (objSettings->getClock() == true)
-				{
-					winnerinfo << "0 ";
-					winnerinfo << minutesP << " ";
-					winnerinfo << secondsP << " ";
-					winnerinfo << endl;
-				}
-				*/
 
 				winnerinfo << "Username: ";//Saves the username
 				string winnername = msclr::interop::marshal_as<std::string>(Username_label->Text);
@@ -6185,51 +6183,9 @@ private: System::Windows::Forms::Label^ num_gameTimer_label;
 
 				winnerinfo.close();
 			}
-			//backg->Stop();
-			//applause->PlayLooping();
+			backg->Stop();
+			applause->PlayLooping();
 
-			//////////////////////////////////////////////////
-			
-			/*
-			MasterMindProyectoFinal::Highscores::player_str_ev = Username_label->Text + " " + gameTimer_label->Text;
-			MasterMindProyectoFinal::Highscores::player_num_ev = game_timer_int;
-			MasterMindProyectoFinal::Highscores::player_num_str_ev = num_gameTimer_label->Text;
-
-
-			int player1;
-			int player2;
-			int player3;
-
-			int count = 0;
-			while (count < 3)
-			{
-				if (count == 0)
-				{
-					player1 = MasterMindProyectoFinal::Highscores::player1_hard_num;
-					player2 = MasterMindProyectoFinal::Highscores::player2_hard_num;
-					player3 = MasterMindProyectoFinal::Highscores::player3_hard_num;
-				}
-				else if (count == 2)
-				{
-					player1 = MasterMindProyectoFinal::Highscores::player1_medium_num;
-					player2 = MasterMindProyectoFinal::Highscores::player2_medium_num;
-					player3 = MasterMindProyectoFinal::Highscores::player3_medium_num;
-				}
-				else if (count == 3)
-				{
-					player1 = MasterMindProyectoFinal::Highscores::player1_easy_num;
-					player2 = MasterMindProyectoFinal::Highscores::player2_easy_num;
-					player3 = MasterMindProyectoFinal::Highscores::player3_easy_num;
-				}
-
-				if (game_timer_int < player1)
-				{
-					MasterMindProyectoFinal::Highscores::player1_hard_num;
-				}
-
-				count++;
-			}
-			*/
 		}
 		else
 		{
@@ -6250,6 +6206,9 @@ private: System::Windows::Forms::Label^ num_gameTimer_label;
 					rand_comb_groupBox->Visible = true;
 
 					win_lose_disable();
+
+					backg->Stop();
+					disappointment->PlayLooping();
 				}
 			}
 			else if ((objSettings->getDifficulty() == 2) && (win == false))
@@ -6269,6 +6228,9 @@ private: System::Windows::Forms::Label^ num_gameTimer_label;
 					rand_comb_groupBox->Visible = true;
 
 					win_lose_disable();
+
+					backg->Stop();
+					disappointment->PlayLooping();
 				}
 			}
 			else if ((objSettings->getDifficulty() == 3) && (win == false))
@@ -6288,6 +6250,9 @@ private: System::Windows::Forms::Label^ num_gameTimer_label;
 					rand_comb_groupBox->Visible = true;
 
 					win_lose_disable();
+
+					backg->Stop();
+					disappointment->PlayLooping();
 				}
 			}
 
@@ -6630,6 +6595,8 @@ private: System::Windows::Forms::Label^ num_gameTimer_label;
 	{
 		if (quit_game == true)
 		{
+
+			backg->Stop();
 			VentanaPlay::Close();
 
 			//devuleve los valores del reloj/cronometro a 0
@@ -6689,6 +6656,7 @@ private: System::Windows::Forms::Label^ num_gameTimer_label;
 
 		//codigo para guardar el highscore del jugador
 
+		applause->Stop();
 		VentanaPlay::Close();
 
 		//devuleve los valores del reloj/cronometro a 0
@@ -6710,6 +6678,7 @@ private: System::Windows::Forms::Label^ num_gameTimer_label;
 	{
 		you_lose_timer->Enabled = false;
 
+		disappointment->Stop();
 		VentanaPlay::Close();
 
 		//devuleve los valores del reloj/cronometro a 0
@@ -6726,6 +6695,7 @@ private: System::Windows::Forms::Label^ num_gameTimer_label;
 		secondsTimer = 0;
 		minutesTimer = 0;
 		hoursTimer = 0;
+
 	}
 
 	private: System::Void you_lose_timer_Tick(System::Object^ sender, System::EventArgs^ e)
@@ -8139,8 +8109,8 @@ private: System::Windows::Forms::Label^ num_gameTimer_label;
 	}
 
 
-private: System::Void label1_Click_2(System::Object^ sender, System::EventArgs^ e) {
-}
+	private: System::Void label1_Click_2(System::Object^ sender, System::EventArgs^ e) {
+	}
 	
 	private: System::Void game_timer_Tick(System::Object^ sender, System::EventArgs^ e) 
 	{
@@ -8228,6 +8198,7 @@ private: System::Void label1_Click_2(System::Object^ sender, System::EventArgs^ 
 
 
 	}
+
 
 
 };
