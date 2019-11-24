@@ -75,6 +75,7 @@ namespace MasterMindProyectoFinal {
 	private: System::Windows::Forms::ToolStripMenuItem^ howToPlayToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ quitMasterMindToolStripMenuItem;
 	private: System::Windows::Forms::TextBox^ textBox_developers;
+	private: System::Windows::Forms::ToolStripMenuItem^ enter_highscoresToolStripMenuItem;
 
 
 
@@ -104,6 +105,7 @@ namespace MasterMindProyectoFinal {
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->ayudaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->highscoresToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->enter_highscoresToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->helpToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->howToPlayToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->quitMasterMindToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -113,23 +115,30 @@ namespace MasterMindProyectoFinal {
 			// 
 			// textBox_titulo
 			// 
+			this->textBox_titulo->BackColor = System::Drawing::Color::Gainsboro;
 			this->textBox_titulo->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->textBox_titulo->Cursor = System::Windows::Forms::Cursors::Default;
-			this->textBox_titulo->Location = System::Drawing::Point(117, 74);
+			this->textBox_titulo->Font = (gcnew System::Drawing::Font(L"Modern No. 20", 14.25F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->textBox_titulo->ForeColor = System::Drawing::Color::OrangeRed;
+			this->textBox_titulo->Location = System::Drawing::Point(93, 73);
 			this->textBox_titulo->Name = L"textBox_titulo";
 			this->textBox_titulo->ReadOnly = true;
-			this->textBox_titulo->Size = System::Drawing::Size(111, 13);
+			this->textBox_titulo->Size = System::Drawing::Size(172, 21);
 			this->textBox_titulo->TabIndex = 0;
-			this->textBox_titulo->Text = L"MASTER MIND";
+			this->textBox_titulo->Text = L"MASTERMIND";
 			this->textBox_titulo->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			this->textBox_titulo->TextChanged += gcnew System::EventHandler(this, &VentanaPrincipal::textBox1_TextChanged);
 			// 
 			// button_play
 			// 
+			this->button_play->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->button_play->Enabled = false;
+			this->button_play->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->button_play->Location = System::Drawing::Point(126, 184);
 			this->button_play->Name = L"button_play";
-			this->button_play->Size = System::Drawing::Size(92, 23);
+			this->button_play->Size = System::Drawing::Size(92, 27);
 			this->button_play->TabIndex = 1;
 			this->button_play->Text = L"Play";
 			this->button_play->UseVisualStyleBackColor = true;
@@ -165,10 +174,18 @@ namespace MasterMindProyectoFinal {
 			// 
 			// highscoresToolStripMenuItem
 			// 
+			this->highscoresToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->enter_highscoresToolStripMenuItem });
 			this->highscoresToolStripMenuItem->Name = L"highscoresToolStripMenuItem";
 			this->highscoresToolStripMenuItem->Size = System::Drawing::Size(78, 20);
 			this->highscoresToolStripMenuItem->Text = L"Highscores";
 			this->highscoresToolStripMenuItem->Click += gcnew System::EventHandler(this, &VentanaPrincipal::highscoresToolStripMenuItem_Click);
+			// 
+			// enter_highscoresToolStripMenuItem
+			// 
+			this->enter_highscoresToolStripMenuItem->Name = L"enter_highscoresToolStripMenuItem";
+			this->enter_highscoresToolStripMenuItem->Size = System::Drawing::Size(133, 22);
+			this->enter_highscoresToolStripMenuItem->Text = L"Highscores";
+			this->enter_highscoresToolStripMenuItem->Click += gcnew System::EventHandler(this, &VentanaPrincipal::enter_highscoresToolStripMenuItem_Click);
 			// 
 			// helpToolStripMenuItem
 			// 
@@ -193,13 +210,15 @@ namespace MasterMindProyectoFinal {
 			// 
 			// textBox_developers
 			// 
-			this->textBox_developers->BackColor = System::Drawing::SystemColors::Control;
+			this->textBox_developers->BackColor = System::Drawing::Color::Gainsboro;
 			this->textBox_developers->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox_developers->Location = System::Drawing::Point(242, 219);
+			this->textBox_developers->Font = (gcnew System::Drawing::Font(L"Maiandra GD", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->textBox_developers->Location = System::Drawing::Point(221, 219);
 			this->textBox_developers->Multiline = true;
 			this->textBox_developers->Name = L"textBox_developers";
 			this->textBox_developers->ReadOnly = true;
-			this->textBox_developers->Size = System::Drawing::Size(96, 51);
+			this->textBox_developers->Size = System::Drawing::Size(117, 51);
 			this->textBox_developers->TabIndex = 4;
 			this->textBox_developers->Text = L"Developers:\r\nGabriel González\r\nAdrián Dittel";
 			this->textBox_developers->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
@@ -209,6 +228,7 @@ namespace MasterMindProyectoFinal {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::Color::Gainsboro;
 			this->ClientSize = System::Drawing::Size(350, 282);
 			this->Controls->Add(this->textBox_developers);
 			this->Controls->Add(this->textBox_enter_username);
@@ -270,9 +290,6 @@ namespace MasterMindProyectoFinal {
 	}
 	private: System::Void highscoresToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
-		//Highscores
-		Highscores records;
-		records.ShowDialog();
 	}
 	private: System::Void changeStyleToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
@@ -288,5 +305,11 @@ namespace MasterMindProyectoFinal {
 	}
 
 
-	};
+	private: System::Void enter_highscoresToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		//Highscores
+		Highscores records;
+		records.ShowDialog();
+	}
+};
 }
