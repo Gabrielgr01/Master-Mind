@@ -29,7 +29,58 @@ namespace MasterMindProyectoFinal {
 		bool timekeeper_play;
 		bool timekeeper_game;
 		bool element_rep;
-		int element_type;
+		static Image^ picBox_img1_GS;
+		static Image^ picBox_img2_GS;
+		static Image^ picBox_img3_GS;
+		static Image^ picBox_img4_GS;
+		static Image^ picBox_img5_GS;
+		static Image^ picBox_img6_GS;
+
+	private: System::Windows::Forms::PictureBox^ pictureBox24;
+	public:
+	private: System::Windows::Forms::PictureBox^ pictureBox23;
+	private: System::Windows::Forms::PictureBox^ pictureBox22;
+	private: System::Windows::Forms::PictureBox^ pictureBox21;
+	private: System::Windows::Forms::PictureBox^ pictureBox20;
+	private: System::Windows::Forms::PictureBox^ pictureBox19;
+	private: System::Windows::Forms::PictureBox^ numbers_5_picBox;
+
+	private: System::Windows::Forms::PictureBox^ numbers_4_picBox;
+
+	private: System::Windows::Forms::PictureBox^ numbers_3_picBox;
+
+	private: System::Windows::Forms::PictureBox^ numbers_2_picBox;
+
+	private: System::Windows::Forms::PictureBox^ numbers_1_picBox;
+
+	private: System::Windows::Forms::PictureBox^ numbers_0_picBox;
+
+
+	private: System::Windows::Forms::PictureBox^ letters_F_picBox;
+
+	private: System::Windows::Forms::PictureBox^ letters_E_picBox;
+
+	private: System::Windows::Forms::PictureBox^ letters_D_picBox;
+
+	private: System::Windows::Forms::PictureBox^ letters_C_picBox;
+
+	private: System::Windows::Forms::PictureBox^ letters_B_picBox;
+
+	private: System::Windows::Forms::PictureBox^ letters_A_picBox;
+
+	private: System::Windows::Forms::PictureBox^ colors_brown_picBox;
+
+	private: System::Windows::Forms::PictureBox^ colors_pink_picBox;
+
+	private: System::Windows::Forms::PictureBox^ colors_yellow_picBox;
+
+	private: System::Windows::Forms::PictureBox^ colors_green_picBox;
+
+	private: System::Windows::Forms::PictureBox^ colors_blue_picBox;
+
+	private: System::Windows::Forms::PictureBox^ colors_red_picBox;
+
+		   int element_type;
 
 	public:
 
@@ -40,6 +91,7 @@ namespace MasterMindProyectoFinal {
 			//TODO: agregar código de constructor aquí
 			//
 		}
+
 	
 	protected:
 		/// <summary>
@@ -71,9 +123,9 @@ namespace MasterMindProyectoFinal {
 	private: System::Windows::Forms::RadioButton^ Clock_Enabled;
 
 	private: System::Windows::Forms::GroupBox^ groupBox3;
-	private: System::Windows::Forms::RadioButton^ Element_rep_Disabled;
 
-	private: System::Windows::Forms::RadioButton^ Element_rep_Enabled;
+	public: System::Windows::Forms::RadioButton^ Element_rep_Disabled;
+	public: System::Windows::Forms::RadioButton^ Element_rep_Enabled;
 
 	private: System::Windows::Forms::GroupBox^ groupBox4;
 	private: System::Windows::Forms::RadioButton^ radioButton13;
@@ -105,6 +157,7 @@ namespace MasterMindProyectoFinal {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(GameSettings::typeid));
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
 			this->Difficulty_Hard = (gcnew System::Windows::Forms::RadioButton());
 			this->Difficulty_Medium = (gcnew System::Windows::Forms::RadioButton());
@@ -118,6 +171,30 @@ namespace MasterMindProyectoFinal {
 			this->Element_rep_Disabled = (gcnew System::Windows::Forms::RadioButton());
 			this->Element_rep_Enabled = (gcnew System::Windows::Forms::RadioButton());
 			this->groupBox4 = (gcnew System::Windows::Forms::GroupBox());
+			this->pictureBox24 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox23 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox22 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox21 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox20 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox19 = (gcnew System::Windows::Forms::PictureBox());
+			this->numbers_5_picBox = (gcnew System::Windows::Forms::PictureBox());
+			this->numbers_4_picBox = (gcnew System::Windows::Forms::PictureBox());
+			this->numbers_3_picBox = (gcnew System::Windows::Forms::PictureBox());
+			this->numbers_2_picBox = (gcnew System::Windows::Forms::PictureBox());
+			this->numbers_1_picBox = (gcnew System::Windows::Forms::PictureBox());
+			this->numbers_0_picBox = (gcnew System::Windows::Forms::PictureBox());
+			this->letters_F_picBox = (gcnew System::Windows::Forms::PictureBox());
+			this->letters_E_picBox = (gcnew System::Windows::Forms::PictureBox());
+			this->letters_D_picBox = (gcnew System::Windows::Forms::PictureBox());
+			this->letters_C_picBox = (gcnew System::Windows::Forms::PictureBox());
+			this->letters_B_picBox = (gcnew System::Windows::Forms::PictureBox());
+			this->letters_A_picBox = (gcnew System::Windows::Forms::PictureBox());
+			this->colors_brown_picBox = (gcnew System::Windows::Forms::PictureBox());
+			this->colors_pink_picBox = (gcnew System::Windows::Forms::PictureBox());
+			this->colors_yellow_picBox = (gcnew System::Windows::Forms::PictureBox());
+			this->colors_green_picBox = (gcnew System::Windows::Forms::PictureBox());
+			this->colors_blue_picBox = (gcnew System::Windows::Forms::PictureBox());
+			this->colors_red_picBox = (gcnew System::Windows::Forms::PictureBox());
 			this->radioButton13 = (gcnew System::Windows::Forms::RadioButton());
 			this->elem_type_numbers_rbtn = (gcnew System::Windows::Forms::RadioButton());
 			this->elem_type_letters_rbtn = (gcnew System::Windows::Forms::RadioButton());
@@ -128,6 +205,30 @@ namespace MasterMindProyectoFinal {
 			this->groupBox2->SuspendLayout();
 			this->groupBox3->SuspendLayout();
 			this->groupBox4->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox24))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox23))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox22))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox21))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox20))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox19))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numbers_5_picBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numbers_4_picBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numbers_3_picBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numbers_2_picBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numbers_1_picBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numbers_0_picBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->letters_F_picBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->letters_E_picBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->letters_D_picBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->letters_C_picBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->letters_B_picBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->letters_A_picBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->colors_brown_picBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->colors_pink_picBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->colors_yellow_picBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->colors_green_picBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->colors_blue_picBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->colors_red_picBox))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// groupBox1
@@ -242,7 +343,7 @@ namespace MasterMindProyectoFinal {
 			this->groupBox3->Controls->Add(this->Element_rep_Enabled);
 			this->groupBox3->Location = System::Drawing::Point(12, 230);
 			this->groupBox3->Name = L"groupBox3";
-			this->groupBox3->Size = System::Drawing::Size(277, 88);
+			this->groupBox3->Size = System::Drawing::Size(277, 115);
 			this->groupBox3->TabIndex = 4;
 			this->groupBox3->TabStop = false;
 			this->groupBox3->Text = L"Element repetition in combination";
@@ -273,17 +374,281 @@ namespace MasterMindProyectoFinal {
 			// 
 			// groupBox4
 			// 
+			this->groupBox4->Controls->Add(this->pictureBox24);
+			this->groupBox4->Controls->Add(this->pictureBox23);
+			this->groupBox4->Controls->Add(this->pictureBox22);
+			this->groupBox4->Controls->Add(this->pictureBox21);
+			this->groupBox4->Controls->Add(this->pictureBox20);
+			this->groupBox4->Controls->Add(this->pictureBox19);
+			this->groupBox4->Controls->Add(this->numbers_5_picBox);
+			this->groupBox4->Controls->Add(this->numbers_4_picBox);
+			this->groupBox4->Controls->Add(this->numbers_3_picBox);
+			this->groupBox4->Controls->Add(this->numbers_2_picBox);
+			this->groupBox4->Controls->Add(this->numbers_1_picBox);
+			this->groupBox4->Controls->Add(this->numbers_0_picBox);
+			this->groupBox4->Controls->Add(this->letters_F_picBox);
+			this->groupBox4->Controls->Add(this->letters_E_picBox);
+			this->groupBox4->Controls->Add(this->letters_D_picBox);
+			this->groupBox4->Controls->Add(this->letters_C_picBox);
+			this->groupBox4->Controls->Add(this->letters_B_picBox);
+			this->groupBox4->Controls->Add(this->letters_A_picBox);
+			this->groupBox4->Controls->Add(this->colors_brown_picBox);
+			this->groupBox4->Controls->Add(this->colors_pink_picBox);
+			this->groupBox4->Controls->Add(this->colors_yellow_picBox);
+			this->groupBox4->Controls->Add(this->colors_green_picBox);
+			this->groupBox4->Controls->Add(this->colors_blue_picBox);
+			this->groupBox4->Controls->Add(this->colors_red_picBox);
 			this->groupBox4->Controls->Add(this->radioButton13);
 			this->groupBox4->Controls->Add(this->elem_type_numbers_rbtn);
 			this->groupBox4->Controls->Add(this->elem_type_letters_rbtn);
 			this->groupBox4->Controls->Add(this->elem_type_colors_rbtn);
 			this->groupBox4->Location = System::Drawing::Point(295, 12);
 			this->groupBox4->Name = L"groupBox4";
-			this->groupBox4->Size = System::Drawing::Size(307, 306);
+			this->groupBox4->Size = System::Drawing::Size(307, 333);
 			this->groupBox4->TabIndex = 0;
 			this->groupBox4->TabStop = false;
 			this->groupBox4->Text = L"Element type to use in combination";
 			this->groupBox4->Enter += gcnew System::EventHandler(this, &GameSettings::groupBox4_Enter);
+			// 
+			// pictureBox24
+			// 
+			this->pictureBox24->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox24.BackgroundImage")));
+			this->pictureBox24->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->pictureBox24->Location = System::Drawing::Point(232, 272);
+			this->pictureBox24->Name = L"pictureBox24";
+			this->pictureBox24->Size = System::Drawing::Size(45, 40);
+			this->pictureBox24->TabIndex = 30;
+			this->pictureBox24->TabStop = false;
+			// 
+			// pictureBox23
+			// 
+			this->pictureBox23->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox23.BackgroundImage")));
+			this->pictureBox23->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->pictureBox23->Location = System::Drawing::Point(232, 226);
+			this->pictureBox23->Name = L"pictureBox23";
+			this->pictureBox23->Size = System::Drawing::Size(45, 40);
+			this->pictureBox23->TabIndex = 29;
+			this->pictureBox23->TabStop = false;
+			// 
+			// pictureBox22
+			// 
+			this->pictureBox22->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox22.BackgroundImage")));
+			this->pictureBox22->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->pictureBox22->Location = System::Drawing::Point(232, 180);
+			this->pictureBox22->Name = L"pictureBox22";
+			this->pictureBox22->Size = System::Drawing::Size(45, 40);
+			this->pictureBox22->TabIndex = 28;
+			this->pictureBox22->TabStop = false;
+			// 
+			// pictureBox21
+			// 
+			this->pictureBox21->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox21.BackgroundImage")));
+			this->pictureBox21->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->pictureBox21->Location = System::Drawing::Point(232, 134);
+			this->pictureBox21->Name = L"pictureBox21";
+			this->pictureBox21->Size = System::Drawing::Size(45, 40);
+			this->pictureBox21->TabIndex = 27;
+			this->pictureBox21->TabStop = false;
+			// 
+			// pictureBox20
+			// 
+			this->pictureBox20->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox20.BackgroundImage")));
+			this->pictureBox20->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->pictureBox20->Location = System::Drawing::Point(232, 88);
+			this->pictureBox20->Name = L"pictureBox20";
+			this->pictureBox20->Size = System::Drawing::Size(45, 40);
+			this->pictureBox20->TabIndex = 26;
+			this->pictureBox20->TabStop = false;
+			// 
+			// pictureBox19
+			// 
+			this->pictureBox19->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox19.BackgroundImage")));
+			this->pictureBox19->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->pictureBox19->Location = System::Drawing::Point(232, 42);
+			this->pictureBox19->Name = L"pictureBox19";
+			this->pictureBox19->Size = System::Drawing::Size(45, 40);
+			this->pictureBox19->TabIndex = 25;
+			this->pictureBox19->TabStop = false;
+			// 
+			// numbers_5_picBox
+			// 
+			this->numbers_5_picBox->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"numbers_5_picBox.BackgroundImage")));
+			this->numbers_5_picBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->numbers_5_picBox->Location = System::Drawing::Point(151, 272);
+			this->numbers_5_picBox->Name = L"numbers_5_picBox";
+			this->numbers_5_picBox->Size = System::Drawing::Size(45, 40);
+			this->numbers_5_picBox->TabIndex = 24;
+			this->numbers_5_picBox->TabStop = false;
+			// 
+			// numbers_4_picBox
+			// 
+			this->numbers_4_picBox->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"numbers_4_picBox.BackgroundImage")));
+			this->numbers_4_picBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->numbers_4_picBox->Location = System::Drawing::Point(151, 226);
+			this->numbers_4_picBox->Name = L"numbers_4_picBox";
+			this->numbers_4_picBox->Size = System::Drawing::Size(45, 40);
+			this->numbers_4_picBox->TabIndex = 23;
+			this->numbers_4_picBox->TabStop = false;
+			// 
+			// numbers_3_picBox
+			// 
+			this->numbers_3_picBox->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"numbers_3_picBox.BackgroundImage")));
+			this->numbers_3_picBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->numbers_3_picBox->Location = System::Drawing::Point(151, 180);
+			this->numbers_3_picBox->Name = L"numbers_3_picBox";
+			this->numbers_3_picBox->Size = System::Drawing::Size(45, 40);
+			this->numbers_3_picBox->TabIndex = 22;
+			this->numbers_3_picBox->TabStop = false;
+			// 
+			// numbers_2_picBox
+			// 
+			this->numbers_2_picBox->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"numbers_2_picBox.BackgroundImage")));
+			this->numbers_2_picBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->numbers_2_picBox->Location = System::Drawing::Point(151, 134);
+			this->numbers_2_picBox->Name = L"numbers_2_picBox";
+			this->numbers_2_picBox->Size = System::Drawing::Size(45, 40);
+			this->numbers_2_picBox->TabIndex = 21;
+			this->numbers_2_picBox->TabStop = false;
+			// 
+			// numbers_1_picBox
+			// 
+			this->numbers_1_picBox->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"numbers_1_picBox.BackgroundImage")));
+			this->numbers_1_picBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->numbers_1_picBox->Location = System::Drawing::Point(151, 88);
+			this->numbers_1_picBox->Name = L"numbers_1_picBox";
+			this->numbers_1_picBox->Size = System::Drawing::Size(45, 40);
+			this->numbers_1_picBox->TabIndex = 20;
+			this->numbers_1_picBox->TabStop = false;
+			// 
+			// numbers_0_picBox
+			// 
+			this->numbers_0_picBox->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"numbers_0_picBox.BackgroundImage")));
+			this->numbers_0_picBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->numbers_0_picBox->Location = System::Drawing::Point(151, 42);
+			this->numbers_0_picBox->Name = L"numbers_0_picBox";
+			this->numbers_0_picBox->Size = System::Drawing::Size(45, 40);
+			this->numbers_0_picBox->TabIndex = 19;
+			this->numbers_0_picBox->TabStop = false;
+			// 
+			// letters_F_picBox
+			// 
+			this->letters_F_picBox->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"letters_F_picBox.BackgroundImage")));
+			this->letters_F_picBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->letters_F_picBox->Location = System::Drawing::Point(78, 272);
+			this->letters_F_picBox->Name = L"letters_F_picBox";
+			this->letters_F_picBox->Size = System::Drawing::Size(45, 40);
+			this->letters_F_picBox->TabIndex = 18;
+			this->letters_F_picBox->TabStop = false;
+			// 
+			// letters_E_picBox
+			// 
+			this->letters_E_picBox->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"letters_E_picBox.BackgroundImage")));
+			this->letters_E_picBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->letters_E_picBox->Location = System::Drawing::Point(78, 226);
+			this->letters_E_picBox->Name = L"letters_E_picBox";
+			this->letters_E_picBox->Size = System::Drawing::Size(45, 40);
+			this->letters_E_picBox->TabIndex = 17;
+			this->letters_E_picBox->TabStop = false;
+			// 
+			// letters_D_picBox
+			// 
+			this->letters_D_picBox->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"letters_D_picBox.BackgroundImage")));
+			this->letters_D_picBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->letters_D_picBox->Location = System::Drawing::Point(78, 180);
+			this->letters_D_picBox->Name = L"letters_D_picBox";
+			this->letters_D_picBox->Size = System::Drawing::Size(45, 40);
+			this->letters_D_picBox->TabIndex = 16;
+			this->letters_D_picBox->TabStop = false;
+			// 
+			// letters_C_picBox
+			// 
+			this->letters_C_picBox->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"letters_C_picBox.BackgroundImage")));
+			this->letters_C_picBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->letters_C_picBox->Location = System::Drawing::Point(78, 134);
+			this->letters_C_picBox->Name = L"letters_C_picBox";
+			this->letters_C_picBox->Size = System::Drawing::Size(45, 40);
+			this->letters_C_picBox->TabIndex = 15;
+			this->letters_C_picBox->TabStop = false;
+			// 
+			// letters_B_picBox
+			// 
+			this->letters_B_picBox->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"letters_B_picBox.BackgroundImage")));
+			this->letters_B_picBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->letters_B_picBox->Location = System::Drawing::Point(78, 88);
+			this->letters_B_picBox->Name = L"letters_B_picBox";
+			this->letters_B_picBox->Size = System::Drawing::Size(45, 40);
+			this->letters_B_picBox->TabIndex = 14;
+			this->letters_B_picBox->TabStop = false;
+			// 
+			// letters_A_picBox
+			// 
+			this->letters_A_picBox->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"letters_A_picBox.BackgroundImage")));
+			this->letters_A_picBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->letters_A_picBox->Location = System::Drawing::Point(78, 42);
+			this->letters_A_picBox->Name = L"letters_A_picBox";
+			this->letters_A_picBox->Size = System::Drawing::Size(45, 40);
+			this->letters_A_picBox->TabIndex = 13;
+			this->letters_A_picBox->TabStop = false;
+			// 
+			// colors_brown_picBox
+			// 
+			this->colors_brown_picBox->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"colors_brown_picBox.BackgroundImage")));
+			this->colors_brown_picBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->colors_brown_picBox->Location = System::Drawing::Point(15, 272);
+			this->colors_brown_picBox->Name = L"colors_brown_picBox";
+			this->colors_brown_picBox->Size = System::Drawing::Size(45, 40);
+			this->colors_brown_picBox->TabIndex = 12;
+			this->colors_brown_picBox->TabStop = false;
+			// 
+			// colors_pink_picBox
+			// 
+			this->colors_pink_picBox->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"colors_pink_picBox.BackgroundImage")));
+			this->colors_pink_picBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->colors_pink_picBox->Location = System::Drawing::Point(15, 226);
+			this->colors_pink_picBox->Name = L"colors_pink_picBox";
+			this->colors_pink_picBox->Size = System::Drawing::Size(45, 40);
+			this->colors_pink_picBox->TabIndex = 11;
+			this->colors_pink_picBox->TabStop = false;
+			// 
+			// colors_yellow_picBox
+			// 
+			this->colors_yellow_picBox->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"colors_yellow_picBox.BackgroundImage")));
+			this->colors_yellow_picBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->colors_yellow_picBox->Location = System::Drawing::Point(15, 180);
+			this->colors_yellow_picBox->Name = L"colors_yellow_picBox";
+			this->colors_yellow_picBox->Size = System::Drawing::Size(45, 40);
+			this->colors_yellow_picBox->TabIndex = 10;
+			this->colors_yellow_picBox->TabStop = false;
+			// 
+			// colors_green_picBox
+			// 
+			this->colors_green_picBox->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"colors_green_picBox.BackgroundImage")));
+			this->colors_green_picBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->colors_green_picBox->Location = System::Drawing::Point(15, 134);
+			this->colors_green_picBox->Name = L"colors_green_picBox";
+			this->colors_green_picBox->Size = System::Drawing::Size(45, 40);
+			this->colors_green_picBox->TabIndex = 9;
+			this->colors_green_picBox->TabStop = false;
+			// 
+			// colors_blue_picBox
+			// 
+			this->colors_blue_picBox->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"colors_blue_picBox.BackgroundImage")));
+			this->colors_blue_picBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->colors_blue_picBox->Location = System::Drawing::Point(15, 88);
+			this->colors_blue_picBox->Name = L"colors_blue_picBox";
+			this->colors_blue_picBox->Size = System::Drawing::Size(45, 40);
+			this->colors_blue_picBox->TabIndex = 8;
+			this->colors_blue_picBox->TabStop = false;
+			// 
+			// colors_red_picBox
+			// 
+			this->colors_red_picBox->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"colors_red_picBox.BackgroundImage")));
+			this->colors_red_picBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->colors_red_picBox->Location = System::Drawing::Point(15, 42);
+			this->colors_red_picBox->Name = L"colors_red_picBox";
+			this->colors_red_picBox->Size = System::Drawing::Size(45, 40);
+			this->colors_red_picBox->TabIndex = 7;
+			this->colors_red_picBox->TabStop = false;
 			// 
 			// radioButton13
 			// 
@@ -332,7 +697,7 @@ namespace MasterMindProyectoFinal {
 			// 
 			// Save_Settings
 			// 
-			this->Save_Settings->Location = System::Drawing::Point(12, 330);
+			this->Save_Settings->Location = System::Drawing::Point(12, 351);
 			this->Save_Settings->Name = L"Save_Settings";
 			this->Save_Settings->Size = System::Drawing::Size(96, 23);
 			this->Save_Settings->TabIndex = 5;
@@ -342,7 +707,7 @@ namespace MasterMindProyectoFinal {
 			// 
 			// button_back
 			// 
-			this->button_back->Location = System::Drawing::Point(527, 330);
+			this->button_back->Location = System::Drawing::Point(527, 351);
 			this->button_back->Name = L"button_back";
 			this->button_back->Size = System::Drawing::Size(75, 23);
 			this->button_back->TabIndex = 6;
@@ -354,7 +719,7 @@ namespace MasterMindProyectoFinal {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(614, 365);
+			this->ClientSize = System::Drawing::Size(614, 386);
 			this->Controls->Add(this->button_back);
 			this->Controls->Add(this->Save_Settings);
 			this->Controls->Add(this->groupBox4);
@@ -371,6 +736,30 @@ namespace MasterMindProyectoFinal {
 			this->groupBox3->PerformLayout();
 			this->groupBox4->ResumeLayout(false);
 			this->groupBox4->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox24))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox23))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox22))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox21))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox20))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox19))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numbers_5_picBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numbers_4_picBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numbers_3_picBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numbers_2_picBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numbers_1_picBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numbers_0_picBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->letters_F_picBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->letters_E_picBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->letters_D_picBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->letters_C_picBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->letters_B_picBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->letters_A_picBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->colors_brown_picBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->colors_pink_picBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->colors_yellow_picBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->colors_green_picBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->colors_blue_picBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->colors_red_picBox))->EndInit();
 			this->ResumeLayout(false);
 
 		}
@@ -472,6 +861,51 @@ namespace MasterMindProyectoFinal {
 	{
 		//GameSettings::Close();
 
+		if (objSettings->getElementType() == 1)
+		{
+			picBox_img1_GS = colors_red_picBox->BackgroundImage;
+			picBox_img2_GS = colors_blue_picBox->BackgroundImage;
+			picBox_img3_GS = colors_green_picBox->BackgroundImage;
+			picBox_img4_GS = colors_yellow_picBox->BackgroundImage;
+			picBox_img5_GS = colors_pink_picBox->BackgroundImage;
+			picBox_img6_GS = colors_brown_picBox->BackgroundImage;
+		}
+		else if (objSettings->getElementType() == 2)
+		{
+			picBox_img1_GS = letters_A_picBox->BackgroundImage;
+			picBox_img2_GS = letters_B_picBox->BackgroundImage;
+			picBox_img3_GS = letters_C_picBox->BackgroundImage;
+			picBox_img4_GS = letters_D_picBox->BackgroundImage;
+			picBox_img5_GS = letters_E_picBox->BackgroundImage;
+			picBox_img6_GS = letters_F_picBox->BackgroundImage;
+		}
+		else if (objSettings->getElementType() == 3)
+		{
+			picBox_img1_GS = numbers_0_picBox->BackgroundImage;
+			picBox_img2_GS = numbers_1_picBox->BackgroundImage;
+			picBox_img3_GS = numbers_2_picBox->BackgroundImage;
+			picBox_img4_GS = numbers_3_picBox->BackgroundImage;
+			picBox_img5_GS = numbers_4_picBox->BackgroundImage;
+			picBox_img6_GS = numbers_5_picBox->BackgroundImage;
+		}
+		else if (objSettings->getElementType() == 4)
+		{
+			picBox_img1_GS = colors_red_picBox->BackgroundImage;
+			picBox_img2_GS = colors_blue_picBox->BackgroundImage;
+			picBox_img3_GS = colors_green_picBox->BackgroundImage;
+			picBox_img4_GS = colors_yellow_picBox->BackgroundImage;
+			picBox_img5_GS = colors_pink_picBox->BackgroundImage;
+			picBox_img6_GS = colors_brown_picBox->BackgroundImage;
+		}
+
+		MasterMindProyectoFinal::VentanaPlay::btn_img1_play = picBox_img1_GS;
+		MasterMindProyectoFinal::VentanaPlay::btn_img2_play = picBox_img2_GS;
+		MasterMindProyectoFinal::VentanaPlay::btn_img3_play = picBox_img3_GS;
+		MasterMindProyectoFinal::VentanaPlay::btn_img4_play = picBox_img4_GS;
+		MasterMindProyectoFinal::VentanaPlay::btn_img5_play = picBox_img5_GS;
+		MasterMindProyectoFinal::VentanaPlay::btn_img6_play = picBox_img6_GS;
+
+
 		VentanaPlay juego(objSettings);
 		juego.ShowDialog();
 	}
@@ -484,4 +918,3 @@ namespace MasterMindProyectoFinal {
 
 };
 }
-
