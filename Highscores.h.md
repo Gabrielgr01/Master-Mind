@@ -251,6 +251,7 @@ private: System::Windows::Forms::Label^ num_p3_e_label;
 			this->num_p1_h_label->Size = System::Drawing::Size(43, 13);
 			this->num_p1_h_label->TabIndex = 13;
 			this->num_p1_h_label->Text = L"020000";
+			this->num_p1_h_label->Visible = false;
 			// 
 			// num_p2_h_label
 			// 
@@ -260,6 +261,7 @@ private: System::Windows::Forms::Label^ num_p3_e_label;
 			this->num_p2_h_label->Size = System::Drawing::Size(43, 13);
 			this->num_p2_h_label->TabIndex = 14;
 			this->num_p2_h_label->Text = L"020000";
+			this->num_p2_h_label->Visible = false;
 			// 
 			// num_p3_h_label
 			// 
@@ -269,6 +271,7 @@ private: System::Windows::Forms::Label^ num_p3_e_label;
 			this->num_p3_h_label->Size = System::Drawing::Size(43, 13);
 			this->num_p3_h_label->TabIndex = 15;
 			this->num_p3_h_label->Text = L"020000";
+			this->num_p3_h_label->Visible = false;
 			// 
 			// num_p1_m_label
 			// 
@@ -278,6 +281,7 @@ private: System::Windows::Forms::Label^ num_p3_e_label;
 			this->num_p1_m_label->Size = System::Drawing::Size(43, 13);
 			this->num_p1_m_label->TabIndex = 16;
 			this->num_p1_m_label->Text = L"020000";
+			this->num_p1_m_label->Visible = false;
 			// 
 			// num_p2_m_label
 			// 
@@ -287,6 +291,7 @@ private: System::Windows::Forms::Label^ num_p3_e_label;
 			this->num_p2_m_label->Size = System::Drawing::Size(43, 13);
 			this->num_p2_m_label->TabIndex = 17;
 			this->num_p2_m_label->Text = L"020000";
+			this->num_p2_m_label->Visible = false;
 			// 
 			// num_p3_m_label
 			// 
@@ -296,6 +301,7 @@ private: System::Windows::Forms::Label^ num_p3_e_label;
 			this->num_p3_m_label->Size = System::Drawing::Size(43, 13);
 			this->num_p3_m_label->TabIndex = 18;
 			this->num_p3_m_label->Text = L"020000";
+			this->num_p3_m_label->Visible = false;
 			// 
 			// num_p1_e_label
 			// 
@@ -305,6 +311,7 @@ private: System::Windows::Forms::Label^ num_p3_e_label;
 			this->num_p1_e_label->Size = System::Drawing::Size(43, 13);
 			this->num_p1_e_label->TabIndex = 19;
 			this->num_p1_e_label->Text = L"020000";
+			this->num_p1_e_label->Visible = false;
 			// 
 			// num_p2_e_label
 			// 
@@ -314,6 +321,7 @@ private: System::Windows::Forms::Label^ num_p3_e_label;
 			this->num_p2_e_label->Size = System::Drawing::Size(43, 13);
 			this->num_p2_e_label->TabIndex = 20;
 			this->num_p2_e_label->Text = L"020000";
+			this->num_p2_e_label->Visible = false;
 			// 
 			// num_p3_e_label
 			// 
@@ -323,6 +331,7 @@ private: System::Windows::Forms::Label^ num_p3_e_label;
 			this->num_p3_e_label->Size = System::Drawing::Size(43, 13);
 			this->num_p3_e_label->TabIndex = 21;
 			this->num_p3_e_label->Text = L"020000";
+			this->num_p3_e_label->Visible = false;
 			// 
 			// Highscores
 			// 
@@ -615,3 +624,4 @@ private: System::Windows::Forms::Label^ num_p3_e_label;
 
 	};
 }
+
