@@ -10,6 +10,9 @@
 #include "Highscores.h"
 #include "HowToPlay.h"
 #include "Style.h"
+#include <msclr\marshal_cppstd.h>
+#include <string>
+#include <shellapi.h>
 
 namespace MasterMindProyectoFinal {
 
@@ -76,6 +79,7 @@ namespace MasterMindProyectoFinal {
 	private: System::Windows::Forms::ToolStripMenuItem^ quitMasterMindToolStripMenuItem;
 	private: System::Windows::Forms::TextBox^ textBox_developers;
 	private: System::Windows::Forms::ToolStripMenuItem^ enter_highscoresToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ userManualToolStripMenuItem;
 
 
 
@@ -110,6 +114,7 @@ namespace MasterMindProyectoFinal {
 			this->howToPlayToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->quitMasterMindToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->textBox_developers = (gcnew System::Windows::Forms::TextBox());
+			this->userManualToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -142,7 +147,7 @@ namespace MasterMindProyectoFinal {
 			this->button_play->TabIndex = 1;
 			this->button_play->Text = L"Play";
 			this->button_play->UseVisualStyleBackColor = true;
-			this->button_play->Click += gcnew System::EventHandler(this, &VentanaPrincipal::button1_Click);
+			this->button_play->Click += gcnew System::EventHandler(this, &VentanaPrincipal::button_play_Click);
 			// 
 			// textBox_enter_username
 			// 
@@ -189,7 +194,10 @@ namespace MasterMindProyectoFinal {
 			// 
 			// helpToolStripMenuItem
 			// 
-			this->helpToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->howToPlayToolStripMenuItem });
+			this->helpToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+				this->howToPlayToolStripMenuItem,
+					this->userManualToolStripMenuItem
+			});
 			this->helpToolStripMenuItem->Name = L"helpToolStripMenuItem";
 			this->helpToolStripMenuItem->Size = System::Drawing::Size(44, 20);
 			this->helpToolStripMenuItem->Text = L"Help";
@@ -197,7 +205,7 @@ namespace MasterMindProyectoFinal {
 			// howToPlayToolStripMenuItem
 			// 
 			this->howToPlayToolStripMenuItem->Name = L"howToPlayToolStripMenuItem";
-			this->howToPlayToolStripMenuItem->Size = System::Drawing::Size(138, 22);
+			this->howToPlayToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->howToPlayToolStripMenuItem->Text = L"How to Play";
 			this->howToPlayToolStripMenuItem->Click += gcnew System::EventHandler(this, &VentanaPrincipal::howToPlayToolStripMenuItem_Click);
 			// 
@@ -224,6 +232,13 @@ namespace MasterMindProyectoFinal {
 			this->textBox_developers->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			this->textBox_developers->TextChanged += gcnew System::EventHandler(this, &VentanaPrincipal::textBox2_TextChanged_1);
 			// 
+			// userManualToolStripMenuItem
+			// 
+			this->userManualToolStripMenuItem->Name = L"userManualToolStripMenuItem";
+			this->userManualToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->userManualToolStripMenuItem->Text = L"User Manual";
+			this->userManualToolStripMenuItem->Click += gcnew System::EventHandler(this, &VentanaPrincipal::userManualToolStripMenuItem_Click);
+			// 
 			// VentanaPrincipal
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -245,8 +260,13 @@ namespace MasterMindProyectoFinal {
 
 		}
 #pragma endregion
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void button_play_Click(System::Object^ sender, System::EventArgs^ e)
 	{
+		//passes username to VentanaPLay
+		userNameBtt = textBox_enter_username->Text;
+		MasterMindProyectoFinal::VentanaPlay::userNameBtt = userNameBtt;
+
+
 		//VentanaPlay
 		GameSettings configuration;
 		configuration.ShowDialog();
@@ -258,11 +278,14 @@ namespace MasterMindProyectoFinal {
 
 		if ((textBox_enter_username->Text->Length > 2) == (textBox_enter_username->Text->Length < 30))
 		{
-			userNameBtt = textBox_enter_username->Text;
-			MasterMindProyectoFinal::VentanaPlay::userNameBtt = userNameBtt;
+			using namespace std;
+			string textbox_str = msclr::interop::marshal_as<std::string>(textBox_enter_username->Text);
+			int size_str_tB = textbox_str.length();
+			if (textbox_str.find(" ") > size_str_tB)
+				button_play->Enabled = true;
 
-			button_play->Enabled = true;
-			
+			if (textbox_str.find(" ") <= size_str_tB)
+				button_play->Enabled = false;
 		}
 		if (textBox_enter_username->Text->Length > 30)
 			button_play->Enabled = false;
@@ -311,5 +334,13 @@ namespace MasterMindProyectoFinal {
 		Highscores records;
 		records.ShowDialog();
 	}
+	private: System::Void userManualToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+
+		system(".\\PDFs_Docs\\InstruccionesProyectoMASTERMIND.pdf");
+		
+	}
+
+
 };
 }
