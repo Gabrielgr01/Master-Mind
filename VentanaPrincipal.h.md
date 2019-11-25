@@ -1,11 +1,9 @@
-# Master-Mind
 
 //VentanaPrincipal.h
-
+//Fully Documented
 #pragma once
 
 #include <Windows.h>
-
 #include "GameSettings.h"
 #include "Highscores.h"
 #include "HowToPlay.h"
@@ -15,7 +13,7 @@
 #include <shellapi.h>
 
 namespace MasterMindProyectoFinal {
-
+	//All the key components of the form
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -31,7 +29,7 @@ namespace MasterMindProyectoFinal {
 
 	public: static String^ userNameBtt;
 	public:
-		
+
 		VentanaPrincipal(void)
 		{
 			InitializeComponent();
@@ -94,7 +92,7 @@ namespace MasterMindProyectoFinal {
 		/// <summary>
 		/// Variable del diseñador necesaria.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -103,6 +101,7 @@ namespace MasterMindProyectoFinal {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			//Definition of the components shown in the form
 			this->textBox_titulo = (gcnew System::Windows::Forms::TextBox());
 			this->button_play = (gcnew System::Windows::Forms::Button());
 			this->textBox_enter_username = (gcnew System::Windows::Forms::TextBox());
@@ -272,9 +271,9 @@ namespace MasterMindProyectoFinal {
 		configuration.ShowDialog();
 	}
 
-	private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e)
 	{
-		//codigo para guardar en una variable el nombre de usuario ingresado
+		//This sets the username value to a variable to be pass to the play tab
 
 		if ((textBox_enter_username->Text->Length > 2) == (textBox_enter_username->Text->Length < 30))
 		{
@@ -292,35 +291,35 @@ namespace MasterMindProyectoFinal {
 		if (textBox_enter_username->Text->Length < 2)
 			button_play->Enabled = false;
 	}
-	/*
-	private: System::Void changeGameSettingsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
-	{
-		//Game settings
-	}
-	*/
-	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) 
+		   /*
+		   private: System::Void changeGameSettingsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
+		   {
+			   //Game settings
+		   }
+		   */
+	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e)
 	{
 		//Titulo (Master Mind)
 	}
-	private: System::Void textBox2_TextChanged_1(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void textBox2_TextChanged_1(System::Object^ sender, System::EventArgs^ e)
 	{
 		//Texto Developers
 	}
-	private: System::Void quitMasterMindToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void quitMasterMindToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		//Quit Game
 		VentanaPrincipal::Close();
 	}
-	private: System::Void highscoresToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void highscoresToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 	}
-	private: System::Void changeStyleToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void changeStyleToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		//Style
 		Style diseño_juego;
 		diseño_juego.ShowDialog();
 	}
-	private: System::Void howToPlayToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void howToPlayToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		//How to Play
 		HowToPlay instrucciones;
@@ -328,7 +327,7 @@ namespace MasterMindProyectoFinal {
 	}
 
 
-	private: System::Void enter_highscoresToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void enter_highscoresToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		//Highscores
 		Highscores records;
@@ -336,11 +335,11 @@ namespace MasterMindProyectoFinal {
 	}
 	private: System::Void userManualToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-
+		//This shows the User Manual
 		system(".\\PDFs_Docs\\InstruccionesProyectoMASTERMIND.pdf");
-		
+
 	}
 
 
-};
+	};
 }
