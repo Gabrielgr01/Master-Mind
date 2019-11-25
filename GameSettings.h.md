@@ -1,7 +1,7 @@
-# Master-Mind
+
 
 //GameSettings
-
+//Fully documented
 #pragma once
 
 #include "ConfigurationClass.h"
@@ -15,7 +15,7 @@ namespace MasterMindProyectoFinal {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-	
+
 	/// <summary>
 	/// Resumen de GameSettings
 	/// </summary>
@@ -23,7 +23,7 @@ namespace MasterMindProyectoFinal {
 	{
 	public:
 		ConfigurationClass* objSettings = new ConfigurationClass();
-
+		//Definition of the variables to be used in this class
 		int difficulty;
 		bool clock;
 		bool timekeeper_play;
@@ -104,7 +104,7 @@ namespace MasterMindProyectoFinal {
 			//
 		}
 
-	
+
 	protected:
 		/// <summary>
 		/// Limpiar los recursos que se estén usando.
@@ -140,7 +140,7 @@ namespace MasterMindProyectoFinal {
 	public: System::Windows::Forms::RadioButton^ Element_rep_Enabled;
 
 	private: System::Windows::Forms::GroupBox^ groupBox4;
-private: System::Windows::Forms::RadioButton^ elem_type_shapes_rbtn;
+	private: System::Windows::Forms::RadioButton^ elem_type_shapes_rbtn;
 
 	private: System::Windows::Forms::RadioButton^ elem_type_numbers_rbtn;
 
@@ -170,6 +170,7 @@ private: System::Windows::Forms::RadioButton^ elem_type_shapes_rbtn;
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			//Definition of the components shown in the form
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(GameSettings::typeid));
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
 			this->Difficulty_Hard = (gcnew System::Windows::Forms::RadioButton());
@@ -781,28 +782,33 @@ private: System::Windows::Forms::RadioButton^ elem_type_shapes_rbtn;
 
 	private: System::Void button_back_Click(System::Object^ sender, System::EventArgs^ e)
 	{
+		//This is in charge of closing the tab when you click the back button
 		GameSettings::Close();
 	}
 
 
 	private: System::Void Difficulty_Easy_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 	{
+		//This sets the difficulty to easy
 		difficulty = 1;
 		objSettings->setDifficulty(difficulty);
 	}
 	private: System::Void Difficulty_Medium_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 	{
+		//This sets the difficulty to medium
 		difficulty = 2;
 		objSettings->setDifficulty(difficulty);
 	}
 	private: System::Void Difficulty_Hard_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 	{
+		//This sets the difficulty to hard
 		difficulty = 3;
 		objSettings->setDifficulty(difficulty);
 	}
 
 	private: System::Void Clock_Enabled_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 	{
+		//This sets the timer to function as a clock, making the other options unavailable
 		clock = true;
 		objSettings->setClock(clock);
 
@@ -814,6 +820,7 @@ private: System::Windows::Forms::RadioButton^ elem_type_shapes_rbtn;
 	}
 	private: System::Void Clock_Disabled_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 	{
+		//This disables the timer and all of the other options
 		clock = false;
 		objSettings->setClock(clock);
 
@@ -825,6 +832,7 @@ private: System::Windows::Forms::RadioButton^ elem_type_shapes_rbtn;
 	}
 	private: System::Void Timekeeper_Play_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 	{
+		//This sets the timer to function as a timekeeper for each of the plays, making the other options unavailable
 		clock = false;
 		objSettings->setClock(clock);
 		timekeeper_game = false;
@@ -835,6 +843,7 @@ private: System::Windows::Forms::RadioButton^ elem_type_shapes_rbtn;
 	}
 	private: System::Void Timekeeper_Game_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 	{
+		//This sets the timer to function as a timekeeper for the entire game, making the other options unavailable
 		clock = false;
 		objSettings->setClock(clock);
 		timekeeper_play = false;
@@ -846,38 +855,45 @@ private: System::Windows::Forms::RadioButton^ elem_type_shapes_rbtn;
 
 	private: System::Void Element_rep_Enabled_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 	{
+		//This allows the random combination to be generated with repeated values
 		element_rep = true;
 		objSettings->setElementRep(element_rep);
 	}
-	private: System::Void Element_rep_Disabled_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void Element_rep_Disabled_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 	{
+		//This doesn't allow the random combination to be generated with repeated values
 		element_rep = false;
 		objSettings->setElementRep(element_rep);
 	}
 
 	private: System::Void elem_type_colors_rbtn_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 	{
+		//This sets the elements to colors
 		element_type = 1;
 		objSettings->setElementType(element_type);
 	}
 	private: System::Void elem_type_letters_rbtn_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 	{
+		//This sets the elements to letters
 		element_type = 2;
 		objSettings->setElementType(element_type);
 	}
 	private: System::Void elem_type_numbers_rbtn_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 	{
+		//This sets the elements to numbers
 		element_type = 3;
 		objSettings->setElementType(element_type);
 	}
-	private: System::Void elem_type_shapes_rbtn_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void elem_type_shapes_rbtn_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 	{
+		//This sets the elements to shapes
 		element_type = 4;
 		objSettings->setElementType(element_type);
 	}
 
 	private: System::Void Save_Settings_Click(System::Object^ sender, System::EventArgs^ e)
 	{
+		//This sets the values of the elements to be played with and sends them to the play tab
 		//GameSettings::Close();
 
 		if (objSettings->getElementType() == 1)
@@ -931,9 +947,9 @@ private: System::Windows::Forms::RadioButton^ elem_type_shapes_rbtn;
 
 
 
-	private: System::Void groupBox4_Enter(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void groupBox4_Enter(System::Object^ sender, System::EventArgs^ e)
 	{
 	}
 
-};
+	};
 }
