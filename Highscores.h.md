@@ -624,4 +624,3 @@ private: System::Windows::Forms::Label^ num_p3_e_label;
 
 	};
 }
-
