@@ -32,11 +32,6 @@ namespace MasterMindProyectoFinal {
 
 
 			compare_players_time(); //updates the top3 list
-
-
-			//
-			//TODO: agregar código de constructor aquí
-			//
 		}
 
 	protected:
@@ -409,6 +404,11 @@ private: System::Windows::Forms::Label^ num_p3_e_label;
 
 				if (data_time_int < p1_label_int)
 				{
+					String^ prev_player1 = player1_hard_label->Text;
+					String^ prev_p1_num = num_p1_h_label->Text;
+					String^ prev_player2 = player2_hard_label->Text;
+					String^ prev_p2_num = num_p1_h_label->Text;
+
 					num_p1_h_label->Text = data_STR;
 
 					//guardar username y tiempo en modo ver
@@ -421,9 +421,17 @@ private: System::Windows::Forms::Label^ num_p3_e_label;
 					winnersFile >> data;
 					data_STR = gcnew String(data.c_str());
 					player1_hard_label->Text = player1_hard_label->Text + " " + data_STR;
+
+					player2_hard_label->Text = prev_player1;
+					num_p2_h_label->Text = prev_p1_num;
+					player3_hard_label->Text = prev_player2;
+					num_p3_h_label->Text = prev_p2_num;
 				}
 				else if (data_time_int < p2_label_int)
 				{
+					String^ prev_player2 = player2_hard_label->Text;
+					String^ prev_p2_num = num_p2_h_label->Text;
+
 					num_p2_h_label->Text = data_STR;
 
 					//guardar username y tiempo en modo ver
@@ -436,6 +444,9 @@ private: System::Windows::Forms::Label^ num_p3_e_label;
 					winnersFile >> data;
 					data_STR = gcnew String(data.c_str());
 					player2_hard_label->Text = player2_hard_label->Text + " " + data_STR;
+
+					player3_hard_label->Text = prev_player2;
+					num_p3_h_label->Text = prev_p2_num;
 				}
 				else if (data_time_int < p3_label_int)
 				{
@@ -483,6 +494,11 @@ private: System::Windows::Forms::Label^ num_p3_e_label;
 
 				if (data_time_int < p1_label_int)
 				{
+					String^ prev_player1 = player1_medium_label->Text;
+					String^ prev_p1_num = num_p1_m_label->Text;
+					String^ prev_player2 = player2_medium_label->Text;
+					String^ prev_p2_num = num_p1_m_label->Text;
+
 					num_p1_m_label->Text = data_STR;
 
 					//guardar username y tiempo en modo ver
@@ -496,9 +512,16 @@ private: System::Windows::Forms::Label^ num_p3_e_label;
 					data_STR = gcnew String(data.c_str());
 					player1_medium_label->Text = player1_medium_label->Text + " " + data_STR;
 
+					player2_medium_label->Text = prev_player1;
+					num_p2_m_label->Text = prev_p1_num;
+					player3_medium_label->Text = prev_player2;
+					num_p3_m_label->Text = prev_p2_num;
 				}
 				else if (data_time_int < p2_label_int)
 				{
+					String^ prev_player2 = player2_medium_label->Text;
+					String^ prev_p2_num = num_p1_m_label->Text;
+
 					num_p2_m_label->Text = data_STR;
 
 					//guardar username y tiempo en modo ver
@@ -511,6 +534,9 @@ private: System::Windows::Forms::Label^ num_p3_e_label;
 					winnersFile >> data;
 					data_STR = gcnew String(data.c_str());
 					player2_medium_label->Text = player2_medium_label->Text + " " + data_STR;
+
+					player3_medium_label->Text = prev_player2;
+					num_p3_m_label->Text = prev_p2_num;
 				}
 				else if (data_time_int < p3_label_int)
 				{
@@ -557,6 +583,11 @@ private: System::Windows::Forms::Label^ num_p3_e_label;
 
 				if (data_time_int < p1_label_int)
 				{
+					String^ prev_player1 = player1_easy_label->Text;
+					String^ prev_p1_num = num_p1_e_label->Text;
+					String^ prev_player2 = player2_easy_label->Text;
+					String^ prev_p2_num = num_p1_e_label->Text;
+
 					num_p1_e_label->Text = data_STR;
 
 					//guardar username y tiempo en modo ver
@@ -570,9 +601,16 @@ private: System::Windows::Forms::Label^ num_p3_e_label;
 					data_STR = gcnew String(data.c_str());
 					player1_easy_label->Text = player1_easy_label->Text + " " + data_STR;
 
+					player2_easy_label->Text = prev_player1;
+					num_p2_e_label->Text = prev_p1_num;
+					player3_easy_label->Text = prev_player2;
+					num_p3_e_label->Text = prev_p2_num;
 				}
 				else if (data_time_int < p2_label_int)
 				{
+					String^ prev_player2 = player2_easy_label->Text;
+					String^ prev_p2_num = num_p1_e_label->Text;
+
 					num_p2_e_label->Text = data_STR;
 
 					//guardar username y tiempo en modo ver
@@ -585,6 +623,9 @@ private: System::Windows::Forms::Label^ num_p3_e_label;
 					winnersFile >> data;
 					data_STR = gcnew String(data.c_str());
 					player2_easy_label->Text = player2_easy_label->Text + " " + data_STR;
+
+					player3_easy_label->Text = prev_player2;
+					num_p3_e_label->Text = prev_p2_num;
 				}
 				else if (data_time_int < p3_label_int)
 				{
