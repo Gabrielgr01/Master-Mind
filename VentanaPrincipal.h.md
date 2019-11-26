@@ -335,7 +335,7 @@ namespace MasterMindProyectoFinal {
 	private: System::Void userManualToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		//This shows the User Manual
-		system(".\\PDFs_Docs\\UserManual-Mastermind.pdf");
+		system(".\\PDFs_Docs\\manual_de_usuario_master_mind.pdf");
 		
 	}
 
