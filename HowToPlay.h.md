@@ -1,7 +1,5 @@
-# Master-Mind
-
 //HowToPlay.h
-
+//Fully Documented
 #pragma once
 
 namespace MasterMindProyectoFinal {
@@ -46,7 +44,7 @@ namespace MasterMindProyectoFinal {
 		/// <summary>
 		/// Variable del diseñador necesaria.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -91,9 +89,10 @@ namespace MasterMindProyectoFinal {
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		//cerrar ventana How To Play
+		//Closes How To Play window
 		HowToPlay::Close();
 	}
 
 	};
 }
+
