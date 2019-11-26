@@ -3,6 +3,8 @@
 //VentanaPlay.h
 //Fully Documented
 
+//VentanaPlay.h
+
 #pragma once
 
 #include "ConfigurationClass.h"
@@ -96,13 +98,36 @@ namespace MasterMindProyectoFinal {
 		bool saved_game = false;
 		bool loaded_game = false;
 		
-		//imagenes de los seis botones de color/letter/number/shape
-		static Image^ btn_img1_play;
-		static Image^ btn_img2_play;
-		static Image^ btn_img3_play;
-		static Image^ btn_img4_play;
-		static Image^ btn_img5_play;
-		static Image^ btn_img6_play;
+		//images of the six buttons of color, letter, number and shape
+		static Image^ color_img1;
+		static Image^ color_img2;
+		static Image^ color_img3;
+		static Image^ color_img4;
+		static Image^ color_img5;
+		static Image^ color_img6;
+
+		static Image^ letter_img1;
+		static Image^ letter_img2;
+		static Image^ letter_img3;
+		static Image^ letter_img4;
+		static Image^ letter_img5;
+		static Image^ letter_img6;
+
+		static Image^ number_img1;
+		static Image^ number_img2;
+		static Image^ number_img3;
+		static Image^ number_img4;
+		static Image^ number_img5;
+		static Image^ number_img6;
+
+		static Image^ shape_img1;
+		static Image^ shape_img2;
+		static Image^ shape_img3;
+		static Image^ shape_img4;
+		static Image^ shape_img5;
+		static Image^ shape_img6;
+		
+
 
 		//variables conteniendo los archivo de audio
 		SoundPlayer^ backg = gcnew SoundPlayer(".//SoundFx//Jazz.wav");
@@ -154,13 +179,43 @@ namespace MasterMindProyectoFinal {
 			Username_label->Text = userNameBtt; //el nombre de usuario ingresado en la VentanaPrincipal se lo asigna al label correspondiente de la VentanaPlay
 
 
-			//Element Type: le asigna a los botones de color/letter/number/shape la opción seleccionada en la configuración			
-			red_button->BackgroundImage = btn_img1_play;
-			blue_button->BackgroundImage = btn_img2_play;
-			green_button->BackgroundImage = btn_img3_play;
-			yellow_button->BackgroundImage = btn_img4_play;
-			pink_button->BackgroundImage = btn_img5_play;
-			brown_button->BackgroundImage = btn_img6_play;
+			//Element Type: le asigna a los botones de color/letter/number/shape la opción seleccionada en la configuración		
+			if (objSettings->getElementType() == 1)
+			{
+				red_button->BackgroundImage = color_img1;
+				blue_button->BackgroundImage = color_img2;
+				green_button->BackgroundImage = color_img3;
+				yellow_button->BackgroundImage = color_img4;
+				pink_button->BackgroundImage = color_img5;
+				brown_button->BackgroundImage = color_img6;
+			}
+			else if (objSettings->getElementType() == 2)
+			{
+				red_button->BackgroundImage = letter_img1;
+				blue_button->BackgroundImage = letter_img2;
+				green_button->BackgroundImage = letter_img3;
+				yellow_button->BackgroundImage = letter_img4;
+				pink_button->BackgroundImage = letter_img5;
+				brown_button->BackgroundImage = letter_img6;
+			}
+			else if (objSettings->getElementType() == 3)
+			{
+				red_button->BackgroundImage = number_img1;
+				blue_button->BackgroundImage = number_img2;
+				green_button->BackgroundImage = number_img3;
+				yellow_button->BackgroundImage = number_img4;
+				pink_button->BackgroundImage = number_img5;
+				brown_button->BackgroundImage = number_img6;
+			}
+			else if (objSettings->getElementType() == 4)
+			{
+				red_button->BackgroundImage = shape_img1;
+				blue_button->BackgroundImage = shape_img2;
+				green_button->BackgroundImage = shape_img3;
+				yellow_button->BackgroundImage = shape_img4;
+				pink_button->BackgroundImage = shape_img5;
+				brown_button->BackgroundImage = shape_img6;
+			}
 
 			//pone o quita texto dependiendo de la opción seleccionada en la configuración
 			if (objSettings->getElementType() == 1)
@@ -198,10 +253,10 @@ namespace MasterMindProyectoFinal {
 			
 
 			//guess button backg image set to blank
-			play1_guess1_button->BackgroundImage == blank_button->BackgroundImage;
-			play1_guess2_button->BackgroundImage == blank_button->BackgroundImage;
-			play1_guess3_button->BackgroundImage == blank_button->BackgroundImage;
-			play1_guess4_button->BackgroundImage == blank_button->BackgroundImage;
+			play1_guess1_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess2_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess3_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess4_button->BackgroundImage = blank_button->BackgroundImage;
 		}
 
 	protected:
@@ -5403,6 +5458,19 @@ namespace MasterMindProyectoFinal {
 		else if (objSettings->getDifficulty() == 3)
 			saved_game_file << "Hard" << endl;
 
+		//saves element type
+		saved_game_file << "Element_Type: ";
+
+		if (objSettings->getElementType() == 1)
+			saved_game_file << "1";
+		else if (objSettings->getElementType() == 2)
+			saved_game_file << "2";
+		else if (objSettings->getElementType() == 3)
+			saved_game_file << "3";
+		else if (objSettings->getElementType() == 4)
+			saved_game_file << "4";
+		saved_game_file << endl;
+
 		//save random comb
 		saved_game_file << "Random_Combination: ";
 
@@ -5799,6 +5867,85 @@ namespace MasterMindProyectoFinal {
 					{
 						objSettings->setDifficulty(3);
 						difficulty_label->Text = "Difficulty: Hard";
+					}
+
+					//loads element type conf.
+					saved_game_file >> titulo;
+					saved_game_file >> dato;
+
+					if (dato == "1")
+						objSettings->setElementType(1);
+					else if (dato == "2")
+						objSettings->setElementType(2);
+					else if (dato == "3")
+						objSettings->setElementType(3);
+					else if (dato == "4")
+						objSettings->setElementType(4);
+
+					//sets the color buttons to the type of element loaded 
+					if (objSettings->getElementType() == 1)
+					{
+						red_button->BackgroundImage = color_img1;
+						blue_button->BackgroundImage = color_img2;
+						green_button->BackgroundImage = color_img3;
+						yellow_button->BackgroundImage = color_img4;
+						pink_button->BackgroundImage = color_img5;
+						brown_button->BackgroundImage = color_img6;
+
+						red_button->Text = "Red";
+						blue_button->Text = "Blue";
+						green_button->Text = "Green";
+						yellow_button->Text = "Yellow";
+						pink_button->Text = "Pink";
+						brown_button->Text = "Brown";
+					}
+					else if (objSettings->getElementType() == 2)
+					{
+						red_button->BackgroundImage = letter_img1;
+						blue_button->BackgroundImage = letter_img2;
+						green_button->BackgroundImage = letter_img3;
+						yellow_button->BackgroundImage = letter_img4;
+						pink_button->BackgroundImage = letter_img5;
+						brown_button->BackgroundImage = letter_img6;
+
+						red_button->Text = "";
+						blue_button->Text = "";
+						green_button->Text = "";
+						yellow_button->Text = "";
+						pink_button->Text = "";
+						brown_button->Text = "";
+					}
+					else if (objSettings->getElementType() == 3)
+					{
+						red_button->BackgroundImage = number_img1;
+						blue_button->BackgroundImage = number_img2;
+						green_button->BackgroundImage = number_img3;
+						yellow_button->BackgroundImage = number_img4;
+						pink_button->BackgroundImage = number_img5;
+						brown_button->BackgroundImage = number_img6;
+
+						red_button->Text = "";
+						blue_button->Text = "";
+						green_button->Text = "";
+						yellow_button->Text = "";
+						pink_button->Text = "";
+						brown_button->Text = "";
+					}
+					else if (objSettings->getElementType() == 4)
+					{
+						red_button->BackgroundImage = shape_img1;
+						blue_button->BackgroundImage = shape_img2;
+						green_button->BackgroundImage = shape_img3;
+						yellow_button->BackgroundImage = shape_img4;
+						pink_button->BackgroundImage = shape_img5;
+						brown_button->BackgroundImage = shape_img6;
+
+						red_button->Text = "";
+						blue_button->Text = "";
+						green_button->Text = "";
+						yellow_button->Text = "";
+						pink_button->Text = "";
+						brown_button->Text = "";
 					}
 				}
 				if (line_counter == 3)
@@ -6467,6 +6614,7 @@ namespace MasterMindProyectoFinal {
 
 		if (saved_game == true)
 		{
+
 			load_game(); //calls load_game() function
 
 			if (saved_plays == 1)
@@ -6825,6 +6973,19 @@ namespace MasterMindProyectoFinal {
 			SavedGame.close();
 
 			saved_game = false;
+
+			//guess button backg image set to blank
+			play1_guess1_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess2_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess3_button->BackgroundImage = blank_button->BackgroundImage;
+			play1_guess4_button->BackgroundImage = blank_button->BackgroundImage;
+
+			play1_guess1_button->BackColor = blank_button->BackColor;
+			play1_guess2_button->BackColor = blank_button->BackColor;
+			play1_guess3_button->BackColor = blank_button->BackColor;
+			play1_guess4_button->BackColor = blank_button->BackColor;
+
+			Vent_Play_Start->Focus(); //focus the Start button
 
 		}
 		else if (saved_game == false)
