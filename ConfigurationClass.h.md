@@ -1,7 +1,5 @@
-# Master-Mind
-
 //ConfigurationClass.h
-
+//Fully documented
 #pragma once
 #include "pch.h"
 
@@ -25,16 +23,16 @@ private:
 
 	//random numbers
 	int randomNUM;
-
 	int random_num1;
 	int random_num2;
 	int random_num3;
 	int random_num4;
 
 public:
+	//These are the definition of the methods used in the .cpp file
 	ConfigurationClass();
 	~ConfigurationClass();
-	
+
 	void setDifficulty(int);
 	void setClock(bool);
 	void setTimekeeperPlay(bool);
