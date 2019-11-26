@@ -20,8 +20,8 @@ ConfigurationClass::ConfigurationClass()
 };
 
 ConfigurationClass::~ConfigurationClass() {};
-//Methods of the configuration class
 
+//Methods of the configuration class
 void ConfigurationClass::setDifficulty(int dif)
 {
 	//This sets the difficulty
@@ -87,59 +87,46 @@ void ConfigurationClass::setRandomNUM()
 
 int ConfigurationClass::getDifficulty()
 {
-	//This returns the value of the difficulty
-	return Difficulty_conf;
+	return Difficulty_conf; //This returns the value of the difficulty
 };
 bool ConfigurationClass::getClock()
 {
-	//This returns the value of the clock
-	return Clock_conf;
+	return Clock_conf; //This returns the value of the clock
 };
 bool ConfigurationClass::getTimekeeperPlay()
 {
-	//This returns the value of the Timekeeper for the plays
-	return TimekeeperPlay_conf;
+	return TimekeeperPlay_conf; //This returns the value of the Timekeeper for the plays
 };
 bool ConfigurationClass::getTimekeeperGame()
 {
-	//This returns the value of the timekeeper for the entire game
-	return TimekeeperGame_conf;
+	return TimekeeperGame_conf; //This returns the value of the timekeeper for the entire game
 };
 bool ConfigurationClass::getElementRep()
 {
-	//This returns the value of the repetion of elements in the combination
-	return ElementRep_conf;
+	return ElementRep_conf; //This returns the value of the repetion of elements in the combination
 };
 int ConfigurationClass::getElementType()
 {
-	//This returns the value of the type of element to be used
-	return ElementType_conf;
+	return ElementType_conf; //This returns the value of the type of element to be used
 };
 
 int ConfigurationClass::getRandomNum1()
 {
-
-	//This returns the first element of the combination
-	return random_num1;
+	return random_num1; //This returns the first element of the combination
 };
 int ConfigurationClass::getRandomNum2()
 {
-	//This returns the second element of the combination
-	return random_num2;
+	return random_num2; //This returns the second element of the combination
 };
 int ConfigurationClass::getRandomNum3()
 {
-	//This returns the third element of the combination
-	return random_num3;
+	return random_num3; //This returns the third element of the combination
 };
 int ConfigurationClass::getRandomNum4()
 {
-	//This returns the fourth element of the combination
-	return random_num4;
+	return random_num4; //This returns the fourth element of the combination
 };
 int ConfigurationClass::getRandomNUM()
 {
-	//This returns the combination
-	return randomNUM;
-};
-
+	return randomNUM; //This returns the combination
+}; 

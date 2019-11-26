@@ -15,45 +15,40 @@ namespace MasterMindProyectoFinal {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-
+	
 	/// <summary>
 	/// Resumen de GameSettings
 	/// </summary>
 	public ref class GameSettings : public System::Windows::Forms::Form
 	{
 	public:
-		ConfigurationClass* objSettings = new ConfigurationClass();
+		ConfigurationClass* objSettings = new ConfigurationClass(); //object containing the configuration data
+
 		//Definition of the variables to be used in this class
-		int difficulty;
-		bool clock;
-		bool timekeeper_play;
-		bool timekeeper_game;
-		bool element_rep;
-		static Image^ picBox_img1_GS;
-		static Image^ picBox_img2_GS;
-		static Image^ picBox_img3_GS;
-		static Image^ picBox_img4_GS;
-		static Image^ picBox_img5_GS;
-		static Image^ picBox_img6_GS;
+
+		int difficulty = 1;
+		bool clock = true;
+		bool timekeeper_play = false;
+		bool timekeeper_game = false;
+		bool element_rep = true;
+		int element_type = 1;
+
+		//selected configuration (actual): in case a game is loaded
+		int actual_difficulty;
+		bool actual_clock;
+		bool actual_timekeeper_play;
+		bool actual_timekeeper_game;
+		bool actual_element_rep;
+		int actual_element_type;
+		
+
+
 	private: System::Windows::Forms::PictureBox^ shapes_hexagon_picBox;
 	private: System::Windows::Forms::PictureBox^ shapes_pentagon_picBox;
 	private: System::Windows::Forms::PictureBox^ shapes_square_picBox;
 	private: System::Windows::Forms::PictureBox^ shapes_doubleTriangle_picBox;
 	private: System::Windows::Forms::PictureBox^ shapes_triangle_picBox;
 	private: System::Windows::Forms::PictureBox^ shapes_lightning_picBox;
-	public:
-
-
-
-	public:
-
-
-
-
-
-
-
-
 
 	private: System::Windows::Forms::PictureBox^ numbers_5_picBox;
 
@@ -92,19 +87,47 @@ namespace MasterMindProyectoFinal {
 
 	private: System::Windows::Forms::PictureBox^ colors_red_picBox;
 
-		   int element_type;
 
 	public:
 
 		GameSettings(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: agregar código de constructor aquí
-			//
+
+
+			//sends the values of the background images of all the elements to the VentanaPlay
+
+			MasterMindProyectoFinal::VentanaPlay::color_img1 = colors_red_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::color_img2 = colors_blue_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::color_img3 = colors_green_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::color_img4 = colors_yellow_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::color_img5 = colors_pink_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::color_img6 = colors_brown_picBox->BackgroundImage;
+
+			MasterMindProyectoFinal::VentanaPlay::letter_img1 = letters_A_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::letter_img2 = letters_B_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::letter_img3 = letters_C_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::letter_img4 = letters_D_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::letter_img5 = letters_E_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::letter_img6 = letters_F_picBox->BackgroundImage;
+
+			MasterMindProyectoFinal::VentanaPlay::number_img1 = numbers_0_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::number_img2 = numbers_1_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::number_img3 = numbers_2_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::number_img4 = numbers_3_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::number_img5 = numbers_4_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::number_img6 = numbers_5_picBox->BackgroundImage;
+
+			MasterMindProyectoFinal::VentanaPlay::shape_img1 = shapes_lightning_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::shape_img2 = shapes_triangle_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::shape_img3 = shapes_doubleTriangle_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::shape_img4 = shapes_square_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::shape_img5 = shapes_pentagon_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::shape_img6 = shapes_hexagon_picBox->BackgroundImage;
+
 		}
 
-
+	
 	protected:
 		/// <summary>
 		/// Limpiar los recursos que se estén usando.
@@ -140,7 +163,7 @@ namespace MasterMindProyectoFinal {
 	public: System::Windows::Forms::RadioButton^ Element_rep_Enabled;
 
 	private: System::Windows::Forms::GroupBox^ groupBox4;
-	private: System::Windows::Forms::RadioButton^ elem_type_shapes_rbtn;
+private: System::Windows::Forms::RadioButton^ elem_type_shapes_rbtn;
 
 	private: System::Windows::Forms::RadioButton^ elem_type_numbers_rbtn;
 
@@ -170,7 +193,6 @@ namespace MasterMindProyectoFinal {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			//Definition of the components shown in the form
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(GameSettings::typeid));
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
 			this->Difficulty_Hard = (gcnew System::Windows::Forms::RadioButton());
@@ -782,8 +804,7 @@ namespace MasterMindProyectoFinal {
 
 	private: System::Void button_back_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		//This is in charge of closing the tab when you click the back button
-		GameSettings::Close();
+		GameSettings::Close(); //This is in charge of closing the tab when you click the back button
 	}
 
 
@@ -859,7 +880,7 @@ namespace MasterMindProyectoFinal {
 		element_rep = true;
 		objSettings->setElementRep(element_rep);
 	}
-	private: System::Void Element_rep_Disabled_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void Element_rep_Disabled_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
 	{
 		//This doesn't allow the random combination to be generated with repeated values
 		element_rep = false;
@@ -884,7 +905,7 @@ namespace MasterMindProyectoFinal {
 		element_type = 3;
 		objSettings->setElementType(element_type);
 	}
-	private: System::Void elem_type_shapes_rbtn_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void elem_type_shapes_rbtn_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
 	{
 		//This sets the elements to shapes
 		element_type = 4;
@@ -894,51 +915,19 @@ namespace MasterMindProyectoFinal {
 	private: System::Void Save_Settings_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		//This sets the values of the elements to be played with and sends them to the play tab
-		//GameSettings::Close();
+		actual_difficulty = difficulty;
+		actual_clock = clock;
+		actual_timekeeper_play = timekeeper_play;
+		actual_timekeeper_game = timekeeper_game;
+		actual_element_rep = element_rep;
+		actual_element_type = element_type;
 
-		if (objSettings->getElementType() == 1)
-		{
-			picBox_img1_GS = colors_red_picBox->BackgroundImage;
-			picBox_img2_GS = colors_blue_picBox->BackgroundImage;
-			picBox_img3_GS = colors_green_picBox->BackgroundImage;
-			picBox_img4_GS = colors_yellow_picBox->BackgroundImage;
-			picBox_img5_GS = colors_pink_picBox->BackgroundImage;
-			picBox_img6_GS = colors_brown_picBox->BackgroundImage;
-		}
-		else if (objSettings->getElementType() == 2)
-		{
-			picBox_img1_GS = letters_A_picBox->BackgroundImage;
-			picBox_img2_GS = letters_B_picBox->BackgroundImage;
-			picBox_img3_GS = letters_C_picBox->BackgroundImage;
-			picBox_img4_GS = letters_D_picBox->BackgroundImage;
-			picBox_img5_GS = letters_E_picBox->BackgroundImage;
-			picBox_img6_GS = letters_F_picBox->BackgroundImage;
-		}
-		else if (objSettings->getElementType() == 3)
-		{
-			picBox_img1_GS = numbers_0_picBox->BackgroundImage;
-			picBox_img2_GS = numbers_1_picBox->BackgroundImage;
-			picBox_img3_GS = numbers_2_picBox->BackgroundImage;
-			picBox_img4_GS = numbers_3_picBox->BackgroundImage;
-			picBox_img5_GS = numbers_4_picBox->BackgroundImage;
-			picBox_img6_GS = numbers_5_picBox->BackgroundImage;
-		}
-		else if (objSettings->getElementType() == 4)
-		{
-			picBox_img1_GS = shapes_lightning_picBox->BackgroundImage;
-			picBox_img2_GS = shapes_triangle_picBox->BackgroundImage;
-			picBox_img3_GS = shapes_doubleTriangle_picBox->BackgroundImage;
-			picBox_img4_GS = shapes_square_picBox->BackgroundImage;
-			picBox_img5_GS = shapes_pentagon_picBox->BackgroundImage;
-			picBox_img6_GS = shapes_hexagon_picBox->BackgroundImage;
-		}
-
-		MasterMindProyectoFinal::VentanaPlay::btn_img1_play = picBox_img1_GS;
-		MasterMindProyectoFinal::VentanaPlay::btn_img2_play = picBox_img2_GS;
-		MasterMindProyectoFinal::VentanaPlay::btn_img3_play = picBox_img3_GS;
-		MasterMindProyectoFinal::VentanaPlay::btn_img4_play = picBox_img4_GS;
-		MasterMindProyectoFinal::VentanaPlay::btn_img5_play = picBox_img5_GS;
-		MasterMindProyectoFinal::VentanaPlay::btn_img6_play = picBox_img6_GS;
+		objSettings->setClock(actual_clock);
+		objSettings->setDifficulty(actual_difficulty);
+		objSettings->setElementRep(actual_element_rep);
+		objSettings->setElementType(actual_element_type);
+		objSettings->setTimekeeperGame(actual_timekeeper_game);
+		objSettings->setTimekeeperPlay(actual_timekeeper_play);
 
 
 		VentanaPlay juego(objSettings);
@@ -946,10 +935,9 @@ namespace MasterMindProyectoFinal {
 	}
 
 
-
-	private: System::Void groupBox4_Enter(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void groupBox4_Enter(System::Object^ sender, System::EventArgs^ e) 
 	{
 	}
 
-	};
+};
 }

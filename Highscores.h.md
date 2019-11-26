@@ -60,15 +60,15 @@ namespace MasterMindProyectoFinal {
 	private: System::Windows::Forms::Label^ player2_medium_label;
 
 	private: System::Windows::Forms::Label^ player3_easy_label;
-	private: System::Windows::Forms::Label^ num_p1_h_label;
-	private: System::Windows::Forms::Label^ num_p2_h_label;
-	private: System::Windows::Forms::Label^ num_p3_h_label;
-	private: System::Windows::Forms::Label^ num_p1_m_label;
-	private: System::Windows::Forms::Label^ num_p2_m_label;
-	private: System::Windows::Forms::Label^ num_p3_m_label;
-	private: System::Windows::Forms::Label^ num_p1_e_label;
-	private: System::Windows::Forms::Label^ num_p2_e_label;
-	private: System::Windows::Forms::Label^ num_p3_e_label;
+private: System::Windows::Forms::Label^ num_p1_h_label;
+private: System::Windows::Forms::Label^ num_p2_h_label;
+private: System::Windows::Forms::Label^ num_p3_h_label;
+private: System::Windows::Forms::Label^ num_p1_m_label;
+private: System::Windows::Forms::Label^ num_p2_m_label;
+private: System::Windows::Forms::Label^ num_p3_m_label;
+private: System::Windows::Forms::Label^ num_p1_e_label;
+private: System::Windows::Forms::Label^ num_p2_e_label;
+private: System::Windows::Forms::Label^ num_p3_e_label;
 
 
 
@@ -80,7 +80,7 @@ namespace MasterMindProyectoFinal {
 		/// <summary>
 		/// Variable del diseñador necesaria.
 		/// </summary>
-		System::ComponentModel::Container^ components;
+		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -362,10 +362,9 @@ namespace MasterMindProyectoFinal {
 
 		}
 #pragma endregion
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
-		//Closes the highscores window
-		Highscores::Close();
+		Highscores::Close(); //Closes the highscores window
 	}
 
 	private: System::Void Highscores_Load(System::Object^ sender, System::EventArgs^ e) {
@@ -374,26 +373,38 @@ namespace MasterMindProyectoFinal {
 	private: System::Void compare_players_time()
 	{
 		//This function will compare the data from the the winners in the file to see who has the best time and place it in its correct place
+
 		using namespace std;
 
 		string title;
 		string data;
 		String^ data_STR;
-		//Creates and opens the file
+
 		ifstream winnersFile;
-		winnersFile.open("SavedWinners.txt", ios::in);
+		winnersFile.open("SavedWinners.txt", ios::in); //Opens the file
 
 		while (!winnersFile.eof())
 		{
+			/*
+			This reads the information in the file, compares the time of each player with the one in the top 3, 
+			and if a player in the file has a better time it adds this player to the top 3
+			*/
+
+			/*
+			////*  ==> the code refered by this denotation is for moving the other players
+			to their respect places after placing the compared player from the file, in the top 3
+			*/
+
 			winnersFile >> title;
 			winnersFile >> data;
-			//This is used for the hard configuration
+
+			//This is used for the Top 3 of the Hard difficulty
 			if (data == "Hard")
 			{
-				//This writes the information in the file
+				
 				winnersFile >> title;
 				winnersFile >> data;
-
+				
 				string p1_label_str = msclr::interop::marshal_as<std::string>(num_p1_h_label->Text);
 				int p1_label_int = stoi(p1_label_str);
 				string p2_label_str = msclr::interop::marshal_as<std::string>(num_p2_h_label->Text);
@@ -406,14 +417,15 @@ namespace MasterMindProyectoFinal {
 
 				if (data_time_int < p1_label_int)
 				{
+					////*
 					String^ prev_player1 = player1_hard_label->Text;
 					String^ prev_p1_num = num_p1_h_label->Text;
 					String^ prev_player2 = player2_hard_label->Text;
 					String^ prev_p2_num = num_p1_h_label->Text;
 
+					//Places the data of the compared player in first place
 					num_p1_h_label->Text = data_STR;
-
-					//Saves time and username in watch mode
+					
 					winnersFile >> title;
 					winnersFile >> data;
 					data_STR = gcnew String(data.c_str());
@@ -424,6 +436,7 @@ namespace MasterMindProyectoFinal {
 					data_STR = gcnew String(data.c_str());
 					player1_hard_label->Text = player1_hard_label->Text + " " + data_STR;
 
+					////*
 					player2_hard_label->Text = prev_player1;
 					num_p2_h_label->Text = prev_p1_num;
 					player3_hard_label->Text = prev_player2;
@@ -431,12 +444,13 @@ namespace MasterMindProyectoFinal {
 				}
 				else if (data_time_int < p2_label_int)
 				{
+					////*
 					String^ prev_player2 = player2_hard_label->Text;
 					String^ prev_p2_num = num_p2_h_label->Text;
 
+					//Places the data of the compared player in second place
 					num_p2_h_label->Text = data_STR;
 
-					//Saves time and username in watch mode
 					winnersFile >> title;
 					winnersFile >> data;
 					data_STR = gcnew String(data.c_str());
@@ -447,14 +461,15 @@ namespace MasterMindProyectoFinal {
 					data_STR = gcnew String(data.c_str());
 					player2_hard_label->Text = player2_hard_label->Text + " " + data_STR;
 
+					////*
 					player3_hard_label->Text = prev_player2;
 					num_p3_h_label->Text = prev_p2_num;
 				}
 				else if (data_time_int < p3_label_int)
 				{
+					//Places the data of the compared player in third place
 					num_p3_h_label->Text = data_STR;
 
-					//Saves time and username in watch mode
 					winnersFile >> title;
 					winnersFile >> data;
 					data_STR = gcnew String(data.c_str());
@@ -465,7 +480,7 @@ namespace MasterMindProyectoFinal {
 					data_STR = gcnew String(data.c_str());
 					player3_hard_label->Text = player3_hard_label->Text + " " + data_STR;
 				}
-				//This writes the information in the file
+
 				winnersFile >> title;
 				winnersFile >> data;
 				winnersFile >> data;
@@ -479,10 +494,9 @@ namespace MasterMindProyectoFinal {
 				winnersFile >> data;
 
 			}
-			//This is used for the medium configuration
+			//This is used for the Top 3 of the Medium difficulty
 			else if (data == "Medium")
 			{
-				//This writes the information in the file
 				winnersFile >> title;
 				winnersFile >> data;
 
@@ -498,14 +512,15 @@ namespace MasterMindProyectoFinal {
 
 				if (data_time_int < p1_label_int)
 				{
+					////*
 					String^ prev_player1 = player1_medium_label->Text;
 					String^ prev_p1_num = num_p1_m_label->Text;
 					String^ prev_player2 = player2_medium_label->Text;
 					String^ prev_p2_num = num_p1_m_label->Text;
 
+					//Places the data of the compared player in first place
 					num_p1_m_label->Text = data_STR;
 
-					//Saves time and username in watch mode
 					winnersFile >> title;
 					winnersFile >> data;
 					data_STR = gcnew String(data.c_str());
@@ -516,6 +531,7 @@ namespace MasterMindProyectoFinal {
 					data_STR = gcnew String(data.c_str());
 					player1_medium_label->Text = player1_medium_label->Text + " " + data_STR;
 
+					////*
 					player2_medium_label->Text = prev_player1;
 					num_p2_m_label->Text = prev_p1_num;
 					player3_medium_label->Text = prev_player2;
@@ -523,12 +539,13 @@ namespace MasterMindProyectoFinal {
 				}
 				else if (data_time_int < p2_label_int)
 				{
+					////*
 					String^ prev_player2 = player2_medium_label->Text;
 					String^ prev_p2_num = num_p1_m_label->Text;
 
+					//Places the data of the compared player in second place
 					num_p2_m_label->Text = data_STR;
 
-					//Saves time and username in watch mode
 					winnersFile >> title;
 					winnersFile >> data;
 					data_STR = gcnew String(data.c_str());
@@ -539,14 +556,15 @@ namespace MasterMindProyectoFinal {
 					data_STR = gcnew String(data.c_str());
 					player2_medium_label->Text = player2_medium_label->Text + " " + data_STR;
 
+					////*
 					player3_medium_label->Text = prev_player2;
 					num_p3_m_label->Text = prev_p2_num;
 				}
 				else if (data_time_int < p3_label_int)
 				{
+					//Places the data of the compared player in third place
 					num_p3_m_label->Text = data_STR;
 
-					//Saves time and username in watch mode
 					winnersFile >> title;
 					winnersFile >> data;
 					data_STR = gcnew String(data.c_str());
@@ -557,7 +575,7 @@ namespace MasterMindProyectoFinal {
 					data_STR = gcnew String(data.c_str());
 					player3_medium_label->Text = player3_medium_label->Text + " " + data_STR;
 				}
-				//This writes the information in the file
+
 				winnersFile >> title;
 				winnersFile >> data;
 				winnersFile >> data;
@@ -570,33 +588,33 @@ namespace MasterMindProyectoFinal {
 				winnersFile >> data;
 				winnersFile >> data;
 			}
-			//This is used for the easy configuration
+			//This is used for the Top 3 of the Easy difficulty
 			else if (data == "Easy")
 			{
-				//This writes the information in the file
 				winnersFile >> title;
 				winnersFile >> data;
-
+					
 				string p1_label_str = msclr::interop::marshal_as<std::string>(num_p1_e_label->Text);
 				int p1_label_int = stoi(p1_label_str);
 				string p2_label_str = msclr::interop::marshal_as<std::string>(num_p2_e_label->Text);
 				int p2_label_int = stoi(p2_label_str);
 				string p3_label_str = msclr::interop::marshal_as<std::string>(num_p3_e_label->Text);
 				int p3_label_int = stoi(p3_label_str);
-
+					
 				int data_time_int = stoi(data);
 				data_STR = gcnew String(data.c_str());
 
 				if (data_time_int < p1_label_int)
 				{
+					////*
 					String^ prev_player1 = player1_easy_label->Text;
 					String^ prev_p1_num = num_p1_e_label->Text;
 					String^ prev_player2 = player2_easy_label->Text;
 					String^ prev_p2_num = num_p1_e_label->Text;
 
+					//Places the data of the compared player in first place
 					num_p1_e_label->Text = data_STR;
 
-					//Saves time and username in watch mode
 					winnersFile >> title;
 					winnersFile >> data;
 					data_STR = gcnew String(data.c_str());
@@ -607,6 +625,7 @@ namespace MasterMindProyectoFinal {
 					data_STR = gcnew String(data.c_str());
 					player1_easy_label->Text = player1_easy_label->Text + " " + data_STR;
 
+					////*
 					player2_easy_label->Text = prev_player1;
 					num_p2_e_label->Text = prev_p1_num;
 					player3_easy_label->Text = prev_player2;
@@ -614,12 +633,13 @@ namespace MasterMindProyectoFinal {
 				}
 				else if (data_time_int < p2_label_int)
 				{
+					////*
 					String^ prev_player2 = player2_easy_label->Text;
 					String^ prev_p2_num = num_p1_e_label->Text;
 
+					//Places the data of the compared player in second place
 					num_p2_e_label->Text = data_STR;
 
-					//Saves time and username in watch mode
 					winnersFile >> title;
 					winnersFile >> data;
 					data_STR = gcnew String(data.c_str());
@@ -630,14 +650,15 @@ namespace MasterMindProyectoFinal {
 					data_STR = gcnew String(data.c_str());
 					player2_easy_label->Text = player2_easy_label->Text + " " + data_STR;
 
+					////*
 					player3_easy_label->Text = prev_player2;
 					num_p3_e_label->Text = prev_p2_num;
 				}
 				else if (data_time_int < p3_label_int)
 				{
+					//Places the data of the compared player in third place
 					num_p3_e_label->Text = data_STR;
 
-					//Saves time and username in watch mode
 					winnersFile >> title;
 					winnersFile >> data;
 					data_STR = gcnew String(data.c_str());
@@ -648,7 +669,7 @@ namespace MasterMindProyectoFinal {
 					data_STR = gcnew String(data.c_str());
 					player3_easy_label->Text = player3_easy_label->Text + " " + data_STR;
 				}
-				//This writes the information in the file
+
 				winnersFile >> title;
 				winnersFile >> data;
 				winnersFile >> data;
@@ -662,7 +683,7 @@ namespace MasterMindProyectoFinal {
 				winnersFile >> data;
 			}
 		}
-		//This closes the file after writing everything on it
+
 		winnersFile.close();
 
 	}
