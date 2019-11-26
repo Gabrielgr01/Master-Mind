@@ -15,14 +15,15 @@ namespace MasterMindProyectoFinal {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-
+	
 	/// <summary>
 	/// Resumen de GameSettings
 	/// </summary>
 	public ref class GameSettings : public System::Windows::Forms::Form
 	{
 	public:
-		ConfigurationClass* objSettings = new ConfigurationClass();
+		ConfigurationClass* objSettings = new ConfigurationClass(); //object containing the configuration data
+
 		//Definition of the variables to be used in this class
 		int difficulty;
 		bool clock;
@@ -35,25 +36,17 @@ namespace MasterMindProyectoFinal {
 		static Image^ picBox_img4_GS;
 		static Image^ picBox_img5_GS;
 		static Image^ picBox_img6_GS;
+
+		int element_type;
+
+
+
 	private: System::Windows::Forms::PictureBox^ shapes_hexagon_picBox;
 	private: System::Windows::Forms::PictureBox^ shapes_pentagon_picBox;
 	private: System::Windows::Forms::PictureBox^ shapes_square_picBox;
 	private: System::Windows::Forms::PictureBox^ shapes_doubleTriangle_picBox;
 	private: System::Windows::Forms::PictureBox^ shapes_triangle_picBox;
 	private: System::Windows::Forms::PictureBox^ shapes_lightning_picBox;
-	public:
-
-
-
-	public:
-
-
-
-
-
-
-
-
 
 	private: System::Windows::Forms::PictureBox^ numbers_5_picBox;
 
@@ -92,7 +85,6 @@ namespace MasterMindProyectoFinal {
 
 	private: System::Windows::Forms::PictureBox^ colors_red_picBox;
 
-		   int element_type;
 
 	public:
 
@@ -104,7 +96,7 @@ namespace MasterMindProyectoFinal {
 			//
 		}
 
-
+	
 	protected:
 		/// <summary>
 		/// Limpiar los recursos que se estén usando.
@@ -140,7 +132,7 @@ namespace MasterMindProyectoFinal {
 	public: System::Windows::Forms::RadioButton^ Element_rep_Enabled;
 
 	private: System::Windows::Forms::GroupBox^ groupBox4;
-	private: System::Windows::Forms::RadioButton^ elem_type_shapes_rbtn;
+private: System::Windows::Forms::RadioButton^ elem_type_shapes_rbtn;
 
 	private: System::Windows::Forms::RadioButton^ elem_type_numbers_rbtn;
 
@@ -170,7 +162,6 @@ namespace MasterMindProyectoFinal {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			//Definition of the components shown in the form
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(GameSettings::typeid));
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
 			this->Difficulty_Hard = (gcnew System::Windows::Forms::RadioButton());
@@ -782,8 +773,7 @@ namespace MasterMindProyectoFinal {
 
 	private: System::Void button_back_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		//This is in charge of closing the tab when you click the back button
-		GameSettings::Close();
+		GameSettings::Close(); //This is in charge of closing the tab when you click the back button
 	}
 
 
@@ -859,7 +849,7 @@ namespace MasterMindProyectoFinal {
 		element_rep = true;
 		objSettings->setElementRep(element_rep);
 	}
-	private: System::Void Element_rep_Disabled_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void Element_rep_Disabled_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
 	{
 		//This doesn't allow the random combination to be generated with repeated values
 		element_rep = false;
@@ -884,7 +874,7 @@ namespace MasterMindProyectoFinal {
 		element_type = 3;
 		objSettings->setElementType(element_type);
 	}
-	private: System::Void elem_type_shapes_rbtn_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void elem_type_shapes_rbtn_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
 	{
 		//This sets the elements to shapes
 		element_type = 4;
@@ -894,7 +884,6 @@ namespace MasterMindProyectoFinal {
 	private: System::Void Save_Settings_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		//This sets the values of the elements to be played with and sends them to the play tab
-		//GameSettings::Close();
 
 		if (objSettings->getElementType() == 1)
 		{
@@ -946,10 +935,9 @@ namespace MasterMindProyectoFinal {
 	}
 
 
-
-	private: System::Void groupBox4_Enter(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void groupBox4_Enter(System::Object^ sender, System::EventArgs^ e) 
 	{
 	}
 
-	};
+};
 }
