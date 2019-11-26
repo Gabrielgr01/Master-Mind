@@ -1,7 +1,6 @@
 #Master-Mind
 
 //VentanaPlay.h
-//Documentado
 
 #pragma once
 
@@ -42,7 +41,6 @@ namespace MasterMindProyectoFinal {
 
 
 	public:
-
 		//variables para guardar valores del cronómetro/temporizador
 		static int seconds = 0; //para el reloj
 		static int minutes = 0; //para el reloj
@@ -106,9 +104,9 @@ namespace MasterMindProyectoFinal {
 		static Image^ btn_img6_play;
 
 		//variables conteniendo los archivo de audio
-		SoundPlayer^ backg = gcnew SoundPlayer("Jazz.wav");
-		SoundPlayer^ applause = gcnew SoundPlayer("Applause.wav");
-		SoundPlayer^ disappointment = gcnew SoundPlayer("Disappointment.wav");
+		SoundPlayer^ backg = gcnew SoundPlayer(".//SoundFx//Jazz.wav");
+		SoundPlayer^ applause = gcnew SoundPlayer(".//SoundFx//Applause.wav");
+		SoundPlayer^ disappointment = gcnew SoundPlayer(".//SoundFx//Disappointment.wav");
 
 
 
@@ -116,11 +114,9 @@ namespace MasterMindProyectoFinal {
 		VentanaPlay(ConfigurationClass* objSettings)
 		{
 			//CODIGO DEL CONSTRUCTOR:
-
 			InitializeComponent();
 
-
-			backg->PlayLooping(); //inicia a sonar backg
+			backg->PlayLooping(); //backg starts looping
 
 			this->objSettings = objSettings; //asigna al objeto objSettings el valor del objeto obtenido por parámetro
 
@@ -185,7 +181,6 @@ namespace MasterMindProyectoFinal {
 				brown_button->Text = "";
 			}
 			
-			
 			//busca en el archivo donde se guarda el juego si se ha guardado algun juego o no 
 			using namespace std;
 			string titulo;
@@ -200,6 +195,12 @@ namespace MasterMindProyectoFinal {
 				saved_game = false;
 			saved_game_file.close(); //closes file
 			
+
+			//guess button backg image set to blank
+			play1_guess1_button->BackgroundImage == blank_button->BackgroundImage;
+			play1_guess2_button->BackgroundImage == blank_button->BackgroundImage;
+			play1_guess3_button->BackgroundImage == blank_button->BackgroundImage;
+			play1_guess4_button->BackgroundImage == blank_button->BackgroundImage;
 		}
 
 	protected:
@@ -2738,11 +2739,15 @@ namespace MasterMindProyectoFinal {
 		}
 
 		//Enter button
-		if (play1_guess1_button->BackgroundImage != blank_button->BackgroundImage)
+		if (play1_guess1_button->BackgroundImage != blank_button->BackgroundImage) 
 			if (play1_guess2_button->BackgroundImage != blank_button->BackgroundImage)
 				if (play1_guess3_button->BackgroundImage != blank_button->BackgroundImage)
 					if (play1_guess4_button->BackgroundImage != blank_button->BackgroundImage)
 						enter_play_button->Enabled = true;
+			
+		//&& (play1_guess2_button->BackgroundImage != blank_button->BackgroundImage) && (play1_guess3_button->BackgroundImage != blank_button->BackgroundImage) && (play1_guess4_button->BackgroundImage != blank_button->BackgroundImage))
+
+			
 	}
 	private: System::Void play1_guess2_button_Click(System::Object^ sender, System::EventArgs^ e)
 	{
@@ -3398,6 +3403,7 @@ namespace MasterMindProyectoFinal {
 
 		if (loaded_game == false)
 		{
+			//creates random combination
 
 			//combination
 			//1 = red
@@ -3516,67 +3522,14 @@ namespace MasterMindProyectoFinal {
 			game_timer->Enabled = true;
 		}
 
-		/*
-		else if (loaded_game == true)
-		{
-			using namespace std;
-			string title;
-			string data;
-			ifstream SavedGameData;
-			SavedGameData.open("SavedGameData.txt", ios::in);
-
-			SavedGameData >> title;//
-			SavedGameData >> data;
-			SavedGameData >> title;//
-			SavedGameData >> data;
-			SavedGameData >> title;//
-			SavedGameData >> data;
-			SavedGameData >> title;//
-			SavedGameData >> data;
-			SavedGameData >> data;
-			SavedGameData >> data;
-			SavedGameData >> data;
-			SavedGameData >> title;//
-			SavedGameData >> data;
-			SavedGameData >> title;//
-			SavedGameData >> data;
-			SavedGameData >> title;//
-			SavedGameData >> data;
-			SavedGameData >> title;//
-			SavedGameData >> data;
-			SavedGameData >> data;
-			SavedGameData >> data;
-
-			SavedGameData >> title; //Time h,m,s
-			SavedGameData >> data;
-			//string hours_str = msclr::interop::marshal_as<std::string>(data);
-			int hours_int = stoi(data);
-			hoursTimer = hours_int;
-
-			SavedGameData >> title;
-			SavedGameData >> data;
-			//string minutes_str = msclr::interop::marshal_as<std::string>(data);
-			int minutes_int = stoi(data);
-			minutesTimer = minutes_int;
-
-			SavedGameData >> title;
-			SavedGameData >> data;
-			//string seconds_str = msclr::interop::marshal_as<std::string>(data);
-			int seconds_int = stoi(data);
-			secondsTimer = seconds_int;
-
-			SavedGameData.close();
-		}
-		*/
-
 
 		//Enables the colors buttons
-		VentanaPlay::red_button->Enabled = true;
-		VentanaPlay::blue_button->Enabled = true;
-		VentanaPlay::green_button->Enabled = true;
-		VentanaPlay::yellow_button->Enabled = true;
-		VentanaPlay::pink_button->Enabled = true;
-		VentanaPlay::brown_button->Enabled = true;
+		red_button->Enabled = true;
+		blue_button->Enabled = true;
+		green_button->Enabled = true;
+		yellow_button->Enabled = true;
+		pink_button->Enabled = true;
+		brown_button->Enabled = true;
 
 		/*
 		//Clock starts
@@ -4960,7 +4913,6 @@ namespace MasterMindProyectoFinal {
 
 		}
 
-
 		//plays
 		if (actual_play == 1)
 		{
@@ -5265,15 +5217,12 @@ namespace MasterMindProyectoFinal {
 
 		}
 
-
 		//Timekeeper for play
 		secondsP = 60;
 		minutesP = 0;
 
-		actual_play++;
-
 		enter_play_button->Enabled = false;
-
+		actual_play++;
 		saved_plays++;
 	}
 
@@ -5423,7 +5372,7 @@ namespace MasterMindProyectoFinal {
 
 		ofstream saved_game_file;
 
-		//codigo para crear el archivo o sobreescribirlo
+		//code for creating file or overwriting it
 		saved_game_file.open("SavedGameData.txt", ios::out); // opens file
 		saved_game_file.close(); // closes file
 
@@ -6867,8 +6816,17 @@ namespace MasterMindProyectoFinal {
 			//gameTimer starts
 			game_timer->Enabled = true;
 
+
+			//deletes the saved game data
+			using namespace std;
+			ofstream SavedGame;
+			SavedGame.open("SavedGameData.txt", ios::out);
+			SavedGame.close();
+
+			saved_game = false;
+
 		}
-		if (saved_game == false)
+		else if (saved_game == false)
 		{
 			load_warning_groupBox->BringToFront();
 			load_warning_groupBox->Visible = true;
@@ -6983,60 +6941,3 @@ namespace MasterMindProyectoFinal {
 
 };
 }
-
-
-
-
-//////EXTRA: May be useful in the future////////////
-
-//loads hoursTimer, minutesTimer and secondsTimer and updates its values
-			
-	/*
-			using namespace std;
-			string title;
-			string data;
-			ifstream SavedGameData;
-			SavedGameData.open("SavedGameData.txt", ios::in);
-
-			SavedGameData >> title;//
-			SavedGameData >> data;
-			SavedGameData >> title;//
-			SavedGameData >> data;
-			SavedGameData >> title;//
-			SavedGameData >> data;
-			SavedGameData >> title;//
-			SavedGameData >> data;
-			SavedGameData >> data;
-			SavedGameData >> data;
-			SavedGameData >> data;
-			SavedGameData >> title;//
-			SavedGameData >> data;
-			SavedGameData >> title;//
-			SavedGameData >> data;
-			SavedGameData >> title;//
-			SavedGameData >> data;
-			SavedGameData >> title;//
-			SavedGameData >> data;
-			SavedGameData >> data;
-			SavedGameData >> data;
-
-			SavedGameData >> title; //Time h,m,s
-			SavedGameData >> data;
-			//string hours_str = msclr::interop::marshal_as<std::string>(data);
-			int hours_int = stoi(data);
-			hoursTimer = hours_int;
-
-			SavedGameData >> title;
-			SavedGameData >> data;
-			//string minutes_str = msclr::interop::marshal_as<std::string>(data);
-			int minutes_int = stoi(data);
-			minutesTimer = minutes_int;
-
-			SavedGameData >> title;
-			SavedGameData >> data;
-			//string seconds_str = msclr::interop::marshal_as<std::string>(data);
-			int seconds_int = stoi(data);
-			secondsTimer = seconds_int;
-
-			SavedGameData.close();
-			*/
