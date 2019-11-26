@@ -25,20 +25,22 @@ namespace MasterMindProyectoFinal {
 		ConfigurationClass* objSettings = new ConfigurationClass(); //object containing the configuration data
 
 		//Definition of the variables to be used in this class
-		int difficulty;
-		bool clock;
-		bool timekeeper_play;
-		bool timekeeper_game;
-		bool element_rep;
-		static Image^ picBox_img1_GS;
-		static Image^ picBox_img2_GS;
-		static Image^ picBox_img3_GS;
-		static Image^ picBox_img4_GS;
-		static Image^ picBox_img5_GS;
-		static Image^ picBox_img6_GS;
 
-		int element_type;
+		int difficulty = 1;
+		bool clock = true;
+		bool timekeeper_play = false;
+		bool timekeeper_game = false;
+		bool element_rep = true;
+		int element_type = 1;
 
+		//selected configuration (actual): in case a game is loaded
+		int actual_difficulty;
+		bool actual_clock;
+		bool actual_timekeeper_play;
+		bool actual_timekeeper_game;
+		bool actual_element_rep;
+		int actual_element_type;
+		
 
 
 	private: System::Windows::Forms::PictureBox^ shapes_hexagon_picBox;
@@ -91,9 +93,38 @@ namespace MasterMindProyectoFinal {
 		GameSettings(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: agregar código de constructor aquí
-			//
+
+
+			//sends the values of the background images of all the elements to the VentanaPlay
+
+			MasterMindProyectoFinal::VentanaPlay::color_img1 = colors_red_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::color_img2 = colors_blue_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::color_img3 = colors_green_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::color_img4 = colors_yellow_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::color_img5 = colors_pink_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::color_img6 = colors_brown_picBox->BackgroundImage;
+
+			MasterMindProyectoFinal::VentanaPlay::letter_img1 = letters_A_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::letter_img2 = letters_B_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::letter_img3 = letters_C_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::letter_img4 = letters_D_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::letter_img5 = letters_E_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::letter_img6 = letters_F_picBox->BackgroundImage;
+
+			MasterMindProyectoFinal::VentanaPlay::number_img1 = numbers_0_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::number_img2 = numbers_1_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::number_img3 = numbers_2_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::number_img4 = numbers_3_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::number_img5 = numbers_4_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::number_img6 = numbers_5_picBox->BackgroundImage;
+
+			MasterMindProyectoFinal::VentanaPlay::shape_img1 = shapes_lightning_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::shape_img2 = shapes_triangle_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::shape_img3 = shapes_doubleTriangle_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::shape_img4 = shapes_square_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::shape_img5 = shapes_pentagon_picBox->BackgroundImage;
+			MasterMindProyectoFinal::VentanaPlay::shape_img6 = shapes_hexagon_picBox->BackgroundImage;
+
 		}
 
 	
@@ -884,50 +915,19 @@ private: System::Windows::Forms::RadioButton^ elem_type_shapes_rbtn;
 	private: System::Void Save_Settings_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		//This sets the values of the elements to be played with and sends them to the play tab
+		actual_difficulty = difficulty;
+		actual_clock = clock;
+		actual_timekeeper_play = timekeeper_play;
+		actual_timekeeper_game = timekeeper_game;
+		actual_element_rep = element_rep;
+		actual_element_type = element_type;
 
-		if (objSettings->getElementType() == 1)
-		{
-			picBox_img1_GS = colors_red_picBox->BackgroundImage;
-			picBox_img2_GS = colors_blue_picBox->BackgroundImage;
-			picBox_img3_GS = colors_green_picBox->BackgroundImage;
-			picBox_img4_GS = colors_yellow_picBox->BackgroundImage;
-			picBox_img5_GS = colors_pink_picBox->BackgroundImage;
-			picBox_img6_GS = colors_brown_picBox->BackgroundImage;
-		}
-		else if (objSettings->getElementType() == 2)
-		{
-			picBox_img1_GS = letters_A_picBox->BackgroundImage;
-			picBox_img2_GS = letters_B_picBox->BackgroundImage;
-			picBox_img3_GS = letters_C_picBox->BackgroundImage;
-			picBox_img4_GS = letters_D_picBox->BackgroundImage;
-			picBox_img5_GS = letters_E_picBox->BackgroundImage;
-			picBox_img6_GS = letters_F_picBox->BackgroundImage;
-		}
-		else if (objSettings->getElementType() == 3)
-		{
-			picBox_img1_GS = numbers_0_picBox->BackgroundImage;
-			picBox_img2_GS = numbers_1_picBox->BackgroundImage;
-			picBox_img3_GS = numbers_2_picBox->BackgroundImage;
-			picBox_img4_GS = numbers_3_picBox->BackgroundImage;
-			picBox_img5_GS = numbers_4_picBox->BackgroundImage;
-			picBox_img6_GS = numbers_5_picBox->BackgroundImage;
-		}
-		else if (objSettings->getElementType() == 4)
-		{
-			picBox_img1_GS = shapes_lightning_picBox->BackgroundImage;
-			picBox_img2_GS = shapes_triangle_picBox->BackgroundImage;
-			picBox_img3_GS = shapes_doubleTriangle_picBox->BackgroundImage;
-			picBox_img4_GS = shapes_square_picBox->BackgroundImage;
-			picBox_img5_GS = shapes_pentagon_picBox->BackgroundImage;
-			picBox_img6_GS = shapes_hexagon_picBox->BackgroundImage;
-		}
-
-		MasterMindProyectoFinal::VentanaPlay::btn_img1_play = picBox_img1_GS;
-		MasterMindProyectoFinal::VentanaPlay::btn_img2_play = picBox_img2_GS;
-		MasterMindProyectoFinal::VentanaPlay::btn_img3_play = picBox_img3_GS;
-		MasterMindProyectoFinal::VentanaPlay::btn_img4_play = picBox_img4_GS;
-		MasterMindProyectoFinal::VentanaPlay::btn_img5_play = picBox_img5_GS;
-		MasterMindProyectoFinal::VentanaPlay::btn_img6_play = picBox_img6_GS;
+		objSettings->setClock(actual_clock);
+		objSettings->setDifficulty(actual_difficulty);
+		objSettings->setElementRep(actual_element_rep);
+		objSettings->setElementType(actual_element_type);
+		objSettings->setTimekeeperGame(actual_timekeeper_game);
+		objSettings->setTimekeeperPlay(actual_timekeeper_play);
 
 
 		VentanaPlay juego(objSettings);
